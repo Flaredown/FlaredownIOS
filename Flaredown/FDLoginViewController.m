@@ -1,0 +1,130 @@
+//
+//  FDLoginViewController.m
+//  Flaredown
+//
+//  Created by Cole Cunningham on 11/10/14.
+//  Copyright (c) 2014 Flaredown. All rights reserved.
+//
+
+#import "FDLoginViewController.h"
+#import "FDNetworkManager.h"
+#import "FDModelManager.h"
+#import "MBProgressHUD.h"
+
+@interface FDLoginViewController ()
+
+@end
+
+@implementation FDLoginViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [_emailTextField setDelegate:self];
+    [_passwordTextField setDelegate:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)loginButton:(id)sender
+{
+    if([[_emailTextField text] length] == 0 || ![self stringIsValidEmail:[_emailTextField text]]) {
+        [[[UIAlertView alloc] initWithTitle:@"Invalid email"
+                                    message:@"Please enter a valid email"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    } else if([[_passwordTextField text] length] == 0) {
+        [[[UIAlertView alloc] initWithTitle:@"Invalid password"
+                                    message:@"Please enter a valid password"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    } else {
+        
+        //Log in user
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        [[FDNetworkManager sharedManager] loginUserWithEmail:[_emailTextField text] password:[_passwordTextField text] completion:^(bool success, id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            if(success) {
+                [[FDModelManager sharedManager] setUserObject:[[FDUser alloc] initWithDictionary:(NSDictionary *)responseObject]];
+                NSLog(@"Success!");
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else {
+                NSLog(@"Failure!");
+                
+                [[[UIAlertView alloc] initWithTitle:@"Error logging in"
+                                            message:@"Invalid email and/or password, please try again."
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] show];
+            }
+        }];
+    }
+}
+
+- (BOOL)stringIsValidEmail:(NSString *)checkString
+{
+    NSString *emailRegex = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    
+    return NO;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    [self dismissKeyboard];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self dismissKeyboard];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // Closes keyboard when clicked off
+    [self dismissKeyboard];
+}
+
+- (void)dismissKeyboard
+{
+    [self.view endEditing:YES];
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+
+
+@end
