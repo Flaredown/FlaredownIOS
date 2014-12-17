@@ -11,7 +11,7 @@
 @interface FDInput : NSObject
 
 @property NSString *helper;
-@property int inputId;
+//@property int inputId;
 @property NSString *label;
 @property NSString *metaLabel;
 @property int value;

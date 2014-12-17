@@ -9,7 +9,7 @@
 #import "FDNetworkManager.h"
 #import "MBProgressHUD.h"
 
-static NSString *host = @"http://192.168.1.15:5000";
+static NSString *host = @"http://api-staging.flaredown.com";
 static NSString *api = @"/v1";
 
 @implementation FDNetworkManager
@@ -86,11 +86,11 @@ static NSString *api = @"/v1";
 //    }];
 //}
 
-- (void)putEntry:(NSDictionary *)entry atId:(NSString *)entryId email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
+- (void)putEntry:(NSDictionary *)entry date:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSString *url = [NSString stringWithFormat:@"%@/entries/%@", self.baseUrl, entryId];
+    NSString *url = [NSString stringWithFormat:@"%@/entries/%@", self.baseUrl, date];
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:entry options:0 error:&error];

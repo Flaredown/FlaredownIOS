@@ -26,13 +26,7 @@ static NSString * const itemCellIdentifier = @"itemCell";
 - (void)initWithQuestion:(FDQuestion *)question
 {
     self.question = question;
-    
-    NSMutableArray *inputs = [[NSMutableArray alloc] init];
-    for(int i = 0; i < [[question inputIds] count]; i++) {
-        FDInput *input = [[FDModelManager sharedManager] inputForId:[[question inputIds][i] intValue]];
-        [inputs addObject:input];
-    }
-    self.inputs = [inputs copy];
+    self.inputs = [question inputs];
     
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     

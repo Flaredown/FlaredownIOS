@@ -32,15 +32,6 @@ static NSString *inputsSessionLocation = @"inputs";
     return self;
 }
 
-- (FDInput *)inputForId:(int)inputId
-{
-    for (FDInput *input in _inputs) {
-        if([input inputId] == inputId)
-            return input;
-    }
-    return nil;
-}
-
 - (NSArray *)questionsForSection:(int)section
 {
     NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
@@ -59,7 +50,7 @@ static NSString *inputsSessionLocation = @"inputs";
         if([question section] > highestSection)
             highestSection = (int)[question section];
     }
-    return highestSection;
+    return highestSection + 1;
 }
 
 - (void)saveSession

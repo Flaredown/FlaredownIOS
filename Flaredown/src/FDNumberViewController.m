@@ -34,8 +34,7 @@
         self.response = [entry responseForId:[self.response responseId]];
         self.mainNumber = [self.response value];
     } else {
-        int inputId = [[self.question inputIds][0] intValue];
-        FDInput *input = [[FDModelManager sharedManager] inputForId:inputId];
+        FDInput *input = [self.question inputs][0];
         self.mainNumber = [input value];
         
         [self.response setName:[question name]];

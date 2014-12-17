@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:self.pageIndex+1][0] kind];
+    NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:self.pageIndex][0] kind];
     
     if([pageType isEqualToString:@"select"]) {
         self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
@@ -49,7 +49,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex+1];
+    NSArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
     NSString *pageType = [questions[0] kind];
     
     if(self.childViewControllers.count > 0) {

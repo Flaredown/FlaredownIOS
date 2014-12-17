@@ -20,23 +20,23 @@
     [super viewDidLoad];
 
     FDQuestion *question = [[[FDModelManager sharedManager] entry] questions][_pageIndex];
-    if(![[NSNull null] isEqual:[question group]]) {
-        
-        NSString *title = [question group];
-        /* create a locale where diacritic marks are not considered important, e.g. US English */
-        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en-US"];
-        
-        /* get first char */
-        NSString *firstChar = [title substringToIndex:1];
-        
-        /* remove any diacritic mark */
-        NSString *folded = [firstChar stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:locale];
-        
-        /* create the new string */
-        self.titleLabel.text = [[folded uppercaseString] stringByAppendingString:[title substringFromIndex:1]];
-        
-    } else if(![[NSNull null] isEqual:[question localizedName]])
-        self.titleLabel.text = [question localizedName];
+//    if(![[NSNull null] isEqual:[question group]]) {
+//        
+//        NSString *title = [question group];
+//        /* create a locale where diacritic marks are not considered important, e.g. US English */
+//        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en-US"];
+//        
+//        /* get first char */
+//        NSString *firstChar = [title substringToIndex:1];
+//        
+//        /* remove any diacritic mark */
+//        NSString *folded = [firstChar stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:locale];
+//        
+//        /* create the new string */
+//        self.titleLabel.text = [[folded uppercaseString] stringByAppendingString:[title substringFromIndex:1]];
+//        
+    if(![[NSNull null] isEqual:[question name]])
+        self.titleLabel.text = [question name];
 }
 
 - (void)didReceiveMemoryWarning {

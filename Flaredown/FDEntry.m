@@ -18,11 +18,19 @@
     if(self) {
         _entryId = [dictionary objectForKey:@"id"];
         _date = [dictionary objectForKey:@"date"];
+        _catalogs = [dictionary objectForKey:@"catalogs"];
+        
         NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
-        for (NSDictionary *question in [dictionary objectForKey:@"questions"]) {
-            [mutableQuestions addObject:[[FDQuestion alloc] initWithDictionary:question]];
+        for (NSString *catalog in _catalogs) {
+            NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:catalog];
+            for(int i = 0; i < catalogDefinition.count; i++) {
+                for (NSDictionary *questionDefinition in catalogDefinition[i]) {
+                    [mutableQuestions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:i]];
+                }
+            }
         }
         _questions = [mutableQuestions copy];
+        
         NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
         for(NSDictionary *response in [dictionary objectForKey:@"responses"]) {
             [mutableResponses addObject:[[FDResponse alloc] initWithDictionary:response]];
@@ -46,9 +54,21 @@
     return @{
              @"id":_entryId,
              @"date":_date,
+             @"catalogs":_catalogs,
              @"questions":mutableQuestions,
              @"responses":mutableResponses,
              @"scores":_scores
+             };
+}
+
+- (NSDictionary *)responseDictionaryCopy
+{
+    NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
+    for (FDResponse *response in _responses) {
+        [mutableResponses addObject:[response dictionaryCopy]];
+    }
+    return @{
+             @"responses":mutableResponses,
              };
 }
 

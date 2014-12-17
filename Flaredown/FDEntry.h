@@ -13,12 +13,14 @@
 
 @property NSString *entryId;
 @property NSString *date;
+@property NSArray *catalogs;
 @property NSArray *questions;
 @property NSMutableArray *responses;
 @property NSArray *scores;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionaryCopy;
+- (NSDictionary *)responseDictionaryCopy;
 - (void)insertResponse:(FDResponse *)response;
 - (void)removeResponse:(FDResponse *)response;
 - (FDResponse *)responseForId:(NSString *)responseId;

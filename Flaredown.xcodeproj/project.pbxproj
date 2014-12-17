@@ -46,6 +46,7 @@
 		EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */; };
 		EDEA82B51A11830F00A80416 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDEA829C1A11830F00A80416 /* README.mdown */; };
 		EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */; };
+		EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEBC6A91A424907007742C5 /* FDTreatment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		EDEA829C1A11830F00A80416 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		EDEA82BC1A11952300A80416 /* FDLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLaunchViewController.h; sourceTree = "<group>"; };
 		EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLaunchViewController.m; sourceTree = "<group>"; };
+		EDEBC6A81A424907007742C5 /* FDTreatment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatment.h; sourceTree = "<group>"; };
+		EDEBC6A91A424907007742C5 /* FDTreatment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +327,8 @@
 				EDEA826B1A115A2A00A80416 /* FDResponse.m */,
 				EDEA826D1A115FCC00A80416 /* FDInput.h */,
 				EDEA826E1A115FCC00A80416 /* FDInput.m */,
+				EDEBC6A81A424907007742C5 /* FDTreatment.h */,
+				EDEBC6A91A424907007742C5 /* FDTreatment.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				EDDC71F31A082A130059815A /* AFNetworkReachabilityManager.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
+				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,
 				EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */,
 				EDDC71F21A082A130059815A /* AFHTTPSessionManager.m in Sources */,
 			);

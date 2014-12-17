@@ -234,7 +234,7 @@
         
         //List button
         UIButton *button = (UIButton *)[cell viewWithTag:1];
-        [button setTitle:[self.questions[[indexPath row]] localizedName] forState:UIControlStateNormal];
+        [button setTitle:[self.questions[[indexPath row]] name] forState:UIControlStateNormal];
         
         FDResponse *response = self.responses[[indexPath row]];
         if([response value] == 1) {
