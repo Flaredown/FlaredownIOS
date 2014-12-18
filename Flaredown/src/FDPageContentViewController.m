@@ -19,7 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    FDQuestion *question = [[[FDModelManager sharedManager] entry] questions][_pageIndex];
+    NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
+    if(_pageIndex >= numSections) {
+        if(_pageIndex == numSections-1) { // TODO: change these numbers
+            //Treatments
+            self.titleLabel.text = @"Treatments";
+        } else if(_pageIndex == numSections) {
+            //Notes
+            self.titleLabel.text = @"Notes";
+        }
+    } else {
+        FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:_pageIndex][0];
+        if(![[NSNull null] isEqual:[question name]])
+            self.titleLabel.text = [question name];
+    }
+    
 //    if(![[NSNull null] isEqual:[question group]]) {
 //        
 //        NSString *title = [question group];
@@ -34,9 +48,7 @@
 //        
 //        /* create the new string */
 //        self.titleLabel.text = [[folded uppercaseString] stringByAppendingString:[title substringFromIndex:1]];
-//        
-    if(![[NSNull null] isEqual:[question name]])
-        self.titleLabel.text = [question name];
+//
 }
 
 - (void)didReceiveMemoryWarning {

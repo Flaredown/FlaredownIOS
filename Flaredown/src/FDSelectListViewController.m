@@ -45,7 +45,7 @@
             response = [entry responseForId:[response responseId]];
             if([response value] == 1)
                 [self.selectedItems addObject:[NSIndexPath indexPathForRow:count inSection:0]];
-            [self addResponse:response];
+            [self.responses addObject:response];
         } else {
             [response setName:[question name]];
             [response setValue:0];
@@ -168,7 +168,7 @@
     FDResponse *response = [[FDResponse alloc] init];
     [response setResponseIdWithEntryId:[entry entryId] name:title];
     if([entry responseForId:[response responseId]]) {
-        [self addResponse:[entry responseForId:[response responseId]]];
+        [self.responses addObject:[entry responseForId:[response responseId]]];
     } else {
         [response setName:title];
         [response setValue:0];

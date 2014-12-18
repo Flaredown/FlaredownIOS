@@ -7,6 +7,7 @@
 //
 
 #import "FDNotesViewController.h"
+#import "FDModelManager.h"
 
 @interface FDNotesViewController ()
 
@@ -26,6 +27,7 @@
                                              selector:@selector(keyboardWasHidden:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+    self.textView.text = [[[FDModelManager sharedManager] entry] notes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +47,7 @@
     NSDictionary *info = [notification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 //    self.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height + keyboardSize.height);
+    [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
 }
 
 /*

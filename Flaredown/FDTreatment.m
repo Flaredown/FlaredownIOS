@@ -10,7 +10,7 @@
 
 @implementation FDTreatment
 
-- (id)initWithDictionary:(NSDictionary *)dictionary catalog:(NSString *)catalog section:(NSInteger)section
+- (id)initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super init];
     if(self) {

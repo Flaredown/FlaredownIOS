@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FDResponse.h"
+#import "FDTreatment.h"
 
 @interface FDEntry : NSObject
 
@@ -15,7 +16,9 @@
 @property NSString *date;
 @property NSArray *catalogs;
 @property NSArray *questions;
+@property NSString *notes;
 @property NSMutableArray *responses;
+@property NSMutableArray *treatments;
 @property NSArray *scores;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

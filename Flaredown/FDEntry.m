@@ -31,11 +31,19 @@
         }
         _questions = [mutableQuestions copy];
         
+        _notes = ![[NSNull null] isEqual:[dictionary objectForKey:@"notes"]] ?  [dictionary objectForKey:@"notes"]: @"";
+        
         NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
         for(NSDictionary *response in [dictionary objectForKey:@"responses"]) {
             [mutableResponses addObject:[[FDResponse alloc] initWithDictionary:response]];
         }
         _responses = mutableResponses;
+        
+        for(NSDictionary *treatment in [dictionary objectForKey:@"treatments"]) {
+            [_treatments addObject:[[FDTreatment alloc] initWithDictionary:treatment]];
+        }
+        
+        
         _scores = [dictionary objectForKey:@"scores"];
     }
     return self;
@@ -51,12 +59,18 @@
     for (FDResponse *response in _responses) {
         [mutableResponses addObject:[response dictionaryCopy]];
     }
+    NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
+    for(FDTreatment *treatment in _treatments) {
+        [mutableTreatments addObject:[treatment dictionaryCopy]];
+    }
     return @{
              @"id":_entryId,
              @"date":_date,
              @"catalogs":_catalogs,
              @"questions":mutableQuestions,
+             @"notes":_notes,
              @"responses":mutableResponses,
+             @"treatments":mutableTreatments,
              @"scores":_scores
              };
 }
@@ -69,6 +83,7 @@
     }
     return @{
              @"responses":mutableResponses,
+             @"notes":_notes
              };
 }
 
@@ -79,7 +94,7 @@
         return;
     }
     for(int i = 0; i < [_responses count]; i++) {
-        if([[_responses[i] responseId] isEqualToString:[response responseId]]) {
+        if([[_responses[i] name] isEqualToString:[response name]]) {
             [_responses setObject:response atIndexedSubscript:i];
             return;
         }

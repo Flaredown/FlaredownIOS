@@ -21,19 +21,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:self.pageIndex][0] kind];
-    
-    if([pageType isEqualToString:@"select"]) {
-        self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
-    } else if([pageType isEqualToString:@"checkbox"]) {
-        self.currentSegueIdentifier = SegueIdentifierSelectListView;
-    } else if([pageType isEqualToString:@"number"]) {
-        self.currentSegueIdentifier = SegueIdentifierNumberView;
-    } else if([pageType isEqualToString:@"notes"]) {
-        self.currentSegueIdentifier = SegueIdentifierNotesView;
+    NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
+    if(self.pageIndex >= numSections) {
+        if(self.pageIndex == numSections-1) { //TODO: change these numbers
+            //Treatments
+            self.currentSegueIdentifier = SegueIdentifierSelectListView;
+        } else if(self.pageIndex == numSections) {
+            //Notes
+            self.currentSegueIdentifier = SegueIdentifierNotesView;
+        }
     } else {
-        NSLog(@"Invalid page kind");
-        return;
+        NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:self.pageIndex][0] kind];
+        
+        if([pageType isEqualToString:@"select"]) {
+            self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
+        } else if([pageType isEqualToString:@"checkbox"]) {
+            self.currentSegueIdentifier = SegueIdentifierSelectListView;
+        } else if([pageType isEqualToString:@"number"]) {
+            self.currentSegueIdentifier = SegueIdentifierNumberView;
+        } else if([pageType isEqualToString:@"notes"]) {
+            self.currentSegueIdentifier = SegueIdentifierNotesView;
+        } else {
+            NSLog(@"Invalid page kind");
+            return;
+        }
     }
     
     [self performSegueWithIdentifier:self.currentSegueIdentifier sender:nil];
@@ -49,8 +60,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
-    NSString *pageType = [questions[0] kind];
+    NSString *pageType;
+    UIViewController *dvc = segue.destinationViewController;
     
     if(self.childViewControllers.count > 0) {
         [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:segue.destinationViewController];
@@ -61,17 +72,27 @@
         [segue.destinationViewController didMoveToParentViewController:self];
     }
     
-    if(/* DISABLES CODE */ (NO)) {
-        ((FDSelectListViewController *)segue.destinationViewController).dynamic = true;
+    NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
+    if(self.pageIndex >= numSections) {
+        if(self.pageIndex == numSections-1) { //TODO: change these numbers
+            //Treatments
+            pageType = @"checkbox";
+            ((FDSelectListViewController *)segue.destinationViewController).dynamic = true;
+        } else if(self.pageIndex == numSections) {
+            //Notes
+            pageType = @"notes";
+        }
+    } else {
+        NSArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
+        pageType = [questions[0] kind];
+        
+        if([pageType isEqualToString:@"checkbox"])
+            [((FDSelectListViewController *)dvc) initWithQuestions:questions];
+        else if([pageType isEqualToString:@"number"])
+            [((FDNumberViewController *)dvc) initWithQuestion:questions[0]];
+        else if([pageType isEqualToString:@"select"])
+            [((FDSelectCollectionViewController *)dvc) initWithQuestion:questions[0]];
     }
-    
-    UIViewController *dvc = segue.destinationViewController;
-    if([pageType isEqualToString:@"checkbox"])
-        [((FDSelectListViewController *)dvc) initWithQuestions:questions];
-    else if([pageType isEqualToString:@"number"])
-        [((FDNumberViewController *)dvc) initWithQuestion:questions[0]];
-    else if([pageType isEqualToString:@"select"])
-        [((FDSelectCollectionViewController *)dvc) initWithQuestion:questions[0]];
 }
 
 - (void)swapFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController

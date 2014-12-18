@@ -20,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections];
+    //Number of questions + Notes
+    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 1;
     self.pageIndex = 0;
     
     //Create page view controller

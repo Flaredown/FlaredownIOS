@@ -15,6 +15,7 @@
 @property float quantity;
 @property NSString *unit;
 
+- (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionaryCopy;
 
 @end
