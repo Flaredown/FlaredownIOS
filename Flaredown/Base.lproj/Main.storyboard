@@ -184,6 +184,8 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="rlh-Tn-Gdb" id="JIu-5P-Q5z"/>
+                        <outlet property="loginBtn" destination="emL-iO-WlK" id="Dmo-DA-Ahe"/>
+                        <outlet property="loginCard" destination="jvL-6i-G6n" id="Z1O-Ig-NQg"/>
                         <outlet property="passwordTextField" destination="yo4-RY-kXr" id="GAP-8j-XpU"/>
                     </connections>
                 </viewController>
@@ -307,6 +309,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueBtn" destination="lyQ-Pr-M0f" id="txH-wg-cop"/>
                         <segue destination="Zvz-CY-M8D" kind="show" identifier="finish" id="RRC-oB-iPK"/>
                     </connections>
                 </viewController>
@@ -809,8 +812,8 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="LUj-FW-oHy"/>
-                                        <exclude reference="tZj-FQ-C2A"/>
                                         <exclude reference="cqw-sc-aaZ"/>
+                                        <exclude reference="tZj-FQ-C2A"/>
                                     </mask>
                                 </variation>
                             </collectionViewCell>

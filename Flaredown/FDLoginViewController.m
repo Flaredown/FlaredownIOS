@@ -12,6 +12,8 @@
 #import "MBProgressHUD.h"
 
 @interface FDLoginViewController ()
+@property (weak, nonatomic) IBOutlet UIView *loginCard;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @end
 
@@ -22,6 +24,11 @@
     
     [_emailTextField setDelegate:self];
     [_passwordTextField setDelegate:self];
+    
+    _loginCard.layer.cornerRadius = 5;
+    _loginCard.layer.masksToBounds = YES;
+    _loginBtn.layer.cornerRadius = 5;
+    _loginBtn.layer.masksToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {

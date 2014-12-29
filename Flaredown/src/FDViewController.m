@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 
 @interface FDViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *continueBtn;
 
 @end
 
@@ -19,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _continueBtn.layer.cornerRadius = 5;
+    _continueBtn.layer.masksToBounds = YES;
     
     //Number of questions + Notes
     self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 1;
