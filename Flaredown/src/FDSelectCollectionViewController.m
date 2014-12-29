@@ -14,7 +14,8 @@
 
 @implementation FDSelectCollectionViewController
 
-static NSString * const itemCellIdentifier = @"itemCell";
+static NSString * const imageCellIdentifier = @"imageCell";
+static NSString * const numberCellIdentifier = @"numberCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,14 +71,12 @@ static NSString * const itemCellIdentifier = @"itemCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:itemCellIdentifier forIndexPath:indexPath];
+    UICollectionViewCell *cell;
     
-    // Face image
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
-    
-    NSString *metaLabel = [self.inputs[[indexPath row]] metaLabel];
+    FDInput *input = self.inputs[[indexPath row]];
+    NSString *metaLabel = [input metaLabel];
+    NSString *imageStr;
     if(![[NSNull null] isEqual:metaLabel]) {
-        NSString *imageStr;
         if([metaLabel isEqualToString:@"happy_face"])
             imageStr = @"fd_smiley_best";
         else if([metaLabel isEqualToString:@"neutral_face"])
@@ -90,9 +89,17 @@ static NSString * const itemCellIdentifier = @"itemCell";
             imageStr = @"fd_smiley_worst";
         else
             NSLog(@"Invalid meta_label for select view: %@", metaLabel);
-        
-        if(imageStr != nil)
-            imageView.image = [UIImage imageNamed:imageStr];
+    }
+    
+    if(imageStr != nil) {
+        // Face image
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:imageCellIdentifier forIndexPath:indexPath];
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
+        imageView.image = [UIImage imageNamed:imageStr];
+    } else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:numberCellIdentifier forIndexPath:indexPath];
+        UILabel *label = (UILabel *)[cell viewWithTag:1];
+        label.text = [NSString stringWithFormat:@"%d", [input value]];
     }
 
     NSString *labelText = [self.inputs[[indexPath row]] label];
@@ -101,6 +108,8 @@ static NSString * const itemCellIdentifier = @"itemCell";
         label.numberOfLines = 0;
         label.text = [self.inputs[[indexPath row]] label];
     }
+    
+    [self setCellAppearance:cell];
     
     return cell;
 }
@@ -114,12 +123,48 @@ static NSString * const itemCellIdentifier = @"itemCell";
 }
 */
 
-/*
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger rows = [collectionView numberOfItemsInSection:0];
+    for(int i = 0; i < rows; i++) {
+        [self deselectCell:[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]]];
+    }
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    [self selectCell:cell];
+    
     return YES;
 }
-*/
+
+- (void)selectCell:(UICollectionViewCell *)cell
+{
+    [cell setSelected:YES];
+    
+    [self setCellAppearance:cell];
+    
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    NSInteger row = [indexPath row];
+    FDInput *input = self.inputs[row];
+    [self.response setValue:[input value]];
+}
+
+- (void)deselectCell:(UICollectionViewCell *)cell
+{
+    [cell setSelected:NO];
+    
+    [self setCellAppearance:cell];
+}
+
+- (void)setCellAppearance:(UICollectionViewCell *)cell
+{
+    UIView *mainView = (UIView *)[cell viewWithTag:1];
+    
+    if(cell.selected) {
+        [mainView setAlpha:1.0];
+    } else {
+        [mainView setAlpha:0.3];
+    }
+}
 
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
