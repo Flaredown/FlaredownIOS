@@ -21,6 +21,10 @@
 		101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101CA09619DE3D6A00173AAF /* FDNotesViewController.m */; };
 		10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EED0B019E35FF5000464DD /* FDContainerViewController.m */; };
 		10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EED0B519E4A70A000464DD /* FDNetworkManager.m */; };
+		85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A121A5215250053D6CC /* ProximaNova-Bold.otf */; };
+		85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A131A5215250053D6CC /* ProximaNova-Light.otf */; };
+		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
+		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */; };
 		EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71631A082A130059815A /* AFHTTPRequestOperationManager.m */; };
@@ -94,6 +98,10 @@
 		10EED0B019E35FF5000464DD /* FDContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDContainerViewController.m; path = src/FDContainerViewController.m; sourceTree = "<group>"; };
 		10EED0B419E4A70A000464DD /* FDNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDNetworkManager.h; path = src/FDNetworkManager.h; sourceTree = "<group>"; };
 		10EED0B519E4A70A000464DD /* FDNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDNetworkManager.m; path = src/FDNetworkManager.m; sourceTree = "<group>"; };
+		85378A121A5215250053D6CC /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		85378A131A5215250053D6CC /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
+		85378A141A5215250053D6CC /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		EDDC71601A082A130059815A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 		101393C519D216D700BBB266 /* Flaredown */ = {
 			isa = PBXGroup;
 			children = (
+				85378A101A5214C50053D6CC /* fnt */,
 				EDEA82731A11830F00A80416 /* MBProgressHUD-master */,
 				EDDC715F1A082A130059815A /* AFNetworking */,
 				101393EF19D2290E00BBB266 /* src */,
@@ -233,6 +242,17 @@
 				ED8861461A11F23D002469B3 /* Pages */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		85378A101A5214C50053D6CC /* fnt */ = {
+			isa = PBXGroup;
+			children = (
+				85378A121A5215250053D6CC /* ProximaNova-Bold.otf */,
+				85378A131A5215250053D6CC /* ProximaNova-Light.otf */,
+				85378A141A5215250053D6CC /* ProximaNova-Regular.otf */,
+				85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */,
+			);
+			name = fnt;
 			sourceTree = "<group>";
 		};
 		ED8861441A11F1A7002469B3 /* Managers */ = {
@@ -454,10 +474,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
 				EDEA82B11A11830F00A80416 /* LICENSE in Resources */,
 				EDEA829E1A11830F00A80416 /* .travis.yml in Resources */,
 				EDEA82B31A11830F00A80416 /* MBProgressHUD.podspec in Resources */,
 				EDEA829D1A11830F00A80416 /* .gitignore in Resources */,
+				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
+				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
+				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
 				EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
