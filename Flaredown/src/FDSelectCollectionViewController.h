@@ -15,6 +15,8 @@
 @property FDResponse *response;
 @property NSArray *inputs;
 
+@property BOOL itemSelected;
+
 - (void)initWithQuestion:(FDQuestion *)question;
 
 @end

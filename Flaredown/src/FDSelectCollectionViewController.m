@@ -125,6 +125,9 @@ static NSString * const numberCellIdentifier = @"numberCell";
 
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.itemSelected = YES;
+    
     NSInteger rows = [collectionView numberOfItemsInSection:0];
     for(int i = 0; i < rows; i++) {
         [self deselectCell:[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]]];
@@ -159,7 +162,7 @@ static NSString * const numberCellIdentifier = @"numberCell";
 {
     UIView *mainView = (UIView *)[cell viewWithTag:1];
     
-    if(cell.selected) {
+    if(cell.selected || !self.itemSelected) { //100% opacity until the first item is selected
         [mainView setAlpha:1.0];
     } else {
         [mainView setAlpha:0.3];
