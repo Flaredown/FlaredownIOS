@@ -21,8 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _continueBtn.layer.cornerRadius = 5;
-    _continueBtn.layer.masksToBounds = YES;
+    _continueBtn.layer.cornerRadius = 8;
+    
+    _continueBtn.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _continueBtn.layer.shadowOpacity = 0.1;
+    _continueBtn.layer.shadowRadius = 0;
+    _continueBtn.layer.shadowOffset = CGSizeMake(0, 4);
+    _continueBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    [self.view addSubview:_continueBtn];
     
     //Number of questions + Notes
     self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 1;
