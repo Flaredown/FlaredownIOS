@@ -23,10 +23,10 @@
     if(_pageIndex >= numSections) {
         if(_pageIndex == numSections-1) { // TODO: change these numbers
             //Treatments
-            self.titleLabel.text = @"Treatments";
+            self.titleLabel.text = NSLocalizedString(@"Treatments", nil);
         } else if(_pageIndex == numSections) {
             //Notes
-            self.titleLabel.text = @"Notes";
+            self.titleLabel.text = NSLocalizedString(@"Notes", nil);
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:_pageIndex][0];
@@ -46,7 +46,7 @@
 //        /* remove any diacritic mark */
 //        NSString *folded = [firstChar stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:locale];
 //        
-//        /* create the new string */
+//        /* create the new string */x
 //        self.titleLabel.text = [[folded uppercaseString] stringByAppendingString:[title substringFromIndex:1]];
 //
 }

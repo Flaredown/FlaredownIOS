@@ -115,11 +115,11 @@
     UIButton *titleButton = (UIButton *)[cell viewWithTag:1];
     NSString *itemName = titleButton.titleLabel.text;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"No longer taking %@?", itemName]
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"No longer taking %@?", nil), itemName]
                                                     message:nil
                                                    delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Remove Treatment", nil];
+                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Remove Treatment", nil), nil];
     [alert show];
 }
 
@@ -128,13 +128,13 @@
  */
 - (IBAction)addItemButton:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Treatment"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
                                                     message:nil
                                                    delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"OK", nil];
+                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                          otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
     [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [[alert textFieldAtIndex:0] setPlaceholder:@"Name of treatment"];
+    [[alert textFieldAtIndex:0] setPlaceholder:NSLocalizedString(@"Name of treatment", nil)];
     [alert show];
 }
 
@@ -145,14 +145,14 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if([buttonTitle isEqualToString:@"Cancel"])
+    if([buttonTitle isEqualToString:NSLocalizedString(@"Cancel", nil)])
         return;
     
-    if([alertView.title isEqualToString:@"Add Treatment"]) {
+    if([alertView.title isEqualToString:NSLocalizedString(@"Add Treatment", nil)]) {
         [self addListItem:[alertView textFieldAtIndex:0].text];
         [self.tableView reloadData];
         
-    } else if([alertView.title containsString:@"No longer taking"]) {
+    } else if([alertView.title containsString:NSLocalizedString(@"No longer taking", nil)]) {
         [self removeListItem];
         
     }

@@ -51,16 +51,16 @@
 - (IBAction)loginButton:(id)sender
 {
     if([[_emailTextField text] length] == 0 || ![self stringIsValidEmail:[_emailTextField text]]) {
-        [[[UIAlertView alloc] initWithTitle:@"Invalid email"
-                                    message:@"Please enter a valid email"
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid email", nil)
+                                    message:NSLocalizedString(@"Please enter a valid email", nil)
                                    delegate:nil
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
                           otherButtonTitles:nil] show];
     } else if([[_passwordTextField text] length] == 0) {
-        [[[UIAlertView alloc] initWithTitle:@"Invalid password"
-                                    message:@"Please enter a valid password"
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid password", nil)
+                                    message:NSLocalizedString(@"Please enter a valid password", nil)
                                    delegate:nil
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
                           otherButtonTitles:nil] show];
     } else {
         
@@ -81,10 +81,10 @@
             else {
                 NSLog(@"Failure!");
                 
-                [[[UIAlertView alloc] initWithTitle:@"Error logging in"
-                                            message:@"Invalid email and/or password, please try again."
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error logging in", nil)
+                                            message:NSLocalizedString(@"Invalid email and/or password, please try again.", nil)
                                            delegate:nil
-                                  cancelButtonTitle:@"OK"
+                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                   otherButtonTitles:nil] show];
             }
         }];

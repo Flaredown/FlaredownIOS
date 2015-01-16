@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  Flaredown
+
+  Created by Cole Cunningham on 1/15/15.
+  Copyright (c) 2015 Flaredown. All rights reserved.
+*/
+
+//"Key" = "Content";
+
+//General
+"OK" = "OK";
+"Cancel" = "Cancel";
+"Treatments" = "Treatments";
+"Notes" = "Notes";
+
+//FDLoginViewController.m
+"Invalid email" = "Invalid email";
+"Please enter a valid email" = "Please enter a valid email";
+
+"Invalid password" = "Invalid password";
+"Please enter a valid password" = "Please enter a valid password";
+
+"Error logging in" = "Error logging in";
+"Invalid email and/or password, please try again." = "Invalid email and/or password, please try again.";
+
+//FDLaunchViewController.m
+"Error retreiving entry" = "Error retreiving entry";
+"Looks like there was a problem retreiving your entry, please try again." = "Looks like there was a problem retreiving your entry, please try again.";
+
+//FDViewController.m
+"Error submitting entry" = "Error submitting entry";
+"Looks like there was a problem submitting your entry, please try again." = "Looks like there was a problem submitting your entry, please try again.";
+
+//FDSelectListViewController.m
+"No longer taking %@?" = "No longer taking %@?";
+"No longer taking" = "No longer taking";
+"Remove Treatment" = "Remove Treatment";
+"Add Treatment" = "Add Treatment";
+"Name of treatment" = "Name of treatment";
+
+//Image Strings
+"fd_startBtn" = "fd_startBtn";

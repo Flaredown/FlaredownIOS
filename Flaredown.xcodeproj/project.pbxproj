@@ -26,6 +26,7 @@
 		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
+		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */; };
 		EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71631A082A130059815A /* AFHTTPRequestOperationManager.m */; };
 		EDDC71F21A082A130059815A /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71651A082A130059815A /* AFHTTPSessionManager.m */; };
@@ -104,6 +105,10 @@
 		85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
+		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDDC71601A082A130059815A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		EDDC71621A082A130059815A /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -202,6 +207,7 @@
 				101393D319D216D700BBB266 /* Images.xcassets */,
 				101393D519D216D700BBB266 /* LaunchScreen.xib */,
 				101393C619D216D700BBB266 /* Supporting Files */,
+				ED90725D1A68A7800012EFD6 /* Localizable.strings */,
 			);
 			path = Flaredown;
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 101393BA19D216D700BBB266;
 			productRefGroup = 101393C419D216D700BBB266 /* Products */;
@@ -483,6 +490,7 @@
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
 				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
 				EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */,
+				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
@@ -560,6 +568,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				101393D119D216D700BBB266 /* Base */,
+				ED9072601A68AC1E0012EFD6 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -568,8 +577,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				101393D619D216D700BBB266 /* Base */,
+				ED9072611A68AC1E0012EFD6 /* es */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		ED90725D1A68A7800012EFD6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED90725C1A68A7800012EFD6 /* en */,
+				ED9072621A68AC1E0012EFD6 /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

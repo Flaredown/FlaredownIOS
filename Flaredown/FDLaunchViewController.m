@@ -19,6 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Localized start button
+    [_startButton setImage:[UIImage imageNamed:NSLocalizedString(@"fd_startBtn", nil)] forState:UIControlStateNormal];
+    
+    //Localized date
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *dateString = [dateFormatter stringFromDate:now];
+    [_dateLabel setText:dateString];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,10 +82,10 @@
             else {
                 NSLog(@"Failure!");
                 
-                [[[UIAlertView alloc] initWithTitle:@"Error retreiving entry"
-                                            message:@"Looks like there was a problem retreiving your entry, please try again."
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving entry", nil)
+                                            message:NSLocalizedString(@"Looks like there was a problem retreiving your entry, please try again.", nil)
                                            delegate:nil
-                                  cancelButtonTitle:@"OK"
+                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                   otherButtonTitles:nil] show];
             }
             _entryLoaded = YES;

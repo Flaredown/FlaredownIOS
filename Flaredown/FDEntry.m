@@ -20,13 +20,15 @@
         _date = [dictionary objectForKey:@"date"];
         _catalogs = [dictionary objectForKey:@"catalogs"];
         
+        int section = 0;
         NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
         for (NSString *catalog in _catalogs) {
             NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:catalog];
             for(int i = 0; i < catalogDefinition.count; i++) {
                 for (NSDictionary *questionDefinition in catalogDefinition[i]) {
-                    [mutableQuestions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:i]];
+                    [mutableQuestions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:section]];
                 }
+                section++;
             }
         }
         _questions = [mutableQuestions copy];

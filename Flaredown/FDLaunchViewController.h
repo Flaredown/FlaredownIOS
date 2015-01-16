@@ -13,4 +13,7 @@
 @property BOOL entryLoaded;
 @property BOOL segueReady;
 
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @end

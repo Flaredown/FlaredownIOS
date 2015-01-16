@@ -24,6 +24,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)siteButton:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@"http://staging.flaredown.com"];
+    
+    if (![[UIApplication sharedApplication] openURL:url]) {
+        NSLog(@"%@%@",@"Failed to open url:",[url description]);
+    }
+}
+
 /*
 #pragma mark - Navigation
 

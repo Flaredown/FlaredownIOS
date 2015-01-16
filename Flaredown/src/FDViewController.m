@@ -30,6 +30,10 @@
     _continueBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_continueBtn];
     
+    //Localized date
+    NSString *dateString = [[[FDModelManager sharedManager] entry] date];
+    [_dateLabel setText:dateString];
+    
     //Number of questions + Notes
     self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 1;
     self.pageIndex = 0;
@@ -151,10 +155,10 @@
         else {
             NSLog(@"Failure!");
             
-            [[[UIAlertView alloc] initWithTitle:@"Error submitting entry"
-                                        message:@"Looks like there was a problem submitting your entry, please try again."
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
+                                        message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
                                        delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
                               otherButtonTitles:nil] show];
         }
     }];
