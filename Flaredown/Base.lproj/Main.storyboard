@@ -437,10 +437,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hot-Re-0zM">
-                                <rect key="frame" x="165" y="40" width="271" height="24"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGh-Hw-0Bo">
+                                <rect key="frame" x="0.0" y="150" width="600" height="450"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="271" id="6Y6-zt-Jpx"/>
+                                    <constraint firstAttribute="width" secondItem="ZGh-Hw-0Bo" secondAttribute="height" multiplier="4:3" id="7Qh-17-pb1"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="gTD-sw-e8m" kind="embed" identifier="containerEmbedSegue" id="WEQ-74-ujv"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yA-zo-cNj">
+                                <rect key="frame" x="236" y="39" width="128" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="qzi-wO-UXs"/>
+                                </constraints>
+                                <state key="normal" title="Edit Symptoms">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hot-Re-0zM">
+                                <rect key="frame" x="122" y="77" width="357" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="357" id="9o8-wI-Cxp"/>
+                                    <constraint firstAttribute="height" constant="65" id="TRn-iQ-C9f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -455,24 +475,16 @@
                                     <rect key="frame" x="265" y="20" width="271" height="83"/>
                                 </variation>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGh-Hw-0Bo">
-                                <rect key="frame" x="0.0" y="111" width="600" height="280"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ZGh-Hw-0Bo" secondAttribute="height" multiplier="15:7" id="70J-0d-dSb"/>
-                                    <constraint firstAttribute="height" constant="280" id="oDD-WJ-7rF"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="gTD-sw-e8m" kind="embed" identifier="containerEmbedSegue" id="WEQ-74-ujv"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="tTC-vh-SNV" secondAttribute="bottom" constant="20" id="7rH-oo-Orr"/>
-                            <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="leading" secondItem="vpa-zo-2U7" secondAttribute="leadingMargin" constant="-16" id="ALv-ut-gwe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZGh-Hw-0Bo" secondAttribute="trailing" constant="-16" id="KCr-wE-bt7"/>
-                            <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" constant="47" id="V5p-Vn-nAV"/>
-                            <constraint firstAttribute="centerX" secondItem="hot-Re-0zM" secondAttribute="centerX" constant="-0.5" id="mMf-Ka-tza"/>
+                            <constraint firstItem="9yA-zo-cNj" firstAttribute="top" secondItem="tTC-vh-SNV" secondAttribute="bottom" constant="19" id="1AA-aZ-7Hc"/>
+                            <constraint firstAttribute="centerX" secondItem="hot-Re-0zM" secondAttribute="centerX" constant="-0.5" id="E2C-1f-uHh"/>
+                            <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" constant="8" id="Kat-CS-JvP"/>
+                            <constraint firstAttribute="centerX" secondItem="9yA-zo-cNj" secondAttribute="centerX" id="dyE-Vm-SlN"/>
+                            <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="width" secondItem="vpa-zo-2U7" secondAttribute="width" id="hpZ-SE-1K1"/>
+                            <constraint firstAttribute="centerX" secondItem="ZGh-Hw-0Bo" secondAttribute="centerX" id="iSW-pV-y2D"/>
+                            <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="9yA-zo-cNj" secondAttribute="bottom" constant="8" id="yuw-aQ-n2V"/>
                         </constraints>
                     </view>
                     <connections>
@@ -492,7 +504,7 @@
                         <viewControllerLayoutGuide type="bottom" id="h6z-cZ-cd5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CaM-Jx-MMH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
