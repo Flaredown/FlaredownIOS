@@ -13,6 +13,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
+//Subtite or edit button
+@property (weak, nonatomic) IBOutlet UIButton *secondaryTitleButton;
+
 @property int pageIndex;
 
 @end

@@ -25,6 +25,7 @@
 		85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A131A5215250053D6CC /* ProximaNova-Light.otf */; };
 		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
+		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */; };
@@ -103,6 +104,8 @@
 		85378A131A5215250053D6CC /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		85378A141A5215250053D6CC /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
+		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				EDEA826E1A115FCC00A80416 /* FDInput.m */,
 				EDEBC6A81A424907007742C5 /* FDTreatment.h */,
 				EDEBC6A91A424907007742C5 /* FDTreatment.m */,
+				ED2853C61A6C2043002D95E6 /* FDSymptom.h */,
+				ED2853C71A6C2043002D95E6 /* FDSymptom.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
 				EDEA82B21A11830F00A80416 /* MBProgressHUD.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
+				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
 				EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,

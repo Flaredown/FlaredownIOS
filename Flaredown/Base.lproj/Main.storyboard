@@ -451,15 +451,14 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="qzi-wO-UXs"/>
                                 </constraints>
-                                <state key="normal" title="Edit Symptoms">
+                                <state key="normal" title="Subtitle / Edit">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hot-Re-0zM">
-                                <rect key="frame" x="122" y="77" width="357" height="65"/>
+                                <rect key="frame" x="34" y="77" width="533" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="357" id="9o8-wI-Cxp"/>
                                     <constraint firstAttribute="height" constant="65" id="TRn-iQ-C9f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -480,15 +479,19 @@
                         <constraints>
                             <constraint firstItem="9yA-zo-cNj" firstAttribute="top" secondItem="tTC-vh-SNV" secondAttribute="bottom" constant="19" id="1AA-aZ-7Hc"/>
                             <constraint firstAttribute="centerX" secondItem="hot-Re-0zM" secondAttribute="centerX" constant="-0.5" id="E2C-1f-uHh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hot-Re-0zM" secondAttribute="trailing" constant="17" id="Hht-Im-qZZ"/>
                             <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" constant="8" id="Kat-CS-JvP"/>
                             <constraint firstAttribute="centerX" secondItem="9yA-zo-cNj" secondAttribute="centerX" id="dyE-Vm-SlN"/>
                             <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="width" secondItem="vpa-zo-2U7" secondAttribute="width" id="hpZ-SE-1K1"/>
                             <constraint firstAttribute="centerX" secondItem="ZGh-Hw-0Bo" secondAttribute="centerX" id="iSW-pV-y2D"/>
+                            <constraint firstItem="hot-Re-0zM" firstAttribute="leading" secondItem="vpa-zo-2U7" secondAttribute="leadingMargin" constant="18" id="xwM-3s-rCn"/>
                             <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="9yA-zo-cNj" secondAttribute="bottom" constant="8" id="yuw-aQ-n2V"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="secondaryTitleButton" destination="9yA-zo-cNj" id="cnU-XR-p2C"/>
                         <outlet property="titleLabel" destination="hot-Re-0zM" id="OpK-Qi-RKe"/>
+                        <segue destination="XTt-dF-ZiA" kind="presentation" identifier="editList" id="1ic-5n-SwM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iiu-pu-qV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -855,4 +858,7 @@
         <image name="fd_doneGraphic" width="177" height="177"/>
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1ic-5n-SwM"/>
+    </inferredMetricsTieBreakers>
 </document>

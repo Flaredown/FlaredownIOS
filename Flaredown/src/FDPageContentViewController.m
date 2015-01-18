@@ -32,6 +32,13 @@
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:_pageIndex][0];
         if(![[NSNull null] isEqual:[question name]])
             self.titleLabel.text = [question name];
+        
+        if([[question catalog] isEqualToString:@"symptoms"]) {
+            [self.secondaryTitleButton setTitle:@"Edit Symptoms" forState:UIControlStateNormal];
+            [self.secondaryTitleButton addTarget:self action:@selector(editSymptoms) forControlEvents:UIControlEventTouchUpInside];
+            self.providesPresentationContextTransitionStyle = YES;
+            self.definesPresentationContext = YES;
+        }
     }
     
 //    if(![[NSNull null] isEqual:[question group]]) {
@@ -51,6 +58,11 @@
 //
 }
 
+- (void)editSymptoms
+{
+    [self performSegueWithIdentifier:@"editList" sender:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,6 +77,8 @@
     if([segue.identifier isEqualToString:ContainerEmbedSegueIdentifier]) {
         FDContainerViewController *containerViewController = (FDContainerViewController *)segue.destinationViewController;
         containerViewController.pageIndex = self.pageIndex;
+    } else if([segue.identifier isEqualToString:@"editList"]) {
+        [segue.destinationViewController setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     }
 }
 
