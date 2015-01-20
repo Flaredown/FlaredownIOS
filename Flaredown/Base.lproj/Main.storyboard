@@ -27,6 +27,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -627,6 +628,34 @@
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="HBo-FR-Qr2" secondAttribute="centerY" id="ccU-MF-D5R"/>
                                         <constraint firstAttribute="centerX" secondItem="HBo-FR-Qr2" secondAttribute="centerX" constant="-0.5" id="n8p-vu-4vv"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="done" id="KZY-E3-g2o">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KZY-E3-g2o" id="die-PF-Obh">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-24-4TK">
+                                            <rect key="frame" x="223" y="7" width="155" height="30"/>
+                                            <color key="backgroundColor" red="1" green="0.68333142039999994" blue="0.073413627410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="155" id="2sU-71-Ybz"/>
+                                                <constraint firstAttribute="height" constant="30" id="Rw6-0v-TbD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                            <state key="normal" title="Done">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="doneButton:" destination="XTt-dF-ZiA" eventType="touchUpInside" id="MNT-V8-Lfd"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerX" secondItem="AVJ-24-4TK" secondAttribute="centerX" constant="-0.5" id="evd-vO-pP1"/>
+                                        <constraint firstAttribute="centerY" secondItem="AVJ-24-4TK" secondAttribute="centerY" id="uaA-Rt-yhg"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>

@@ -7,6 +7,8 @@
 //
 
 #import "FDSelectListViewController.h"
+#import "FDNetworkManager.h"
+#import "FDSymptom.h"
 
 @interface FDSelectListViewController ()
 
@@ -56,6 +58,22 @@
     }
 }
 
+- (void)initWithTreatments
+{
+    FDEntry *entry = [[FDModelManager sharedManager] entry];
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    ;
+//    self.questions = [user treatments];
+}
+
+- (void)initWithSymptoms
+{
+    FDEntry *entry = [[FDModelManager sharedManager] entry];
+    self.questions = [entry questionsForCatalog:@"symptoms"];
+    self.masterSymptoms = [[[FDModelManager sharedManager] userObject] symptoms];
+    self.editSymptoms = YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -64,6 +82,8 @@
 // Toggle selected for target item
 - (IBAction)listItemButton:(id)sender
 {
+    if(self.dynamic)
+        return;
     UIButton *button = (UIButton *)sender;
     UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -163,17 +183,73 @@
  */
 - (void)addListItem:(NSString *)title
 {
-    FDEntry *entry = [[FDModelManager sharedManager] entry];
-    FDQuestion *question = self.questions[0];
-    FDResponse *response = [[FDResponse alloc] init];
-    [response setResponseIdWithEntryId:[entry entryId] name:title];
-    if([entry responseForId:[response responseId]]) {
-        [self.responses addObject:[entry responseForId:[response responseId]]];
+    if(self.editSymptoms) {
+        FDEntry *entry = [[FDModelManager sharedManager] entry];
+        NSInteger sectionToAdd = [[self.questions objectAtIndex:[self.questions count]-1] section]+1;
+        NSInteger indexToAdd = [[entry questions] indexOfObject:self.questions[[self.questions count]-1]]+1;
+        
+        __block FDQuestion *newQuestion; //__block to make it compatible with async task
+        BOOL found = NO;
+        for (FDSymptom *symptom in self.masterSymptoms) {
+            if([[symptom name] isEqualToString:title]) {
+                newQuestion = [[FDQuestion alloc] initWithSymptom:symptom section:sectionToAdd];
+                [entry insertQuestion:newQuestion atIndex:indexToAdd];
+                [self.questions addObject:newQuestion];
+                found = YES;
+                
+                //New response
+                FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
+                if(![entry responseForId:[response responseId]]) {
+                    [[[FDModelManager sharedManager] entry] insertResponse:response];
+                }
+                
+                [self.tableView reloadData];
+            }
+        }
+        if(!found) {
+            
+            //Check the new symptom against the API for validation
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+            FDUser *user = [[FDModelManager sharedManager] userObject];
+            [[FDNetworkManager sharedManager] createSymptomWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                if(success) {
+                    NSLog(@"Success!");
+                    
+                    //dummy id -- only name is used when building a question
+                    FDSymptom *newSymptom = [[FDSymptom alloc] initWithDictionary:@{
+                                                                                    @"id":@-1,
+                                                                                    @"name":title
+                                                                                    }];
+                    newQuestion = [[FDQuestion alloc] initWithSymptom:newSymptom section:sectionToAdd];
+                    [entry insertQuestion:newQuestion atIndex:indexToAdd];
+                    [self.questions addObject:newQuestion];
+                    
+                    //New response
+                    FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
+                    if(![entry responseForId:[response responseId]]) {
+                        [[[FDModelManager sharedManager] entry] insertResponse:response];
+                    }
+                    
+                    [self.tableView reloadData];
+                }
+                else {
+                    NSLog(@"Failure!");
+                    
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
+                                                message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
+                                               delegate:nil
+                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                      otherButtonTitles:nil] show];
+                }
+            }];
+        }
+        
     } else {
-        [response setName:title];
-        [response setValue:0];
-        [response setCatalog:[question catalog]];
-        [self addResponse:response];
+        return;
     }
 }
 
@@ -199,6 +275,11 @@
     [[[FDModelManager sharedManager] entry] removeResponse:response];
 }
 
+- (IBAction)doneButton:(id)sender
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -208,28 +289,36 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.dynamic ? [self.responses count] + 1 : [self.responses count];
+//    if(self.treatments)
+//        return self.editTreatments ? [self.treatments count] + 1;
+    if(self.dynamic)
+        return [self.questions count] + 1 + 1;
+    return [self.responses count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell;
     
-    if(self.dynamic && [indexPath row] == self.responses.count) { //add item cell
-        cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
-        
-        return cell;
-        
-    } else if(self.dynamic && [indexPath row] > self.responses.count) {
-        NSLog(@"Invalid number of rows in FDSelectListView");
-        return nil;
+    if(self.dynamic) {
+        if([indexPath row] < self.questions.count) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
+            
+            //1 List button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [button setTitle:[self.questions[[indexPath row]] name] forState:UIControlStateNormal];
+            [self selectButton:button];
+            
+        } else if([indexPath row] == self.questions.count) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
+        } else if([indexPath row] > self.questions.count)
+            cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
     } else { //item cell
         if(self.dynamic) { //dynamic item cell
             cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
             
         } else { //static item cell
             cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
-            
         }
         
         //List button
@@ -242,9 +331,8 @@
         } else {
             [self deselectButton:button];
         }
-        
-        return cell;
     }
+    return cell;
 }
 
 /*

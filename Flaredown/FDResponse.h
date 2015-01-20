@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FDQuestion.h"
+@class FDQuestion;
+@class FDEntry;
 
 @interface FDResponse : NSObject
 
@@ -17,6 +18,7 @@
 @property NSString *catalog;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (id)initWithEntry:(FDEntry *)entry question:(FDQuestion *)question;
 - (NSDictionary *)dictionaryCopy;
 - (void)setResponseIdWithEntryId:(NSString *)entryId name:(NSString *)name;
 

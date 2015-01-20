@@ -107,6 +107,24 @@ static NSString *api = @"/v1";
 
 }
 
+- (void)createSymptomWithName:(NSString *)symptomName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/symptoms", self.baseUrl];
+    
+    NSDictionary *parameters = @{@"name":symptomName, @"user_email":email, @"user_token":authenticationToken};
+    
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completionBlock(true, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        completionBlock(false, nil);
+    }];
+
+}
+
 + (BOOL)networkReachable
 {
     if([AFNetworkReachabilityManager sharedManager].reachable)

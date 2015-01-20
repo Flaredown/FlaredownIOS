@@ -23,10 +23,10 @@
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     if(self.pageIndex >= numSections) {
-        if(self.pageIndex == numSections-1) { //TODO: change these numbers
+        if(self.pageIndex == numSections) {
             //Treatments
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
-        } else if(self.pageIndex == numSections) {
+        } else if(self.pageIndex == numSections + 1) {
             //Notes
             self.currentSegueIdentifier = SegueIdentifierNotesView;
         }
@@ -74,11 +74,10 @@
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     if(self.pageIndex >= numSections) {
-        if(self.pageIndex == numSections-1) { //TODO: change these numbers
+        if(self.pageIndex == numSections) {
             //Treatments
             pageType = @"checkbox";
-            ((FDSelectListViewController *)segue.destinationViewController).dynamic = true;
-        } else if(self.pageIndex == numSections) {
+        } else if(self.pageIndex == numSections + 1) {
             //Notes
             pageType = @"notes";
         }

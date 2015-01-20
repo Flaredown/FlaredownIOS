@@ -7,6 +7,8 @@
 //
 
 #import "FDQuestion.h"
+#import "FDInput.h"
+#import "FDSymptom.h"
 
 @implementation FDQuestion
 
@@ -28,6 +30,29 @@
         _kind = [dictionary objectForKey:@"kind"];
 //        _localizedName = [dictionary objectForKey:@"localized_name"];
         _name = [dictionary objectForKey:@"name"];
+        _section = section;
+    }
+    return self;
+}
+
+- (id)initWithSymptom:(FDSymptom *)symptom section:(NSInteger)section
+{
+    self = [super init];
+    if(self) {
+        _catalog = @"symptoms";
+        NSMutableArray *inputs = [[NSMutableArray alloc] init];
+        //default inputs
+        for(int i = 0; i < 5; i++) {
+            [inputs addObject:[[FDInput alloc] initWithDictionary:@{
+                                                                   @"helper":[NSNull null],
+                                                                   @"label":@"",
+                                                                   @"meta_label":@"",
+                                                                   @"value":[NSNumber numberWithInt:i]
+                                                                   }]];
+        }
+        _inputs = [inputs copy];
+        _kind = @"select";
+        _name = [symptom name];
         _section = section;
     }
     return self;

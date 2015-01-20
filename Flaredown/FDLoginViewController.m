@@ -9,7 +9,6 @@
 #import "FDLoginViewController.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
-#import "MBProgressHUD.h"
 
 @interface FDLoginViewController ()
 @property (weak, nonatomic) IBOutlet UIView *loginCard;

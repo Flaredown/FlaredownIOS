@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #define ContainerEmbedSegueIdentifier @"containerEmbedSegue"
+#define EditListSegueIdentifier @"editList"
 
 @interface FDPageContentViewController : UIViewController
 
@@ -17,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *secondaryTitleButton;
 
 @property int pageIndex;
+@property BOOL editSegueTreatments;
 
 @end

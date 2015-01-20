@@ -11,12 +11,16 @@
 
 @interface FDSelectListViewController : UITableViewController <UIAlertViewDelegate>
 
-@property NSArray *questions;
+@property NSMutableArray *questions;
+@property NSArray *masterSymptoms;
 @property NSMutableArray *responses;
 @property NSMutableArray *selectedItems;
 @property BOOL dynamic;
+@property BOOL editSymptoms;
 @property int removeIndex;
 
 - (void)initWithQuestions:(NSArray *)questions;
+- (void)initWithTreatments;
+- (void)initWithSymptoms;
 
 @end

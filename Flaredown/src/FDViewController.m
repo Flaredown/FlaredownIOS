@@ -34,8 +34,8 @@
     NSString *dateString = [[[FDModelManager sharedManager] entry] date];
     [_dateLabel setText:dateString];
     
-    //Number of questions + Notes
-    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 1;
+    //Number of questions + Treatments + Notes
+    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
     self.pageIndex = 0;
     
     //Create page view controller
@@ -58,6 +58,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //Refresh pages in case new ones were added when page appears
+    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
+    FDPageContentViewController *startingViewController = [self viewControllerAtIndex:self.pageIndex];
+    NSArray *viewControllers = @[startingViewController];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
@@ -126,7 +135,6 @@
 
 - (IBAction)continueButton:(id)sender
 {
-//    UIViewController *cont = self.pageViewController;
     if(self.pageIndex < self.numPages - 1) {
         UIViewController *vc = [self viewControllerAtIndex:self.pageIndex+1];
         NSArray *viewControllers = @[vc];

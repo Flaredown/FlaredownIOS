@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FDTreatment.h"
-#import "FDSymptom.h"
+@class FDTreatment;
+@class FDSymptom;
 
 @interface FDUser : NSObject
 

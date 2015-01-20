@@ -9,6 +9,7 @@
 #import "FDEntry.h"
 #import "FDQuestion.h"
 #import "FDResponse.h"
+#import "FDTreatment.h"
 
 @implementation FDEntry
 
@@ -20,18 +21,17 @@
         _date = [dictionary objectForKey:@"date"];
         _catalogs = [dictionary objectForKey:@"catalogs"];
         
+        _questions = [[NSMutableArray alloc] init];
         int section = 0;
-        NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
         for (NSString *catalog in _catalogs) {
             NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:catalog];
             for(int i = 0; i < catalogDefinition.count; i++) {
                 for (NSDictionary *questionDefinition in catalogDefinition[i]) {
-                    [mutableQuestions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:section]];
+                    [_questions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:section]];
                 }
                 section++;
             }
         }
-        _questions = [mutableQuestions copy];
         
         _notes = ![[NSNull null] isEqual:[dictionary objectForKey:@"notes"]] ?  [dictionary objectForKey:@"notes"]: @"";
         
@@ -87,6 +87,28 @@
              @"responses":mutableResponses,
              @"notes":_notes
              };
+}
+
+- (NSArray *)questionsForCatalog:(NSString *)catalog
+{
+    if(![_catalogs containsObject:catalog])
+        return nil;
+    NSMutableArray *catalogQuestions = [[NSMutableArray alloc] init];
+    for (FDQuestion *question in _questions) {
+        if([[question catalog] isEqualToString:catalog])
+            [catalogQuestions addObject:question];
+    }
+    if([catalogQuestions count] == 0)
+        return nil;
+    return catalogQuestions;
+}
+
+- (void)insertQuestion:(FDQuestion *)question atIndex:(NSInteger)index
+{
+    for(NSInteger i = index; i < [_questions count]; i++) {
+        [_questions[i] setSection:[_questions[i] section]+1];
+    }
+    [_questions insertObject:question atIndex:index];
 }
 
 - (void)insertResponse:(FDResponse *)response

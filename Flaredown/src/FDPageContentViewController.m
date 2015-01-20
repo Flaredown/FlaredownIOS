@@ -8,6 +8,7 @@
 
 #import "FDPageContentViewController.h"
 #import "FDContainerViewController.h"
+#import "FDSelectListViewController.h"
 #import "FDModelManager.h"
 
 @interface FDPageContentViewController ()
@@ -21,10 +22,15 @@
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     if(_pageIndex >= numSections) {
-        if(_pageIndex == numSections-1) { // TODO: change these numbers
+        if(_pageIndex == numSections) {
             //Treatments
             self.titleLabel.text = NSLocalizedString(@"Treatments", nil);
-        } else if(_pageIndex == numSections) {
+            self.editSegueTreatments = YES;
+            [self.secondaryTitleButton setTitle:@"Edit Treatments" forState:UIControlStateNormal];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+//            self.providesPresentationContextTransitionStyle = YES;
+//            self.definesPresentationContext = YES;
+        } else if(_pageIndex == numSections + 1) {
             //Notes
             self.titleLabel.text = NSLocalizedString(@"Notes", nil);
         }
@@ -34,10 +40,11 @@
             self.titleLabel.text = [question name];
         
         if([[question catalog] isEqualToString:@"symptoms"]) {
+            self.editSegueTreatments = NO;
             [self.secondaryTitleButton setTitle:@"Edit Symptoms" forState:UIControlStateNormal];
-            [self.secondaryTitleButton addTarget:self action:@selector(editSymptoms) forControlEvents:UIControlEventTouchUpInside];
-            self.providesPresentationContextTransitionStyle = YES;
-            self.definesPresentationContext = YES;
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+//            self.providesPresentationContextTransitionStyle = YES;
+//            self.definesPresentationContext = YES;
         }
     }
     
@@ -58,7 +65,7 @@
 //
 }
 
-- (void)editSymptoms
+- (void)editList
 {
     [self performSegueWithIdentifier:@"editList" sender:nil];
 }
@@ -77,8 +84,20 @@
     if([segue.identifier isEqualToString:ContainerEmbedSegueIdentifier]) {
         FDContainerViewController *containerViewController = (FDContainerViewController *)segue.destinationViewController;
         containerViewController.pageIndex = self.pageIndex;
-    } else if([segue.identifier isEqualToString:@"editList"]) {
-        [segue.destinationViewController setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    } else if([segue.identifier isEqualToString:EditListSegueIdentifier]) {
+        FDSelectListViewController *dvc = (FDSelectListViewController *)segue.destinationViewController;
+//        [dvc setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        [dvc setModalPresentationStyle:UIModalPresentationPopover];
+//        UIView *backgroundView = [[UIView alloc] initWithFrame:self.view.window.frame];
+//        backgroundView.backgroundColor = [UIColor grayColor];
+//        [dvc.view setFrame:CGrectMake(self.view.window.frame.size.width - dvc.view.frame.size.width)];
+//        [dvc.view setFrame:self.view.frame];
+        dvc.dynamic = YES;
+        if(_editSegueTreatments) {
+            [dvc initWithTreatments];
+        } else {
+            [dvc initWithSymptoms];
+        }
     }
 }
 

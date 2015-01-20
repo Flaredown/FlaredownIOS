@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FDInput.h"
+@class FDInput;
+@class FDSymptom;
 
 @interface FDQuestion : NSObject
 
@@ -22,6 +23,7 @@
 @property NSInteger section;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary catalog:(NSString *)catalog section:(NSInteger)section;
+- (id)initWithSymptom:(FDSymptom *)symptom section:(NSInteger)section;
 - (NSDictionary *)dictionaryCopy;
 
 @end
