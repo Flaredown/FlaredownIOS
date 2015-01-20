@@ -7,6 +7,8 @@
 //
 
 #import "FDUser.h"
+#import "FDTreatment.h"
+#import "FDSymptom.h"
 
 @implementation FDUser
 

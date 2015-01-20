@@ -109,6 +109,26 @@
         [_questions[i] setSection:[_questions[i] section]+1];
     }
     [_questions insertObject:question atIndex:index];
+    
+    //New response
+    FDResponse *response = [[FDResponse alloc] initWithEntry:self question:question];
+    if(![self responseForId:[response responseId]]) {
+        [self insertResponse:response];
+    }
+}
+
+- (void)removeQuestion:(FDQuestion *)question
+{
+    NSInteger index = [_questions indexOfObject:question];
+    for(NSInteger i = index; i < [_questions count]; i++) {
+        [_questions[i] setSection:[_questions[i] section]-1];
+    }
+    [_questions removeObject:question];
+    
+    //Remove response
+    FDResponse *responseToRemove = [[FDResponse alloc] init];
+    [responseToRemove setResponseIdWithEntryId:_entryId name:[question name]];
+    [_responses removeObject:[self responseForId:[responseToRemove responseId]]];
 }
 
 - (void)insertResponse:(FDResponse *)response

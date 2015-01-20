@@ -12,6 +12,7 @@
 #import "FDInput.h"
 #import "FDQuestion.h"
 #import "FDResponse.h"
+#import "FDSymptom.h"
 
 @interface FDModelManager : NSObject
 

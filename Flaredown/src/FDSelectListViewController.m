@@ -228,12 +228,6 @@
                     [entry insertQuestion:newQuestion atIndex:indexToAdd];
                     [self.questions addObject:newQuestion];
                     
-                    //New response
-                    FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
-                    if(![entry responseForId:[response responseId]]) {
-                        [[[FDModelManager sharedManager] entry] insertResponse:response];
-                    }
-                    
                     [self.tableView reloadData];
                 }
                 else {
@@ -258,9 +252,28 @@
  */
 - (void)removeListItem
 {
-    [self removeResponse:[self.responses objectAtIndex:self.removeIndex]];
-    self.removeIndex = -1;
-    [self.tableView reloadData];
+    //TODO: Make sure this works with API
+    if(self.editSymptoms) {
+        FDEntry *entry = [[FDModelManager sharedManager] entry];
+        
+        FDQuestion *question = self.questions[self.removeIndex];
+        
+        FDResponse *response = [[FDResponse alloc] init];
+        [response setResponseIdWithEntryId:[entry entryId] name:[question name]];
+        
+        [entry removeQuestion:question];
+        [self.questions removeObject:question];
+        
+        [self.tableView reloadData];
+        
+    } else {
+        return;
+    }
+
+    
+//    [self removeResponse:[self.responses objectAtIndex:self.removeIndex]];
+//    self.removeIndex = -1;
+//    [self.tableView reloadData];
 }
 
 - (void)addResponse:(FDResponse *)response

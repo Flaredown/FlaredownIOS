@@ -40,6 +40,8 @@
 "Name of treatment" = "Name of treatment";
 "Error creating symptom" = "Error creating symptom";
 "Looks like there was an issue creating the new symptom; please check the symptom name and try again." = "Looks like there was an issue creating the new symptom; please check the symptom name and try again.";
+"Error removing symptom" = "Error removing symptom";
+"Looks like there was an issue; please try again." = "Looks like there was an issue; please try again.";
 
 //Image Strings
 "fd_startBtn" = "fd_startBtn";
