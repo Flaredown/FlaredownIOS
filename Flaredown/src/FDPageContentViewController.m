@@ -10,6 +10,11 @@
 #import "FDContainerViewController.h"
 #import "FDSelectListViewController.h"
 #import "FDModelManager.h"
+#import "UIViewController+MJPopupViewController.h"
+
+//Ratio of popup : container view (this)
+#define POPUP_SIZE_WIDTH 1
+#define POPUP_SIZE_HEIGHT 1
 
 @interface FDPageContentViewController ()
 
@@ -19,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Style
+    self.view.layer.cornerRadius = 8;
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     if(_pageIndex >= numSections) {
@@ -67,7 +75,27 @@
 
 - (void)editList
 {
-    [self performSegueWithIdentifier:@"editList" sender:nil];
+    FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
+    listController.mainViewDelegate = _mainViewDelegate;
+    
+    //Style
+    float popupWidth = self.view.frame.size.width*POPUP_SIZE_WIDTH;
+    float popupX = self.view.frame.size.width/2-popupWidth/2;
+    float popupHeight = self.view.frame.size.height*POPUP_SIZE_HEIGHT;
+    float popupY = self.view.frame.size.height/2-popupHeight/2;
+    
+    listController.view.frame = CGRectMake(popupX, popupY, popupWidth, popupHeight);
+    listController.view.layer.cornerRadius = 8;
+    
+    [self presentPopupViewController:listController animationType:MJPopupViewAnimationFade];
+    listController.dynamic = YES;
+    if(_editSegueTreatments) {
+        [listController initWithTreatments];
+    } else {
+        [listController initWithSymptoms];
+    }
+    
+//    [self performSegueWithIdentifier:@"editList" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,14 +112,11 @@
     if([segue.identifier isEqualToString:ContainerEmbedSegueIdentifier]) {
         FDContainerViewController *containerViewController = (FDContainerViewController *)segue.destinationViewController;
         containerViewController.pageIndex = self.pageIndex;
+        containerViewController.mainViewDelegate = _mainViewDelegate;
     } else if([segue.identifier isEqualToString:EditListSegueIdentifier]) {
         FDSelectListViewController *dvc = (FDSelectListViewController *)segue.destinationViewController;
-//        [dvc setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+        dvc.mainViewDelegate = _mainViewDelegate;
         [dvc setModalPresentationStyle:UIModalPresentationPopover];
-//        UIView *backgroundView = [[UIView alloc] initWithFrame:self.view.window.frame];
-//        backgroundView.backgroundColor = [UIColor grayColor];
-//        [dvc.view setFrame:CGrectMake(self.view.window.frame.size.width - dvc.view.frame.size.width)];
-//        [dvc.view setFrame:self.view.frame];
         dvc.dynamic = YES;
         if(_editSegueTreatments) {
             [dvc initWithTreatments];

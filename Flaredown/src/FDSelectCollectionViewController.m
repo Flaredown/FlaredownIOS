@@ -7,6 +7,7 @@
 //
 
 #import "FDSelectCollectionViewController.h"
+#import "FDModelManager.h"
 
 @interface FDSelectCollectionViewController ()
 

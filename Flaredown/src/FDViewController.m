@@ -10,6 +10,7 @@
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
 #import "MBProgressHUD.h"
+#import "FDPageContentViewController.h"
 
 @interface FDViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Style
     _continueBtn.layer.cornerRadius = 8;
     
     _continueBtn.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -34,8 +36,6 @@
     NSString *dateString = [[[FDModelManager sharedManager] entry] date];
     [_dateLabel setText:dateString];
     
-    //Number of questions + Treatments + Notes
-    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
     self.pageIndex = 0;
     
     //Create page view controller
@@ -43,9 +43,7 @@
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
-    FDPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self refreshPages];
     
     //change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(10, 80, self.view.frame.size.width - 20, self.view.frame.size.height - 140);
@@ -60,11 +58,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+//Refresh pages in case new ones were added when page appears
+- (void)refreshPages
 {
-    //Refresh pages in case new ones were added when page appears
+    //Number of questions + Treatments + Notes
     self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
+    
     FDPageContentViewController *startingViewController = [self viewControllerAtIndex:self.pageIndex];
+    startingViewController.mainViewDelegate = self;
+    
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
@@ -104,6 +106,7 @@
     
     //Create a new view controller and pass suitable data.
     FDPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    pageContentViewController.mainViewDelegate = self;
     pageContentViewController.pageIndex = (int)index;
     
     return pageContentViewController;
