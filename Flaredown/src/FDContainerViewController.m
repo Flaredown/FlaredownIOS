@@ -85,12 +85,13 @@
         NSArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
         pageType = [questions[0] kind];
         
-        if([pageType isEqualToString:@"checkbox"])
+        if([pageType isEqualToString:@"checkbox"]) {
             [((FDSelectListViewController *)dvc) initWithQuestions:questions];
-        else if([pageType isEqualToString:@"number"])
+        } else if([pageType isEqualToString:@"number"]) {
             [((FDNumberViewController *)dvc) initWithQuestion:questions[0]];
-        else if([pageType isEqualToString:@"select"])
+        } else if([pageType isEqualToString:@"select"]) {
             [((FDSelectCollectionViewController *)dvc) initWithQuestion:questions[0]];
+        }
     }
 }
 

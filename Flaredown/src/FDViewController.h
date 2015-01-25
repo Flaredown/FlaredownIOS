@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FDPageContentViewController.h"
+#import "FDSelectListViewController.h"
 
-@interface FDViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@class FDSelectListViewController;
+@class FDPageContentViewController;
+
+@interface FDViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, FDViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property int numPages;

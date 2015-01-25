@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FDModelManager.h"
+@class FDQuestion;
+@class FDResponse;
 
 @interface FDNumberViewController : UIViewController
 
