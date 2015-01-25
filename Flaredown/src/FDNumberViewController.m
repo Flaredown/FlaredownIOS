@@ -7,6 +7,7 @@
 //
 
 #import "FDNumberViewController.h"
+#import "FDModelManager.h"
 
 @interface FDNumberViewController ()
 

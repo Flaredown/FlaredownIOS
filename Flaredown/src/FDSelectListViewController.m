@@ -8,7 +8,7 @@
 
 #import "FDSelectListViewController.h"
 #import "FDNetworkManager.h"
-#import "FDSymptom.h"
+#import "FDModelManager.h"
 
 @interface FDSelectListViewController ()
 
@@ -74,6 +74,13 @@
     self.editSymptoms = YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSArray *questions = [[[FDModelManager sharedManager] entry] questions];
+    if(_dynamic)
+        [_mainViewDelegate refreshPages];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -130,7 +137,8 @@
     UIButton *button = (UIButton *)sender;
     UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
     
-    self.removeIndex = (int)[[self.tableView indexPathForCell:cell] row];
+    int itemRow = (int)[[self.tableView indexPathForCell:cell] row] - 1;
+    self.removeIndex = itemRow;
     
     UIButton *titleButton = (UIButton *)[cell viewWithTag:1];
     NSString *itemName = titleButton.titleLabel.text;
@@ -314,18 +322,30 @@
     UITableViewCell *cell;
     
     if(self.dynamic) {
-        if([indexPath row] < self.questions.count) {
+        if([indexPath row] == 0) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"title" forIndexPath:indexPath];
+            
+            //1 title
+            UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
+            if(_editSymptoms)
+                [titleLabel setText:@"Edit Symptoms"];
+            else
+                [titleLabel setText:@"Edit Treatments"];
+            
+        } else if([indexPath row] < self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
+            
+            int itemRow = [indexPath row] - 1;
             
             //1 List button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
-            [button setTitle:[self.questions[[indexPath row]] name] forState:UIControlStateNormal];
+            [button setTitle:[self.questions[itemRow] name] forState:UIControlStateNormal];
             [self selectButton:button];
             
-        } else if([indexPath row] == self.questions.count) {
+        } else if([indexPath row] == self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
-        } else if([indexPath row] > self.questions.count)
-            cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
+        } //else if([indexPath row] > self.questions.count)
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
     } else { //item cell
         if(self.dynamic) { //dynamic item cell
             cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];

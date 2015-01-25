@@ -53,6 +53,13 @@
 		EDEA82B51A11830F00A80416 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDEA829C1A11830F00A80416 /* README.mdown */; };
 		EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */; };
 		EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEBC6A91A424907007742C5 /* FDTreatment.m */; };
+		EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B2F1A744ACA007A14B1 /* .gitignore */; };
+		EDFF9B531A744ACA007A14B1 /* demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B311A744ACA007A14B1 /* demo1.png */; };
+		EDFF9B541A744ACA007A14B1 /* demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B321A744ACA007A14B1 /* demo2.png */; };
+		EDFF9B551A744ACA007A14B1 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B331A744ACA007A14B1 /* LICENSE.txt */; };
+		EDFF9B621A744ACA007A14B1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDFF9B4C1A744ACA007A14B1 /* README.md */; };
+		EDFF9B631A744ACA007A14B1 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFF9B4F1A744ACA007A14B1 /* MJPopupBackgroundView.m */; };
+		EDFF9B641A744ACA007A14B1 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFF9B511A744ACA007A14B1 /* UIViewController+MJPopupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +166,15 @@
 		EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLaunchViewController.m; sourceTree = "<group>"; };
 		EDEBC6A81A424907007742C5 /* FDTreatment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatment.h; sourceTree = "<group>"; };
 		EDEBC6A91A424907007742C5 /* FDTreatment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatment.m; sourceTree = "<group>"; };
+		EDFF9B2F1A744ACA007A14B1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EDFF9B311A744ACA007A14B1 /* demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo1.png; sourceTree = "<group>"; };
+		EDFF9B321A744ACA007A14B1 /* demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo2.png; sourceTree = "<group>"; };
+		EDFF9B331A744ACA007A14B1 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		EDFF9B4C1A744ACA007A14B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EDFF9B4E1A744ACA007A14B1 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		EDFF9B4F1A744ACA007A14B1 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		EDFF9B501A744ACA007A14B1 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		EDFF9B511A744ACA007A14B1 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				85378A101A5214C50053D6CC /* fnt */,
+				EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */,
 				EDEA82731A11830F00A80416 /* MBProgressHUD-master */,
 				EDDC715F1A082A130059815A /* AFNetworking */,
 				101393EF19D2290E00BBB266 /* src */,
@@ -389,6 +406,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */ = {
+			isa = PBXGroup;
+			children = (
+				EDFF9B2F1A744ACA007A14B1 /* .gitignore */,
+				EDFF9B301A744ACA007A14B1 /* assets */,
+				EDFF9B331A744ACA007A14B1 /* LICENSE.txt */,
+				EDFF9B4C1A744ACA007A14B1 /* README.md */,
+				EDFF9B4D1A744ACA007A14B1 /* Source */,
+			);
+			path = "MJPopupViewController-master";
+			sourceTree = "<group>";
+		};
+		EDFF9B301A744ACA007A14B1 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				EDFF9B311A744ACA007A14B1 /* demo1.png */,
+				EDFF9B321A744ACA007A14B1 /* demo2.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		EDFF9B4D1A744ACA007A14B1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EDFF9B4E1A744ACA007A14B1 /* MJPopupBackgroundView.h */,
+				EDFF9B4F1A744ACA007A14B1 /* MJPopupBackgroundView.m */,
+				EDFF9B501A744ACA007A14B1 /* UIViewController+MJPopupViewController.h */,
+				EDFF9B511A744ACA007A14B1 /* UIViewController+MJPopupViewController.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -486,14 +535,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDFF9B551A744ACA007A14B1 /* LICENSE.txt in Resources */,
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
 				EDEA82B11A11830F00A80416 /* LICENSE in Resources */,
 				EDEA829E1A11830F00A80416 /* .travis.yml in Resources */,
+				EDFF9B541A744ACA007A14B1 /* demo2.png in Resources */,
 				EDEA82B31A11830F00A80416 /* MBProgressHUD.podspec in Resources */,
+				EDFF9B531A744ACA007A14B1 /* demo1.png in Resources */,
 				EDEA829D1A11830F00A80416 /* .gitignore in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
 				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
+				EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */,
 				EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
@@ -523,6 +576,7 @@
 				10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */,
 				EDDC71F41A082A130059815A /* AFSecurityPolicy.m in Sources */,
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
+				EDFF9B631A744ACA007A14B1 /* MJPopupBackgroundView.m in Sources */,
 				EDEA82B21A11830F00A80416 /* MBProgressHUD.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
@@ -533,6 +587,7 @@
 				10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */,
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
+				EDFF9B641A744ACA007A14B1 /* UIViewController+MJPopupViewController.m in Sources */,
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				EDDC71F81A082A130059815A /* AFURLSessionManager.m in Sources */,
@@ -544,6 +599,7 @@
 				EDDC71F61A082A130059815A /* AFURLRequestSerialization.m in Sources */,
 				EDDC71F31A082A130059815A /* AFNetworkReachabilityManager.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
+				EDFF9B621A744ACA007A14B1 /* README.md in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
 				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,
 				EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */,

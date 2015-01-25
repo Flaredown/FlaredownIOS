@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDSelectListViewController.h"
+
 #define ContainerEmbedSegueIdentifier @"containerEmbedSegue"
 #define EditListSegueIdentifier @"editList"
 
 @interface FDPageContentViewController : UIViewController
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 

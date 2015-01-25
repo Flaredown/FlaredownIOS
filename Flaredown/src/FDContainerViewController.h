@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDSelectListViewController.h"
 
 #define SegueIdentifierSelectListView @"embedSelectListView"
 #define SegueIdentifierSelectCollectionView @"embedSelectCollectionView"
@@ -14,6 +15,8 @@
 #define SegueIdentifierNotesView @"embedNotesView"
 
 @interface FDContainerViewController : UIViewController
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property (strong, nonatomic) NSString *currentSegueIdentifier;
 @property int pageIndex;
