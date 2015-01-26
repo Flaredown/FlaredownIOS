@@ -37,9 +37,7 @@ static NSString * const numberCellIdentifier = @"numberCell";
     if([entry responseForId:[self.response responseId]]) {
         self.response = [entry responseForId:[self.response responseId]];
     } else {
-        [self.response setName:[question name]];
-        [self.response setValue:0];
-        [self.response setCatalog:[question catalog]];
+        self.response = [self.response initWithEntry:entry question:question];
         [[[FDModelManager sharedManager] entry] insertResponse:self.response];
     }
 }

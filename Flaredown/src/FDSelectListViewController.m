@@ -49,9 +49,7 @@
                 [self.selectedItems addObject:[NSIndexPath indexPathForRow:count inSection:0]];
             [self.responses addObject:response];
         } else {
-            [response setName:[question name]];
-            [response setValue:0];
-            [response setCatalog:[question catalog]];
+            response = [response initWithEntry:entry question:question];
             [self addResponse:response];
         }
         count++;

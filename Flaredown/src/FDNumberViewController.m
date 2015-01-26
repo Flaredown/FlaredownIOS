@@ -37,10 +37,7 @@
     } else {
         FDInput *input = [self.question inputs][0];
         self.mainNumber = [input value];
-        
-        [self.response setName:[question name]];
-        [self.response setValue:self.mainNumber];
-        [self.response setCatalog:[question catalog]];
+        self.response = [self.response initWithEntry:entry question:question];
         [[[FDModelManager sharedManager] entry] insertResponse:self.response];
     }
     

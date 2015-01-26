@@ -16,6 +16,7 @@
 @property NSString *name;
 @property int value;
 @property NSString *catalog;
+@property BOOL responded;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithEntry:(FDEntry *)entry question:(FDQuestion *)question;
