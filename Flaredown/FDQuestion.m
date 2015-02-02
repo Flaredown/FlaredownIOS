@@ -9,6 +9,7 @@
 #import "FDQuestion.h"
 #import "FDInput.h"
 #import "FDSymptom.h"
+#import "FDTreatment.h"
 
 @implementation FDQuestion
 

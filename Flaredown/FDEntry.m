@@ -41,6 +41,7 @@
         }
         _responses = mutableResponses;
         
+        _treatments = [[NSMutableArray alloc] init];
         for(NSDictionary *treatment in [dictionary objectForKey:@"treatments"]) {
             [_treatments addObject:[[FDTreatment alloc] initWithDictionary:treatment]];
         }
@@ -80,11 +81,16 @@
 - (NSDictionary *)responseDictionaryCopy
 {
     NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
-    for (FDResponse *response in _responses) {
+    for(FDResponse *response in _responses) {
         [mutableResponses addObject:[response dictionaryCopy]];
+    }
+    NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
+    for(FDTreatment *treatment in _treatments) {
+        [mutableTreatments addObject:[treatment dictionaryCopy]];
     }
     return @{
              @"responses":mutableResponses,
+             @"treatments":mutableTreatments,
              @"notes":_notes
              };
 }

@@ -26,6 +26,11 @@
 - (NSArray *)questionsForSection:(int)section;
 - (int)numberOfQuestionSections;
 
+- (BOOL)reminder;
+- (void)setReminder:(BOOL)reminder;
+- (NSDate *)reminderTime;
+- (void)setReminderTime:(NSDate *)reminderTime;
+
 - (void)saveSession;
 - (void)restoreSession;
 - (void)clearCurrentEntry;

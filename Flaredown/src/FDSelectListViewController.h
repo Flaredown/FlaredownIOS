@@ -20,10 +20,12 @@
 
 @property NSMutableArray *questions;
 @property NSArray *masterSymptoms;
+@property NSArray *masterTreatments;
 @property NSMutableArray *responses;
 @property NSMutableArray *selectedItems;
 @property BOOL dynamic;
 @property BOOL editSymptoms;
+@property BOOL treatments;
 @property int removeIndex;
 
 - (void)initWithQuestions:(NSArray *)questions;

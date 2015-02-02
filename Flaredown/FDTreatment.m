@@ -7,8 +7,11 @@
 //
 
 #import "FDTreatment.h"
+#import "FDEntry.h"
 
 @implementation FDTreatment
+
+@synthesize quantity = _quantity;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -17,7 +20,21 @@
         _treatmentId = [dictionary objectForKey:@"id"];
         _name = [dictionary objectForKey:@"name"];
         _quantity = [[dictionary objectForKey:@"quantity"] floatValue];
-        _unit = [dictionary objectForKey:@"unit"];
+        _unit = ![dictionary objectForKey:@"unit"] || [[dictionary objectForKey:@"unit"] isEqual:[NSNull null]] ? @"" : [dictionary objectForKey:@"unit"];
+        _taken = NO;
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString *)title quantity:(float)quantity unit:(NSString *)unit entry:(FDEntry *)entry
+{
+    self = [super init];
+    if(self) {
+        _treatmentId = [NSString stringWithFormat:@"%@___%@", title, [entry entryId]];
+        _name = title;
+        _quantity = quantity;
+        _unit = unit;
+        _taken = NO;
     }
     return self;
 }
@@ -27,10 +44,9 @@
     return @{
              @"id":_treatmentId,
              @"name":_name,
-             @"quantity":[NSString stringWithFormat:@"%f", _quantity],
-             @"unit":_unit
+             @"quantity":_taken ? [NSString stringWithFormat:@"%f", _quantity] : [NSNull null],
+             @"unit":_unit,
              };
 }
-
 
 @end

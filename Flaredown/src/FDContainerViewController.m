@@ -77,6 +77,7 @@
         if(self.pageIndex == numSections) {
             //Treatments
             pageType = @"checkbox";
+            [((FDSelectListViewController *)dvc) initWithTreatments];
         } else if(self.pageIndex == numSections + 1) {
             //Notes
             pageType = @"notes";
