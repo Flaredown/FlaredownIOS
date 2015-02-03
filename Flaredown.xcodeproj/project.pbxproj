@@ -28,6 +28,7 @@
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
+		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
 		EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */; };
 		EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71631A082A130059815A /* AFHTTPRequestOperationManager.m */; };
 		EDDC71F21A082A130059815A /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71651A082A130059815A /* AFHTTPSessionManager.m */; };
@@ -131,6 +132,7 @@
 		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
 		EDDC71601A082A130059815A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		EDDC71621A082A130059815A /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				101393CB19D216D700BBB266 /* AppDelegate.m */,
 				101393D019D216D700BBB266 /* Main.storyboard */,
 				EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */,
+				EDD802A31A804CB900464D24 /* AddTreatmentView.xib */,
 				101393D319D216D700BBB266 /* Images.xcassets */,
 				101393D519D216D700BBB266 /* LaunchScreen.xib */,
 				101393C619D216D700BBB266 /* Supporting Files */,
@@ -617,6 +620,7 @@
 				EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */,
 				EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
+				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
 				EDEB41C11A770BA5007C67C4 /* preview.gif in Resources */,
