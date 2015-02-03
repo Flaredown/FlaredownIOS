@@ -21,6 +21,7 @@
 - (void)putEntry:(NSDictionary *)entry date:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
 
 - (void)createSymptomWithName:(NSString *)symptomName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
+- (void)createTreatmentWithName:(NSString *)treatmentName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
 
 + (BOOL)networkReachable;
 

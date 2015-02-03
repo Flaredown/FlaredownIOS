@@ -53,6 +53,31 @@ static NSString *inputsSessionLocation = @"inputs";
     return highestSection + 1;
 }
 
+- (BOOL)reminder
+{
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"checkin_reminder"])
+        return NO;
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"checkin_reminder"] isEqualToNumber:@YES] ? YES : NO;
+}
+
+- (void)setReminder:(BOOL)reminder
+{
+    NSNumber *value = reminder ? @YES : @NO;
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"checkin_reminder"];
+}
+
+- (NSDate *)reminderTime
+{
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"checkin_time"])
+        return [NSDate date];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"checkin_time"];
+}
+
+- (void)setReminderTime:(NSDate *)reminderTime
+{
+    [[NSUserDefaults standardUserDefaults] setObject:reminderTime forKey:@"checkin_time"];
+}
+
 - (void)saveSession
 {
     if(_userObject != nil) {

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class FDEntry;
 
 @interface FDSymptom : NSObject
 
@@ -14,6 +15,7 @@
 @property NSString *name;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (id)initWithTitle:(NSString *)title entry:(FDEntry *)entry;
 - (NSDictionary *)dictionaryCopy;
 
 @end

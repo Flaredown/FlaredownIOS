@@ -9,6 +9,9 @@
 #import "FDSelectListViewController.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
+#import "FDTreatment.h"
+#import "DLAVAlertView.h"
+#import "DLAVAlertViewTheme.h"
 
 @interface FDSelectListViewController ()
 
@@ -49,9 +52,7 @@
                 [self.selectedItems addObject:[NSIndexPath indexPathForRow:count inSection:0]];
             [self.responses addObject:response];
         } else {
-            [response setName:[question name]];
-            [response setValue:0];
-            [response setCatalog:[question catalog]];
+            response = [response initWithEntry:entry question:question];
             [self addResponse:response];
         }
         count++;
@@ -61,9 +62,8 @@
 - (void)initWithTreatments
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];
-    FDUser *user = [[FDModelManager sharedManager] userObject];
-    ;
-//    self.questions = [user treatments];
+    self.questions = [entry treatments];
+    self.treatments = YES;
 }
 
 - (void)initWithSymptoms
@@ -94,20 +94,27 @@
     UIButton *button = (UIButton *)sender;
     UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    FDResponse *response = [self.responses objectAtIndex:[indexPath row]];
-//    if([self.selectedItems containsObject:indexPath]) { // deselect item
-    if([response value] == 1) {
-        [self.selectedItems removeObject:indexPath];
-        
-        [response setValue:0];
-        
-    } else { // select item
-        [self.selectedItems addObject:indexPath];
-        
+
+    if(_treatments) {
+        FDTreatment *treatment = [self.questions objectAtIndex:[indexPath row]];
+        if([treatment taken]) {
+            [self.selectedItems removeObject:indexPath];
+            [treatment setTaken:NO];
+        } else {
+            [self.selectedItems addObject:indexPath];
+            [treatment setTaken:YES];
+        }
+    } else {
         FDResponse *response = [self.responses objectAtIndex:[indexPath row]];
-        [response setValue:1];
+        if([response value] == 1) {
+            [self.selectedItems removeObject:indexPath];
+            [response setValue:0];
+        } else {
+            [self.selectedItems addObject:indexPath];
+            [response setValue:1];
+        }
     }
+    
     [self.tableView reloadData];
 }
 
@@ -156,14 +163,31 @@
  */
 - (IBAction)addItemButton:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                          otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [[alert textFieldAtIndex:0] setPlaceholder:NSLocalizedString(@"Name of treatment", nil)];
-    [alert show];
+    if(!_treatments) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [[alert textFieldAtIndex:0] setPlaceholder:NSLocalizedString(@"Name of treatment", nil)];
+        [alert show];
+    } else {
+        DLAVAlertViewTheme *theme = [[DLAVAlertViewTheme alloc] init];
+//        theme.contentViewMargins = DLAVTextControlMarginsMake(5000, 5000, 0, 0);
+//        theme.lineColor = [UIColor purpleColor];
+//        theme.borderWidth = 100;
+        DLAVAlertView *alert = [[DLAVAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
+                                    message:nil
+                                    delegate:self
+                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                           otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        [alert addTextFieldWithText:@"" placeholder:@"Name of Treatment"];
+        [alert addTextFieldWithText:@"" placeholder:@"Dose (daily)"];
+        [alert addTextFieldWithText:@"" placeholder:@"Units"];
+        [alert applyTheme:theme];
+        [alert show];
+    }
 }
 
 /*
@@ -227,11 +251,7 @@
                 if(success) {
                     NSLog(@"Success!");
                     
-                    //dummy id -- only name is used when building a question
-                    FDSymptom *newSymptom = [[FDSymptom alloc] initWithDictionary:@{
-                                                                                    @"id":@-1,
-                                                                                    @"name":title
-                                                                                    }];
+                    FDSymptom *newSymptom = [[FDSymptom alloc] initWithTitle:title entry:entry];
                     newQuestion = [[FDQuestion alloc] initWithSymptom:newSymptom section:sectionToAdd];
                     [entry insertQuestion:newQuestion atIndex:indexToAdd];
                     [self.questions addObject:newQuestion];
@@ -250,8 +270,51 @@
             }];
         }
         
-    } else {
-        return;
+    } else if(_treatments) {
+        FDEntry *entry = [[FDModelManager sharedManager] entry];
+//        NSInteger section = [[self.questions objectAtIndex:[self.questions count]-1] section];
+        NSInteger indexToAdd = [[entry questions] indexOfObject:self.questions[[self.questions count]-1]]+1;
+        
+        __block FDQuestion *newQuestion; //__block to make it compatible with async task
+        BOOL found = NO;
+        for (FDTreatment *treatment in self.masterTreatments) {
+            if([[treatment name] isEqualToString:title]) {
+                [[entry treatments] addObject:treatment];
+                found = YES;
+                
+                [self.tableView reloadData];
+            }
+        }
+        if(!found) {
+            
+            //Check the new symptom against the API for validation
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            FDUser *user = [[FDModelManager sharedManager] userObject];
+            [[FDNetworkManager sharedManager] createTreatmentWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                if(success) {
+                    NSLog(@"Success!");
+                    
+                    FDTreatment *newTreatment = [[FDTreatment alloc] initWithTitle:title quantity:0.0f unit:@"" entry:entry];
+                    [newTreatment setTaken:YES];
+                    [[entry treatments] addObject:newTreatment];
+                    
+                    [self.tableView reloadData];
+                }
+                else {
+                    NSLog(@"Failure!");
+                    
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
+                                                message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
+                                               delegate:nil
+                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                      otherButtonTitles:nil] show];
+                }
+            }];
+        }
     }
 }
 
@@ -260,7 +323,6 @@
  */
 - (void)removeListItem
 {
-    //TODO: Make sure this works with API
     if(self.editSymptoms) {
         FDEntry *entry = [[FDModelManager sharedManager] entry];
         
@@ -274,14 +336,15 @@
         
         [self.tableView reloadData];
         
-    } else {
-        return;
+    } else if(_treatments) {
+        FDEntry *entry = [[FDModelManager sharedManager] entry];
+        
+        FDTreatment *treatment = self.questions[self.removeIndex];
+        
+        [[entry treatments] removeObject:treatment];
+        
+        [self.tableView reloadData];
     }
-
-    
-//    [self removeResponse:[self.responses objectAtIndex:self.removeIndex]];
-//    self.removeIndex = -1;
-//    [self.tableView reloadData];
 }
 
 - (void)addResponse:(FDResponse *)response
@@ -310,10 +373,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-//    if(self.treatments)
-//        return self.editTreatments ? [self.treatments count] + 1;
     if(self.dynamic)
         return [self.questions count] + 1 + 1;
+    if(_treatments)
+        return [self.questions count];
     return [self.responses count];
 }
 
@@ -337,10 +400,19 @@
             
             int itemRow = [indexPath row] - 1;
             
-            //1 List button
-            UIButton *button = (UIButton *)[cell viewWithTag:1];
-            [button setTitle:[self.questions[itemRow] name] forState:UIControlStateNormal];
-            [self selectButton:button];
+            if(_treatments) {
+                //1 List button
+                UIButton *button = (UIButton *)[cell viewWithTag:1];
+                FDTreatment *treatment = self.questions[itemRow];
+                [button setTitle:[NSString stringWithFormat:@"%@ - %f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
+                [self selectButton:button];
+            } else {
+                //1 List button
+                UIButton *button = (UIButton *)[cell viewWithTag:1];
+                FDQuestion *question = self.questions[itemRow];
+                [button setTitle:[question name] forState:UIControlStateNormal];
+                [self selectButton:button];
+            }
             
         } else if([indexPath row] == self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
@@ -354,15 +426,29 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
         }
         
-        //List button
-        UIButton *button = (UIButton *)[cell viewWithTag:1];
-        [button setTitle:[self.questions[[indexPath row]] name] forState:UIControlStateNormal];
-        
-        FDResponse *response = self.responses[[indexPath row]];
-        if([response value] == 1) {
-            [self selectButton:button];
+        if(_treatments) {
+            //List button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            FDTreatment *treatment = self.questions[[indexPath row]];
+            [button setTitle:[NSString stringWithFormat:@"%@ - %f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
+            
+            if([treatment taken]) {
+                [self selectButton:button];
+            } else {
+                [self deselectButton:button];
+            }
         } else {
-            [self deselectButton:button];
+            //List button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            FDQuestion *question = self.questions[[indexPath row]];
+            [button setTitle:[question name] forState:UIControlStateNormal];
+            
+            FDResponse *response = self.responses[[indexPath row]];
+            if([response value] == 1) {
+                [self selectButton:button];
+            } else {
+                [self deselectButton:button];
+            }
         }
     }
     return cell;

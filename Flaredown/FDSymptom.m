@@ -7,6 +7,7 @@
 //
 
 #import "FDSymptom.h"
+#import "FDEntry.h"
 
 @implementation FDSymptom
 
@@ -16,6 +17,16 @@
     if(self) {
         _symptomId = [dictionary objectForKey:@"id"];
         _name = [dictionary objectForKey:@"name"];
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString *)title entry:(FDEntry *)entry
+{
+    self = [super init];
+    if(self) {
+        _symptomId = [NSString stringWithFormat:@"symptoms_%@_%@", title, [entry entryId]];
+        _name = title;
     }
     return self;
 }

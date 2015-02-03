@@ -11,6 +11,10 @@
 #import "FDModelManager.h"
 #import "MBProgressHUD.h"
 
+//relative to screen
+#define ALARM_WIDTH 0.9
+#define ALARM_HEIGHT 0.6
+
 @interface FDLaunchViewController ()
 
 @end
@@ -27,8 +31,12 @@
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
     NSString *dateString = [dateFormatter stringFromDate:now];
     [_dateLabel setText:dateString];
+    
+    [self setAlarmButtonTitle];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -93,13 +101,72 @@
     }
 }
 
-
+- (IBAction)alarmButton:(id)sender
+{
+    UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
+    [backgroundView setBackgroundColor:[UIColor grayColor]];
+    [backgroundView setAlpha:0.5];
+    [backgroundView addTarget:self action:@selector(cancelAlarmView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backgroundView];
+    _backgroundView = backgroundView;
+    
+    UIView *alarmView = [[[NSBundle mainBundle] loadNibNamed:@"AlarmView" owner:self options:nil] objectAtIndex:0];
+    [alarmView setFrame:CGRectMake(self.view.frame.size.width/2-self.view.frame.size.width*ALARM_WIDTH/2, self.view.frame.size.height/2-self.view.frame.size.height*ALARM_HEIGHT/2, self.view.frame.size.width*ALARM_WIDTH, self.view.frame.size.height*ALARM_HEIGHT)];
+    [self.view addSubview:alarmView];
+    
+    //Style
+    alarmView.layer.cornerRadius = 8;
+    
+    _alarmView = alarmView;
+    
+    //Reminder - 1
+    UISwitch *switchItem = (UISwitch *)[alarmView viewWithTag:1];
+    [switchItem setOn:[[FDModelManager sharedManager] reminder]];
+    _reminderOn = [[FDModelManager sharedManager] reminder];
+    
+    //Reminder Time - 2
+    UIDatePicker *datePicker = (UIDatePicker *)[alarmView viewWithTag:2];
+    [datePicker setDate:[[FDModelManager sharedManager] reminderTime]];
+    _reminderTime = [[FDModelManager sharedManager] reminderTime];
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge |
+    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    
+    UIUserNotificationSettings *mySettings =
+    [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)toggleReminder:(UISwitch *)sender
+{
+    _reminderOn = sender.on;
+}
+
+- (IBAction)alarmDateChanged:(UIDatePicker *)sender
+{
+    _reminderTime = sender.date;
+}
+
+- (void)setNewNotification
+{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    localNotification.fireDate = [[FDModelManager sharedManager] reminderTime];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.repeatInterval = NSCalendarUnitDay;
+    
+    localNotification.alertBody = @"Don't forget to check into Flaredown today!";
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
 
 #pragma mark - Navigation
 
@@ -107,6 +174,40 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+- (void)setAlarmButtonTitle
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    NSString *dateString = [dateFormatter stringFromDate:[[FDModelManager sharedManager] reminderTime]];
+    [_alarmButton setTitle:dateString forState:UIControlStateNormal];
+}
+
+- (IBAction)closeAlarmView:(UIButton *)sender
+{
+    [[FDModelManager sharedManager] setReminder:_reminderOn];
+    [[FDModelManager sharedManager] setReminderTime:_reminderTime];
+    if(_reminderOn) {
+        [self setNewNotification];
+        [self setAlarmButtonTitle];
+    } else
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [self hideAlarmView];
+}
+
+- (IBAction)cancelAlarmView:(UIButton *)sender
+{
+    [self hideAlarmView];
+}
+
+- (void)hideAlarmView
+{
+    [_alarmView removeFromSuperview];
+    [_backgroundView removeFromSuperview];
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender

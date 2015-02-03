@@ -48,10 +48,22 @@
 
 - (NSDictionary *)dictionaryCopy
 {
+    NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
+    for (FDTreatment *treatment in _treatments) {
+        [mutableTreatments addObject:[treatment dictionaryCopy]];
+    }
+    NSMutableArray *mutableSymptoms = [[NSMutableArray alloc] init];
+    for (FDSymptom *symptom in _symptoms) {
+        [mutableSymptoms addObject:[symptom dictionaryCopy]];
+    }
     return @{
-             @"id":[NSNumber numberWithInteger:_userId],
-             @"email":_email,
-             @"authentication_token":_authenticationToken
+             @"user":@{
+                     @"id":[NSNumber numberWithInteger:_userId],
+                     @"email":_email,
+                     @"authentication_token":_authenticationToken
+                     },
+             @"treatments":mutableTreatments,
+             @"symptoms":mutableSymptoms
              };
 }
 

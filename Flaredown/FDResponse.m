@@ -12,14 +12,18 @@
 
 @implementation FDResponse
 
+@synthesize value = _value;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
+    
     self = [super init];
     if(self) {
         _responseId = [dictionary objectForKey:@"id"];
         _name = [dictionary objectForKey:@"name"];
-        _value = [[dictionary objectForKey:@"value"] intValue];
+        _value = [dictionary objectForKey:@"value"] == [NSNull null] ? 0 : [[dictionary objectForKey:@"value"] intValue];
         _catalog = [dictionary objectForKey:@"catalog"];
+        _responded = NO;
     }
     return self;
 }
@@ -32,6 +36,7 @@
         _name = [question name];
         _value = 0;
         _catalog = [question catalog];
+        _responded = NO;
     }
     return self;
 }
@@ -41,9 +46,21 @@
     return @{
              @"id":_responseId,
              @"name":_name,
-             @"value":[NSNumber numberWithInteger:_value],
+             @"value":_responded ? [NSNumber numberWithInteger:_value] : [NSNull null],
              @"catalog":_catalog
              };
+}
+
+- (int)value
+{
+    return _value;
+}
+
+- (void)setValue:(int)value
+{
+    if(!_responded)
+        _responded = YES;
+    _value = value;
 }
 
 - (void)setResponseIdWithEntryId:(NSString *)entryId name:(NSString *)name
