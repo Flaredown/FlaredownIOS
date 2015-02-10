@@ -40,6 +40,7 @@
 //            self.definesPresentationContext = YES;
         } else if(_pageIndex == numSections + 1) {
             //Notes
+            [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
             self.titleLabel.text = NSLocalizedString(@"Notes", nil);
         }
     } else {
@@ -53,6 +54,8 @@
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 //            self.providesPresentationContextTransitionStyle = YES;
 //            self.definesPresentationContext = YES;
+        } else {
+            [self.secondaryTitleButton setTitle:@"Research Questions" forState:UIControlStateNormal];
         }
     }
     

@@ -26,9 +26,18 @@
 		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
+		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
+		EDD804321A81399C00464D24 /* DLAVAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD804271A81399C00464D24 /* DLAVAlertView.m */; };
+		EDD804331A81399C00464D24 /* DLAVAlertViewButtonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD804291A81399C00464D24 /* DLAVAlertViewButtonTheme.m */; };
+		EDD804341A81399C00464D24 /* DLAVAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD8042B1A81399C00464D24 /* DLAVAlertViewController.m */; };
+		EDD804351A81399C00464D24 /* DLAVAlertViewTextControlTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD8042D1A81399C00464D24 /* DLAVAlertViewTextControlTheme.m */; };
+		EDD804361A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD8042F1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m */; };
+		EDD804371A81399C00464D24 /* DLAVAlertViewTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD804311A81399C00464D24 /* DLAVAlertViewTheme.m */; };
+		EDD8043A1A8139B500464D24 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDD804381A8139B500464D24 /* LICENSE */; };
+		EDD8043B1A8139B500464D24 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDD804391A8139B500464D24 /* README.md */; };
 		EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */; };
 		EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71631A082A130059815A /* AFHTTPRequestOperationManager.m */; };
 		EDDC71F21A082A130059815A /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71651A082A130059815A /* AFHTTPSessionManager.m */; };
@@ -53,17 +62,6 @@
 		EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */; };
 		EDEA82B51A11830F00A80416 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDEA829C1A11830F00A80416 /* README.mdown */; };
 		EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */; };
-		EDEB41AA1A770BA5007C67C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDEB417A1A770BA5007C67C4 /* .gitignore */; };
-		EDEB41AD1A770BA5007C67C4 /* DLAVAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEB41821A770BA5007C67C4 /* DLAVAlertView.m */; };
-		EDEB41AE1A770BA5007C67C4 /* DLAVAlertViewButtonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEB41841A770BA5007C67C4 /* DLAVAlertViewButtonTheme.m */; };
-		EDEB41AF1A770BA5007C67C4 /* DLAVAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEB41861A770BA5007C67C4 /* DLAVAlertViewController.m */; };
-		EDEB41B01A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEB41881A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.m */; };
-		EDEB41B11A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEB418A1A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.m */; };
-		EDEB41B21A770BA5007C67C4 /* DLAVAlertViewTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEB418C1A770BA5007C67C4 /* DLAVAlertViewTheme.m */; };
-		EDEB41BC1A770BA5007C67C4 /* DLAlertView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EDEB419E1A770BA5007C67C4 /* DLAlertView.podspec */; };
-		EDEB41C01A770BA5007C67C4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDEB41A71A770BA5007C67C4 /* LICENSE */; };
-		EDEB41C11A770BA5007C67C4 /* preview.gif in Resources */ = {isa = PBXBuildFile; fileRef = EDEB41A81A770BA5007C67C4 /* preview.gif */; };
-		EDEB41C21A770BA5007C67C4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDEB41A91A770BA5007C67C4 /* README.md */; };
 		EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */; };
 		EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEBC6A91A424907007742C5 /* FDTreatment.m */; };
 		EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B2F1A744ACA007A14B1 /* .gitignore */; };
@@ -82,13 +80,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 101393C219D216D700BBB266;
 			remoteInfo = Flaredown;
-		};
-		EDEA82BA1A11830F00A80416 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D286A7491518C70F00E13FB8;
-			remoteInfo = MBProgressHUD;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -126,6 +117,7 @@
 		85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
+		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -133,6 +125,20 @@
 		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
+		EDD804261A81399C00464D24 /* DLAVAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertView.h; sourceTree = "<group>"; };
+		EDD804271A81399C00464D24 /* DLAVAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertView.m; sourceTree = "<group>"; };
+		EDD804281A81399C00464D24 /* DLAVAlertViewButtonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewButtonTheme.h; sourceTree = "<group>"; };
+		EDD804291A81399C00464D24 /* DLAVAlertViewButtonTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewButtonTheme.m; sourceTree = "<group>"; };
+		EDD8042A1A81399C00464D24 /* DLAVAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewController.h; sourceTree = "<group>"; };
+		EDD8042B1A81399C00464D24 /* DLAVAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewController.m; sourceTree = "<group>"; };
+		EDD8042C1A81399C00464D24 /* DLAVAlertViewTextControlTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextControlTheme.h; sourceTree = "<group>"; };
+		EDD8042D1A81399C00464D24 /* DLAVAlertViewTextControlTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextControlTheme.m; sourceTree = "<group>"; };
+		EDD8042E1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextFieldTheme.h; sourceTree = "<group>"; };
+		EDD8042F1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextFieldTheme.m; sourceTree = "<group>"; };
+		EDD804301A81399C00464D24 /* DLAVAlertViewTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTheme.h; sourceTree = "<group>"; };
+		EDD804311A81399C00464D24 /* DLAVAlertViewTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTheme.m; sourceTree = "<group>"; };
+		EDD804381A8139B500464D24 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		EDD804391A8139B500464D24 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EDDC71601A082A130059815A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		EDDC71621A082A130059815A /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -173,28 +179,10 @@
 		EDEA82951A11830F00A80416 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EDEA82961A11830F00A80416 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBProgressHUD.podspec; sourceTree = "<group>"; };
-		EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = MBProgressHUD.xcworkspace; sourceTree = "<group>"; };
 		EDEA829C1A11830F00A80416 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		EDEA82BC1A11952300A80416 /* FDLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLaunchViewController.h; sourceTree = "<group>"; };
 		EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLaunchViewController.m; sourceTree = "<group>"; };
-		EDEB417A1A770BA5007C67C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		EDEB41811A770BA5007C67C4 /* DLAVAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertView.h; sourceTree = "<group>"; };
-		EDEB41821A770BA5007C67C4 /* DLAVAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertView.m; sourceTree = "<group>"; };
-		EDEB41831A770BA5007C67C4 /* DLAVAlertViewButtonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewButtonTheme.h; sourceTree = "<group>"; };
-		EDEB41841A770BA5007C67C4 /* DLAVAlertViewButtonTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewButtonTheme.m; sourceTree = "<group>"; };
-		EDEB41851A770BA5007C67C4 /* DLAVAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewController.h; sourceTree = "<group>"; };
-		EDEB41861A770BA5007C67C4 /* DLAVAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewController.m; sourceTree = "<group>"; };
-		EDEB41871A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextControlTheme.h; sourceTree = "<group>"; };
-		EDEB41881A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextControlTheme.m; sourceTree = "<group>"; };
-		EDEB41891A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextFieldTheme.h; sourceTree = "<group>"; };
-		EDEB418A1A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextFieldTheme.m; sourceTree = "<group>"; };
-		EDEB418B1A770BA5007C67C4 /* DLAVAlertViewTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTheme.h; sourceTree = "<group>"; };
-		EDEB418C1A770BA5007C67C4 /* DLAVAlertViewTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTheme.m; sourceTree = "<group>"; };
-		EDEB419E1A770BA5007C67C4 /* DLAlertView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DLAlertView.podspec; sourceTree = "<group>"; };
-		EDEB41A71A770BA5007C67C4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EDEB41A81A770BA5007C67C4 /* preview.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = preview.gif; sourceTree = "<group>"; };
-		EDEB41A91A770BA5007C67C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmView.xib; sourceTree = "<group>"; };
 		EDEBC6A81A424907007742C5 /* FDTreatment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatment.h; sourceTree = "<group>"; };
 		EDEBC6A91A424907007742C5 /* FDTreatment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatment.m; sourceTree = "<group>"; };
@@ -248,7 +236,7 @@
 		101393C519D216D700BBB266 /* Flaredown */ = {
 			isa = PBXGroup;
 			children = (
-				EDEB41791A770BA5007C67C4 /* DLAlertView-master */,
+				EDD804251A81399C00464D24 /* DLAVAlertView */,
 				85378A101A5214C50053D6CC /* fnt */,
 				EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */,
 				EDEA82731A11830F00A80416 /* MBProgressHUD-master */,
@@ -259,6 +247,7 @@
 				101393D019D216D700BBB266 /* Main.storyboard */,
 				EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */,
 				EDD802A31A804CB900464D24 /* AddTreatmentView.xib */,
+				ED31E4831A888262008306F3 /* EditTreatmentView.xib */,
 				101393D319D216D700BBB266 /* Images.xcassets */,
 				101393D519D216D700BBB266 /* LaunchScreen.xib */,
 				101393C619D216D700BBB266 /* Supporting Files */,
@@ -368,6 +357,28 @@
 			name = "Page Containers";
 			sourceTree = "<group>";
 		};
+		EDD804251A81399C00464D24 /* DLAVAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				EDD804381A8139B500464D24 /* LICENSE */,
+				EDD804391A8139B500464D24 /* README.md */,
+				EDD804261A81399C00464D24 /* DLAVAlertView.h */,
+				EDD804271A81399C00464D24 /* DLAVAlertView.m */,
+				EDD804281A81399C00464D24 /* DLAVAlertViewButtonTheme.h */,
+				EDD804291A81399C00464D24 /* DLAVAlertViewButtonTheme.m */,
+				EDD8042A1A81399C00464D24 /* DLAVAlertViewController.h */,
+				EDD8042B1A81399C00464D24 /* DLAVAlertViewController.m */,
+				EDD8042C1A81399C00464D24 /* DLAVAlertViewTextControlTheme.h */,
+				EDD8042D1A81399C00464D24 /* DLAVAlertViewTextControlTheme.m */,
+				EDD8042E1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.h */,
+				EDD8042F1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m */,
+				EDD804301A81399C00464D24 /* DLAVAlertViewTheme.h */,
+				EDD804311A81399C00464D24 /* DLAVAlertViewTheme.m */,
+			);
+			name = DLAVAlertView;
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		EDDC715F1A082A130059815A /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,52 +437,10 @@
 				EDEA82951A11830F00A80416 /* MBProgressHUD.h */,
 				EDEA82961A11830F00A80416 /* MBProgressHUD.m */,
 				EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */,
-				EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */,
 				EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */,
 				EDEA829C1A11830F00A80416 /* README.mdown */,
 			);
 			path = "MBProgressHUD-master";
-			sourceTree = "<group>";
-		};
-		EDEA82991A11830F00A80416 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EDEA82BB1A11830F00A80416 /* libMBProgressHUD.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		EDEB41791A770BA5007C67C4 /* DLAlertView-master */ = {
-			isa = PBXGroup;
-			children = (
-				EDEB41801A770BA5007C67C4 /* Classes */,
-				EDEB417A1A770BA5007C67C4 /* .gitignore */,
-				EDEB419E1A770BA5007C67C4 /* DLAlertView.podspec */,
-				EDEB41A71A770BA5007C67C4 /* LICENSE */,
-				EDEB41A81A770BA5007C67C4 /* preview.gif */,
-				EDEB41A91A770BA5007C67C4 /* README.md */,
-			);
-			path = "DLAlertView-master";
-			sourceTree = "<group>";
-		};
-		EDEB41801A770BA5007C67C4 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				EDEB41811A770BA5007C67C4 /* DLAVAlertView.h */,
-				EDEB41821A770BA5007C67C4 /* DLAVAlertView.m */,
-				EDEB41831A770BA5007C67C4 /* DLAVAlertViewButtonTheme.h */,
-				EDEB41841A770BA5007C67C4 /* DLAVAlertViewButtonTheme.m */,
-				EDEB41851A770BA5007C67C4 /* DLAVAlertViewController.h */,
-				EDEB41861A770BA5007C67C4 /* DLAVAlertViewController.m */,
-				EDEB41871A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.h */,
-				EDEB41881A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.m */,
-				EDEB41891A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.h */,
-				EDEB418A1A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.m */,
-				EDEB418B1A770BA5007C67C4 /* DLAVAlertViewTheme.h */,
-				EDEB418C1A770BA5007C67C4 /* DLAVAlertViewTheme.m */,
-			);
-			name = Classes;
-			path = DLAlertView/Classes;
 			sourceTree = "<group>";
 		};
 		EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */ = {
@@ -574,12 +543,6 @@
 			mainGroup = 101393BA19D216D700BBB266;
 			productRefGroup = 101393C419D216D700BBB266 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = EDEA82991A11830F00A80416 /* Products */;
-					ProjectRef = EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				101393C219D216D700BBB266 /* Flaredown */,
@@ -587,16 +550,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		EDEA82BB1A11830F00A80416 /* libMBProgressHUD.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMBProgressHUD.a;
-			remoteRef = EDEA82BA1A11830F00A80416 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		101393C119D216D700BBB266 /* Resources */ = {
@@ -611,20 +564,18 @@
 				EDEA82B31A11830F00A80416 /* MBProgressHUD.podspec in Resources */,
 				EDFF9B531A744ACA007A14B1 /* demo1.png in Resources */,
 				EDEA829D1A11830F00A80416 /* .gitignore in Resources */,
-				EDEB41BC1A770BA5007C67C4 /* DLAlertView.podspec in Resources */,
+				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
-				EDEB41C01A770BA5007C67C4 /* LICENSE in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
 				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
 				EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */,
 				EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */,
 				EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */,
+				EDD8043A1A8139B500464D24 /* LICENSE in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
-				EDEB41C11A770BA5007C67C4 /* preview.gif in Resources */,
-				EDEB41AA1A770BA5007C67C4 /* .gitignore in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,14 +603,13 @@
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
 				EDFF9B631A744ACA007A14B1 /* MJPopupBackgroundView.m in Sources */,
 				EDEA82B21A11830F00A80416 /* MBProgressHUD.m in Sources */,
-				EDEB41AE1A770BA5007C67C4 /* DLAVAlertViewButtonTheme.m in Sources */,
+				EDD804331A81399C00464D24 /* DLAVAlertViewButtonTheme.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
-				EDEB41B01A770BA5007C67C4 /* DLAVAlertViewTextControlTheme.m in Sources */,
+				EDD804351A81399C00464D24 /* DLAVAlertViewTextControlTheme.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
-				EDEB41C21A770BA5007C67C4 /* README.md in Sources */,
-				EDEB41B11A770BA5007C67C4 /* DLAVAlertViewTextFieldTheme.m in Sources */,
-				EDEB41B21A770BA5007C67C4 /* DLAVAlertViewTheme.m in Sources */,
+				EDD804361A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m in Sources */,
+				EDD804371A81399C00464D24 /* DLAVAlertViewTheme.m in Sources */,
 				EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,
@@ -668,10 +618,11 @@
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
 				EDFF9B641A744ACA007A14B1 /* UIViewController+MJPopupViewController.m in Sources */,
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
-				EDEB41AD1A770BA5007C67C4 /* DLAVAlertView.m in Sources */,
+				EDD8043B1A8139B500464D24 /* README.md in Sources */,
+				EDD804321A81399C00464D24 /* DLAVAlertView.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				EDDC71F81A082A130059815A /* AFURLSessionManager.m in Sources */,
-				EDEB41AF1A770BA5007C67C4 /* DLAVAlertViewController.m in Sources */,
+				EDD804341A81399C00464D24 /* DLAVAlertViewController.m in Sources */,
 				EDDC71F71A082A130059815A /* AFURLResponseSerialization.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
 				1013943319DA0BD200BBB266 /* FDNumberViewController.m in Sources */,

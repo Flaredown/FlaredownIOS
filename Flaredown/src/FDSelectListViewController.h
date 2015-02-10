@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FDTreatment;
 
 @protocol FDViewControllerDelegate <NSObject>
 
@@ -27,6 +28,19 @@
 @property BOOL editSymptoms;
 @property BOOL treatments;
 @property int removeIndex;
+
+@property UIView *backgroundView;
+@property UIView *popupView;
+
+@property (weak, nonatomic) IBOutlet UITextField *addTreatmentNameField;
+@property (weak, nonatomic) IBOutlet UITextField *addTreatmentDoseField;
+@property (weak, nonatomic) IBOutlet UITextField *addTreatmentUnitField;
+@property (weak, nonatomic) IBOutlet UILabel *editTreatmentTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *editTreatmentDoseField;
+@property (weak, nonatomic) IBOutlet UITextField *editTreatmentUnitField;
+
+@property FDTreatment *editTreatment;
+
 
 - (void)initWithQuestions:(NSArray *)questions;
 - (void)initWithTreatments;
