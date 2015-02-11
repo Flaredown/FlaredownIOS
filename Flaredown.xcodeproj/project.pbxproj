@@ -29,15 +29,28 @@
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
+		EDCB473B1A8BE90300C46859 /* DLAVAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB47191A8BE90300C46859 /* DLAVAlertView.m */; };
+		EDCB473C1A8BE90300C46859 /* DLAVAlertViewButtonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB471B1A8BE90300C46859 /* DLAVAlertViewButtonTheme.m */; };
+		EDCB473D1A8BE90300C46859 /* DLAVAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB471D1A8BE90300C46859 /* DLAVAlertViewController.m */; };
+		EDCB473E1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB471F1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.m */; };
+		EDCB473F1A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB47211A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.m */; };
+		EDCB47401A8BE90300C46859 /* DLAVAlertViewTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB47231A8BE90300C46859 /* DLAVAlertViewTheme.m */; };
+		EDCB47411A8BE90300C46859 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47241A8BE90300C46859 /* LICENSE */; };
+		EDCB47421A8BE90300C46859 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDCB47251A8BE90300C46859 /* README.md */; };
+		EDCB47431A8BE90300C46859 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47271A8BE90300C46859 /* .gitignore */; };
+		EDCB47441A8BE90300C46859 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47281A8BE90300C46859 /* .travis.yml */; };
+		EDCB47451A8BE90300C46859 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47291A8BE90300C46859 /* LICENSE */; };
+		EDCB47461A8BE90300C46859 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB472C1A8BE90300C46859 /* MBProgressHUD.m */; };
+		EDCB47471A8BE90300C46859 /* MBProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EDCB472D1A8BE90300C46859 /* MBProgressHUD.podspec */; };
+		EDCB47481A8BE90300C46859 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDCB472E1A8BE90300C46859 /* README.mdown */; };
+		EDCB47491A8BE90300C46859 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47301A8BE90300C46859 /* .gitignore */; };
+		EDCB474A1A8BE90300C46859 /* demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47321A8BE90300C46859 /* demo1.png */; };
+		EDCB474B1A8BE90300C46859 /* demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47331A8BE90300C46859 /* demo2.png */; };
+		EDCB474C1A8BE90300C46859 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47341A8BE90300C46859 /* LICENSE.txt */; };
+		EDCB474D1A8BE90300C46859 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDCB47351A8BE90300C46859 /* README.md */; };
+		EDCB474E1A8BE90300C46859 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB47381A8BE90300C46859 /* MJPopupBackgroundView.m */; };
+		EDCB474F1A8BE90300C46859 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB473A1A8BE90300C46859 /* UIViewController+MJPopupViewController.m */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
-		EDD804321A81399C00464D24 /* DLAVAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD804271A81399C00464D24 /* DLAVAlertView.m */; };
-		EDD804331A81399C00464D24 /* DLAVAlertViewButtonTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD804291A81399C00464D24 /* DLAVAlertViewButtonTheme.m */; };
-		EDD804341A81399C00464D24 /* DLAVAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD8042B1A81399C00464D24 /* DLAVAlertViewController.m */; };
-		EDD804351A81399C00464D24 /* DLAVAlertViewTextControlTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD8042D1A81399C00464D24 /* DLAVAlertViewTextControlTheme.m */; };
-		EDD804361A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD8042F1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m */; };
-		EDD804371A81399C00464D24 /* DLAVAlertViewTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD804311A81399C00464D24 /* DLAVAlertViewTheme.m */; };
-		EDD8043A1A8139B500464D24 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDD804381A8139B500464D24 /* LICENSE */; };
-		EDD8043B1A8139B500464D24 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDD804391A8139B500464D24 /* README.md */; };
 		EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */; };
 		EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71631A082A130059815A /* AFHTTPRequestOperationManager.m */; };
 		EDDC71F21A082A130059815A /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC71651A082A130059815A /* AFHTTPSessionManager.m */; };
@@ -54,22 +67,9 @@
 		EDEA826C1A115A2A00A80416 /* FDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA826B1A115A2A00A80416 /* FDResponse.m */; };
 		EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA826E1A115FCC00A80416 /* FDInput.m */; };
 		EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82711A1175D200A80416 /* FDLoginViewController.m */; };
-		EDEA829D1A11830F00A80416 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDEA82741A11830F00A80416 /* .gitignore */; };
-		EDEA829E1A11830F00A80416 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = EDEA82751A11830F00A80416 /* .travis.yml */; };
-		EDEA82B11A11830F00A80416 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDEA82931A11830F00A80416 /* LICENSE */; };
-		EDEA82B21A11830F00A80416 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82961A11830F00A80416 /* MBProgressHUD.m */; };
-		EDEA82B31A11830F00A80416 /* MBProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */; };
-		EDEA82B51A11830F00A80416 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDEA829C1A11830F00A80416 /* README.mdown */; };
 		EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */; };
 		EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */; };
 		EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEBC6A91A424907007742C5 /* FDTreatment.m */; };
-		EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B2F1A744ACA007A14B1 /* .gitignore */; };
-		EDFF9B531A744ACA007A14B1 /* demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B311A744ACA007A14B1 /* demo1.png */; };
-		EDFF9B541A744ACA007A14B1 /* demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B321A744ACA007A14B1 /* demo2.png */; };
-		EDFF9B551A744ACA007A14B1 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = EDFF9B331A744ACA007A14B1 /* LICENSE.txt */; };
-		EDFF9B621A744ACA007A14B1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDFF9B4C1A744ACA007A14B1 /* README.md */; };
-		EDFF9B631A744ACA007A14B1 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFF9B4F1A744ACA007A14B1 /* MJPopupBackgroundView.m */; };
-		EDFF9B641A744ACA007A14B1 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFF9B511A744ACA007A14B1 /* UIViewController+MJPopupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,21 +123,38 @@
 		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDCB47181A8BE90300C46859 /* DLAVAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertView.h; sourceTree = "<group>"; };
+		EDCB47191A8BE90300C46859 /* DLAVAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertView.m; sourceTree = "<group>"; };
+		EDCB471A1A8BE90300C46859 /* DLAVAlertViewButtonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewButtonTheme.h; sourceTree = "<group>"; };
+		EDCB471B1A8BE90300C46859 /* DLAVAlertViewButtonTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewButtonTheme.m; sourceTree = "<group>"; };
+		EDCB471C1A8BE90300C46859 /* DLAVAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewController.h; sourceTree = "<group>"; };
+		EDCB471D1A8BE90300C46859 /* DLAVAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewController.m; sourceTree = "<group>"; };
+		EDCB471E1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextControlTheme.h; sourceTree = "<group>"; };
+		EDCB471F1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextControlTheme.m; sourceTree = "<group>"; };
+		EDCB47201A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextFieldTheme.h; sourceTree = "<group>"; };
+		EDCB47211A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextFieldTheme.m; sourceTree = "<group>"; };
+		EDCB47221A8BE90300C46859 /* DLAVAlertViewTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTheme.h; sourceTree = "<group>"; };
+		EDCB47231A8BE90300C46859 /* DLAVAlertViewTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTheme.m; sourceTree = "<group>"; };
+		EDCB47241A8BE90300C46859 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		EDCB47251A8BE90300C46859 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EDCB47271A8BE90300C46859 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EDCB47281A8BE90300C46859 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		EDCB47291A8BE90300C46859 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		EDCB472A1A8BE90300C46859 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		EDCB472B1A8BE90300C46859 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EDCB472C1A8BE90300C46859 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EDCB472D1A8BE90300C46859 /* MBProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBProgressHUD.podspec; sourceTree = "<group>"; };
+		EDCB472E1A8BE90300C46859 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
+		EDCB47301A8BE90300C46859 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EDCB47321A8BE90300C46859 /* demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo1.png; sourceTree = "<group>"; };
+		EDCB47331A8BE90300C46859 /* demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo2.png; sourceTree = "<group>"; };
+		EDCB47341A8BE90300C46859 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		EDCB47351A8BE90300C46859 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EDCB47371A8BE90300C46859 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		EDCB47381A8BE90300C46859 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		EDCB47391A8BE90300C46859 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		EDCB473A1A8BE90300C46859 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
-		EDD804261A81399C00464D24 /* DLAVAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertView.h; sourceTree = "<group>"; };
-		EDD804271A81399C00464D24 /* DLAVAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertView.m; sourceTree = "<group>"; };
-		EDD804281A81399C00464D24 /* DLAVAlertViewButtonTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewButtonTheme.h; sourceTree = "<group>"; };
-		EDD804291A81399C00464D24 /* DLAVAlertViewButtonTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewButtonTheme.m; sourceTree = "<group>"; };
-		EDD8042A1A81399C00464D24 /* DLAVAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewController.h; sourceTree = "<group>"; };
-		EDD8042B1A81399C00464D24 /* DLAVAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewController.m; sourceTree = "<group>"; };
-		EDD8042C1A81399C00464D24 /* DLAVAlertViewTextControlTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextControlTheme.h; sourceTree = "<group>"; };
-		EDD8042D1A81399C00464D24 /* DLAVAlertViewTextControlTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextControlTheme.m; sourceTree = "<group>"; };
-		EDD8042E1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTextFieldTheme.h; sourceTree = "<group>"; };
-		EDD8042F1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTextFieldTheme.m; sourceTree = "<group>"; };
-		EDD804301A81399C00464D24 /* DLAVAlertViewTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAVAlertViewTheme.h; sourceTree = "<group>"; };
-		EDD804311A81399C00464D24 /* DLAVAlertViewTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAVAlertViewTheme.m; sourceTree = "<group>"; };
-		EDD804381A8139B500464D24 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EDD804391A8139B500464D24 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EDDC71601A082A130059815A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		EDDC71611A082A130059815A /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		EDDC71621A082A130059815A /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -171,28 +188,11 @@
 		EDEA826E1A115FCC00A80416 /* FDInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDInput.m; sourceTree = "<group>"; };
 		EDEA82701A1175D200A80416 /* FDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLoginViewController.h; sourceTree = "<group>"; };
 		EDEA82711A1175D200A80416 /* FDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLoginViewController.m; sourceTree = "<group>"; };
-		EDEA82741A11830F00A80416 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		EDEA82751A11830F00A80416 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
-		EDEA82931A11830F00A80416 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EDEA82941A11830F00A80416 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
-		EDEA82951A11830F00A80416 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		EDEA82961A11830F00A80416 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBProgressHUD.podspec; sourceTree = "<group>"; };
-		EDEA829C1A11830F00A80416 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		EDEA82BC1A11952300A80416 /* FDLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLaunchViewController.h; sourceTree = "<group>"; };
 		EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLaunchViewController.m; sourceTree = "<group>"; };
 		EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmView.xib; sourceTree = "<group>"; };
 		EDEBC6A81A424907007742C5 /* FDTreatment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatment.h; sourceTree = "<group>"; };
 		EDEBC6A91A424907007742C5 /* FDTreatment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatment.m; sourceTree = "<group>"; };
-		EDFF9B2F1A744ACA007A14B1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		EDFF9B311A744ACA007A14B1 /* demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo1.png; sourceTree = "<group>"; };
-		EDFF9B321A744ACA007A14B1 /* demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo2.png; sourceTree = "<group>"; };
-		EDFF9B331A744ACA007A14B1 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		EDFF9B4C1A744ACA007A14B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		EDFF9B4E1A744ACA007A14B1 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
-		EDFF9B4F1A744ACA007A14B1 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
-		EDFF9B501A744ACA007A14B1 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
-		EDFF9B511A744ACA007A14B1 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,10 +234,10 @@
 		101393C519D216D700BBB266 /* Flaredown */ = {
 			isa = PBXGroup;
 			children = (
-				EDD804251A81399C00464D24 /* DLAVAlertView */,
+				EDCB47171A8BE90300C46859 /* DLAVAlertView */,
+				EDCB47261A8BE90300C46859 /* MBProgressHUD */,
+				EDCB472F1A8BE90300C46859 /* MJPopupViewController */,
 				85378A101A5214C50053D6CC /* fnt */,
-				EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */,
-				EDEA82731A11830F00A80416 /* MBProgressHUD-master */,
 				EDDC715F1A082A130059815A /* AFNetworking */,
 				101393EF19D2290E00BBB266 /* src */,
 				101393CA19D216D700BBB266 /* AppDelegate.h */,
@@ -355,26 +355,72 @@
 			name = "Page Containers";
 			sourceTree = "<group>";
 		};
-		EDD804251A81399C00464D24 /* DLAVAlertView */ = {
+		EDCB47171A8BE90300C46859 /* DLAVAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				EDD804381A8139B500464D24 /* LICENSE */,
-				EDD804391A8139B500464D24 /* README.md */,
-				EDD804261A81399C00464D24 /* DLAVAlertView.h */,
-				EDD804271A81399C00464D24 /* DLAVAlertView.m */,
-				EDD804281A81399C00464D24 /* DLAVAlertViewButtonTheme.h */,
-				EDD804291A81399C00464D24 /* DLAVAlertViewButtonTheme.m */,
-				EDD8042A1A81399C00464D24 /* DLAVAlertViewController.h */,
-				EDD8042B1A81399C00464D24 /* DLAVAlertViewController.m */,
-				EDD8042C1A81399C00464D24 /* DLAVAlertViewTextControlTheme.h */,
-				EDD8042D1A81399C00464D24 /* DLAVAlertViewTextControlTheme.m */,
-				EDD8042E1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.h */,
-				EDD8042F1A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m */,
-				EDD804301A81399C00464D24 /* DLAVAlertViewTheme.h */,
-				EDD804311A81399C00464D24 /* DLAVAlertViewTheme.m */,
+				EDCB47181A8BE90300C46859 /* DLAVAlertView.h */,
+				EDCB47191A8BE90300C46859 /* DLAVAlertView.m */,
+				EDCB471A1A8BE90300C46859 /* DLAVAlertViewButtonTheme.h */,
+				EDCB471B1A8BE90300C46859 /* DLAVAlertViewButtonTheme.m */,
+				EDCB471C1A8BE90300C46859 /* DLAVAlertViewController.h */,
+				EDCB471D1A8BE90300C46859 /* DLAVAlertViewController.m */,
+				EDCB471E1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.h */,
+				EDCB471F1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.m */,
+				EDCB47201A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.h */,
+				EDCB47211A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.m */,
+				EDCB47221A8BE90300C46859 /* DLAVAlertViewTheme.h */,
+				EDCB47231A8BE90300C46859 /* DLAVAlertViewTheme.m */,
+				EDCB47241A8BE90300C46859 /* LICENSE */,
+				EDCB47251A8BE90300C46859 /* README.md */,
 			);
-			name = DLAVAlertView;
-			path = Classes;
+			path = DLAVAlertView;
+			sourceTree = "<group>";
+		};
+		EDCB47261A8BE90300C46859 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EDCB47271A8BE90300C46859 /* .gitignore */,
+				EDCB47281A8BE90300C46859 /* .travis.yml */,
+				EDCB47291A8BE90300C46859 /* LICENSE */,
+				EDCB472A1A8BE90300C46859 /* MBProgressHUD-Prefix.pch */,
+				EDCB472B1A8BE90300C46859 /* MBProgressHUD.h */,
+				EDCB472C1A8BE90300C46859 /* MBProgressHUD.m */,
+				EDCB472D1A8BE90300C46859 /* MBProgressHUD.podspec */,
+				EDCB472E1A8BE90300C46859 /* README.mdown */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		EDCB472F1A8BE90300C46859 /* MJPopupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDCB47301A8BE90300C46859 /* .gitignore */,
+				EDCB47311A8BE90300C46859 /* assets */,
+				EDCB47341A8BE90300C46859 /* LICENSE.txt */,
+				EDCB47351A8BE90300C46859 /* README.md */,
+				EDCB47361A8BE90300C46859 /* Source */,
+			);
+			path = MJPopupViewController;
+			sourceTree = "<group>";
+		};
+		EDCB47311A8BE90300C46859 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				EDCB47321A8BE90300C46859 /* demo1.png */,
+				EDCB47331A8BE90300C46859 /* demo2.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		EDCB47361A8BE90300C46859 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EDCB47371A8BE90300C46859 /* MJPopupBackgroundView.h */,
+				EDCB47381A8BE90300C46859 /* MJPopupBackgroundView.m */,
+				EDCB47391A8BE90300C46859 /* UIViewController+MJPopupViewController.h */,
+				EDCB473A1A8BE90300C46859 /* UIViewController+MJPopupViewController.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		EDDC715F1A082A130059815A /* AFNetworking */ = {
@@ -423,53 +469,6 @@
 				ED2853C71A6C2043002D95E6 /* FDSymptom.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		EDEA82731A11830F00A80416 /* MBProgressHUD-master */ = {
-			isa = PBXGroup;
-			children = (
-				EDEA82741A11830F00A80416 /* .gitignore */,
-				EDEA82751A11830F00A80416 /* .travis.yml */,
-				EDEA82931A11830F00A80416 /* LICENSE */,
-				EDEA82941A11830F00A80416 /* MBProgressHUD-Prefix.pch */,
-				EDEA82951A11830F00A80416 /* MBProgressHUD.h */,
-				EDEA82961A11830F00A80416 /* MBProgressHUD.m */,
-				EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */,
-				EDEA829C1A11830F00A80416 /* README.mdown */,
-			);
-			path = "MBProgressHUD-master";
-			sourceTree = "<group>";
-		};
-		EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */ = {
-			isa = PBXGroup;
-			children = (
-				EDFF9B2F1A744ACA007A14B1 /* .gitignore */,
-				EDFF9B301A744ACA007A14B1 /* assets */,
-				EDFF9B331A744ACA007A14B1 /* LICENSE.txt */,
-				EDFF9B4C1A744ACA007A14B1 /* README.md */,
-				EDFF9B4D1A744ACA007A14B1 /* Source */,
-			);
-			path = "MJPopupViewController-master";
-			sourceTree = "<group>";
-		};
-		EDFF9B301A744ACA007A14B1 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				EDFF9B311A744ACA007A14B1 /* demo1.png */,
-				EDFF9B321A744ACA007A14B1 /* demo2.png */,
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
-		EDFF9B4D1A744ACA007A14B1 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				EDFF9B4E1A744ACA007A14B1 /* MJPopupBackgroundView.h */,
-				EDFF9B4F1A744ACA007A14B1 /* MJPopupBackgroundView.m */,
-				EDFF9B501A744ACA007A14B1 /* UIViewController+MJPopupViewController.h */,
-				EDFF9B511A744ACA007A14B1 /* UIViewController+MJPopupViewController.m */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,25 +552,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDFF9B551A744ACA007A14B1 /* LICENSE.txt in Resources */,
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
-				EDEA82B11A11830F00A80416 /* LICENSE in Resources */,
-				EDEA829E1A11830F00A80416 /* .travis.yml in Resources */,
-				EDFF9B541A744ACA007A14B1 /* demo2.png in Resources */,
-				EDEA82B31A11830F00A80416 /* MBProgressHUD.podspec in Resources */,
-				EDFF9B531A744ACA007A14B1 /* demo1.png in Resources */,
-				EDEA829D1A11830F00A80416 /* .gitignore in Resources */,
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
+				EDCB47491A8BE90300C46859 /* .gitignore in Resources */,
 				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
-				EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */,
 				EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */,
-				EDD8043A1A8139B500464D24 /* LICENSE in Resources */,
+				EDCB474B1A8BE90300C46859 /* demo2.png in Resources */,
+				EDCB474C1A8BE90300C46859 /* LICENSE.txt in Resources */,
+				EDCB47471A8BE90300C46859 /* MBProgressHUD.podspec in Resources */,
+				EDCB47411A8BE90300C46859 /* LICENSE in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
+				EDCB47451A8BE90300C46859 /* LICENSE in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
+				EDCB47431A8BE90300C46859 /* .gitignore in Resources */,
+				EDCB47441A8BE90300C46859 /* .travis.yml in Resources */,
+				EDCB474A1A8BE90300C46859 /* demo1.png in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,35 +589,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDEA82B51A11830F00A80416 /* README.mdown in Sources */,
+				EDCB47481A8BE90300C46859 /* README.mdown in Sources */,
 				EDEA826C1A115A2A00A80416 /* FDResponse.m in Sources */,
 				EDDC71F51A082A130059815A /* AFURLConnectionOperation.m in Sources */,
 				EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */,
 				10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */,
 				EDDC71F41A082A130059815A /* AFSecurityPolicy.m in Sources */,
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
-				EDFF9B631A744ACA007A14B1 /* MJPopupBackgroundView.m in Sources */,
-				EDEA82B21A11830F00A80416 /* MBProgressHUD.m in Sources */,
-				EDD804331A81399C00464D24 /* DLAVAlertViewButtonTheme.m in Sources */,
+				EDCB474E1A8BE90300C46859 /* MJPopupBackgroundView.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
+				EDCB47461A8BE90300C46859 /* MBProgressHUD.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
-				EDD804351A81399C00464D24 /* DLAVAlertViewTextControlTheme.m in Sources */,
+				EDCB473B1A8BE90300C46859 /* DLAVAlertView.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
-				EDD804361A81399C00464D24 /* DLAVAlertViewTextFieldTheme.m in Sources */,
-				EDD804371A81399C00464D24 /* DLAVAlertViewTheme.m in Sources */,
 				EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,
+				EDCB473D1A8BE90300C46859 /* DLAVAlertViewController.m in Sources */,
+				EDCB474F1A8BE90300C46859 /* UIViewController+MJPopupViewController.m in Sources */,
+				EDCB473F1A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.m in Sources */,
 				10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */,
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
-				EDFF9B641A744ACA007A14B1 /* UIViewController+MJPopupViewController.m in Sources */,
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
-				EDD8043B1A8139B500464D24 /* README.md in Sources */,
-				EDD804321A81399C00464D24 /* DLAVAlertView.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
+				EDCB474D1A8BE90300C46859 /* README.md in Sources */,
 				EDDC71F81A082A130059815A /* AFURLSessionManager.m in Sources */,
-				EDD804341A81399C00464D24 /* DLAVAlertViewController.m in Sources */,
 				EDDC71F71A082A130059815A /* AFURLResponseSerialization.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
 				1013943319DA0BD200BBB266 /* FDNumberViewController.m in Sources */,
@@ -627,10 +623,13 @@
 				EDDC71F61A082A130059815A /* AFURLRequestSerialization.m in Sources */,
 				EDDC71F31A082A130059815A /* AFNetworkReachabilityManager.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
-				EDFF9B621A744ACA007A14B1 /* README.md in Sources */,
+				EDCB47421A8BE90300C46859 /* README.md in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
 				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,
 				EDDC71F01A082A130059815A /* AFHTTPRequestOperation.m in Sources */,
+				EDCB47401A8BE90300C46859 /* DLAVAlertViewTheme.m in Sources */,
+				EDCB473E1A8BE90300C46859 /* DLAVAlertViewTextControlTheme.m in Sources */,
+				EDCB473C1A8BE90300C46859 /* DLAVAlertViewButtonTheme.m in Sources */,
 				EDDC71F21A082A130059815A /* AFHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
