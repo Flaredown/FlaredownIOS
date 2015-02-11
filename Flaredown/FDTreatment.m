@@ -44,7 +44,7 @@
     return @{
              @"id":_treatmentId,
              @"name":_name,
-             @"quantity":_taken ? [NSString stringWithFormat:@"%f", _quantity] : [NSNull null],
+             @"quantity":_taken ? [NSString stringWithFormat:@"%.02f", _quantity] : [NSNull null],
              @"unit":_unit,
              };
 }

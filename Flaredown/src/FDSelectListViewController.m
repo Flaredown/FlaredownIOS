@@ -13,6 +13,10 @@
 #import "DLAVAlertView.h"
 #import "DLAVAlertViewTheme.h"
 
+//relative to screen
+#define POPUP_WIDTH 0.95
+#define POPUP_HEIGHT 0.5
+
 @interface FDSelectListViewController ()
 
 @end
@@ -24,8 +28,9 @@
     
     self.selectedItems = [[NSMutableArray alloc] init];
     
-    self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    if(!_treatments)
+        self.tableView.estimatedRowHeight = 44.0;
     
     self.responses = [[NSMutableArray alloc] init];
     
@@ -63,6 +68,7 @@
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     self.questions = [entry treatments];
+    self.tableView.estimatedRowHeight = 65.0;
     self.treatments = YES;
 }
 
@@ -173,21 +179,121 @@
         [[alert textFieldAtIndex:0] setPlaceholder:NSLocalizedString(@"Name of treatment", nil)];
         [alert show];
     } else {
-        DLAVAlertViewTheme *theme = [[DLAVAlertViewTheme alloc] init];
-//        theme.contentViewMargins = DLAVTextControlMarginsMake(5000, 5000, 0, 0);
-//        theme.lineColor = [UIColor purpleColor];
-//        theme.borderWidth = 100;
-        DLAVAlertView *alert = [[DLAVAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
-                                    message:nil
-                                    delegate:self
-                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                           otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-        [alert addTextFieldWithText:@"" placeholder:@"Name of Treatment"];
-        [alert addTextFieldWithText:@"" placeholder:@"Dose (daily)"];
-        [alert addTextFieldWithText:@"" placeholder:@"Units"];
-        [alert applyTheme:theme];
-        [alert show];
+//        DLAVAlertViewTheme *theme = [[DLAVAlertViewTheme alloc] init];
+////        theme.contentViewMargins = DLAVTextControlMarginsMake(5000, 5000, 0, 0);
+////        theme.lineColor = [UIColor purpleColor];
+////        theme.borderWidth = 100;
+//        DLAVAlertView *alert = [[DLAVAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
+//                                    message:nil
+//                                    delegate:self
+//                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+//                           otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+//        [alert addTextFieldWithText:@"" placeholder:@"Name of Treatment"];
+//        [alert addTextFieldWithText:@"" placeholder:@"Dose (daily)"];
+//        [alert addTextFieldWithText:@"" placeholder:@"Units"];
+//        [alert applyTheme:theme];
+//        [alert show];
+        
+        UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
+        [backgroundView setBackgroundColor:[UIColor grayColor]];
+        [backgroundView setAlpha:0.5];
+        [backgroundView addTarget:self action:@selector(closePopupView:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view.window addSubview:backgroundView];
+        _backgroundView = backgroundView;
+        
+        UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"AddTreatmentView" owner:self options:nil] objectAtIndex:0];
+        [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+        
+        [self.view.window addSubview:popupView];
+        
+//        NSDictionary *views = NSDictionaryOfVariableBindings(popupView);
+//        [self.view.window addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subview]|"
+//                                                                     options:0
+//                                                                     metrics:nil
+//                                                                       views:views]];
+//        [self.view.window addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[subview]|"
+//                                                                     options:0
+//                                                                     metrics:nil
+//                                                                       views:views]];
+        
+        //Style
+        popupView.layer.cornerRadius = 8;
+        
+        _popupView = popupView;
+
     }
+}
+
+- (IBAction)addTreatment:(id)sender
+{
+    NSString *name;
+    float dose;
+    NSString *unit;
+    if(_addTreatmentNameField.text.length == 0)
+        return;
+    if(_addTreatmentDoseField.text.length == 0 || [_addTreatmentDoseField.text floatValue] <= 0)
+        return;
+    if(_addTreatmentUnitField.text.length == 0)
+        return;
+    name = _addTreatmentNameField.text;
+    dose = [_addTreatmentDoseField.text floatValue];
+    unit = _addTreatmentUnitField.text;
+    FDTreatment *treatment = [[FDTreatment alloc] initWithTitle:name quantity:dose unit:unit entry:[[FDModelManager sharedManager] entry]];
+    [[[[FDModelManager sharedManager] entry] treatments] addObject:treatment];
+    
+    [self.tableView reloadData];
+    [self hidePopupView];
+}
+
+
+- (IBAction)editItemButton:(UIButton *)sender
+{
+    NSInteger editRow = [[self.tableView indexPathForCell:[self parentCellForView:sender]] row] - 1;
+    _editTreatment = [[[FDModelManager sharedManager] entry] treatments][editRow];
+    
+    UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
+    [backgroundView setBackgroundColor:[UIColor grayColor]];
+    [backgroundView setAlpha:0.5];
+    [backgroundView addTarget:self action:@selector(closePopupView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view.window addSubview:backgroundView];
+    _backgroundView = backgroundView;
+    
+    UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"EditTreatmentView" owner:self options:nil] objectAtIndex:0];
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+    [self.view.window addSubview:popupView];
+    [popupView layoutIfNeeded];
+    
+    //Style
+    popupView.layer.cornerRadius = 8;
+    
+    _popupView = popupView;
+    
+    [_editTreatmentTitleLabel setText:[NSString stringWithFormat:@"Edit daily dosage of %@", [_editTreatment name]]];
+    [_editTreatmentDoseField setPlaceholder:[NSString stringWithFormat:@"%.02f", [_editTreatment quantity]]];
+    if([[_editTreatment unit] length] > 0)
+        [_editTreatmentUnitField setPlaceholder:[_editTreatment unit]];
+}
+
+- (IBAction)editTreatment:(id)sender
+{
+    if(_editTreatmentDoseField.text.length > 0 && [_editTreatmentDoseField.text floatValue] > 0)
+        [_editTreatment setQuantity:[_editTreatmentDoseField.text floatValue]];
+    if(_editTreatmentUnitField.text.length > 0)
+        [_editTreatment setUnit:_editTreatmentUnitField.text];
+    
+    [self.tableView reloadData];
+    [self hidePopupView];
+}
+
+- (IBAction)closePopupView:(UIButton *)sender
+{
+    [self hidePopupView];
+}
+
+- (void)hidePopupView
+{
+    [_popupView removeFromSuperview];
+    [_backgroundView removeFromSuperview];
 }
 
 /*
@@ -396,17 +502,26 @@
                 [titleLabel setText:@"Edit Treatments"];
             
         } else if([indexPath row] < self.questions.count + 1) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
-            
             int itemRow = [indexPath row] - 1;
             
             if(_treatments) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
+                
+                FDTreatment *treatment = self.questions[itemRow];
+                
                 //1 List button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
-                FDTreatment *treatment = self.questions[itemRow];
-                [button setTitle:[NSString stringWithFormat:@"%@ - %f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
+                [button setTitle:[treatment name] forState:UIControlStateNormal];
                 [self selectButton:button];
+                
+                //2 Dosage and Units label
+                UILabel *label = (UILabel *)[cell viewWithTag:2];
+                NSString *quantityString = [NSString stringWithFormat:@"%.02f", [treatment quantity]];
+                [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, [treatment unit]]];
+                
             } else {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
+                
                 //1 List button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 FDQuestion *question = self.questions[itemRow];
@@ -430,7 +545,7 @@
             //List button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             FDTreatment *treatment = self.questions[[indexPath row]];
-            [button setTitle:[NSString stringWithFormat:@"%@ - %f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
+            [button setTitle:[NSString stringWithFormat:@"%@ - %.02f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
             
             if([treatment taken]) {
                 [self selectButton:button];
@@ -451,8 +566,29 @@
             }
         }
     }
+//    [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return cell;
 }
+
+- (UITableViewCell *)parentCellForView:(id)theView
+{
+    id viewSuperView = [theView superview];
+    while (viewSuperView != nil) {
+        if ([viewSuperView isKindOfClass:[UITableViewCell class]]) {
+            return (UITableViewCell *)viewSuperView;
+        }
+        else {
+            viewSuperView = [viewSuperView superview];
+        }
+    }
+    return nil;
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+////    return cell.frame.size.height;
+//}
 
 /*
 // Override to support conditional editing of the table view.

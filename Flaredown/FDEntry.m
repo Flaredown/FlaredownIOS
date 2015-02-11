@@ -46,7 +46,6 @@
             [_treatments addObject:[[FDTreatment alloc] initWithDictionary:treatment]];
         }
         
-        
         _scores = [dictionary objectForKey:@"scores"];
     }
     return self;
