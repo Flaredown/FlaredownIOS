@@ -41,7 +41,6 @@
 		EDCB47441A8BE90300C46859 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47281A8BE90300C46859 /* .travis.yml */; };
 		EDCB47451A8BE90300C46859 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47291A8BE90300C46859 /* LICENSE */; };
 		EDCB47461A8BE90300C46859 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB472C1A8BE90300C46859 /* MBProgressHUD.m */; };
-		EDCB47471A8BE90300C46859 /* MBProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EDCB472D1A8BE90300C46859 /* MBProgressHUD.podspec */; };
 		EDCB47481A8BE90300C46859 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDCB472E1A8BE90300C46859 /* README.mdown */; };
 		EDCB47491A8BE90300C46859 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47301A8BE90300C46859 /* .gitignore */; };
 		EDCB474A1A8BE90300C46859 /* demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = EDCB47321A8BE90300C46859 /* demo1.png */; };
@@ -143,7 +142,6 @@
 		EDCB472A1A8BE90300C46859 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
 		EDCB472B1A8BE90300C46859 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EDCB472C1A8BE90300C46859 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		EDCB472D1A8BE90300C46859 /* MBProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBProgressHUD.podspec; sourceTree = "<group>"; };
 		EDCB472E1A8BE90300C46859 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		EDCB47301A8BE90300C46859 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EDCB47321A8BE90300C46859 /* demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo1.png; sourceTree = "<group>"; };
@@ -385,7 +383,6 @@
 				EDCB472A1A8BE90300C46859 /* MBProgressHUD-Prefix.pch */,
 				EDCB472B1A8BE90300C46859 /* MBProgressHUD.h */,
 				EDCB472C1A8BE90300C46859 /* MBProgressHUD.m */,
-				EDCB472D1A8BE90300C46859 /* MBProgressHUD.podspec */,
 				EDCB472E1A8BE90300C46859 /* README.mdown */,
 			);
 			path = MBProgressHUD;
@@ -561,7 +558,6 @@
 				EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */,
 				EDCB474B1A8BE90300C46859 /* demo2.png in Resources */,
 				EDCB474C1A8BE90300C46859 /* LICENSE.txt in Resources */,
-				EDCB47471A8BE90300C46859 /* MBProgressHUD.podspec in Resources */,
 				EDCB47411A8BE90300C46859 /* LICENSE in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
