@@ -65,7 +65,6 @@
 		EDEA82B11A11830F00A80416 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDEA82931A11830F00A80416 /* LICENSE */; };
 		EDEA82B21A11830F00A80416 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82961A11830F00A80416 /* MBProgressHUD.m */; };
 		EDEA82B31A11830F00A80416 /* MBProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */; };
-		EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */; };
 		EDEA82B51A11830F00A80416 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = EDEA829C1A11830F00A80416 /* README.mdown */; };
 		EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */; };
 		EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */; };
@@ -86,13 +85,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 101393C219D216D700BBB266;
 			remoteInfo = Flaredown;
-		};
-		EDEA82BA1A11830F00A80416 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D286A7491518C70F00E13FB8;
-			remoteInfo = MBProgressHUD;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -199,8 +191,6 @@
 		EDEA82951A11830F00A80416 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EDEA82961A11830F00A80416 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBProgressHUD.podspec; sourceTree = "<group>"; };
-		EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
-		EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = MBProgressHUD.xcworkspace; sourceTree = "<group>"; };
 		EDEA829C1A11830F00A80416 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		EDEA82BC1A11952300A80416 /* FDLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLaunchViewController.h; sourceTree = "<group>"; };
 		EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLaunchViewController.m; sourceTree = "<group>"; };
@@ -481,19 +471,9 @@
 				EDEA82951A11830F00A80416 /* MBProgressHUD.h */,
 				EDEA82961A11830F00A80416 /* MBProgressHUD.m */,
 				EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */,
-				EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */,
-				EDEA829B1A11830F00A80416 /* MBProgressHUD.xcworkspace */,
 				EDEA829C1A11830F00A80416 /* README.mdown */,
 			);
 			path = "MBProgressHUD-master";
-			sourceTree = "<group>";
-		};
-		EDEA82991A11830F00A80416 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EDEA82BB1A11830F00A80416 /* libMBProgressHUD.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */ = {
@@ -596,12 +576,6 @@
 			mainGroup = 101393BA19D216D700BBB266;
 			productRefGroup = 101393C419D216D700BBB266 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = EDEA82991A11830F00A80416 /* Products */;
-					ProjectRef = EDEA82981A11830F00A80416 /* MBProgressHUD.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				101393C219D216D700BBB266 /* Flaredown */,
@@ -609,16 +583,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		EDEA82BB1A11830F00A80416 /* libMBProgressHUD.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMBProgressHUD.a;
-			remoteRef = EDEA82BA1A11830F00A80416 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		101393C119D216D700BBB266 /* Resources */ = {
@@ -643,7 +607,6 @@
 				EDD802F11A81323C00464D24 /* .gitignore in Resources */,
 				EDFF9B521A744ACA007A14B1 /* .gitignore in Resources */,
 				EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */,
-				EDEA82B41A11830F00A80416 /* MBProgressHUD.xcworkspace in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
