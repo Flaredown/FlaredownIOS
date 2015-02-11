@@ -247,10 +247,10 @@
 		101393C519D216D700BBB266 /* Flaredown */ = {
 			isa = PBXGroup;
 			children = (
-				EDD802A81A81323C00464D24 /* DLAlertView-master */,
+				EDD802A81A81323C00464D24 /* DLAlertView */,
 				85378A101A5214C50053D6CC /* fnt */,
-				EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */,
-				EDEA82731A11830F00A80416 /* MBProgressHUD-master */,
+				EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController */,
+				EDEA82731A11830F00A80416 /* MBProgressHUD */,
 				EDDC715F1A082A130059815A /* AFNetworking */,
 				101393EF19D2290E00BBB266 /* src */,
 				101393CA19D216D700BBB266 /* AppDelegate.h */,
@@ -366,7 +366,7 @@
 			name = "Page Containers";
 			sourceTree = "<group>";
 		};
-		EDD802A81A81323C00464D24 /* DLAlertView-master */ = {
+		EDD802A81A81323C00464D24 /* DLAlertView */ = {
 			isa = PBXGroup;
 			children = (
 				EDD802C71A81323C00464D24 /* Classes */,
@@ -377,6 +377,7 @@
 				EDD802EF1A81323C00464D24 /* preview.gif */,
 				EDD802F01A81323C00464D24 /* README.md */,
 			);
+			name = DLAlertView;
 			path = "DLAlertView-master";
 			sourceTree = "<group>";
 		};
@@ -461,7 +462,7 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		EDEA82731A11830F00A80416 /* MBProgressHUD-master */ = {
+		EDEA82731A11830F00A80416 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
 				EDEA82741A11830F00A80416 /* .gitignore */,
@@ -473,10 +474,11 @@
 				EDEA82971A11830F00A80416 /* MBProgressHUD.podspec */,
 				EDEA829C1A11830F00A80416 /* README.mdown */,
 			);
+			name = MBProgressHUD;
 			path = "MBProgressHUD-master";
 			sourceTree = "<group>";
 		};
-		EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController-master */ = {
+		EDFF9B2E1A744ACA007A14B1 /* MJPopupViewController */ = {
 			isa = PBXGroup;
 			children = (
 				EDFF9B2F1A744ACA007A14B1 /* .gitignore */,
@@ -485,6 +487,7 @@
 				EDFF9B4C1A744ACA007A14B1 /* README.md */,
 				EDFF9B4D1A744ACA007A14B1 /* Source */,
 			);
+			name = MJPopupViewController;
 			path = "MJPopupViewController-master";
 			sourceTree = "<group>";
 		};
