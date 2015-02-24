@@ -169,6 +169,8 @@
  */
 - (IBAction)addItemButton:(id)sender
 {
+    [_contentViewDelegate openSearch];
+    return;
     if(!_treatments) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
                                                         message:nil

@@ -53,6 +53,8 @@
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
 		EDDC72541A08886E0059815A /* FDEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72531A08886E0059815A /* FDEntry.m */; };
+		EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */; };
+		EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEE1A9545400074F189 /* FDTrackableResult.m */; };
 		EDEA82691A11572400A80416 /* FDQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82681A11572400A80416 /* FDQuestion.m */; };
 		EDEA826C1A115A2A00A80416 /* FDResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA826B1A115A2A00A80416 /* FDResponse.m */; };
 		EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA826E1A115FCC00A80416 /* FDInput.m */; };
@@ -169,6 +171,10 @@
 		EDDC72501A08441E0059815A /* FDModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelManager.m; sourceTree = "<group>"; };
 		EDDC72521A08886E0059815A /* FDEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEntry.h; sourceTree = "<group>"; };
 		EDDC72531A08886E0059815A /* FDEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEntry.m; sourceTree = "<group>"; };
+		EDE98DEA1A9273ED0074F189 /* FDSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSearchTableViewController.h; sourceTree = "<group>"; };
+		EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSearchTableViewController.m; sourceTree = "<group>"; };
+		EDE98DED1A9545400074F189 /* FDTrackableResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTrackableResult.h; sourceTree = "<group>"; };
+		EDE98DEE1A9545400074F189 /* FDTrackableResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTrackableResult.m; sourceTree = "<group>"; };
 		EDEA82671A11572400A80416 /* FDQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDQuestion.h; sourceTree = "<group>"; };
 		EDEA82681A11572400A80416 /* FDQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDQuestion.m; sourceTree = "<group>"; };
 		EDEA826A1A115A2A00A80416 /* FDResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDResponse.h; sourceTree = "<group>"; };
@@ -314,6 +320,8 @@
 				1013943519DA13B100BBB266 /* FDSelectCollectionViewController.m */,
 				101CA09519DE3D6A00173AAF /* FDNotesViewController.h */,
 				101CA09619DE3D6A00173AAF /* FDNotesViewController.m */,
+				EDE98DEA1A9273ED0074F189 /* FDSearchTableViewController.h */,
+				EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -455,6 +463,8 @@
 				EDEBC6A91A424907007742C5 /* FDTreatment.m */,
 				ED2853C61A6C2043002D95E6 /* FDSymptom.h */,
 				ED2853C71A6C2043002D95E6 /* FDSymptom.m */,
+				EDE98DED1A9545400074F189 /* FDTrackableResult.h */,
+				EDE98DEE1A9545400074F189 /* FDTrackableResult.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -585,8 +595,10 @@
 				EDDC71F11A082A130059815A /* AFHTTPRequestOperationManager.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,
+				EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */,
 				EDCB473D1A8BE90300C46859 /* DLAVAlertViewController.m in Sources */,
 				EDCB474F1A8BE90300C46859 /* UIViewController+MJPopupViewController.m in Sources */,
+				EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */,
 				EDCB473F1A8BE90300C46859 /* DLAVAlertViewTextFieldTheme.m in Sources */,
 				10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */,
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,

@@ -143,6 +143,27 @@ static NSString *api = @"/v1";
     
 }
 
+- (void)searchTrackables:(NSString *)searchText type:(NSString *)type email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/symptoms/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
+    
+//    NSArray *data = @[@{@"name":@"fever", @"actives":@23}, @{@"name":@"headache", @"actives":@11}];
+//    completionBlock(true, data);
+    
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completionBlock(true, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        completionBlock(false, nil);
+    }];
+    
+}
+
 + (BOOL)networkReachable
 {
     if([AFNetworkReachabilityManager sharedManager].reachable)

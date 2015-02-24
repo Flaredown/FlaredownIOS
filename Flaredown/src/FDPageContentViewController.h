@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FDSelectListViewController.h"
+#import "FDViewController.h"
 
 #define ContainerEmbedSegueIdentifier @"containerEmbedSegue"
 #define EditListSegueIdentifier @"editList"
+#define SearchSegueIdentifier @"search"
 
-@interface FDPageContentViewController : UIViewController
+@protocol FDPageContentViewControllerDelegate <NSObject>
+
+- (void)openSearch;
+- (void)editList;
+
+@end
+
+@interface FDPageContentViewController : UIViewController <FDPageContentViewControllerDelegate>
 
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 

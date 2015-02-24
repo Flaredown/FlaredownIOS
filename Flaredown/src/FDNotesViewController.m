@@ -35,6 +35,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    //Hashtag stuff here
+}
+
 - (void)keyboardWasShown:(NSNotification *)notification
 {
     NSDictionary *info = [notification userInfo];

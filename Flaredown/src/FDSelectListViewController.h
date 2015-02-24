@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDPageContentViewController.h"
 @class FDTreatment;
-
-@protocol FDViewControllerDelegate <NSObject>
-
-- (void)refreshPages;
-
-@end
 
 @interface FDSelectListViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
+@property (nonatomic, weak) id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
 @property NSMutableArray *questions;
 @property NSArray *masterSymptoms;

@@ -32,6 +32,13 @@
 "Error submitting entry" = "Error submitting entry";
 "Looks like there was a problem submitting your entry, please try again." = "Looks like there was a problem submitting your entry, please try again.";
 
+//FDPageContentViewController.m
+"How active is your %@ today?" = "How active is your %@ today?";
+"What is your current level of %@?" = "What is your current level of %@?";
+"How many %@ today?" = "How many %@ today?";
+"Which treatments did you take?" = "Which treatments did you take?";
+"Leave a note" = "Leave a note";
+
 //FDSelectListViewController.m
 "No longer taking %@?" = "No longer taking %@?";
 "No longer taking" = "No longer taking";
@@ -44,6 +51,10 @@
 "Looks like there was an issue; please try again." = "Looks like there was an issue; please try again.";
 "Error creating treatment" = "Error creating treatment";
 "Looks like there was an issue creating the new treatment; please check the treatment name and try again." = "Looks like there was an issue creating the new treatment; please check the treatment name and try again.";
+
+//FDSearchTrackableViewController.m
+"Error retreiving results" = "Error retreiving results";
+"We couldn't get your search results, please try again." = "We couldn't get your search results, please try again.";
 
 //Image Strings
 "fd_startBtn" = "fd_startBtn";

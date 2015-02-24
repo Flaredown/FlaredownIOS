@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FDNotesViewController : UIViewController
+@interface FDNotesViewController : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 

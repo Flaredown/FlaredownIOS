@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FDSelectListViewController.h"
 
-@class FDSelectListViewController;
-@class FDPageContentViewController;
+@protocol FDViewControllerDelegate <NSObject>
+
+- (void)refreshPages;
+
+@end
 
 @interface FDViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, FDViewControllerDelegate>
 

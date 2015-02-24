@@ -9,6 +9,7 @@
 #import "FDPageContentViewController.h"
 #import "FDContainerViewController.h"
 #import "FDSelectListViewController.h"
+#import "FDSearchTableViewController.h"
 #import "FDModelManager.h"
 #import "UIViewController+MJPopupViewController.h"
 
@@ -32,7 +33,7 @@
     if(_pageIndex >= numSections) {
         if(_pageIndex == numSections) {
             //Treatments
-            self.titleLabel.text = NSLocalizedString(@"Treatments", nil);
+            self.titleLabel.text = NSLocalizedString(@"Which treatments did you take?", nil);
             self.editSegueTreatments = YES;
             [self.secondaryTitleButton setTitle:@"Edit Treatments" forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
@@ -41,20 +42,31 @@
         } else if(_pageIndex == numSections + 1) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
-            self.titleLabel.text = NSLocalizedString(@"Notes", nil);
+            self.titleLabel.text = NSLocalizedString(@"Leave a note", nil);
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:_pageIndex][0];
-        if(![[NSNull null] isEqual:[question name]])
-            self.titleLabel.text = [question name];
         
         if([[question catalog] isEqualToString:@"symptoms"]) {
+            if(![[NSNull null] isEqual:[question name]])
+                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
             self.editSegueTreatments = NO;
             [self.secondaryTitleButton setTitle:@"Edit Symptoms" forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 //            self.providesPresentationContextTransitionStyle = YES;
 //            self.definesPresentationContext = YES;
-        } else {
+        } else if([[question kind] isEqualToString:@"checkbox"]) {
+            if(![[NSNull null] isEqual:[question name]])
+                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Check any complications:", nil)];
+            [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
+        } else if([[question kind] isEqualToString:@"number"]) {
+            if(![[NSNull null] isEqual:[question name]])
+                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How many %@ today?", nil), [question name]];
+            [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
+        }else {
+            if(![[NSNull null] isEqual:[question name]])
+                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"What is your current level of %@?", nil), [question name]];
+//                self.titleLabel.text = [question name];
             [self.secondaryTitleButton setTitle:@"Research Questions" forState:UIControlStateNormal];
         }
     }
@@ -76,10 +88,15 @@
 //
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+}
+
 - (void)editList
 {
     FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
     listController.mainViewDelegate = _mainViewDelegate;
+    listController.contentViewDelegate = self;
     
     //Style
     float popupWidth = self.view.frame.size.width*POPUP_SIZE_WIDTH;
@@ -106,6 +123,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)openSearch
+{
+    [self performSegueWithIdentifier:SearchSegueIdentifier sender:nil];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+
 
 #pragma mark - Navigation
 
@@ -119,6 +142,7 @@
     } else if([segue.identifier isEqualToString:EditListSegueIdentifier]) {
         FDSelectListViewController *dvc = (FDSelectListViewController *)segue.destinationViewController;
         dvc.mainViewDelegate = _mainViewDelegate;
+        dvc.contentViewDelegate = self;
         [dvc setModalPresentationStyle:UIModalPresentationPopover];
         dvc.dynamic = YES;
         if(_editSegueTreatments) {
@@ -126,6 +150,10 @@
         } else {
             [dvc initWithSymptoms];
         }
+    } else if([segue.identifier isEqualToString:SearchSegueIdentifier]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        FDSearchTableViewController *dvc = (FDSearchTableViewController *)navController.topViewController;
+        dvc.contentViewDelegate = self;
     }
 }
 
