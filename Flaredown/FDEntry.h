@@ -25,7 +25,7 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionaryCopy;
 - (NSDictionary *)responseDictionaryCopy;
-- (NSArray *)questionsForCatalog:(NSString *)catalog;
+- (NSMutableArray *)questionsForCatalog:(NSString *)catalog;
 - (void)insertQuestion:(FDQuestion *)question atIndex:(NSInteger)index;
 - (void)removeQuestion:(FDQuestion *)question;
 - (void)insertResponse:(FDResponse *)response;

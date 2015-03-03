@@ -13,6 +13,7 @@
 #import "FDQuestion.h"
 #import "FDResponse.h"
 #import "FDSymptom.h"
+#import "FDTreatment.h"
 
 @interface FDModelManager : NSObject
 
@@ -22,8 +23,8 @@
 
 + (id)sharedManager;
 
-- (FDInput *)inputForId:(int)inputId;
-- (NSArray *)questionsForSection:(int)section;
+//- (FDInput *)inputForId:(int)inputId;
+- (NSMutableArray *)questionsForSection:(int)section;
 - (int)numberOfQuestionSections;
 
 - (BOOL)reminder;

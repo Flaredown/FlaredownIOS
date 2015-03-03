@@ -15,6 +15,13 @@
 
 @property (nonatomic, strong) id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
+@property enum SearchType
+{
+    SearchSymptoms,
+    SearchTreatments,
+};
+@property enum SearchType searchType;
+
 @property NSMutableArray *results;
 @property NSString *searchText;
 @property NSTimer *timer;

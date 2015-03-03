@@ -11,6 +11,7 @@
 #import "FDModelManager.h"
 #import "MBProgressHUD.h"
 #import "FDPageContentViewController.h"
+#import "FDSearchTableViewController.h"
 
 @interface FDViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
@@ -18,6 +19,10 @@
 @end
 
 @implementation FDViewController
+
+- (id)instance {
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -173,6 +178,20 @@
                               otherButtonTitles:nil] show];
         }
     }];
+}
+
+- (void)openSearch
+{
+    [self performSegueWithIdentifier:@"search" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"search"]) {
+        UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
+        FDSearchTableViewController *searchViewController = (FDSearchTableViewController *)dvc.topViewController;
+        searchViewController.contentViewDelegate = self.pageViewController.viewControllers[0];
+    }
 }
 
 @end

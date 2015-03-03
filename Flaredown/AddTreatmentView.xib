@@ -30,7 +30,7 @@
                         <action selector="closePopupView:" destination="-1" eventType="touchUpInside" id="4am-zQ-d4V"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of treatment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otI-88-v7e">
+                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of treatment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otI-88-v7e">
                     <rect key="frame" x="35" y="183" width="530" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -69,20 +69,33 @@
                         <action selector="addTreatment:" destination="-1" eventType="touchUpInside" id="8Gt-tO-E3X"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPu-qF-L2O">
+                    <rect key="frame" x="35" y="183" width="530" height="30"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openAddTrackableSearch:" destination="-1" eventType="touchUpInside" id="dhT-dz-9Gq"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="CPu-qF-L2O" firstAttribute="top" secondItem="otI-88-v7e" secondAttribute="top" id="03E-gA-IhX"/>
                 <constraint firstItem="dfJ-OX-KRK" firstAttribute="top" secondItem="EAj-G9-N6N" secondAttribute="bottom" constant="8" id="2mO-dM-aZ6"/>
                 <constraint firstItem="Cgh-YU-Pub" firstAttribute="top" secondItem="3Xt-mZ-Ika" secondAttribute="top" id="4Xa-Ah-Ez1"/>
                 <constraint firstItem="EAj-G9-N6N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="4aG-fi-A6I"/>
                 <constraint firstAttribute="centerX" secondItem="3Xt-mZ-Ika" secondAttribute="centerX" constant="-0.5" id="7vy-6U-17x"/>
                 <constraint firstItem="otI-88-v7e" firstAttribute="top" secondItem="CuW-SP-A2K" secondAttribute="bottom" constant="8" id="Bq1-Oc-6MC"/>
+                <constraint firstItem="CPu-qF-L2O" firstAttribute="bottom" secondItem="otI-88-v7e" secondAttribute="bottom" id="G5f-qk-1Gl"/>
                 <constraint firstAttribute="trailing" secondItem="EAj-G9-N6N" secondAttribute="trailing" constant="35" id="GO1-uc-Bg6"/>
                 <constraint firstItem="3Xt-mZ-Ika" firstAttribute="top" secondItem="dfJ-OX-KRK" secondAttribute="bottom" constant="8" id="QAs-Ud-urE"/>
                 <constraint firstAttribute="centerY" secondItem="EAj-G9-N6N" secondAttribute="centerY" constant="64" id="UcA-aF-MR1"/>
                 <constraint firstItem="Cgh-YU-Pub" firstAttribute="trailing" secondItem="dfJ-OX-KRK" secondAttribute="trailing" id="YIA-cO-KlW"/>
                 <constraint firstItem="EAj-G9-N6N" firstAttribute="top" secondItem="otI-88-v7e" secondAttribute="bottom" constant="8" id="YYU-Pv-mQ0"/>
+                <constraint firstItem="CPu-qF-L2O" firstAttribute="leading" secondItem="otI-88-v7e" secondAttribute="leading" id="fZd-f5-t6a"/>
                 <constraint firstAttribute="trailing" secondItem="dfJ-OX-KRK" secondAttribute="trailing" constant="35" id="gGa-fm-a0j"/>
+                <constraint firstItem="CPu-qF-L2O" firstAttribute="trailing" secondItem="otI-88-v7e" secondAttribute="trailing" id="gyh-uv-gn7"/>
                 <constraint firstAttribute="centerX" secondItem="CuW-SP-A2K" secondAttribute="centerX" id="hGa-XB-pBV"/>
                 <constraint firstAttribute="centerX" secondItem="EAj-G9-N6N" secondAttribute="centerX" id="nK2-Wt-F0Q"/>
                 <constraint firstItem="otI-88-v7e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="ohe-So-Y6q"/>

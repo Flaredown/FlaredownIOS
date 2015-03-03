@@ -17,12 +17,13 @@
 
 - (void)openSearch;
 - (void)editList;
+- (void)closeEditList;
 
 @end
 
 @interface FDPageContentViewController : UIViewController <FDPageContentViewControllerDelegate>
 
-@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
+@property (weak, nonatomic) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 

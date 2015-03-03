@@ -11,6 +11,8 @@
 @protocol FDViewControllerDelegate <NSObject>
 
 - (void)refreshPages;
+- (id)instance;
+- (void)openSearch;
 
 @end
 

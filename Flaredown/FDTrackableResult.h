@@ -11,7 +11,7 @@
 @interface FDTrackableResult : NSObject
 
 @property NSString *name;
-@property NSInteger actives;
+@property NSInteger count;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

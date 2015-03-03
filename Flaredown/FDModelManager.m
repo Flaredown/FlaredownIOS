@@ -32,7 +32,7 @@ static NSString *inputsSessionLocation = @"inputs";
     return self;
 }
 
-- (NSArray *)questionsForSection:(int)section
+- (NSMutableArray *)questionsForSection:(int)section
 {
     NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
     for(FDQuestion *question in [_entry questions]) {

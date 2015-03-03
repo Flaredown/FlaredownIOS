@@ -22,6 +22,8 @@
     
     _results = [[NSMutableArray alloc] init];
     
+    [_contentViewDelegate closeEditList];
+    
 //    [self.navigationController.view setBackgroundColor:[UIColor blackColor]];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -31,9 +33,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [_contentViewDelegate editList];
+    [self resignFirstResponder];
+//    [_contentViewDelegate editList];
 }
 
 - (void)performSearch
@@ -46,7 +49,14 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     FDUser *user = [[FDModelManager sharedManager] userObject];
-    [[FDNetworkManager sharedManager] searchTrackables:_searchText type:@"treatments" email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+    
+    NSString *searchType;
+    if(_searchType == SearchSymptoms)
+        searchType = @"symptoms";
+    else if(_searchType == SearchTreatments)
+        searchType = @"treatments";
+    
+    [[FDNetworkManager sharedManager] searchTrackables:_searchText type:@"symptoms" email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -55,9 +65,19 @@
             
             NSArray *resultResponse = (NSArray *)responseObject;
             [_results removeAllObjects];
+            
+            BOOL found = NO;
             for (NSDictionary *result in resultResponse) {
                 FDTrackableResult *resultObject = [[FDTrackableResult alloc] initWithDictionary:result];
                 [_results addObject:resultObject];
+                if([[resultObject name] isEqualToString:_searchText])
+                    found = YES;
+            }
+            if(!found) {
+                FDTrackableResult *resultObject = [[FDTrackableResult alloc] init];
+                [resultObject setName:_searchText];
+                [resultObject setCount:-1];
+                [_results insertObject:resultObject atIndex:0];
             }
         }
         else {
@@ -95,14 +115,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
     if(section == 0)
         return 1;
     return _results.count;
@@ -126,21 +142,147 @@
         
         //1 - Title
         UILabel *title = (UILabel *)[cell viewWithTag:1];
-        [title setText:[result name]];
-        
         //2 - Subtext
         UILabel *subtext = (UILabel *)[cell viewWithTag:2];
-        [subtext setText:[NSString stringWithFormat:@"%i", [result actives]]];
+        
+        if([result count] != -1) {
+            [title setText:[result name]];
+            [subtext setText:[NSString stringWithFormat:@"%i users", [result count]]];
+        } else {
+            [title setText:[NSString stringWithFormat:@"\"%@\"", [result name]]];
+            [subtext setText:@"Add new condition"];
+        }
     }
-    
-    
     return cell;
 }
 
+- (IBAction)selectItem:(UIButton *)sender
+{
+    UITableViewCell *cell = [self parentCellForView:sender];
+    
+    FDTrackableResult *result = _results[[[self.tableView indexPathForCell:cell] row]];
+    NSString *title = [result name];
+    
+    FDEntry *entry = [[FDModelManager sharedManager] entry];
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    NSMutableArray *questions = [entry questions];
+    
+    if(_searchType == SearchSymptoms) {
+        NSInteger sectionToAdd = [[questions objectAtIndex:[questions count]-1] section]+1;
+        NSInteger indexToAdd = [questions indexOfObject:questions[[questions count]-1]]+1;
+        
+        __block FDQuestion *newQuestion; //__block to make it compatible with async task
+        BOOL found = NO;
+        for (FDSymptom *userSymptom in [user symptoms]) {
+            if([[userSymptom name] isEqualToString:title]) {
+                newQuestion = [[FDQuestion alloc] initWithSymptom:userSymptom section:sectionToAdd];
+                [entry insertQuestion:newQuestion atIndex:indexToAdd];
+                [questions addObject:newQuestion];
+                found = YES;
+                
+                //New response
+                FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
+                if(![entry responseForId:[response responseId]]) {
+                    [[[FDModelManager sharedManager] entry] insertResponse:response];
+                }
+                
+                [self.tableView reloadData];
+            }
+        }
+        if(!found) {
+            
+            //Check the new symptom against the API for validation
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            FDUser *user = [[FDModelManager sharedManager] userObject];
+            [[FDNetworkManager sharedManager] createSymptomWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                if(success) {
+                    NSLog(@"Success!");
+                    
+                    FDSymptom *newSymptom = [[FDSymptom alloc] initWithTitle:title entry:entry];
+                    newQuestion = [[FDQuestion alloc] initWithSymptom:newSymptom section:sectionToAdd];
+                    [entry insertQuestion:newQuestion atIndex:indexToAdd];
+                    
+                    [self closeSearch:sender];
+                }
+                else {
+                    NSLog(@"Failure!");
+                    
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
+                                                message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
+                                               delegate:nil
+                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                      otherButtonTitles:nil] show];
+                }
+            }];
+        }
+        
+    } else if(_searchType == SearchTreatments) {
+        FDEntry *entry = [[FDModelManager sharedManager] entry];
+        BOOL found = NO;
+        for (FDTreatment *userTreatment in [user treatments]) {
+            if([[userTreatment name] isEqualToString:title]) {
+                [[entry treatments] addObject:userTreatment];
+                found = YES;
+                
+                [self.tableView reloadData];
+            }
+        }
+        if(!found) {
+            
+            //Check the new symptom against the API for validation
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            FDUser *user = [[FDModelManager sharedManager] userObject];
+            [[FDNetworkManager sharedManager] createTreatmentWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                if(success) {
+                    NSLog(@"Success!");
+                    
+                    FDTreatment *newTreatment = [[FDTreatment alloc] initWithTitle:title quantity:0.0f unit:@"" entry:entry];
+                    [newTreatment setTaken:YES];
+                    [[entry treatments] addObject:newTreatment];
+                    
+                    [self closeSearch:sender];
+                }
+                else {
+                    NSLog(@"Failure!");
+                    
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
+                                                message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
+                                               delegate:nil
+                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                      otherButtonTitles:nil] show];
+                }
+            }];
+        }
+    }
+}
+
+
 - (IBAction)closeSearch:(id)sender
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [_contentViewDelegate editList];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(UITableViewCell *)parentCellForView:(id)theView
+{
+    id viewSuperView = [theView superview];
+    while (viewSuperView != nil) {
+        if ([viewSuperView isKindOfClass:[UITableViewCell class]]) {
+            return (UITableViewCell *)viewSuperView;
+        }
+        else {
+            viewSuperView = [viewSuperView superview];
+        }
+    }
+    return nil;
 }
 
 /*

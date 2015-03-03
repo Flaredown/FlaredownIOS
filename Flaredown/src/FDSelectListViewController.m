@@ -33,15 +33,9 @@
         self.tableView.estimatedRowHeight = 44.0;
     
     self.responses = [[NSMutableArray alloc] init];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)initWithQuestions:(NSArray *)questions
+- (void)initWithQuestions:(NSMutableArray *)questions
 {
     self.questions = questions;
     FDEntry *entry = [[FDModelManager sharedManager] entry];
@@ -75,14 +69,13 @@
 - (void)initWithSymptoms
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];
-    self.questions = [entry questionsForCatalog:@"symptoms"];
+    self.questions = (NSMutableArray *)[entry questionsForCatalog:@"symptoms"];
     self.masterSymptoms = [[[FDModelManager sharedManager] userObject] symptoms];
     self.editSymptoms = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSArray *questions = [[[FDModelManager sharedManager] entry] questions];
     if(_dynamic)
         [_mainViewDelegate refreshPages];
 }
@@ -169,32 +162,10 @@
  */
 - (IBAction)addItemButton:(id)sender
 {
-    [_contentViewDelegate openSearch];
-    return;
     if(!_treatments) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                              otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-        [[alert textFieldAtIndex:0] setPlaceholder:NSLocalizedString(@"Name of treatment", nil)];
-        [alert show];
+        [self hidePopupView];
+        [_contentViewDelegate openSearch];
     } else {
-//        DLAVAlertViewTheme *theme = [[DLAVAlertViewTheme alloc] init];
-////        theme.contentViewMargins = DLAVTextControlMarginsMake(5000, 5000, 0, 0);
-////        theme.lineColor = [UIColor purpleColor];
-////        theme.borderWidth = 100;
-//        DLAVAlertView *alert = [[DLAVAlertView alloc] initWithTitle:NSLocalizedString(@"Add Treatment", nil)
-//                                    message:nil
-//                                    delegate:self
-//                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-//                           otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-//        [alert addTextFieldWithText:@"" placeholder:@"Name of Treatment"];
-//        [alert addTextFieldWithText:@"" placeholder:@"Dose (daily)"];
-//        [alert addTextFieldWithText:@"" placeholder:@"Units"];
-//        [alert applyTheme:theme];
-//        [alert show];
         
         UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
         [backgroundView setBackgroundColor:[UIColor grayColor]];
@@ -208,22 +179,18 @@
         
         [self.view.window addSubview:popupView];
         
-//        NSDictionary *views = NSDictionaryOfVariableBindings(popupView);
-//        [self.view.window addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subview]|"
-//                                                                     options:0
-//                                                                     metrics:nil
-//                                                                       views:views]];
-//        [self.view.window addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[subview]|"
-//                                                                     options:0
-//                                                                     metrics:nil
-//                                                                       views:views]];
-        
         //Style
         popupView.layer.cornerRadius = 8;
         
         _popupView = popupView;
 
     }
+}
+
+- (IBAction)openAddTrackableSearch:(id)sender
+{
+    [self hidePopupView];
+    [_contentViewDelegate openSearch];
 }
 
 - (IBAction)addTreatment:(id)sender
@@ -308,13 +275,8 @@
     if([buttonTitle isEqualToString:NSLocalizedString(@"Cancel", nil)])
         return;
     
-    if([alertView.title isEqualToString:NSLocalizedString(@"Add Treatment", nil)]) {
-        [self addListItem:[alertView textFieldAtIndex:0].text];
-        [self.tableView reloadData];
-        
-    } else if([alertView.title containsString:NSLocalizedString(@"No longer taking", nil)]) {
+    if([alertView.title containsString:NSLocalizedString(@"No longer taking", nil)]) {
         [self removeListItem];
-        
     }
 }
 
@@ -323,67 +285,8 @@
  */
 - (void)addListItem:(NSString *)title
 {
-    if(self.editSymptoms) {
+    if(_treatments) {
         FDEntry *entry = [[FDModelManager sharedManager] entry];
-        NSInteger sectionToAdd = [[self.questions objectAtIndex:[self.questions count]-1] section]+1;
-        NSInteger indexToAdd = [[entry questions] indexOfObject:self.questions[[self.questions count]-1]]+1;
-        
-        __block FDQuestion *newQuestion; //__block to make it compatible with async task
-        BOOL found = NO;
-        for (FDSymptom *symptom in self.masterSymptoms) {
-            if([[symptom name] isEqualToString:title]) {
-                newQuestion = [[FDQuestion alloc] initWithSymptom:symptom section:sectionToAdd];
-                [entry insertQuestion:newQuestion atIndex:indexToAdd];
-                [self.questions addObject:newQuestion];
-                found = YES;
-                
-                //New response
-                FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
-                if(![entry responseForId:[response responseId]]) {
-                    [[[FDModelManager sharedManager] entry] insertResponse:response];
-                }
-                
-                [self.tableView reloadData];
-            }
-        }
-        if(!found) {
-            
-            //Check the new symptom against the API for validation
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createSymptomWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
-                
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                
-                if(success) {
-                    NSLog(@"Success!");
-                    
-                    FDSymptom *newSymptom = [[FDSymptom alloc] initWithTitle:title entry:entry];
-                    newQuestion = [[FDQuestion alloc] initWithSymptom:newSymptom section:sectionToAdd];
-                    [entry insertQuestion:newQuestion atIndex:indexToAdd];
-                    [self.questions addObject:newQuestion];
-                    
-                    [self.tableView reloadData];
-                }
-                else {
-                    NSLog(@"Failure!");
-                    
-                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
-                                                message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
-                                               delegate:nil
-                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                      otherButtonTitles:nil] show];
-                }
-            }];
-        }
-        
-    } else if(_treatments) {
-        FDEntry *entry = [[FDModelManager sharedManager] entry];
-//        NSInteger section = [[self.questions objectAtIndex:[self.questions count]-1] section];
-        NSInteger indexToAdd = [[entry questions] indexOfObject:self.questions[[self.questions count]-1]]+1;
-        
-        __block FDQuestion *newQuestion; //__block to make it compatible with async task
         BOOL found = NO;
         for (FDTreatment *treatment in self.masterTreatments) {
             if([[treatment name] isEqualToString:title]) {
@@ -475,7 +378,6 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
@@ -533,8 +435,7 @@
             
         } else if([indexPath row] == self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
-        } //else if([indexPath row] > self.questions.count)
-//            cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
+        }
     } else { //item cell
         if(self.dynamic) { //dynamic item cell
             cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
@@ -568,7 +469,6 @@
             }
         }
     }
-//    [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return cell;
 }
 

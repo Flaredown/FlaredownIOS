@@ -147,14 +147,19 @@ static NSString *api = @"/v1";
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSString *url = [NSString stringWithFormat:@"%@/symptoms/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *url;
+    if([type isEqualToString:@"symptoms"]) {
+        url = [NSString stringWithFormat:@"%@/symptoms/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    } else if([type isEqualToString:@"treatments"]) {
+        url = [NSString stringWithFormat:@"%@/treatments/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    } else {
+        NSLog(@"Invalid search type in searchTrackables method of FDNetworkManager");
+        completionBlock(false, nil);
+    }
     
     NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
     
-//    NSArray *data = @[@{@"name":@"fever", @"actives":@23}, @{@"name":@"headache", @"actives":@11}];
-//    completionBlock(true, data);
-    
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         completionBlock(true, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

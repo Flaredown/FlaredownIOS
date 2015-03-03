@@ -83,7 +83,7 @@
             pageType = @"notes";
         }
     } else {
-        NSArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
+        NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
         pageType = [questions[0] kind];
         
         if([pageType isEqualToString:@"checkbox"]) {

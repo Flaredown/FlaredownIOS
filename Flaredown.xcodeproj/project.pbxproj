@@ -229,22 +229,20 @@
 		101393C519D216D700BBB266 /* Flaredown */ = {
 			isa = PBXGroup;
 			children = (
+				EDDC715F1A082A130059815A /* AFNetworking */,
 				EDCB47171A8BE90300C46859 /* DLAVAlertView */,
 				EDCB47261A8BE90300C46859 /* MBProgressHUD */,
 				EDCB472F1A8BE90300C46859 /* MJPopupViewController */,
-				85378A101A5214C50053D6CC /* fnt */,
-				EDDC715F1A082A130059815A /* AFNetworking */,
 				101393EF19D2290E00BBB266 /* src */,
 				101393CA19D216D700BBB266 /* AppDelegate.h */,
 				101393CB19D216D700BBB266 /* AppDelegate.m */,
-				101393D019D216D700BBB266 /* Main.storyboard */,
-				EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */,
-				EDD802A31A804CB900464D24 /* AddTreatmentView.xib */,
-				ED31E4831A888262008306F3 /* EditTreatmentView.xib */,
-				101393D319D216D700BBB266 /* Images.xcassets */,
 				101393D519D216D700BBB266 /* LaunchScreen.xib */,
-				101393C619D216D700BBB266 /* Supporting Files */,
+				101393D019D216D700BBB266 /* Main.storyboard */,
+				ED65B8621AA4D1C800974E6E /* views */,
+				85378A101A5214C50053D6CC /* fnt */,
+				101393D319D216D700BBB266 /* Images.xcassets */,
 				ED90725D1A68A7800012EFD6 /* Localizable.strings */,
+				101393C619D216D700BBB266 /* Supporting Files */,
 			);
 			path = Flaredown;
 			sourceTree = "<group>";
@@ -278,9 +276,9 @@
 		101393EF19D2290E00BBB266 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EDDC724B1A083A950059815A /* Models */,
 				ED8861441A11F1A7002469B3 /* Managers */,
 				ED8861471A11F24B002469B3 /* Menus */,
-				EDDC724B1A083A950059815A /* Models */,
 				ED8861481A11F262002469B3 /* Page Containers */,
 				ED8861461A11F23D002469B3 /* Pages */,
 			);
@@ -296,6 +294,16 @@
 				85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */,
 			);
 			name = fnt;
+			sourceTree = "<group>";
+		};
+		ED65B8621AA4D1C800974E6E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */,
+				EDD802A31A804CB900464D24 /* AddTreatmentView.xib */,
+				ED31E4831A888262008306F3 /* EditTreatmentView.xib */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		ED8861441A11F1A7002469B3 /* Managers */ = {

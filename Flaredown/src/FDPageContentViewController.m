@@ -88,12 +88,17 @@
 //
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)editList
 {
+    //The popup is dependent on _parentViewController being set properly (check MJPopupViewController library). When coming back from search, this value hasn't been set yet since this method is called via delegate from search's viewDidDisappear, so manually setting it fixes the issue.
+    if([self valueForKey:@"_parentViewController"] == nil)
+        [self setValue:(FDViewController *)[_mainViewDelegate instance] forKey:@"_parentViewController"];
+    
     FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
     listController.mainViewDelegate = _mainViewDelegate;
     listController.contentViewDelegate = self;
@@ -107,32 +112,28 @@
     listController.view.frame = CGRectMake(popupX, popupY, popupWidth, popupHeight);
     listController.view.layer.cornerRadius = 8;
     
-    [self presentPopupViewController:listController animationType:MJPopupViewAnimationFade];
+    [[_mainViewDelegate instance] presentPopupViewController:listController animationType:MJPopupViewAnimationFade];
     listController.dynamic = YES;
     if(_editSegueTreatments) {
         [listController initWithTreatments];
     } else {
         [listController initWithSymptoms];
     }
-    
-//    [self performSegueWithIdentifier:@"editList" sender:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)closeEditList
+{
+    [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
 - (void)openSearch
 {
-    [self performSegueWithIdentifier:SearchSegueIdentifier sender:nil];
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [_mainViewDelegate openSearch];
 }
 
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:ContainerEmbedSegueIdentifier]) {

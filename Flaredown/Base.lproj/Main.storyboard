@@ -354,6 +354,7 @@
                         <outlet property="continueBtn" destination="lyQ-Pr-M0f" id="txH-wg-cop"/>
                         <outlet property="dateLabel" destination="NXH-Qh-Psa" id="2As-BR-hEf"/>
                         <segue destination="Zvz-CY-M8D" kind="show" identifier="finish" id="RRC-oB-iPK"/>
+                        <segue destination="t1N-rz-86q" kind="show" identifier="search" id="j9h-cQ-iZY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dF7-37-Hbp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -846,6 +847,15 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWh-1B-Opp" id="a5E-bl-sMb">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylq-S6-wAZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="selectItem:" destination="pCN-HU-EjD" eventType="touchUpInside" id="80f-R5-Hx2"/>
+                                            </connections>
+                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U86-wh-6TT">
                                             <rect key="frame" x="19" y="11" width="229" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1105,6 +1115,7 @@
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="j9h-cQ-iZY"/>
         <segue reference="1ic-5n-SwM"/>
     </inferredMetricsTieBreakers>
 </document>

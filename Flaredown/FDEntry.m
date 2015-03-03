@@ -94,7 +94,7 @@
              };
 }
 
-- (NSArray *)questionsForCatalog:(NSString *)catalog
+- (NSMutableArray *)questionsForCatalog:(NSString *)catalog
 {
     if(![_catalogs containsObject:catalog])
         return nil;
