@@ -7,7 +7,7 @@
 //
 
 #import "FDNetworkManager.h"
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 static NSString *host = @"http://api-staging.flaredown.com";
 static NSString *api = @"/v1";

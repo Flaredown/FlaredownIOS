@@ -10,8 +10,8 @@
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
 #import "FDTreatment.h"
-#import "DLAVAlertView.h"
-#import "DLAVAlertViewTheme.h"
+#import <DLAlertView/DLAVAlertView.h>
+#import <DLAlertView/DLAVAlertViewTheme.h>
 
 //relative to screen
 #define POPUP_WIDTH 0.95

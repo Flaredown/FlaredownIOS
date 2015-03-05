@@ -9,7 +9,7 @@
 #import "FDViewController.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "FDPageContentViewController.h"
 #import "FDSearchTableViewController.h"
 

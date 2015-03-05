@@ -9,7 +9,7 @@
 #import "FDLaunchViewController.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 //relative to screen
 #define ALARM_WIDTH 0.9
