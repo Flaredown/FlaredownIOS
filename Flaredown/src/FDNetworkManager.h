@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
-#import "MBProgressHUD.h"
+#import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface FDNetworkManager : NSObject
 

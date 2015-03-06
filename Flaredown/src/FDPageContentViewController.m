@@ -11,7 +11,7 @@
 #import "FDSelectListViewController.h"
 #import "FDSearchTableViewController.h"
 #import "FDModelManager.h"
-#import "UIViewController+MJPopupViewController.h"
+#import <MJPopupViewController/UIViewController+MJPopupViewController.h>
 
 //Ratio of popup : container view (this)
 #define POPUP_SIZE_WIDTH 1
