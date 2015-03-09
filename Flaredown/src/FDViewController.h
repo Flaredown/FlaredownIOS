@@ -12,7 +12,7 @@
 
 - (void)refreshPages;
 - (id)instance;
-- (void)openSearch;
+- (void)openSearch:(NSString *)type;
 
 @end
 
@@ -23,6 +23,8 @@
 @property int pageIndex;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property NSString *searchType;
 
 @end
 

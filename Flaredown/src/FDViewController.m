@@ -180,8 +180,9 @@
     }];
 }
 
-- (void)openSearch
+- (void)openSearch:(NSString *)type
 {
+    _searchType = type;
     [self performSegueWithIdentifier:@"search" sender:self];
 }
 
@@ -191,6 +192,10 @@
         UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
         FDSearchTableViewController *searchViewController = (FDSearchTableViewController *)dvc.topViewController;
         searchViewController.contentViewDelegate = self.pageViewController.viewControllers[0];
+        if([_searchType isEqualToString:@"symptoms"])
+            searchViewController.searchType = SearchSymptoms;
+        else if([_searchType isEqualToString:@"treatments"])
+            searchViewController.searchType = SearchTreatments;
     }
 }
 

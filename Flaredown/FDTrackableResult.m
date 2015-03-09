@@ -15,8 +15,7 @@
     self = [super init];
     if(self) {
         _name = [dictionary objectForKey:@"name"];
-//        _count = [[dictionary objectForKey:@"count"] integerValue];
-        _count = 0;
+        _count = [dictionary objectForKey:@"count"] ?[[dictionary objectForKey:@"count"] integerValue] : -1;
     }
     return self;
 }

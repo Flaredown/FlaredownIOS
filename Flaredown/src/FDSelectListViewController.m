@@ -163,8 +163,7 @@
 - (IBAction)addItemButton:(id)sender
 {
     if(!_treatments) {
-        [self hidePopupView];
-        [_contentViewDelegate openSearch];
+        [self openSymptomSearch:sender];
     } else {
         
         UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
@@ -187,10 +186,29 @@
     }
 }
 
-- (IBAction)openAddTrackableSearch:(id)sender
+- (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment
+{
+    FDEntry *entry = [[FDModelManager sharedManager] entry];
+    if([[entry treatments] containsObject:treatment]) {
+        [self editTreatmentPopupWithTreatment:treatment];
+    } else {
+    [self addItemButton:nil];
+        _addTreatmentNameField.text = [treatment name] ?: @"";
+        _addTreatmentDoseField.text = [treatment quantity] ? [NSString stringWithFormat:@"%.02f", [treatment quantity]] : @"";
+        _addTreatmentUnitField.text = [treatment unit] ?: @"";
+    }
+}
+
+- (IBAction)openSymptomSearch:(id)sender
 {
     [self hidePopupView];
-    [_contentViewDelegate openSearch];
+    [_contentViewDelegate openSearch:@"symptoms"];
+}
+
+- (IBAction)openTreatmentSearch:(id)sender
+{
+    [self hidePopupView];
+    [_contentViewDelegate openSearch:@"treatments"];
 }
 
 - (IBAction)addTreatment:(id)sender
@@ -214,11 +232,15 @@
     [self hidePopupView];
 }
 
-
 - (IBAction)editItemButton:(UIButton *)sender
 {
     NSInteger editRow = [[self.tableView indexPathForCell:[self parentCellForView:sender]] row] - 1;
-    _editTreatment = [[[FDModelManager sharedManager] entry] treatments][editRow];
+    [self editTreatmentPopupWithTreatment:[[[FDModelManager sharedManager] entry] treatments][editRow]];
+}
+
+- (void)editTreatmentPopupWithTreatment:(FDTreatment *)treatment
+{
+    _editTreatment = treatment;
     
     UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
     [backgroundView setBackgroundColor:[UIColor grayColor]];

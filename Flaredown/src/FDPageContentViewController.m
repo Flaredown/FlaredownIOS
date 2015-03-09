@@ -99,7 +99,8 @@
     if([self valueForKey:@"_parentViewController"] == nil)
         [self setValue:(FDViewController *)[_mainViewDelegate instance] forKey:@"_parentViewController"];
     
-    FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
+//    FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
+    FDSelectListViewController *listController = (__bridge FDSelectListViewController *)(CFRetain((__bridge CFTypeRef)([self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"])));
     listController.mainViewDelegate = _mainViewDelegate;
     listController.contentViewDelegate = self;
     
@@ -119,16 +120,23 @@
     } else {
         [listController initWithSymptoms];
     }
+    _popupController = listController;
 }
 
 - (void)closeEditList
 {
     [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+//    _popupController = nil;
 }
 
-- (void)openSearch
+- (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment
 {
-    [_mainViewDelegate openSearch];
+    [(FDSelectListViewController *)_popupController addTreatmentPopupWithTreatment:treatment];
+}
+
+- (void)openSearch:(NSString *)type
+{
+    [_mainViewDelegate openSearch:type];
 }
 
 

@@ -37,9 +37,10 @@
 
 @property FDTreatment *editTreatment;
 
-
 - (void)initWithQuestions:(NSMutableArray *)questions;
 - (void)initWithTreatments;
 - (void)initWithSymptoms;
+
+- (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment;
 
 @end

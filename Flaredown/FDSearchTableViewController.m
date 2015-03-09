@@ -56,7 +56,7 @@
     else if(_searchType == SearchTreatments)
         searchType = @"treatments";
     
-    [[FDNetworkManager sharedManager] searchTrackables:_searchText type:@"symptoms" email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+    [[FDNetworkManager sharedManager] searchTrackables:_searchText type:searchType email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -171,104 +171,117 @@
         NSInteger sectionToAdd = [[questions objectAtIndex:[questions count]-1] section]+1;
         NSInteger indexToAdd = [questions indexOfObject:questions[[questions count]-1]]+1;
         
-        __block FDQuestion *newQuestion; //__block to make it compatible with async task
-        BOOL found = NO;
+        for(FDQuestion *question in [entry questions]) {
+            if([[question catalog] isEqualToString:@"symptoms"]
+               && [[question name] isEqualToString:title]) {
+                [self closeSearch:sender];
+                return;
+            };
+        }
+        
         for (FDSymptom *userSymptom in [user symptoms]) {
             if([[userSymptom name] isEqualToString:title]) {
-                newQuestion = [[FDQuestion alloc] initWithSymptom:userSymptom section:sectionToAdd];
+                FDQuestion *newQuestion = [[FDQuestion alloc] initWithSymptom:userSymptom section:sectionToAdd];
                 [entry insertQuestion:newQuestion atIndex:indexToAdd];
-                [questions addObject:newQuestion];
-                found = YES;
                 
-                //New response
                 FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
                 if(![entry responseForId:[response responseId]]) {
                     [[[FDModelManager sharedManager] entry] insertResponse:response];
                 }
                 
-                [self.tableView reloadData];
+                [self closeSearch:sender];
+                return;
             }
         }
-        if(!found) {
             
-            //Check the new symptom against the API for validation
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //Check the new symptom against the API for validation
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        FDUser *user = [[FDModelManager sharedManager] userObject];
+        [[FDNetworkManager sharedManager] createSymptomWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
             
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createSymptomWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            if(success) {
+                NSLog(@"Success!");
                 
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                FDSymptom *newSymptom = [[FDSymptom alloc] initWithTitle:title entry:entry];
+                FDQuestion *newQuestion = [[FDQuestion alloc] initWithSymptom:newSymptom section:sectionToAdd];
+                [entry insertQuestion:newQuestion atIndex:indexToAdd];
                 
-                if(success) {
-                    NSLog(@"Success!");
-                    
-                    FDSymptom *newSymptom = [[FDSymptom alloc] initWithTitle:title entry:entry];
-                    newQuestion = [[FDQuestion alloc] initWithSymptom:newSymptom section:sectionToAdd];
-                    [entry insertQuestion:newQuestion atIndex:indexToAdd];
-                    
-                    [self closeSearch:sender];
-                }
-                else {
-                    NSLog(@"Failure!");
-                    
-                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
-                                                message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
-                                               delegate:nil
-                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                      otherButtonTitles:nil] show];
-                }
-            }];
-        }
+                [self closeSearch:sender];
+            }
+            else {
+                NSLog(@"Failure!");
+                
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
+                                            message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
+                                           delegate:nil
+                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  otherButtonTitles:nil] show];
+            }
+        }];
         
     } else if(_searchType == SearchTreatments) {
         FDEntry *entry = [[FDModelManager sharedManager] entry];
-        BOOL found = NO;
-        for (FDTreatment *userTreatment in [user treatments]) {
-            if([[userTreatment name] isEqualToString:title]) {
-                [[entry treatments] addObject:userTreatment];
-                found = YES;
-                
-                [self.tableView reloadData];
+        
+        for (FDTreatment *treatment in [entry treatments]) {
+            if([[treatment name] isEqualToString:title]) {
+                [self closeSearchWithTreatment:treatment];
+                return;
             }
         }
-        if(!found) {
-            
-            //Check the new symptom against the API for validation
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createTreatmentWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
-                
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                
-                if(success) {
-                    NSLog(@"Success!");
-                    
-                    FDTreatment *newTreatment = [[FDTreatment alloc] initWithTitle:title quantity:0.0f unit:@"" entry:entry];
-                    [newTreatment setTaken:YES];
-                    [[entry treatments] addObject:newTreatment];
-                    
-                    [self closeSearch:sender];
-                }
-                else {
-                    NSLog(@"Failure!");
-                    
-                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
-                                                message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
-                                               delegate:nil
-                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                      otherButtonTitles:nil] show];
-                }
-            }];
+        
+        for (FDTreatment *userTreatment in [user treatments]) {
+            if([[userTreatment name] isEqualToString:title]) {
+                [self closeSearchWithTreatment:userTreatment];
+                return;
+            }
         }
+            
+        //Check the new symptom against the API for validation
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        FDUser *user = [[FDModelManager sharedManager] userObject];
+        [[FDNetworkManager sharedManager] createTreatmentWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            if(success) {
+                NSLog(@"Success!");
+                
+                FDTreatment *selectedTreatment = [[FDTreatment alloc] init];
+                [selectedTreatment setName:title];
+                
+                [self closeSearchWithTreatment:selectedTreatment];
+            }
+            else {
+                NSLog(@"Failure!");
+                
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
+                                            message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
+                                           delegate:nil
+                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  otherButtonTitles:nil] show];
+            }
+        }];
     }
 }
-
 
 - (IBAction)closeSearch:(id)sender
 {
     [_contentViewDelegate editList];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)closeSearchWithTreatment:(FDTreatment *)treatment
+{
+    [_contentViewDelegate editList];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        if(_searchType == SearchTreatments) {
+            [_contentViewDelegate addTreatmentPopupWithTreatment:treatment];
+        }
+    }];
 }
 
 -(UITableViewCell *)parentCellForView:(id)theView

@@ -75,7 +75,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="openAddTrackableSearch:" destination="-1" eventType="touchUpInside" id="dhT-dz-9Gq"/>
+                        <action selector="openTreatmentSearch:" destination="-1" eventType="touchUpInside" id="PFB-0L-eLJ"/>
                     </connections>
                 </button>
             </subviews>

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FDViewController.h"
+#import "FDTreatment.h"
 
 #define ContainerEmbedSegueIdentifier @"containerEmbedSegue"
 #define EditListSegueIdentifier @"editList"
@@ -15,9 +16,10 @@
 
 @protocol FDPageContentViewControllerDelegate <NSObject>
 
-- (void)openSearch;
+- (void)openSearch:(NSString *)type;
 - (void)editList;
 - (void)closeEditList;
+- (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment;
 
 @end
 
@@ -29,6 +31,8 @@
 
 //Subtite or edit button
 @property (weak, nonatomic) IBOutlet UIButton *secondaryTitleButton;
+
+@property (strong, nonatomic) UIViewController *popupController;
 
 @property int pageIndex;
 @property BOOL editSegueTreatments;
