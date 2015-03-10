@@ -29,7 +29,6 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -88,25 +87,6 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="280" y="91" width="240" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flaredown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrb-AK-oPK">
-                                <rect key="frame" x="157" y="40" width="286" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="4bQ-rl-Swz"/>
-                                    <constraint firstAttribute="width" constant="286" id="qfn-8A-g5X"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="52"/>
-                                <color key="textColor" red="0.43529411764705883" green="0.83921568627450982" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="157" y="54" width="286" height="60"/>
-                                </variation>
-                                <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="257" y="12" width="286" height="60"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="343" y="47" width="115" height="21"/>
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvL-6i-G6n">
@@ -180,21 +160,34 @@
                                     <rect key="frame" x="58" y="131" width="684" height="500"/>
                                 </variation>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fd_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ukq-JG-ZEF">
+                                <rect key="frame" x="180" y="51" width="240" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="446-rq-LxN"/>
+                                    <constraint firstAttribute="width" constant="240" id="Fq2-8p-7sy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jvL-6i-G6n" secondAttribute="centerX" id="0qz-AW-EQl"/>
-                            <constraint firstAttribute="centerX" secondItem="hrb-AK-oPK" secondAttribute="centerX" id="BHp-bW-ORv"/>
+                            <constraint firstItem="o7Z-0t-J1E" firstAttribute="top" secondItem="ukq-JG-ZEF" secondAttribute="bottom" constant="8" id="FHa-HA-wjg"/>
                             <constraint firstItem="jvL-6i-G6n" firstAttribute="height" secondItem="8zP-0V-VgB" secondAttribute="height" multiplier="1:2.25" id="HAf-ed-UUA"/>
+                            <constraint firstItem="o7Z-0t-J1E" firstAttribute="top" secondItem="ukq-JG-ZEF" secondAttribute="bottom" constant="8" id="Jpr-cn-FPn"/>
+                            <constraint firstItem="jvL-6i-G6n" firstAttribute="top" secondItem="ukq-JG-ZEF" secondAttribute="bottom" constant="60" id="WI7-4L-aGT"/>
                             <constraint firstItem="jvL-6i-G6n" firstAttribute="width" secondItem="8zP-0V-VgB" secondAttribute="width" multiplier="55:60" id="XFB-DR-A94"/>
                             <constraint firstAttribute="centerY" secondItem="jvL-6i-G6n" secondAttribute="centerY" constant="19" id="XTt-tg-deo"/>
-                            <constraint firstItem="hrb-AK-oPK" firstAttribute="top" secondItem="8Gb-O9-6vF" secondAttribute="bottom" multiplier="2:1" id="cS6-jC-3bZ"/>
                             <constraint firstAttribute="centerX" secondItem="emL-iO-WlK" secondAttribute="centerX" id="fzN-Uk-mfP"/>
-                            <constraint firstItem="o7Z-0t-J1E" firstAttribute="top" secondItem="hrb-AK-oPK" secondAttribute="bottom" constant="-5" id="jZS-KE-gtK"/>
+                            <constraint firstAttribute="centerX" secondItem="ukq-JG-ZEF" secondAttribute="centerX" id="hNK-kI-iDz"/>
                             <constraint firstItem="emL-iO-WlK" firstAttribute="width" secondItem="jvL-6i-G6n" secondAttribute="width" id="ltF-JM-vXh"/>
                             <constraint firstItem="bzB-AW-1Lh" firstAttribute="top" secondItem="emL-iO-WlK" secondAttribute="bottom" constant="20" id="rJt-qH-iKF"/>
                             <constraint firstAttribute="centerX" secondItem="o7Z-0t-J1E" secondAttribute="centerX" id="yj2-9H-eEt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jpr-cn-FPn"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="rlh-Tn-Gdb" id="JIu-5P-Q5z"/>
@@ -1167,6 +1160,7 @@
     </scenes>
     <resources>
         <image name="fd_doneGraphic" width="177" height="177"/>
+        <image name="fd_logo" width="280" height="38"/>
         <image name="fd_remindericon" width="36" height="39"/>
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>

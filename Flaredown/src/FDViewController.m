@@ -50,13 +50,18 @@
     self.pageIndex = 0;
     
     //Create page view controller
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
+//    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
+    self.pageViewController = [[UIPageViewController alloc]
+                               initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                               options:@{UIPageViewControllerOptionInterPageSpacingKey:@10}];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
     [self refreshPages];
     
     //change the size of page view controller
+//    self.pageViewController.view.frame = CGRectMake(0, 80, self.view.frame.size.width, self.view.frame.size.height - 140);
     self.pageViewController.view.frame = CGRectMake(10, 80, self.view.frame.size.width - 20, self.view.frame.size.height - 140);
     
     [self addChildViewController:self.pageViewController];
