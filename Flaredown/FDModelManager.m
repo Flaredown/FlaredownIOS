@@ -53,6 +53,17 @@ static NSString *inputsSessionLocation = @"inputs";
     return highestSection + 1;
 }
 
+- (NSMutableArray *)symptoms
+{
+    NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
+    for(FDQuestion *question in [_entry questions]) {
+        if([[question catalog] isEqualToString:@"symptoms"]) {
+            [mutableQuestions addObject:question];
+        }
+    }
+    return mutableQuestions;
+}
+
 - (BOOL)reminder
 {
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"checkin_reminder"])

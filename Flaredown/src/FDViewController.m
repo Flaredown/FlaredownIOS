@@ -79,6 +79,9 @@
 {
     //Number of questions + Treatments + Notes
     self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
+    if([[FDModelManager sharedManager] symptoms].count == 0) { //Add symptom page
+        self.numPages++;
+    }
     
     FDPageContentViewController *startingViewController = [self viewControllerAtIndex:self.pageIndex];
     startingViewController.mainViewDelegate = self;

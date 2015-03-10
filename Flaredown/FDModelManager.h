@@ -26,6 +26,7 @@
 //- (FDInput *)inputForId:(int)inputId;
 - (NSMutableArray *)questionsForSection:(int)section;
 - (int)numberOfQuestionSections;
+- (NSMutableArray *)symptoms;
 
 - (BOOL)reminder;
 - (void)setReminder:(BOOL)reminder;

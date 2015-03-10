@@ -212,13 +212,15 @@
 - (IBAction)openSymptomSearch:(id)sender
 {
     [self hidePopupView];
-    [_contentViewDelegate openSearch:@"symptoms"];
+    [_mainViewDelegate openSearch:@"symptoms"];
+//    [_contentViewDelegate openSearch:@"symptoms"];
 }
 
 - (IBAction)openTreatmentSearch:(id)sender
 {
     [self hidePopupView];
-    [_contentViewDelegate openSearch:@"treatments"];
+    [_mainViewDelegate openSearch:@"treatments"];
+//    [_contentViewDelegate openSearch:@"treatments"];
 }
 
 - (IBAction)addTreatment:(id)sender
@@ -293,8 +295,12 @@
 
 - (void)hidePopupView
 {
+    if(!_popupView)
+        return;
     [_popupView removeFromSuperview];
     [_backgroundView removeFromSuperview];
+    _popupView = nil;
+    _backgroundView = nil;
 }
 
 /*
@@ -307,7 +313,7 @@
     if([buttonTitle isEqualToString:NSLocalizedString(@"Cancel", nil)])
         return;
     
-    if([alertView.title containsString:NSLocalizedString(@"No longer taking", nil)]) {
+    if([alertView.title containsString:NSLocalizedString(@"No longer taking", nil)] || [alertView.title containsString:NSLocalizedString(@"No longer tracking", nil)]) {
         [self removeListItem];
     }
 }
@@ -417,6 +423,8 @@
     // Return the number of rows in the section.
     if(self.dynamic)
         return [self.questions count] + 1 + 1 + 1; //questions + add + done + title
+    else if(_questions.count == 0)
+        return 1;
     if(_treatments)
         return [self.questions count];
     return [self.responses count];
@@ -488,6 +496,19 @@
             else
                 [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
         }
+    } else if(_questions.count == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
+
+        //1 Add button
+        UIButton *button = (UIButton *)[cell viewWithTag:1];
+            
+        if(_treatments) {
+            [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(openTreatmentSearch:) forControlEvents:UIControlEventTouchUpInside];
+        }else{
+            [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(openSymptomSearch:) forControlEvents:UIControlEventTouchUpInside];
+        }
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
         
@@ -506,6 +527,7 @@
                 [self deselectButton:button];
             }
         } else {
+            
             //List button
             FDQuestion *question = self.questions[[indexPath row]];
             [button setTitle:[question name] forState:UIControlStateNormal];

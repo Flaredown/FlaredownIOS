@@ -41,15 +41,23 @@
     NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     
     if(_pageIndex >= numSections) {
-        if(_pageIndex == numSections) {
+        if(_pageIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+            //Add symptoms
+            self.titleLabel.text = NSLocalizedString(@"You are not tracking any symptoms", nil);
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+        } else if(_pageIndex == numSections || (_pageIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
-            self.titleLabel.text = NSLocalizedString(@"Which treatments did you take?", nil);
+            if([[[FDModelManager sharedManager] entry] treatments].count == 0)
+                self.titleLabel.text = NSLocalizedString(@"You are not tracking any treatments", nil);
+            else
+                self.titleLabel.text = NSLocalizedString(@"Which treatments did you take?", nil);
             self.editSegueTreatments = YES;
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Treatments", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 //            self.providesPresentationContextTransitionStyle = YES;
 //            self.definesPresentationContext = YES;
-        } else if(_pageIndex == numSections + 1) {
+        } else if(_pageIndex == numSections + 1 || _pageIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
             self.titleLabel.text = NSLocalizedString(@"Leave a note", nil);

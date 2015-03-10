@@ -23,10 +23,13 @@
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     if(self.pageIndex >= numSections) {
-        if(self.pageIndex == numSections) {
+        if(self.pageIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+            //Add symptoms
+            self.currentSegueIdentifier = SegueIdentifierSelectListView;
+        } else if(self.pageIndex == numSections || (_pageIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
-        } else if(self.pageIndex == numSections + 1) {
+        } else if(self.pageIndex == numSections + 1 || self.pageIndex == numSections + 2) {
             //Notes
             self.currentSegueIdentifier = SegueIdentifierNotesView;
         }
@@ -74,11 +77,20 @@
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     if(self.pageIndex >= numSections) {
-        if(self.pageIndex == numSections) {
+        if(self.pageIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+            //Add symptoms
+            pageType = @"checkbox";
+            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+            //send empty array so you only get the add button
+            [listVC initWithQuestions:[@[] mutableCopy]];
+            listVC.mainViewDelegate = _mainViewDelegate;
+        } else if(self.pageIndex == numSections || (_pageIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
             pageType = @"checkbox";
-            [((FDSelectListViewController *)dvc) initWithTreatments];
-        } else if(self.pageIndex == numSections + 1) {
+            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+            [listVC initWithTreatments];
+            listVC.mainViewDelegate = _mainViewDelegate;
+        } else if(self.pageIndex == numSections + 1 || self.pageIndex == numSections + 2) {
             //Notes
             pageType = @"notes";
         }
@@ -87,11 +99,14 @@
         pageType = [questions[0] kind];
         
         if([pageType isEqualToString:@"checkbox"]) {
-            [((FDSelectListViewController *)dvc) initWithQuestions:questions];
+            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+            [listVC initWithQuestions:questions];
+            listVC.mainViewDelegate = _mainViewDelegate;
         } else if([pageType isEqualToString:@"number"]) {
             [((FDNumberViewController *)dvc) initWithQuestion:questions[0]];
         } else if([pageType isEqualToString:@"select"]) {
-            [((FDSelectCollectionViewController *)dvc) initWithQuestion:questions[0]];
+            FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
+            [selectVC initWithQuestion:questions[0]];
         }
     }
 }
