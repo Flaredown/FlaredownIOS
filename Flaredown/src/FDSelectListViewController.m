@@ -12,6 +12,7 @@
 #import "FDTreatment.h"
 #import <DLAlertView/DLAVAlertView.h>
 #import <DLAlertView/DLAVAlertViewTheme.h>
+#import <MJPopupViewController/UIViewController+MJPopupViewController.h>
 
 //relative to screen
 #define POPUP_WIDTH 0.95
@@ -149,11 +150,20 @@
     UIButton *titleButton = (UIButton *)[cell viewWithTag:1];
     NSString *itemName = titleButton.titleLabel.text;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"No longer taking %@?", nil), itemName]
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                          otherButtonTitles:NSLocalizedString(@"Remove Treatment", nil), nil];
+    UIAlertView *alert;
+    if(_treatments) {
+        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"No longer taking %@?", nil), itemName]
+                                           message:nil
+                                          delegate:self
+                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                 otherButtonTitles:NSLocalizedString(@"Remove Treatment", nil), nil];
+    } else {
+        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"No longer tracking %@?", nil), itemName]
+                                           message:nil
+                                          delegate:self
+                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                 otherButtonTitles:NSLocalizedString(@"Remove Symptom", nil), nil];
+    }
     [alert show];
 }
 
@@ -394,7 +404,7 @@
 
 - (IBAction)doneButton:(id)sender
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
 #pragma mark - Table view data source
@@ -406,7 +416,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if(self.dynamic)
-        return [self.questions count] + 1 + 1;
+        return [self.questions count] + 1 + 1 + 1; //questions + add + done + title
     if(_treatments)
         return [self.questions count];
     return [self.responses count];
@@ -423,9 +433,16 @@
             //1 title
             UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
             if(_editSymptoms)
-                [titleLabel setText:@"Edit Symptoms"];
+                [titleLabel setText:NSLocalizedString(@"Edit Symptoms", nil)];
             else
-                [titleLabel setText:@"Edit Treatments"];
+                [titleLabel setText:NSLocalizedString(@"Edit Treatments", nil)];
+            
+        } else if([indexPath row] == self.questions.count + 2) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
+            
+            //Round the button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            button.layer.cornerRadius = 8;
             
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
@@ -433,10 +450,13 @@
             if(_treatments) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
                 
+                UIButton *button = (UIButton *)[cell viewWithTag:1];
+                //Style
+                button.layer.cornerRadius = 8;
+                
                 FDTreatment *treatment = self.questions[itemRow];
                 
                 //1 List button
-                UIButton *button = (UIButton *)[cell viewWithTag:1];
                 [button setTitle:[treatment name] forState:UIControlStateNormal];
                 [self selectButton:button];
                 
@@ -448,8 +468,11 @@
             } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
                 
-                //1 List button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
+                //Style
+                button.layer.cornerRadius = 8;
+                
+                //1 List button
                 FDQuestion *question = self.questions[itemRow];
                 [button setTitle:[question name] forState:UIControlStateNormal];
                 [self selectButton:button];
@@ -457,18 +480,23 @@
             
         } else if([indexPath row] == self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
-        }
-    } else { //item cell
-        if(self.dynamic) { //dynamic item cell
-            cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
             
-        } else { //static item cell
-            cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
+            //1 Add button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            if(_treatments)
+                [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
+            else
+                [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
         }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
+        
+        UIButton *button = (UIButton *)[cell viewWithTag:1];
+        //Style
+        button.layer.cornerRadius = 8;
         
         if(_treatments) {
             //List button
-            UIButton *button = (UIButton *)[cell viewWithTag:1];
             FDTreatment *treatment = self.questions[[indexPath row]];
             [button setTitle:[NSString stringWithFormat:@"%@ - %.02f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
             
@@ -479,7 +507,6 @@
             }
         } else {
             //List button
-            UIButton *button = (UIButton *)[cell viewWithTag:1];
             FDQuestion *question = self.questions[[indexPath row]];
             [button setTitle:[question name] forState:UIControlStateNormal];
             

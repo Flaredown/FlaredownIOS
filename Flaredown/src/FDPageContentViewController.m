@@ -26,16 +26,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //TODO: Finish shadow on this
     //Style
+    self.view.layer.masksToBounds = NO;
     self.view.layer.cornerRadius = 8;
+    self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.view.layer.shadowOpacity = 0.1;
+    self.view.layer.shadowRadius = 0;
+    self.view.layer.shadowOffset = CGSizeMake(0, 4);
+    self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
+    
+    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[UIColor lightGrayColor]};
+    
     if(_pageIndex >= numSections) {
         if(_pageIndex == numSections) {
             //Treatments
             self.titleLabel.text = NSLocalizedString(@"Which treatments did you take?", nil);
             self.editSegueTreatments = YES;
-            [self.secondaryTitleButton setTitle:@"Edit Treatments" forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Treatments", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 //            self.providesPresentationContextTransitionStyle = YES;
 //            self.definesPresentationContext = YES;
@@ -51,7 +61,7 @@
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
             self.editSegueTreatments = NO;
-            [self.secondaryTitleButton setTitle:@"Edit Symptoms" forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 //            self.providesPresentationContextTransitionStyle = YES;
 //            self.definesPresentationContext = YES;
@@ -99,6 +109,7 @@
     if([self valueForKey:@"_parentViewController"] == nil)
         [self setValue:(FDViewController *)[_mainViewDelegate instance] forKey:@"_parentViewController"];
     
+    //TODO: Try moving this popup's control to FDViewController, seems cleaner
 //    FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
     FDSelectListViewController *listController = (__bridge FDSelectListViewController *)(CFRetain((__bridge CFTypeRef)([self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"])));
     listController.mainViewDelegate = _mainViewDelegate;

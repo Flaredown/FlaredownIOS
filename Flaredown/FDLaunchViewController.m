@@ -26,17 +26,6 @@
     
     //Localized start button
     [_startButton setImage:[UIImage imageNamed:NSLocalizedString(@"fd_startBtn", nil)] forState:UIControlStateNormal];
-    
-    //Localized date
-    NSDate *now = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
-    [dateFormatter setLocale:[NSLocale currentLocale]];
-    NSString *dateString = [dateFormatter stringFromDate:now];
-    [_dateLabel setText:dateString];
-    
-    [self setAlarmButtonTitle];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -47,6 +36,17 @@
        [self performSegueWithIdentifier:@"login" sender:self];
         return;
     }
+    
+    //Localized date
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    NSString *dateString = [dateFormatter stringFromDate:now];
+    [_dateLabel setText:dateString];
+    
+    [self setAlarmButtonTitle];
     
     if([[FDModelManager sharedManager] entry]) {
         // Convert string to date object
@@ -178,6 +178,10 @@
 
 - (void)setAlarmButtonTitle
 {
+    if(![[FDModelManager sharedManager] reminder]) {
+        [_alarmButton setTitle:NSLocalizedString(@"OFF", nil) forState:UIControlStateNormal];
+        return;
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
@@ -193,9 +197,9 @@
     [[FDModelManager sharedManager] setReminderTime:_reminderTime];
     if(_reminderOn) {
         [self setNewNotification];
-        [self setAlarmButtonTitle];
     } else
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [self setAlarmButtonTitle];
     [self hideAlarmView];
 }
 

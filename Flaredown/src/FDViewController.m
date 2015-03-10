@@ -28,8 +28,8 @@
     [super viewDidLoad];
     
     //Style
-    _continueBtn.layer.cornerRadius = 8;
     
+    _continueBtn.layer.cornerRadius = 8;
     _continueBtn.layer.shadowColor = [[UIColor blackColor] CGColor];
     _continueBtn.layer.shadowOpacity = 0.1;
     _continueBtn.layer.shadowRadius = 0;
@@ -38,7 +38,13 @@
     [self.view addSubview:_continueBtn];
     
     //Localized date
-    NSString *dateString = [[[FDModelManager sharedManager] entry] date];
+//    NSString *dateString = [[[FDModelManager sharedManager] entry] date];
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    NSString *dateString = [dateFormatter stringFromDate:now];
     [_dateLabel setText:dateString];
     
     self.pageIndex = 0;

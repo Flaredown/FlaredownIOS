@@ -13,6 +13,7 @@
 "Cancel" = "Cancel";
 "Treatments" = "Treatments";
 "Notes" = "Notes";
+"OFF" = "OFF";
 
 //FDLoginViewController.m
 "Invalid email" = "Invalid email";
@@ -41,9 +42,16 @@
 
 //FDSelectListViewController.m
 "No longer taking %@?" = "No longer taking %@?";
+"No longer tracking %@?" = "No longer tracking %@?";
 "No longer taking" = "No longer taking";
 "Remove Treatment" = "Remove Treatment";
+"Remove Symptom" = "Remove Symptom";
+"+ Add Treatment" = "+ Add Treatment";
 "Add Treatment" = "Add Treatment";
+"+ Add Symptom" = "+ Add Symptom";
+"Add Symptom" = "Add Symptom";
+"Edit Treatments" = "Edit Treatments";
+"Edit Symptoms" = "Edit Symptoms";
 "Name of treatment" = "Name of treatment";
 "Error creating symptom" = "Error creating symptom";
 "Looks like there was an issue creating the new symptom; please check the symptom name and try again." = "Looks like there was an issue creating the new symptom; please check the symptom name and try again.";

@@ -20,6 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(_searchType == SearchSymptoms) {
+        [self setTitle:@"Add Symptom"];
+    } else if(_searchType == SearchTreatments) {
+        [self setTitle:@"Add Treatment"];
+    }
+    
     _results = [[NSMutableArray alloc] init];
     
     [_contentViewDelegate closeEditList];
