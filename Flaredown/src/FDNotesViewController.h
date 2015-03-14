@@ -10,8 +10,6 @@
 
 @interface FDNotesViewController : UIViewController <UITextViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextView *textView;
-
 - (void)keyboardWasShown:(NSNotification *)notification;
 - (void)keyboardWasHidden:(NSNotification *)notification;
 

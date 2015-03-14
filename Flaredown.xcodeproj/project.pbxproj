@@ -22,10 +22,17 @@
 		10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EED0B019E35FF5000464DD /* FDContainerViewController.m */; };
 		10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EED0B519E4A70A000464DD /* FDNetworkManager.m */; };
 		13ADE3E6AB8BD270C07DA2F8 /* libPods-Flaredown.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3C0A69C855B5D7EFF80DC1 /* libPods-Flaredown.a */; };
+		42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A90CD41AB499E800D08266 /* FDHashtagFinder.m */; };
+		42A90CD81AB49AFA00D08266 /* FDHashtagFinderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A90CD71AB49AFA00D08266 /* FDHashtagFinderSpec.m */; };
+		42F309311AB463850046E900 /* FDHashtagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309301AB463850046E900 /* FDHashtagTextView.m */; };
+		42F309331AB463970046E900 /* FDHashtagTextViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309321AB463970046E900 /* FDHashtagTextViewSpec.m */; };
+		42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309351AB4694F0046E900 /* FDHashtagHighlightTextStorage.m */; };
+		42F309391AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309381AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m */; };
 		85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A121A5215250053D6CC /* ProximaNova-Bold.otf */; };
 		85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A131A5215250053D6CC /* ProximaNova-Light.otf */; };
 		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
+		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
@@ -56,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		012A2D41DA24BC35904D91DD /* Pods-FlaredownTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlaredownTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests.debug.xcconfig"; sourceTree = "<group>"; };
 		101393C319D216D700BBB266 /* Flaredown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flaredown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		101393C719D216D700BBB266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		101393C819D216D700BBB266 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,11 +93,22 @@
 		10EED0B519E4A70A000464DD /* FDNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDNetworkManager.m; path = src/FDNetworkManager.m; sourceTree = "<group>"; };
 		27BFB3E511154C65F322042A /* Pods-Flaredown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flaredown.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flaredown/Pods-Flaredown.debug.xcconfig"; sourceTree = "<group>"; };
 		3C3C0A69C855B5D7EFF80DC1 /* libPods-Flaredown.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flaredown.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A90CD31AB499E800D08266 /* FDHashtagFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHashtagFinder.h; sourceTree = "<group>"; };
+		42A90CD41AB499E800D08266 /* FDHashtagFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagFinder.m; sourceTree = "<group>"; };
+		42A90CD71AB49AFA00D08266 /* FDHashtagFinderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagFinderSpec.m; sourceTree = "<group>"; };
+		42F3092F1AB463850046E900 /* FDHashtagTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHashtagTextView.h; sourceTree = "<group>"; };
+		42F309301AB463850046E900 /* FDHashtagTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagTextView.m; sourceTree = "<group>"; };
+		42F309321AB463970046E900 /* FDHashtagTextViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagTextViewSpec.m; sourceTree = "<group>"; };
+		42F309341AB4694F0046E900 /* FDHashtagHighlightTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHashtagHighlightTextStorage.h; sourceTree = "<group>"; };
+		42F309351AB4694F0046E900 /* FDHashtagHighlightTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagHighlightTextStorage.m; sourceTree = "<group>"; };
+		42F309381AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWHashtagHighlightTextStorageSpec.m; sourceTree = "<group>"; };
 		85378A121A5215250053D6CC /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		85378A131A5215250053D6CC /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		85378A141A5215250053D6CC /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		8BBCCD7F27791C54FC4B47CF /* Pods-Flaredown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flaredown.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flaredown/Pods-Flaredown.release.xcconfig"; sourceTree = "<group>"; };
+		9383875D12CC5B17F0A2D83F /* Pods-FlaredownTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlaredownTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests.release.xcconfig"; sourceTree = "<group>"; };
+		C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlaredownTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
@@ -138,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +213,9 @@
 		101393DF19D216D700BBB266 /* FlaredownTests */ = {
 			isa = PBXGroup;
 			children = (
+				42A90CD61AB49AE600D08266 /* Services */,
+				42F309371AB4695D0046E900 /* Foundation */,
+				42F3092E1AB463640046E900 /* Views */,
 				101393E219D216D700BBB266 /* FlaredownTests.m */,
 				101393E019D216D700BBB266 /* Supporting Files */,
 			);
@@ -210,11 +233,13 @@
 		101393EF19D2290E00BBB266 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				42A90CD21AB499DA00D08266 /* Services */,
 				EDDC724B1A083A950059815A /* Models */,
 				ED8861441A11F1A7002469B3 /* Managers */,
 				ED8861471A11F24B002469B3 /* Menus */,
 				ED8861481A11F262002469B3 /* Page Containers */,
 				ED8861461A11F23D002469B3 /* Pages */,
+				42F3092D1AB463580046E900 /* Views */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -224,8 +249,54 @@
 			children = (
 				27BFB3E511154C65F322042A /* Pods-Flaredown.debug.xcconfig */,
 				8BBCCD7F27791C54FC4B47CF /* Pods-Flaredown.release.xcconfig */,
+				012A2D41DA24BC35904D91DD /* Pods-FlaredownTests.debug.xcconfig */,
+				9383875D12CC5B17F0A2D83F /* Pods-FlaredownTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		42A90CD21AB499DA00D08266 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				42A90CD31AB499E800D08266 /* FDHashtagFinder.h */,
+				42A90CD41AB499E800D08266 /* FDHashtagFinder.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		42A90CD61AB49AE600D08266 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				42A90CD71AB49AFA00D08266 /* FDHashtagFinderSpec.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		42F3092D1AB463580046E900 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42F3092F1AB463850046E900 /* FDHashtagTextView.h */,
+				42F309301AB463850046E900 /* FDHashtagTextView.m */,
+				42F309341AB4694F0046E900 /* FDHashtagHighlightTextStorage.h */,
+				42F309351AB4694F0046E900 /* FDHashtagHighlightTextStorage.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		42F3092E1AB463640046E900 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42F309321AB463970046E900 /* FDHashtagTextViewSpec.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		42F309371AB4695D0046E900 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				42F309381AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m */,
+			);
+			name = Foundation;
 			sourceTree = "<group>";
 		};
 		85378A101A5214C50053D6CC /* fnt */ = {
@@ -243,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				3C3C0A69C855B5D7EFF80DC1 /* libPods-Flaredown.a */,
+				C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -360,9 +432,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 101393E919D216D700BBB266 /* Build configuration list for PBXNativeTarget "FlaredownTests" */;
 			buildPhases = (
+				F12EEAF1CB69834690D759E5 /* Check Pods Manifest.lock */,
 				101393D819D216D700BBB266 /* Sources */,
 				101393D919D216D700BBB266 /* Frameworks */,
 				101393DA19D216D700BBB266 /* Resources */,
+				18977BA2F1A1E8412DAA5E47 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -441,6 +515,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		18977BA2F1A1E8412DAA5E47 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CE977F9861ABECB9873FAAB9 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -471,6 +560,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F12EEAF1CB69834690D759E5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -483,9 +587,11 @@
 				10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */,
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
+				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
+				42F309311AB463850046E900 /* FDHashtagTextView.m in Sources */,
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,
 				EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */,
 				EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */,
@@ -493,6 +599,7 @@
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
+				42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
 				1013943319DA0BD200BBB266 /* FDNumberViewController.m in Sources */,
@@ -509,6 +616,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				101393E319D216D700BBB266 /* FlaredownTests.m in Sources */,
+				42A90CD81AB49AFA00D08266 /* FDHashtagFinderSpec.m in Sources */,
+				42F309331AB463970046E900 /* FDHashtagTextViewSpec.m in Sources */,
+				42F309391AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +746,11 @@
 			baseConfigurationReference = 27BFB3E511154C65F322042A /* Pods-Flaredown.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"FB_REFERENCE_IMAGE_DIR=\"\\\"$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages\\\"\"",
+				);
 				INFOPLIST_FILE = Flaredown/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -657,6 +772,7 @@
 		};
 		101393EA19D216D700BBB266 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 012A2D41DA24BC35904D91DD /* Pods-FlaredownTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -676,6 +792,7 @@
 		};
 		101393EB19D216D700BBB266 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9383875D12CC5B17F0A2D83F /* Pods-FlaredownTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

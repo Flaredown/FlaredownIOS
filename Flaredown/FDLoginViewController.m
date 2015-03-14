@@ -40,6 +40,11 @@
     _loginBtn.layer.shadowOffset = CGSizeMake(0, 4);
     _loginBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_loginBtn];
+
+#if DEBUG
+    self.emailTextField.text = @"test@flaredown.com";
+    self.passwordTextField.text = @"testing123";
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
