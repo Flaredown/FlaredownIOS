@@ -69,15 +69,14 @@
 
     NSAssert(self.hashtagAttributes, @"Attempting to add nil hashtag attributes");
 
+    // reset style inside of extendedRange - pretty heavyhanded, but works
+    for (NSString *key in self.hashtagAttributes) {
+        [self removeAttribute:key range:extendedRange];
+    }
+
     NSArray *ranges = [self.hashtagFinder rangesInString:self.backingStore.string range:extendedRange];
     [ranges enumerateObjectsUsingBlock:^(NSValue *range, NSUInteger idx, BOOL *stop) {
         [self addAttributes:self.hashtagAttributes range:range.rangeValue];
-
-        if (self.length > NSMaxRange(range.rangeValue) + 1) {
-            for (NSString *key in self.hashtagAttributes) {
-                [self removeAttribute:key range:NSMakeRange(NSMaxRange(range.rangeValue) + 1, 1)];
-            }
-        }
     }];
 }
 

@@ -27,7 +27,7 @@
 		42F309311AB463850046E900 /* FDHashtagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309301AB463850046E900 /* FDHashtagTextView.m */; };
 		42F309331AB463970046E900 /* FDHashtagTextViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309321AB463970046E900 /* FDHashtagTextViewSpec.m */; };
 		42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309351AB4694F0046E900 /* FDHashtagHighlightTextStorage.m */; };
-		42F309391AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309381AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m */; };
+		42F309391AB4696F0046E900 /* FDHashtagHighlightTextStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F309381AB4696F0046E900 /* FDHashtagHighlightTextStorageSpec.m */; };
 		85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A121A5215250053D6CC /* ProximaNova-Bold.otf */; };
 		85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A131A5215250053D6CC /* ProximaNova-Light.otf */; };
 		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
@@ -101,7 +101,7 @@
 		42F309321AB463970046E900 /* FDHashtagTextViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagTextViewSpec.m; sourceTree = "<group>"; };
 		42F309341AB4694F0046E900 /* FDHashtagHighlightTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHashtagHighlightTextStorage.h; sourceTree = "<group>"; };
 		42F309351AB4694F0046E900 /* FDHashtagHighlightTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagHighlightTextStorage.m; sourceTree = "<group>"; };
-		42F309381AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWHashtagHighlightTextStorageSpec.m; sourceTree = "<group>"; };
+		42F309381AB4696F0046E900 /* FDHashtagHighlightTextStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHashtagHighlightTextStorageSpec.m; sourceTree = "<group>"; };
 		85378A121A5215250053D6CC /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		85378A131A5215250053D6CC /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		85378A141A5215250053D6CC /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 		42F309371AB4695D0046E900 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				42F309381AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m */,
+				42F309381AB4696F0046E900 /* FDHashtagHighlightTextStorageSpec.m */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -618,7 +618,7 @@
 				101393E319D216D700BBB266 /* FlaredownTests.m in Sources */,
 				42A90CD81AB49AFA00D08266 /* FDHashtagFinderSpec.m in Sources */,
 				42F309331AB463970046E900 /* FDHashtagTextViewSpec.m in Sources */,
-				42F309391AB4696F0046E900 /* BWHashtagHighlightTextStorageSpec.m in Sources */,
+				42F309391AB4696F0046E900 /* FDHashtagHighlightTextStorageSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
