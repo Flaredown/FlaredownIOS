@@ -9,6 +9,10 @@ target 'Flaredown' do
 end
 
 target 'FlaredownTests' do
-
+  pod 'Expecta', '~> 0.3'
+  pod 'Expecta+Snapshots', '~> 1.3'
+  pod 'FBSnapshotTestCase', '~> 1.5'
+  pod 'OCMock', '~> 2.2'
+  pod 'Specta', '~> 0.3'
 end
 
