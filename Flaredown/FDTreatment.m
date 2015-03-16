@@ -19,7 +19,7 @@
     if(self) {
         _treatmentId = [dictionary objectForKey:@"id"];
         _name = [dictionary objectForKey:@"name"];
-        _quantity = [[dictionary objectForKey:@"quantity"] floatValue];
+        _quantity = [[dictionary objectForKey:@"quantity"] isEqual:[NSNull null]] ? 0 : [[dictionary objectForKey:@"quantity"] floatValue];
         _unit = ![dictionary objectForKey:@"unit"] || [[dictionary objectForKey:@"unit"] isEqual:[NSNull null]] ? @"" : [dictionary objectForKey:@"unit"];
         _taken = NO;
     }
