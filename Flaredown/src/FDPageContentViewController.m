@@ -89,6 +89,11 @@
         }
     }
     
+    if([[self.secondaryTitleButton titleForState:UIControlStateNormal] isEqualToString:@""]) {
+        [self.titleLabel setFrame:CGRectMake(self.titleLabel.frame.origin.x, (self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + self.secondaryTitleButton.frame.origin.y) / 2,
+                                           self.titleLabel.frame.size.width, self.titleLabel.frame.size.height)];
+    }
+    
 //    if(![[NSNull null] isEqual:[question group]]) {
 //        
 //        NSString *title = [question group];
