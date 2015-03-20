@@ -12,8 +12,12 @@
 
 + (void)addRoundedCornersToView:(UIView *)view
 {
-    view.layer.masksToBounds = YES;
     view.layer.cornerRadius = FDCornerRadius;
+}
+
++ (void)addCellRoundedCornersToView:(UIView *)view
+{
+    view.layer.cornerRadius = FDCellCornerRadius;
 }
 
 + (void)addShadowToView:(UIView *)view

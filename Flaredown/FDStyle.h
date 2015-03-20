@@ -10,10 +10,12 @@
 #import <UIKit/UIKit.h>
 
 static float const FDCornerRadius = 11;
+static float const FDCellCornerRadius = 22;
 
 @interface FDStyle : NSObject
 
 + (void)addRoundedCornersToView:(UIView *)view;
++ (void)addCellRoundedCornersToView:(UIView *)view;
 + (void)addShadowToView:(UIView *)view;
 
 @end

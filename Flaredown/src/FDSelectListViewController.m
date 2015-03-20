@@ -29,11 +29,6 @@
     [super viewDidLoad];
     
     self.selectedItems = [[NSMutableArray alloc] init];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    if(!_treatments)
-        self.tableView.estimatedRowHeight = 44.0;
-    
     self.responses = [[NSMutableArray alloc] init];
 }
 
@@ -64,7 +59,6 @@
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     self.questions = [entry treatments];
-    self.tableView.estimatedRowHeight = 65.0;
     self.treatments = YES;
 }
 
@@ -453,7 +447,7 @@
             
             //Round the button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
-            [FDStyle addRoundedCornersToView:button];
+            [FDStyle addCellRoundedCornersToView:button];
             
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
@@ -463,7 +457,7 @@
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 //Style
-                [FDStyle addRoundedCornersToView:button];
+                [FDStyle addCellRoundedCornersToView:button];
                 
                 FDTreatment *treatment = self.questions[itemRow];
                 
@@ -481,7 +475,7 @@
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 //Style
-                [FDStyle addRoundedCornersToView:button];
+                [FDStyle addCellRoundedCornersToView:button];
                 
                 //1 List button
                 FDQuestion *question = self.questions[itemRow];
@@ -517,7 +511,7 @@
         
         UIButton *button = (UIButton *)[cell viewWithTag:1];
         //Style
-        [FDStyle addRoundedCornersToView:button];
+        [FDStyle addCellRoundedCornersToView:button];
         
         if(_treatments) {
             //List button
@@ -558,6 +552,13 @@
         }
     }
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(_treatments && _dynamic)
+        return 90;
+    return 50;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

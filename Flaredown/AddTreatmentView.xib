@@ -57,11 +57,6 @@
                                 <action selector="openTreatmentSearch:" destination="-1" eventType="touchUpInside" id="PFB-0L-eLJ"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of treatment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otI-88-v7e">
-                            <rect key="frame" x="35" y="247" width="530" height="30"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfJ-OX-KRK">
                             <rect key="frame" x="35" y="323" width="530" height="30"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
@@ -117,6 +112,11 @@
                                 <action selector="addTreatment:" destination="-1" eventType="touchUpInside" id="8Gt-tO-E3X"/>
                             </connections>
                         </button>
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of treatment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otI-88-v7e">
+                            <rect key="frame" x="35" y="247" width="530" height="30"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>

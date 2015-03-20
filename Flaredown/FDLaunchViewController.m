@@ -36,7 +36,7 @@
     //Localized date
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     NSString *dateString = [dateFormatter stringFromDate:now];
@@ -179,17 +179,21 @@
 
 - (void)setAlarmButtonTitle
 {
+    NSString *title;
     if(![[FDModelManager sharedManager] reminder]) {
-        [_alarmButton setTitle:NSLocalizedString(@"OFF", nil) forState:UIControlStateNormal];
-        return;
+        title = NSLocalizedString(@"OFF", nil);
+    } else {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
+        [dateFormatter setDateFormat:@"hh:mm a"];
+        title = [dateFormatter stringFromDate:[[FDModelManager sharedManager] reminderTime]];
     }
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
-    [dateFormatter setLocale:[NSLocale currentLocale]];
-    [dateFormatter setDateFormat:@"hh:mm a"];
-    NSString *dateString = [dateFormatter stringFromDate:[[FDModelManager sharedManager] reminderTime]];
-    [_alarmButton setTitle:dateString forState:UIControlStateNormal];
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:title attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
+    
+    [_alarmButton setAttributedTitle:attributedString forState:UIControlStateNormal];
 }
 
 - (IBAction)closeAlarmView:(UIButton *)sender

@@ -12,6 +12,9 @@
 
 @interface FDFinishedViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *siteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @end
 
 @implementation FDFinishedViewController
@@ -19,6 +22,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [_siteLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"flaredown.com" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}]];
+    
+    //Localized date
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    NSString *dateString = [dateFormatter stringFromDate:now];
+    [_dateLabel setText:dateString];
 }
 
 - (void)didReceiveMemoryWarning {
