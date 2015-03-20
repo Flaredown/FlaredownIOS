@@ -72,11 +72,12 @@
             NSArray *resultResponse = (NSArray *)responseObject;
             [_results removeAllObjects];
             
+            
             BOOL found = NO;
             for (NSDictionary *result in resultResponse) {
                 FDTrackableResult *resultObject = [[FDTrackableResult alloc] initWithDictionary:result];
                 [_results addObject:resultObject];
-                if([[resultObject name] isEqualToString:_searchText])
+                if([[resultObject name] caseInsensitiveCompare:_searchText] == NSOrderedSame)
                     found = YES;
             }
             if(!found) {

@@ -13,6 +13,7 @@
 #import <DLAlertView/DLAVAlertView.h>
 #import <DLAlertView/DLAVAlertViewTheme.h>
 #import <MJPopupViewController/UIViewController+MJPopupViewController.h>
+#import "FDStyle.h"
 
 //relative to screen
 #define POPUP_WIDTH 0.95
@@ -188,11 +189,12 @@
         
         [self.view.window addSubview:popupView];
         
+        [popupView needsUpdateConstraints];
+        
         //Style
-        popupView.layer.cornerRadius = 8;
+        [FDStyle addRoundedCornersToView:popupView];
         
         _popupView = popupView;
-
     }
 }
 
@@ -202,7 +204,7 @@
     if([[entry treatments] containsObject:treatment]) {
         [self editTreatmentPopupWithTreatment:treatment];
     } else {
-    [self addItemButton:nil];
+        [self addItemButton:nil];
         _addTreatmentNameField.text = [treatment name] ?: @"";
         _addTreatmentDoseField.text = [treatment quantity] ? [NSString stringWithFormat:@"%.02f", [treatment quantity]] : @"";
         _addTreatmentUnitField.text = [treatment unit] ?: @"";
@@ -264,10 +266,11 @@
     UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"EditTreatmentView" owner:self options:nil] objectAtIndex:0];
     [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
     [self.view.window addSubview:popupView];
-    [popupView layoutIfNeeded];
+
+    [popupView needsUpdateConstraints];
     
     //Style
-    popupView.layer.cornerRadius = 8;
+    [FDStyle addRoundedCornersToView:popupView];
     
     _popupView = popupView;
     
@@ -450,7 +453,7 @@
             
             //Round the button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
-            button.layer.cornerRadius = 8;
+            [FDStyle addRoundedCornersToView:button];
             
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
@@ -460,7 +463,7 @@
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 //Style
-                button.layer.cornerRadius = 8;
+                [FDStyle addRoundedCornersToView:button];
                 
                 FDTreatment *treatment = self.questions[itemRow];
                 
@@ -478,7 +481,7 @@
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 //Style
-                button.layer.cornerRadius = 8;
+                [FDStyle addRoundedCornersToView:button];
                 
                 //1 List button
                 FDQuestion *question = self.questions[itemRow];
@@ -514,7 +517,7 @@
         
         UIButton *button = (UIButton *)[cell viewWithTag:1];
         //Style
-        button.layer.cornerRadius = 8;
+        [FDStyle addRoundedCornersToView:button];
         
         if(_treatments) {
             //List button

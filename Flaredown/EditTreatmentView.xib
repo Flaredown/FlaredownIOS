@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNova-Regular.otf">
@@ -25,100 +26,144 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-LU-keq">
-                    <rect key="frame" x="260" y="297" width="80" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEj-Lb-8jO">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIc-oa-8U0">
+                            <rect key="frame" x="35" y="266" width="530" height="68"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dose (Daily)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-E6-R3i">
+                                    <rect key="frame" x="0.0" y="0.0" width="530" height="30"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orr-dx-6DT">
+                                    <rect key="frame" x="0.0" y="38" width="530" height="30"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="orr-dx-6DT" firstAttribute="trailing" secondItem="w8U-E6-R3i" secondAttribute="trailing" id="Dab-nn-lRE"/>
+                                <constraint firstItem="w8U-E6-R3i" firstAttribute="top" secondItem="jIc-oa-8U0" secondAttribute="top" id="Fus-BZ-hjH"/>
+                                <constraint firstAttribute="trailing" secondItem="w8U-E6-R3i" secondAttribute="trailing" id="QuR-3n-p9a"/>
+                                <constraint firstAttribute="bottom" secondItem="orr-dx-6DT" secondAttribute="bottom" id="ckr-Ud-lVt"/>
+                                <constraint firstItem="orr-dx-6DT" firstAttribute="leading" secondItem="w8U-E6-R3i" secondAttribute="leading" id="j1A-5R-trm"/>
+                                <constraint firstAttribute="width" constant="530" id="pCb-nU-xRQ"/>
+                                <constraint firstItem="w8U-E6-R3i" firstAttribute="leading" secondItem="jIc-oa-8U0" secondAttribute="leading" id="vIp-kP-TE7"/>
+                                <constraint firstAttribute="height" secondItem="w8U-E6-R3i" secondAttribute="height" multiplier="2" constant="8" id="wBr-RB-gUp"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="pCb-nU-xRQ"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-LU-keq">
+                            <rect key="frame" x="260" y="342" width="80" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="49" id="Bbu-2N-ita"/>
+                                <constraint firstAttribute="width" constant="80" id="LNh-Ed-pNw"/>
+                                <constraint firstAttribute="height" constant="30" id="gHY-0o-Mah"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.43529411759999997" green="0.83921568629999999" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Bbu-2N-ita"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="closePopupView:" destination="-1" eventType="touchUpInside" id="3pj-db-7EL"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLM-gl-Mfd">
+                            <rect key="frame" x="485" y="342" width="80" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Ipy-qq-Zv3"/>
+                                <constraint firstAttribute="width" constant="49" id="bOd-uT-1ME"/>
+                                <constraint firstAttribute="width" constant="80" id="xRE-bW-msv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="Done">
+                                <color key="titleColor" red="0.43529411759999997" green="0.83921568629999999" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="bOd-uT-1ME"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="editTreatment:" destination="-1" eventType="touchUpInside" id="dpN-fc-Hn7"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit daily dosage of Treatment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-8m-7p9">
+                            <rect key="frame" x="35" y="183" width="530" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="153" id="FPI-5Z-VKa"/>
+                                <constraint firstAttribute="height" constant="70" id="UwO-cB-Hao"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="28"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="FPI-5Z-VKa"/>
+                                </mask>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="49" id="Bbu-2N-ita"/>
-                        <constraint firstAttribute="width" constant="80" id="LNh-Ed-pNw"/>
-                        <constraint firstAttribute="height" constant="30" id="gHY-0o-Mah"/>
+                        <constraint firstItem="jIc-oa-8U0" firstAttribute="leading" secondItem="mEj-Lb-8jO" secondAttribute="leading" constant="35" id="0WV-yz-R0g"/>
+                        <constraint firstItem="gQo-LU-keq" firstAttribute="centerX" secondItem="jIc-oa-8U0" secondAttribute="centerX" id="0ft-uu-Esk"/>
+                        <constraint firstAttribute="centerX" secondItem="jIc-oa-8U0" secondAttribute="centerX" id="At4-gD-ulz"/>
+                        <constraint firstItem="jNa-8m-7p9" firstAttribute="leading" secondItem="jIc-oa-8U0" secondAttribute="leading" id="EU6-Zv-z0c"/>
+                        <constraint firstItem="gQo-LU-keq" firstAttribute="top" secondItem="jIc-oa-8U0" secondAttribute="bottom" constant="8" id="L3B-bI-JC5"/>
+                        <constraint firstItem="jIc-oa-8U0" firstAttribute="top" secondItem="jNa-8m-7p9" secondAttribute="bottom" constant="13" id="MYo-nZ-xee"/>
+                        <constraint firstItem="jIc-oa-8U0" firstAttribute="trailing" secondItem="RLM-gl-Mfd" secondAttribute="trailing" id="SAR-Bl-U04"/>
+                        <constraint firstAttribute="centerY" secondItem="jIc-oa-8U0" secondAttribute="centerY" id="We7-gn-PJ2"/>
+                        <constraint firstItem="gQo-LU-keq" firstAttribute="top" secondItem="RLM-gl-Mfd" secondAttribute="top" id="WzJ-jj-ZAb"/>
+                        <constraint firstAttribute="centerY" secondItem="jIc-oa-8U0" secondAttribute="centerY" id="aCV-eL-Lmm"/>
+                        <constraint firstAttribute="trailing" secondItem="jIc-oa-8U0" secondAttribute="trailing" constant="35" id="adV-00-SQz"/>
+                        <constraint firstAttribute="bottom" secondItem="jIc-oa-8U0" secondAttribute="bottom" constant="266" id="dzq-Nz-w7A"/>
+                        <constraint firstAttribute="centerX" secondItem="jIc-oa-8U0" secondAttribute="centerX" id="ktF-Pz-MMf"/>
+                        <constraint firstItem="gQo-LU-keq" firstAttribute="centerX" secondItem="jIc-oa-8U0" secondAttribute="centerX" id="p7F-l2-KJd"/>
+                        <constraint firstAttribute="centerY" secondItem="jIc-oa-8U0" secondAttribute="centerY" id="qMh-ix-HDe"/>
+                        <constraint firstItem="jNa-8m-7p9" firstAttribute="trailing" secondItem="jIc-oa-8U0" secondAttribute="trailing" id="xvR-lg-lbL"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                    <state key="normal" title="Cancel">
-                        <color key="titleColor" red="0.43529411759999997" green="0.83921568629999999" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="Bbu-2N-ita"/>
+                            <exclude reference="aCV-eL-Lmm"/>
+                            <exclude reference="dzq-Nz-w7A"/>
+                            <exclude reference="ktF-Pz-MMf"/>
+                            <exclude reference="qMh-ix-HDe"/>
+                            <exclude reference="p7F-l2-KJd"/>
                         </mask>
                     </variation>
-                    <connections>
-                        <action selector="closePopupView:" destination="-1" eventType="touchUpInside" id="3pj-db-7EL"/>
-                    </connections>
-                </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dose (Daily)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-E6-R3i">
-                    <rect key="frame" x="35" y="221" width="530" height="30"/>
-                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLM-gl-Mfd">
-                    <rect key="frame" x="485" y="297" width="80" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Ipy-qq-Zv3"/>
-                        <constraint firstAttribute="width" constant="49" id="bOd-uT-1ME"/>
-                        <constraint firstAttribute="width" constant="80" id="xRE-bW-msv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="Done">
-                        <color key="titleColor" red="0.43529411759999997" green="0.83921568629999999" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="bOd-uT-1ME"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="editTreatment:" destination="-1" eventType="touchUpInside" id="dpN-fc-Hn7"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit daily dosage of Treatment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-8m-7p9">
-                    <rect key="frame" x="35" y="139" width="530" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="153" id="FPI-5Z-VKa"/>
-                        <constraint firstAttribute="height" constant="70" id="UwO-cB-Hao"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="28"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="FPI-5Z-VKa"/>
-                        </mask>
-                    </variation>
-                </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orr-dx-6DT">
-                    <rect key="frame" x="35" y="259" width="530" height="30"/>
-                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="w8U-E6-R3i" secondAttribute="centerX" id="3VE-A3-hCs"/>
-                <constraint firstItem="orr-dx-6DT" firstAttribute="leading" secondItem="eq3-08-YSO" secondAttribute="leading" constant="35" id="3wo-jK-Zav"/>
-                <constraint firstItem="orr-dx-6DT" firstAttribute="leading" secondItem="w8U-E6-R3i" secondAttribute="leading" id="3yX-F7-a4z"/>
-                <constraint firstItem="gQo-LU-keq" firstAttribute="top" secondItem="orr-dx-6DT" secondAttribute="bottom" constant="8" id="4XK-f3-aQs"/>
-                <constraint firstItem="w8U-E6-R3i" firstAttribute="leading" secondItem="jNa-8m-7p9" secondAttribute="leading" id="7mX-Vi-VbO"/>
-                <constraint firstAttribute="trailing" secondItem="orr-dx-6DT" secondAttribute="trailing" constant="35" id="ARB-jf-Y9g"/>
-                <constraint firstItem="RLM-gl-Mfd" firstAttribute="trailing" secondItem="orr-dx-6DT" secondAttribute="trailing" id="HDJ-ID-oqh"/>
-                <constraint firstItem="w8U-E6-R3i" firstAttribute="leading" secondItem="eq3-08-YSO" secondAttribute="leading" constant="35" id="JWK-fd-WCU"/>
-                <constraint firstAttribute="centerY" secondItem="w8U-E6-R3i" secondAttribute="centerY" constant="64" id="SWy-Qw-g4C"/>
-                <constraint firstItem="w8U-E6-R3i" firstAttribute="top" secondItem="jNa-8m-7p9" secondAttribute="bottom" constant="12" id="fOt-VE-Jcq"/>
-                <constraint firstItem="w8U-E6-R3i" firstAttribute="trailing" secondItem="jNa-8m-7p9" secondAttribute="trailing" id="kT1-Jo-6pe"/>
-                <constraint firstAttribute="centerX" secondItem="gQo-LU-keq" secondAttribute="centerX" constant="-0.5" id="lSn-46-aq2"/>
-                <constraint firstItem="RLM-gl-Mfd" firstAttribute="trailing" secondItem="orr-dx-6DT" secondAttribute="trailing" id="nsR-xn-lix"/>
-                <constraint firstAttribute="centerX" secondItem="jNa-8m-7p9" secondAttribute="centerX" id="qxj-WE-4ft"/>
-                <constraint firstItem="RLM-gl-Mfd" firstAttribute="top" secondItem="gQo-LU-keq" secondAttribute="top" id="rU1-Yp-ncs"/>
-                <constraint firstItem="orr-dx-6DT" firstAttribute="trailing" secondItem="w8U-E6-R3i" secondAttribute="trailing" id="sld-NT-YC4"/>
-                <constraint firstAttribute="trailing" secondItem="w8U-E6-R3i" secondAttribute="trailing" constant="35" id="tAt-wo-k96"/>
-                <constraint firstItem="orr-dx-6DT" firstAttribute="top" secondItem="w8U-E6-R3i" secondAttribute="bottom" constant="8" id="zKt-W4-i3Z"/>
+                <constraint firstItem="mEj-Lb-8jO" firstAttribute="top" secondItem="eq3-08-YSO" secondAttribute="top" id="48d-9B-6Ze"/>
+                <constraint firstAttribute="bottom" secondItem="mEj-Lb-8jO" secondAttribute="bottom" id="60V-ZO-Wz3"/>
+                <constraint firstItem="mEj-Lb-8jO" firstAttribute="leading" secondItem="eq3-08-YSO" secondAttribute="leading" id="EjD-ma-JEY"/>
+                <constraint firstAttribute="trailing" secondItem="mEj-Lb-8jO" secondAttribute="trailing" id="Jss-Fp-FgG"/>
+                <constraint firstItem="mEj-Lb-8jO" firstAttribute="top" secondItem="eq3-08-YSO" secondAttribute="top" id="dzd-Ck-o5M"/>
+                <constraint firstItem="mEj-Lb-8jO" firstAttribute="leading" secondItem="eq3-08-YSO" secondAttribute="leading" id="gAb-oK-SQG"/>
+                <constraint firstAttribute="bottom" secondItem="mEj-Lb-8jO" secondAttribute="bottom" id="jZ6-sk-ILD"/>
+                <constraint firstAttribute="trailing" secondItem="mEj-Lb-8jO" secondAttribute="trailing" id="ltT-Th-yel"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="qxj-WE-4ft"/>
-                    <exclude reference="3wo-jK-Zav"/>
-                    <exclude reference="ARB-jf-Y9g"/>
-                    <exclude reference="HDJ-ID-oqh"/>
+                    <exclude reference="48d-9B-6Ze"/>
+                    <exclude reference="EjD-ma-JEY"/>
+                    <exclude reference="jZ6-sk-ILD"/>
+                    <exclude reference="ltT-Th-yel"/>
                 </mask>
             </variation>
         </view>

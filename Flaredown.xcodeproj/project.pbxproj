@@ -37,6 +37,7 @@
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
+		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
@@ -118,6 +119,8 @@
 		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDBA0E221ABC95B5001F165F /* FDStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStyle.h; sourceTree = "<group>"; };
+		EDBA0E231ABC95B5001F165F /* FDStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStyle.m; sourceTree = "<group>"; };
 		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
 		EDDC724C1A083ABF0059815A /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = src/FDUser.h; sourceTree = "<group>"; };
 		EDDC724D1A083ABF0059815A /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUser.m; path = src/FDUser.m; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 			children = (
 				42A90CD31AB499E800D08266 /* FDHashtagFinder.h */,
 				42A90CD41AB499E800D08266 /* FDHashtagFinder.m */,
+				EDBA0E221ABC95B5001F165F /* FDStyle.h */,
+				EDBA0E231ABC95B5001F165F /* FDStyle.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
+				EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
 				42F309311AB463850046E900 /* FDHashtagTextView.m in Sources */,
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,

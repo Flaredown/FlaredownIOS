@@ -12,6 +12,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "FDPageContentViewController.h"
 #import "FDSearchTableViewController.h"
+#import "FDStyle.h"
 
 @interface FDViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
@@ -28,12 +29,8 @@
     [super viewDidLoad];
     
     //Style
-    
-    _continueBtn.layer.cornerRadius = 8;
-    _continueBtn.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _continueBtn.layer.shadowOpacity = 0.1;
-    _continueBtn.layer.shadowRadius = 0;
-    _continueBtn.layer.shadowOffset = CGSizeMake(0, 4);
+    [FDStyle addRoundedCornersToView:_continueBtn];
+    [FDStyle addShadowToView:_continueBtn];
     _continueBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_continueBtn];
     

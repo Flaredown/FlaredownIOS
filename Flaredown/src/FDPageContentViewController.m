@@ -12,6 +12,8 @@
 #import "FDSearchTableViewController.h"
 #import "FDModelManager.h"
 #import <MJPopupViewController/UIViewController+MJPopupViewController.h>
+#import <QuartzCore/QuartzCore.h>
+#import "FDStyle.h"
 
 //Ratio of popup : container view (this)
 #define POPUP_SIZE_WIDTH 1
@@ -26,14 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //TODO: Finish shadow on this
     //Style
-    self.view.layer.masksToBounds = NO;
-    self.view.layer.cornerRadius = 8;
-    self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.view.layer.shadowOpacity = 0.1;
-    self.view.layer.shadowRadius = 0;
-    self.view.layer.shadowOffset = CGSizeMake(0, 4);
+    [FDStyle addRoundedCornersToView:self.view];
+    [FDStyle addShadowToView:self.view];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
@@ -135,7 +132,7 @@
     float popupY = self.view.frame.size.height/2-popupHeight/2;
     
     listController.view.frame = CGRectMake(popupX, popupY, popupWidth, popupHeight);
-    listController.view.layer.cornerRadius = 8;
+    [FDStyle addRoundedCornersToView:listController.view];
     
     [[_mainViewDelegate instance] presentPopupViewController:listController animationType:MJPopupViewAnimationFade];
     listController.dynamic = YES;

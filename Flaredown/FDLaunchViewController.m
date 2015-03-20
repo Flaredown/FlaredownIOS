@@ -10,6 +10,7 @@
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "FDStyle.h"
 
 //relative to screen
 #define ALARM_WIDTH 0.9
@@ -32,11 +33,6 @@
 {
     [super viewDidAppear:animated];
     
-    if(![[FDModelManager sharedManager] userObject]) {
-       [self performSegueWithIdentifier:@"login" sender:self];
-        return;
-    }
-    
     //Localized date
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -57,6 +53,11 @@
         if([now compare:date] == NSOrderedDescending) {
             [[FDModelManager sharedManager] clearCurrentEntry];
         }
+    }
+    
+    if(![[FDModelManager sharedManager] userObject]) {
+        [self performSegueWithIdentifier:@"login" sender:self];
+        return;
     }
     
     if([[FDModelManager sharedManager] entry]) {
@@ -115,7 +116,7 @@
     [self.view addSubview:alarmView];
     
     //Style
-    alarmView.layer.cornerRadius = 8;
+    [FDStyle addRoundedCornersToView:alarmView];
     
     _alarmView = alarmView;
     

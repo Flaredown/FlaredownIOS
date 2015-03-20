@@ -9,6 +9,7 @@
 #import "FDLoginViewController.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
+#import "FDStyle.h"
 
 @interface FDLoginViewController ()
 @property (weak, nonatomic) IBOutlet UIView *loginCard;
@@ -24,20 +25,14 @@
     [_emailTextField setDelegate:self];
     [_passwordTextField setDelegate:self];
     
-    _loginCard.layer.cornerRadius = 8;
-    _loginBtn.layer.cornerRadius = 8;
+    [FDStyle addRoundedCornersToView:_loginCard];
+    [FDStyle addRoundedCornersToView:_loginBtn];
     
-    _loginCard.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _loginCard.layer.shadowOpacity = 0.1;
-    _loginCard.layer.shadowRadius = 0;
-    _loginCard.layer.shadowOffset = CGSizeMake(0, 4);
+    [FDStyle addShadowToView:_loginCard];
     _loginCard.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_loginCard];
     
-    _loginBtn.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _loginBtn.layer.shadowOpacity = 0.1;
-    _loginBtn.layer.shadowRadius = 0;
-    _loginBtn.layer.shadowOffset = CGSizeMake(0, 4);
+    [FDStyle addShadowToView:_loginBtn];
     _loginBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_loginBtn];
 
