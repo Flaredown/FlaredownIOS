@@ -11,6 +11,7 @@
 #import "FDModelManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "FDStyle.h"
+#import "FDPopupManager.h"
 
 //relative to screen
 #define ALARM_WIDTH 0.9
@@ -104,16 +105,10 @@
 
 - (IBAction)alarmButton:(id)sender
 {
-    UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
-    [backgroundView setBackgroundColor:[UIColor grayColor]];
-    [backgroundView setAlpha:0.5];
-    [backgroundView addTarget:self action:@selector(cancelAlarmView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backgroundView];
-    _backgroundView = backgroundView;
-    
     UIView *alarmView = [[[NSBundle mainBundle] loadNibNamed:@"AlarmView" owner:self options:nil] objectAtIndex:0];
     [alarmView setFrame:CGRectMake(self.view.frame.size.width/2-self.view.frame.size.width*ALARM_WIDTH/2, self.view.frame.size.height/2-self.view.frame.size.height*ALARM_HEIGHT/2, self.view.frame.size.width*ALARM_WIDTH, self.view.frame.size.height*ALARM_HEIGHT)];
-    [self.view addSubview:alarmView];
+    
+    [[FDPopupManager sharedManager] addPopupView:alarmView];
     
     //Style
     alarmView.layer.masksToBounds = YES;
@@ -227,8 +222,7 @@
 
 - (void)hideAlarmView
 {
-    [_alarmView removeFromSuperview];
-    [_backgroundView removeFromSuperview];
+    [[FDPopupManager sharedManager] removeTopPopup];
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender

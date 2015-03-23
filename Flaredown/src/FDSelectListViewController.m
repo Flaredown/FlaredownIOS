@@ -7,13 +7,13 @@
 //
 
 #import "FDSelectListViewController.h"
+
+#import "FDStyle.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
+#import "FDPopupManager.h"
 #import "FDTreatment.h"
-#import <DLAlertView/DLAVAlertView.h>
-#import <DLAlertView/DLAVAlertViewTheme.h>
-#import <MJPopupViewController/UIViewController+MJPopupViewController.h>
-#import "FDStyle.h"
+#import "FDRemoveTrackableView.h"
 
 //relative to screen
 #define POPUP_WIDTH 0.95
@@ -136,30 +136,15 @@
  */
 - (IBAction)removeItemButton:(id)sender
 {
-    UIButton *button = (UIButton *)sender;
-    UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
+    FDRemoveTrackableView *popupView = (FDRemoveTrackableView *)[[[NSBundle mainBundle] loadNibNamed:@"RemoveTrackableView" owner:self options:nil] objectAtIndex:0];
     
-    int itemRow = (int)[[self.tableView indexPathForCell:cell] row] - 1;
-    self.removeIndex = itemRow;
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+    popupView.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:popupView];
     
-    UIButton *titleButton = (UIButton *)[cell viewWithTag:1];
-    NSString *itemName = titleButton.titleLabel.text;
+    [FDStyle addCellRoundedCornersToView:popupView.removeButton];
     
-    UIAlertView *alert;
-    if(_treatments) {
-        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"No longer taking %@?", nil), itemName]
-                                           message:nil
-                                          delegate:self
-                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                 otherButtonTitles:NSLocalizedString(@"Remove Treatment", nil), nil];
-    } else {
-        alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"No longer tracking %@?", nil), itemName]
-                                           message:nil
-                                          delegate:self
-                                 cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                 otherButtonTitles:NSLocalizedString(@"Remove Symptom", nil), nil];
-    }
-    [alert show];
+    [[FDPopupManager sharedManager] addPopupView:popupView];
 }
 
 /*
@@ -171,24 +156,12 @@
         [self openSymptomSearch:sender];
     } else {
         
-        UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
-        [backgroundView setBackgroundColor:[UIColor grayColor]];
-        [backgroundView setAlpha:0.5];
-        [backgroundView addTarget:self action:@selector(closePopupView:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view.window addSubview:backgroundView];
-        _backgroundView = backgroundView;
-        
         UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"AddTreatmentView" owner:self options:nil] objectAtIndex:0];
         [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
-        
-        [self.view.window addSubview:popupView];
-        
-        [popupView needsUpdateConstraints];
-        
-        //Style
+        popupView.layer.masksToBounds = YES;
         [FDStyle addRoundedCornersToView:popupView];
         
-        _popupView = popupView;
+        [[FDPopupManager sharedManager] addPopupView:popupView];
     }
 }
 
@@ -207,16 +180,12 @@
 
 - (IBAction)openSymptomSearch:(id)sender
 {
-    [self hidePopupView];
     [_mainViewDelegate openSearch:@"symptoms"];
-//    [_contentViewDelegate openSearch:@"symptoms"];
 }
 
 - (IBAction)openTreatmentSearch:(id)sender
 {
-    [self hidePopupView];
     [_mainViewDelegate openSearch:@"treatments"];
-//    [_contentViewDelegate openSearch:@"treatments"];
 }
 
 - (IBAction)addTreatment:(id)sender
@@ -250,23 +219,13 @@
 {
     _editTreatment = treatment;
     
-    UIButton *backgroundView = [[UIButton alloc] initWithFrame:self.view.window.frame];
-    [backgroundView setBackgroundColor:[UIColor grayColor]];
-    [backgroundView setAlpha:0.5];
-    [backgroundView addTarget:self action:@selector(closePopupView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view.window addSubview:backgroundView];
-    _backgroundView = backgroundView;
-    
     UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"EditTreatmentView" owner:self options:nil] objectAtIndex:0];
     [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
-    [self.view.window addSubview:popupView];
+    popupView.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:popupView];
+    [[FDPopupManager sharedManager] addPopupView:popupView];
 
     [popupView needsUpdateConstraints];
-    
-    //Style
-    [FDStyle addRoundedCornersToView:popupView];
-    
-    _popupView = popupView;
     
     [_editTreatmentTitleLabel setText:[NSString stringWithFormat:@"Edit daily dosage of %@", [_editTreatment name]]];
     [_editTreatmentDoseField setPlaceholder:[NSString stringWithFormat:@"%.02f", [_editTreatment quantity]]];
@@ -292,12 +251,7 @@
 
 - (void)hidePopupView
 {
-    if(!_popupView)
-        return;
-    [_popupView removeFromSuperview];
-    [_backgroundView removeFromSuperview];
-    _popupView = nil;
-    _backgroundView = nil;
+    [[FDPopupManager sharedManager] removeTopPopup];
 }
 
 /*
@@ -407,7 +361,8 @@
 
 - (IBAction)doneButton:(id)sender
 {
-    [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [[FDPopupManager sharedManager] removeTopPopup];
+//    [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
 #pragma mark - Table view data source

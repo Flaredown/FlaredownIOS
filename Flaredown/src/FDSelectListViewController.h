@@ -25,8 +25,8 @@
 @property BOOL treatments;
 @property int removeIndex;
 
-@property UIView *backgroundView;
-@property UIView *popupView;
+//@property UIView *backgroundView;
+//@property UIView *popupView;
 
 @property (weak, nonatomic) IBOutlet UITextField *addTreatmentNameField;
 @property (weak, nonatomic) IBOutlet UITextField *addTreatmentDoseField;

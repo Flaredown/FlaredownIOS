@@ -35,6 +35,11 @@
 		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
+		ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */; };
+		ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */; };
+		ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */; };
+		ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51E1AC09FEE009B74EE /* FDPopup.m */; };
+		ED58E5221AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
@@ -113,6 +118,15 @@
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
+		ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoveTrackableView.xib; sourceTree = "<group>"; };
+		ED58E5141AC09B88009B74EE /* FDRemoveTrackableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRemoveTrackableView.h; sourceTree = "<group>"; };
+		ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRemoveTrackableView.m; sourceTree = "<group>"; };
+		ED58E51A1AC09C3B009B74EE /* FDPopupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPopupManager.h; sourceTree = "<group>"; };
+		ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPopupManager.m; sourceTree = "<group>"; };
+		ED58E51D1AC09FEE009B74EE /* FDPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPopup.h; sourceTree = "<group>"; };
+		ED58E51E1AC09FEE009B74EE /* FDPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPopup.m; sourceTree = "<group>"; };
+		ED58E5201AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEmbeddedSelectListViewController.h; sourceTree = "<group>"; };
+		ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEmbeddedSelectListViewController.m; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -284,6 +298,10 @@
 				42F309301AB463850046E900 /* FDHashtagTextView.m */,
 				42F309341AB4694F0046E900 /* FDHashtagHighlightTextStorage.h */,
 				42F309351AB4694F0046E900 /* FDHashtagHighlightTextStorage.m */,
+				ED58E5141AC09B88009B74EE /* FDRemoveTrackableView.h */,
+				ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */,
+				ED58E51D1AC09FEE009B74EE /* FDPopup.h */,
+				ED58E51E1AC09FEE009B74EE /* FDPopup.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -330,6 +348,7 @@
 				EDEB41C91A7B2A58007C67C4 /* AlarmView.xib */,
 				EDD802A31A804CB900464D24 /* AddTreatmentView.xib */,
 				ED31E4831A888262008306F3 /* EditTreatmentView.xib */,
+				ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -341,6 +360,8 @@
 				10EED0B519E4A70A000464DD /* FDNetworkManager.m */,
 				EDDC724F1A08441E0059815A /* FDModelManager.h */,
 				EDDC72501A08441E0059815A /* FDModelManager.m */,
+				ED58E51A1AC09C3B009B74EE /* FDPopupManager.h */,
+				ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -358,6 +379,8 @@
 				101CA09619DE3D6A00173AAF /* FDNotesViewController.m */,
 				EDE98DEA1A9273ED0074F189 /* FDSearchTableViewController.h */,
 				EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */,
+				ED58E5201AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.h */,
+				ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -498,6 +521,7 @@
 			files = (
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
+				ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
 				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
@@ -594,6 +618,8 @@
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
 				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
+				ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */,
+				ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
 				EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
@@ -601,6 +627,7 @@
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,
 				EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */,
 				EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */,
+				ED58E5221AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m in Sources */,
 				10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */,
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
@@ -609,6 +636,7 @@
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
 				1013943319DA0BD200BBB266 /* FDNumberViewController.m in Sources */,
+				ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */,
 				EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */,
 				101393F819D2432000BBB266 /* FDSelectListViewController.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,

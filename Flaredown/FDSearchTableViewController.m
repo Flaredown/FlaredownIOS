@@ -277,18 +277,12 @@
 
 - (IBAction)closeSearch:(id)sender
 {
-    [_contentViewDelegate editList];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)closeSearchWithTreatment:(FDTreatment *)treatment
 {
-    [_contentViewDelegate editList];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        if(_searchType == SearchTreatments) {
-            [_contentViewDelegate addTreatmentPopupWithTreatment:treatment];
-        }
-    }];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(UITableViewCell *)parentCellForView:(id)theView

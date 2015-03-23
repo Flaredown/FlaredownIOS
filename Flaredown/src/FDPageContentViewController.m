@@ -14,10 +14,12 @@
 #import <MJPopupViewController/UIViewController+MJPopupViewController.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FDStyle.h"
+#import "FDEmbeddedSelectListViewController.h"
+#import "FDPopupManager.h"
 
-//Ratio of popup : container view (this)
-#define POPUP_SIZE_WIDTH 1
-#define POPUP_SIZE_HEIGHT 1
+//Ratio of popup : window
+#define POPUP_SIZE_WIDTH .9
+#define POPUP_SIZE_HEIGHT .7
 
 @interface FDPageContentViewController ()
 
@@ -29,6 +31,8 @@
     [super viewDidLoad];
     
     //Style
+    self.view.layer.masksToBounds = YES;
+//    self.view.clipsToBounds = NO;
     [FDStyle addRoundedCornersToView:self.view];
     [FDStyle addShadowToView:self.view];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
@@ -52,8 +56,6 @@
             self.editSegueTreatments = YES;
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Treatments", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-//            self.providesPresentationContextTransitionStyle = YES;
-//            self.definesPresentationContext = YES;
         } else if(_pageIndex == numSections + 1 || _pageIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
@@ -68,8 +70,6 @@
             self.editSegueTreatments = NO;
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-//            self.providesPresentationContextTransitionStyle = YES;
-//            self.definesPresentationContext = YES;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Check any complications:", nil)];
@@ -81,7 +81,6 @@
         }else {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"What is your current level of %@?", nil), [question name]];
-//                self.titleLabel.text = [question name];
             [self.secondaryTitleButton setTitle:@"Research Questions" forState:UIControlStateNormal];
         }
     }
@@ -116,38 +115,41 @@
 - (void)editList
 {
     //The popup is dependent on _parentViewController being set properly (check MJPopupViewController library). When coming back from search, this value hasn't been set yet since this method is called via delegate from search's viewDidDisappear, so manually setting it fixes the issue.
-    if([self valueForKey:@"_parentViewController"] == nil)
-        [self setValue:(FDViewController *)[_mainViewDelegate instance] forKey:@"_parentViewController"];
+//    if([self valueForKey:@"_parentViewController"] == nil)
+//        [self setValue:(FDViewController *)[_mainViewDelegate instance] forKey:@"_parentViewController"];
     
-    //TODO: Try moving this popup's control to FDViewController, seems cleaner
-//    FDSelectListViewController *listController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"];
-    FDSelectListViewController *listController = (__bridge FDSelectListViewController *)(CFRetain((__bridge CFTypeRef)([self.storyboard instantiateViewControllerWithIdentifier:@"FDSelectListViewController"])));
-    listController.mainViewDelegate = _mainViewDelegate;
-    listController.contentViewDelegate = self;
+    FDEmbeddedSelectListViewController *containerController = (FDEmbeddedSelectListViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"FDEmbeddedSelectListViewController"];
     
     //Style
-    float popupWidth = self.view.frame.size.width*POPUP_SIZE_WIDTH;
-    float popupX = self.view.frame.size.width/2-popupWidth/2;
-    float popupHeight = self.view.frame.size.height*POPUP_SIZE_HEIGHT;
-    float popupY = self.view.frame.size.height/2-popupHeight/2;
+    float popupWidth = self.view.window.frame.size.width*POPUP_SIZE_WIDTH;
+    float popupX = self.view.window.frame.size.width/2-popupWidth/2;
+    float popupHeight = self.view.window.frame.size.height*POPUP_SIZE_HEIGHT;
+    float popupY = self.view.window.frame.size.height/2-popupHeight/2;
     
-    listController.view.frame = CGRectMake(popupX, popupY, popupWidth, popupHeight);
-    [FDStyle addRoundedCornersToView:listController.view];
+    [containerController.view setFrame:CGRectMake(popupX, popupY, popupWidth, popupHeight)];
+    containerController.view.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:containerController.view];
     
-    [[_mainViewDelegate instance] presentPopupViewController:listController animationType:MJPopupViewAnimationFade];
+    [containerController updateViewConstraints];
+    
+    FDSelectListViewController *listController = containerController.listController;
+    listController.mainViewDelegate = _mainViewDelegate;
+    listController.contentViewDelegate = self;
+    _popupController = listController;
+    
     listController.dynamic = YES;
     if(_editSegueTreatments) {
         [listController initWithTreatments];
     } else {
         [listController initWithSymptoms];
     }
-    _popupController = listController;
+    
+    [[FDPopupManager sharedManager] addPopupView:containerController.view withViewController:containerController];
 }
 
 - (void)closeEditList
 {
     [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-//    _popupController = nil;
 }
 
 - (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment

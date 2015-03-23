@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ProximaNova-Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FDSelectListViewController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FDRemoveTrackableView">
+            <rect key="frame" x="0.0" y="0.0" width="298" height="220"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-4m-paE">
+                    <rect key="frame" x="0.0" y="0.0" width="298" height="220"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No longer tracking Trackable Name?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91T-xR-Jhv">
+                            <rect key="frame" x="30" y="35" width="238" height="67"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="238" id="Qzc-KJ-uBa"/>
+                                <constraint firstAttribute="height" constant="67" id="Tmf-pT-vpg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="28"/>
+                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Qzc-KJ-uBa"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xc-cL-6hA">
+                            <rect key="frame" x="27" y="162" width="244" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="03j-f7-dBe"/>
+                                <constraint firstAttribute="width" constant="244" id="YTd-Iv-F4F"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="03j-f7-dBe"/>
+                                    <exclude reference="YTd-Iv-F4F"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="closePopupView:" destination="-1" eventType="touchUpInside" id="P1m-p0-8gn"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ter-Co-ibQ">
+                            <rect key="frame" x="27" y="110" width="244" height="44"/>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.65098039215686276" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="5So-i8-2LL"/>
+                                <constraint firstAttribute="width" constant="244" id="Qng-RE-3xL"/>
+                                <constraint firstAttribute="width" constant="244" id="Ucq-r0-vro"/>
+                                <constraint firstAttribute="height" constant="44" id="vOt-Ns-zIL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                            <state key="normal" title="Remove Trackable">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="5So-i8-2LL"/>
+                                    <exclude reference="Ucq-r0-vro"/>
+                                </mask>
+                            </variation>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ter-Co-ibQ" firstAttribute="top" secondItem="91T-xR-Jhv" secondAttribute="bottom" constant="8" id="12O-JX-3Yk"/>
+                        <constraint firstItem="ter-Co-ibQ" firstAttribute="trailing" secondItem="1xc-cL-6hA" secondAttribute="trailing" id="9yw-Qg-pAY"/>
+                        <constraint firstItem="ter-Co-ibQ" firstAttribute="leading" secondItem="1xc-cL-6hA" secondAttribute="leading" id="JMr-HZ-dVi"/>
+                        <constraint firstItem="91T-xR-Jhv" firstAttribute="leading" secondItem="ter-Co-ibQ" secondAttribute="leading" constant="3" id="Ji8-LS-C2Y"/>
+                        <constraint firstItem="91T-xR-Jhv" firstAttribute="top" secondItem="gsQ-4m-paE" secondAttribute="top" constant="35" id="LAG-VD-rIT"/>
+                        <constraint firstAttribute="centerY" secondItem="ter-Co-ibQ" secondAttribute="centerY" constant="-22" id="OtN-NK-sI2"/>
+                        <constraint firstItem="1xc-cL-6hA" firstAttribute="top" secondItem="ter-Co-ibQ" secondAttribute="bottom" constant="8" id="SYa-2g-CQs"/>
+                        <constraint firstItem="91T-xR-Jhv" firstAttribute="trailing" secondItem="ter-Co-ibQ" secondAttribute="trailing" constant="-3" id="T9b-tI-mk5"/>
+                        <constraint firstItem="1xc-cL-6hA" firstAttribute="top" secondItem="ter-Co-ibQ" secondAttribute="bottom" constant="8" id="bJo-oy-OWB"/>
+                        <constraint firstItem="ter-Co-ibQ" firstAttribute="top" secondItem="91T-xR-Jhv" secondAttribute="bottom" constant="16" id="ech-Uw-Wjr"/>
+                        <constraint firstAttribute="centerY" secondItem="ter-Co-ibQ" secondAttribute="centerY" constant="-13" id="lvh-de-NdZ"/>
+                        <constraint firstAttribute="centerY" secondItem="ter-Co-ibQ" secondAttribute="centerY" constant="-22" id="mDI-mZ-Efy"/>
+                        <constraint firstItem="91T-xR-Jhv" firstAttribute="trailing" secondItem="ter-Co-ibQ" secondAttribute="trailing" constant="-3" id="maE-si-lDr"/>
+                        <constraint firstItem="91T-xR-Jhv" firstAttribute="leading" secondItem="ter-Co-ibQ" secondAttribute="leading" constant="3" id="qfe-bJ-oaY"/>
+                        <constraint firstAttribute="centerX" secondItem="ter-Co-ibQ" secondAttribute="centerX" id="uc2-pn-PSj"/>
+                        <constraint firstAttribute="centerX" secondItem="ter-Co-ibQ" secondAttribute="centerX" id="vRz-wf-ni2"/>
+                        <constraint firstItem="ter-Co-ibQ" firstAttribute="height" secondItem="1xc-cL-6hA" secondAttribute="height" id="vTA-Ct-1oq"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="LAG-VD-rIT"/>
+                            <exclude reference="maE-si-lDr"/>
+                            <exclude reference="qfe-bJ-oaY"/>
+                            <exclude reference="ech-Uw-Wjr"/>
+                            <exclude reference="lvh-de-NdZ"/>
+                            <exclude reference="mDI-mZ-Efy"/>
+                            <exclude reference="uc2-pn-PSj"/>
+                            <exclude reference="bJo-oy-OWB"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gsQ-4m-paE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QCW-eN-Tna"/>
+                <constraint firstAttribute="bottom" secondItem="gsQ-4m-paE" secondAttribute="bottom" id="dlg-7K-WqO"/>
+                <constraint firstAttribute="trailing" secondItem="gsQ-4m-paE" secondAttribute="trailing" id="jA8-p8-RkH"/>
+                <constraint firstItem="gsQ-4m-paE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tFh-dp-RzG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelButton" destination="1xc-cL-6hA" id="ZOG-v6-FPe"/>
+                <outlet property="removeButton" destination="ter-Co-ibQ" id="z17-Y6-shy"/>
+                <outlet property="titleLabel" destination="91T-xR-Jhv" id="zP5-Nq-eQ3"/>
+            </connections>
+        </view>
+    </objects>
+</document>
