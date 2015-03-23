@@ -14,7 +14,7 @@
 
 //relative to screen
 #define ALARM_WIDTH 0.9
-#define ALARM_HEIGHT 0.6
+#define ALARM_HEIGHT 0.55
 
 @interface FDLaunchViewController ()
 
@@ -116,6 +116,7 @@
     [self.view addSubview:alarmView];
     
     //Style
+    alarmView.layer.masksToBounds = YES;
     [FDStyle addRoundedCornersToView:alarmView];
     
     _alarmView = alarmView;
@@ -128,6 +129,10 @@
     //Reminder Time - 2
     UIDatePicker *datePicker = (UIDatePicker *)[alarmView viewWithTag:2];
     [datePicker setDate:[[FDModelManager sharedManager] reminderTime]];
+    if(_reminderOn)
+        [datePicker setAlpha:1.0f];
+    else
+        [datePicker setAlpha:0.4f];
     _reminderTime = [[FDModelManager sharedManager] reminderTime];
     
     UIUserNotificationType types = UIUserNotificationTypeBadge |
@@ -147,6 +152,13 @@
 - (IBAction)toggleReminder:(UISwitch *)sender
 {
     _reminderOn = sender.on;
+    
+    //Reminder Time - 2
+    UIDatePicker *datePicker = (UIDatePicker *)[_alarmView viewWithTag:2];
+    if(_reminderOn)
+        [datePicker setAlpha:1.0f];
+    else
+        [datePicker setAlpha:0.4f];
 }
 
 - (IBAction)alarmDateChanged:(UIDatePicker *)sender
