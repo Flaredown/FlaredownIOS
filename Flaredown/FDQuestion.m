@@ -10,6 +10,7 @@
 #import "FDInput.h"
 #import "FDSymptom.h"
 #import "FDTreatment.h"
+#import "FDCondition.h"
 
 @implementation FDQuestion
 
@@ -54,6 +55,29 @@
         _inputs = [inputs copy];
         _kind = @"select";
         _name = [symptom name];
+        _section = section;
+    }
+    return self;
+}
+
+- (id)initWithCondition:(FDCondition *)condition section:(NSInteger)section
+{
+    self = [super init];
+    if(self) {
+        _catalog = @"conditions";
+        NSMutableArray *inputs = [[NSMutableArray alloc] init];
+        //default inputs
+        for(int i = 0; i < 5; i++) {
+            [inputs addObject:[[FDInput alloc] initWithDictionary:@{
+                                                                    @"helper":[NSNull null],
+                                                                    @"label":@"",
+                                                                    @"meta_label":@"",
+                                                                    @"value":[NSNumber numberWithInt:i]
+                                                                    }]];
+        }
+        _inputs = [inputs copy];
+        _kind = @"select";
+        _name = [condition name];
         _section = section;
     }
     return self;

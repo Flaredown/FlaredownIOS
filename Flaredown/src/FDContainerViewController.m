@@ -22,19 +22,24 @@
     [super viewDidLoad];
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
-    if(self.pageIndex >= numSections) {
-        if(self.pageIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+    int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
+    
+    if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
+        //Add conditions
+        self.currentSegueIdentifier = SegueIdentifierSelectListView;
+    } else if(offsetIndex >= numSections) {
+        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
-        } else if(self.pageIndex == numSections || (_pageIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
+        } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
-        } else if(self.pageIndex == numSections + 1 || self.pageIndex == numSections + 2) {
+        } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             self.currentSegueIdentifier = SegueIdentifierNotesView;
         }
     } else {
-        NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:self.pageIndex][0] kind];
+        NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:offsetIndex][0] kind];
         
         if([pageType isEqualToString:@"select"]) {
             self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
@@ -76,26 +81,37 @@
     }
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
-    if(self.pageIndex >= numSections) {
-        if(self.pageIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+    int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
+    
+    if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
+        //Add conditions
+        pageType = @"checkbox";
+        FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+        //send empty array so you only get the add button
+        [listVC initWithQuestions:[@[] mutableCopy]];
+        listVC.mainViewDelegate = _mainViewDelegate;
+        listVC.listType = ListTypeConditions;
+    } else if(offsetIndex >= numSections) {
+        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             pageType = @"checkbox";
             FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
             //send empty array so you only get the add button
             [listVC initWithQuestions:[@[] mutableCopy]];
             listVC.mainViewDelegate = _mainViewDelegate;
-        } else if(self.pageIndex == numSections || (_pageIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
+            listVC.listType = ListTypeSymptoms;
+        } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
             pageType = @"checkbox";
             FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
             [listVC initWithTreatments];
             listVC.mainViewDelegate = _mainViewDelegate;
-        } else if(self.pageIndex == numSections + 1 || self.pageIndex == numSections + 2) {
+        } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             pageType = @"notes";
         }
     } else {
-        NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:self.pageIndex];
+        NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:offsetIndex];
         pageType = [questions[0] kind];
         
         if([pageType isEqualToString:@"checkbox"]) {

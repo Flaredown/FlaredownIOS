@@ -14,6 +14,7 @@
 #import "FDResponse.h"
 #import "FDSymptom.h"
 #import "FDTreatment.h"
+#import "FDCondition.h"
 
 @interface FDModelManager : NSObject
 
@@ -27,6 +28,7 @@
 - (NSMutableArray *)questionsForSection:(int)section;
 - (int)numberOfQuestionSections;
 - (NSMutableArray *)symptoms;
+- (NSMutableArray *)conditions;
 
 - (BOOL)reminder;
 - (void)setReminder:(BOOL)reminder;

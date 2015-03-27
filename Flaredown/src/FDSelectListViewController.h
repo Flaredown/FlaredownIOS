@@ -10,6 +10,12 @@
 #import "FDPageContentViewController.h"
 @class FDTreatment;
 
+typedef enum : NSUInteger {
+    ListTypeSymptoms,
+    ListTypeTreatments,
+    ListTypeConditions
+} ListType;
+
 @interface FDSelectListViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
@@ -17,12 +23,12 @@
 
 @property NSMutableArray *questions;
 @property NSArray *masterSymptoms;
+@property NSArray *masterConditions;
 @property NSArray *masterTreatments;
 @property NSMutableArray *responses;
 @property NSMutableArray *selectedItems;
 @property BOOL dynamic;
-@property BOOL editSymptoms;
-@property BOOL treatments;
+@property ListType listType;
 @property int removeIndex;
 
 //@property UIView *backgroundView;
@@ -40,6 +46,7 @@
 - (void)initWithQuestions:(NSMutableArray *)questions;
 - (void)initWithTreatments;
 - (void)initWithSymptoms;
+- (void)initWithConditions;
 
 - (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment;
 

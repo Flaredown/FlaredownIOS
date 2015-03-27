@@ -41,35 +41,53 @@
     
     NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     
-    if(_pageIndex >= numSections) {
-        if(_pageIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+    int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
+    
+    if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
+        //Add conditions
+        self.titleLabel.text = NSLocalizedString(@"You are not tracking any conditions", nil);
+        [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Conditions", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+        [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+
+        _editSegueType = EditSegueConditions;
+    } else if(offsetIndex >= numSections) {
+        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             self.titleLabel.text = NSLocalizedString(@"You are not tracking any symptoms", nil);
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-        } else if(_pageIndex == numSections || (_pageIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
+            
+            _editSegueType = EditSegueSymptoms;
+        } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
             //Treatments
             if([[[FDModelManager sharedManager] entry] treatments].count == 0)
                 self.titleLabel.text = NSLocalizedString(@"You are not tracking any treatments", nil);
             else
                 self.titleLabel.text = NSLocalizedString(@"Which treatments did you take?", nil);
-            self.editSegueTreatments = YES;
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Treatments", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-        } else if(_pageIndex == numSections + 1 || _pageIndex == numSections + 2) {
+            
+            _editSegueType = EditSegueTreatments;
+        } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
             self.titleLabel.text = NSLocalizedString(@"Leave a note", nil);
         }
     } else {
-        FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:_pageIndex][0];
+        FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
         
         if([[question catalog] isEqualToString:@"symptoms"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
-            self.editSegueTreatments = NO;
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            _editSegueType = EditSegueSymptoms;
+        } else if([[question catalog] isEqualToString:@"conditions"]) {
+            if(![[NSNull null] isEqual:[question name]])
+                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Conditions", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            _editSegueType = EditSegueConditions;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Check any complications:", nil)];
@@ -138,10 +156,12 @@
     _popupController = listController;
     
     listController.dynamic = YES;
-    if(_editSegueTreatments) {
+    if(_editSegueType == EditSegueTreatments) {
         [listController initWithTreatments];
-    } else {
+    } else if(_editSegueType == EditSegueSymptoms) {
         [listController initWithSymptoms];
+    } else if(_editSegueType == EditSegueConditions) {
+        [listController initWithConditions];
     }
     
     [[FDPopupManager sharedManager] addPopupView:containerController.view withViewController:containerController];
@@ -177,10 +197,12 @@
         dvc.contentViewDelegate = self;
         [dvc setModalPresentationStyle:UIModalPresentationPopover];
         dvc.dynamic = YES;
-        if(_editSegueTreatments) {
+        if(_editSegueType == EditSegueTreatments) {
             [dvc initWithTreatments];
-        } else {
+        } else if(_editSegueType == EditSegueSymptoms) {
             [dvc initWithSymptoms];
+        } else if(_editSegueType == EditSegueConditions) {
+            [dvc initWithConditions];
         }
     } else if([segue.identifier isEqualToString:SearchSegueIdentifier]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;

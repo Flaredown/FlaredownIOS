@@ -143,6 +143,24 @@ static NSString *api = @"/v1";
     
 }
 
+- (void)createConditionWithName:(NSString *)conditionName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/conditions", self.baseUrl];
+    
+    NSDictionary *parameters = @{@"name":conditionName, @"user_email":email, @"user_token":authenticationToken};
+    
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completionBlock(true, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        completionBlock(false, nil);
+    }];
+    
+}
+
 - (void)searchTrackables:(NSString *)searchText type:(NSString *)type email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -152,6 +170,8 @@ static NSString *api = @"/v1";
         url = [NSString stringWithFormat:@"%@/symptoms/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     } else if([type isEqualToString:@"treatments"]) {
         url = [NSString stringWithFormat:@"%@/treatments/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    } else if([type isEqualToString:@"conditions"]) {
+        url = [NSString stringWithFormat:@"%@/conditions/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     } else {
         NSLog(@"Invalid search type in searchTrackables method of FDNetworkManager");
         completionBlock(false, nil);

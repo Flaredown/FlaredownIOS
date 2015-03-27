@@ -19,7 +19,7 @@
     if(self) {
         _entryId = [dictionary objectForKey:@"id"];
         _date = [dictionary objectForKey:@"date"];
-        _catalogs = [dictionary objectForKey:@"catalogs"];
+        _catalogs = [[dictionary objectForKey:@"catalogs"] mutableCopy];
         
         _questions = [[NSMutableArray alloc] init];
         int section = 0;
@@ -114,6 +114,9 @@
         [_questions[i] setSection:[_questions[i] section]+1];
     }
     [_questions insertObject:question atIndex:index];
+    
+    if(![_catalogs containsObject:[question catalog]])
+        [_catalogs addObject:[question catalog]];
     
     //New response
     FDResponse *response = [[FDResponse alloc] initWithEntry:self question:question];

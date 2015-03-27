@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class FDInput;
 @class FDSymptom;
+@class FDCondition;
 
 @interface FDQuestion : NSObject
 
@@ -24,6 +25,7 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary catalog:(NSString *)catalog section:(NSInteger)section;
 - (id)initWithSymptom:(FDSymptom *)symptom section:(NSInteger)section;
+- (id)initWithCondition:(FDCondition *)condition section:(NSInteger)section;
 - (NSDictionary *)dictionaryCopy;
 
 @end

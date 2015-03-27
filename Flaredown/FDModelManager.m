@@ -64,6 +64,17 @@ static NSString *inputsSessionLocation = @"inputs";
     return mutableQuestions;
 }
 
+- (NSMutableArray *)conditions
+{
+    NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
+    for(FDQuestion *question in [_entry questions]) {
+        if([[question catalog] isEqualToString:@"conditions"]) {
+            [mutableQuestions addObject:question];
+        }
+    }
+    return mutableQuestions;
+}
+
 - (BOOL)reminder
 {
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"checkin_reminder"])

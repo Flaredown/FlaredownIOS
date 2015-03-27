@@ -15,7 +15,7 @@
 
 @property NSString *entryId;
 @property NSString *date;
-@property NSArray *catalogs;
+@property NSMutableArray *catalogs;
 @property NSMutableArray *questions;
 @property NSString *notes;
 @property NSMutableArray *responses;

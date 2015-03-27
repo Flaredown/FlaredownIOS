@@ -24,6 +24,8 @@
         [self setTitle:@"Add Symptom"];
     } else if(_searchType == SearchTreatments) {
         [self setTitle:@"Add Treatment"];
+    } else if(_searchType == SearchConditions) {
+        [self setTitle:@"Add Condition"];
     }
     
     _results = [[NSMutableArray alloc] init];
@@ -61,6 +63,8 @@
         searchType = @"symptoms";
     else if(_searchType == SearchTreatments)
         searchType = @"treatments";
+    else if(_searchType == SearchConditions)
+        searchType = @"conditions";
     
     [[FDNetworkManager sharedManager] searchTrackables:_searchText type:searchType email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         
@@ -267,6 +271,66 @@
                 
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
                                             message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
+                                           delegate:nil
+                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  otherButtonTitles:nil] show];
+            }
+        }];
+    } else if(_searchType == SearchConditions) {
+        
+        //TODO: Conditions
+        NSInteger indexToAdd = 0;
+        NSInteger sectionToAdd = 0;
+        if([entry questionsForCatalog:@"conditions"].count > 0) {
+            indexToAdd = [questions indexOfObject:[entry questionsForCatalog:@"conditions"][[entry questionsForCatalog:@"conditions"].count-1]]+1;
+            sectionToAdd = [[questions objectAtIndex:indexToAdd-1] section]+1;
+        }
+        
+        for(FDQuestion *question in [entry questions]) {
+            if([[question catalog] isEqualToString:@"conditions"]
+               && [[question name] isEqualToString:title]) {
+                [self closeSearch:sender];
+                return;
+            };
+        }
+        
+        for (FDCondition *userCondition in [user conditions]) {
+            if([[userCondition name] isEqualToString:title]) {
+                FDQuestion *newQuestion = [[FDQuestion alloc] initWithCondition:userCondition section:sectionToAdd];
+                [entry insertQuestion:newQuestion atIndex:indexToAdd];
+                
+                FDResponse *response = [[FDResponse alloc] initWithEntry:entry question:newQuestion];
+                if(![entry responseForId:[response responseId]]) {
+                    [[[FDModelManager sharedManager] entry] insertResponse:response];
+                }
+                
+                [self closeSearch:sender];
+                return;
+            }
+        }
+        
+        //Check the new symptom against the API for validation
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        FDUser *user = [[FDModelManager sharedManager] userObject];
+        [[FDNetworkManager sharedManager] createConditionWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            if(success) {
+                NSLog(@"Success!");
+                
+                FDCondition *newCondition = [[FDCondition alloc] initWithTitle:title entry:entry];
+                FDQuestion *newQuestion = [[FDQuestion alloc] initWithCondition:newCondition section:sectionToAdd];
+                [entry insertQuestion:newQuestion atIndex:indexToAdd];
+                
+                [self closeSearch:sender];
+            }
+            else {
+                NSLog(@"Failure!");
+                
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating condition", nil)
+                                            message:NSLocalizedString(@"Looks like there was an issue creating the new condition; please check the condition name and try again.", nil)
                                            delegate:nil
                                   cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                   otherButtonTitles:nil] show];

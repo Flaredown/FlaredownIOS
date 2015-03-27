@@ -43,6 +43,7 @@
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
+		EDD172C21AC47F4300820C4C /* FDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD172C11AC47F4300820C4C /* FDCondition.m */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
@@ -135,6 +136,8 @@
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDBA0E221ABC95B5001F165F /* FDStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStyle.h; sourceTree = "<group>"; };
 		EDBA0E231ABC95B5001F165F /* FDStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStyle.m; sourceTree = "<group>"; };
+		EDD172C01AC47F4300820C4C /* FDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCondition.h; sourceTree = "<group>"; };
+		EDD172C11AC47F4300820C4C /* FDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCondition.m; sourceTree = "<group>"; };
 		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
 		EDDC724C1A083ABF0059815A /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = src/FDUser.h; sourceTree = "<group>"; };
 		EDDC724D1A083ABF0059815A /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUser.m; path = src/FDUser.m; sourceTree = "<group>"; };
@@ -428,6 +431,8 @@
 				EDEBC6A91A424907007742C5 /* FDTreatment.m */,
 				ED2853C61A6C2043002D95E6 /* FDSymptom.h */,
 				ED2853C71A6C2043002D95E6 /* FDSymptom.m */,
+				EDD172C01AC47F4300820C4C /* FDCondition.h */,
+				EDD172C11AC47F4300820C4C /* FDCondition.m */,
 				EDE98DED1A9545400074F189 /* FDTrackableResult.h */,
 				EDE98DEE1A9545400074F189 /* FDTrackableResult.m */,
 			);
@@ -636,6 +641,7 @@
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
 				1013943319DA0BD200BBB266 /* FDNumberViewController.m in Sources */,
+				EDD172C21AC47F4300820C4C /* FDCondition.m in Sources */,
 				ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */,
 				EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */,
 				101393F819D2432000BBB266 /* FDSelectListViewController.m in Sources */,

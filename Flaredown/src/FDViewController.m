@@ -79,6 +79,9 @@
     if([[FDModelManager sharedManager] symptoms].count == 0) { //Add symptom page
         self.numPages++;
     }
+    if([[FDModelManager sharedManager] conditions].count == 0) { //ADd condition page
+        self.numPages++;
+    }
     
     FDPageContentViewController *startingViewController = [self viewControllerAtIndex:self.pageIndex];
     startingViewController.mainViewDelegate = self;
@@ -207,6 +210,8 @@
             searchViewController.searchType = SearchSymptoms;
         else if([_searchType isEqualToString:@"treatments"])
             searchViewController.searchType = SearchTreatments;
+        else if([_searchType isEqualToString:@"conditions"])
+            searchViewController.searchType = SearchConditions;
     }
 }
 

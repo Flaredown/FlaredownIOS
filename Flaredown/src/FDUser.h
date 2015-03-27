@@ -18,6 +18,7 @@
 
 @property NSMutableArray *treatments;
 @property NSMutableArray *symptoms;
+@property NSMutableArray *conditions;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionaryCopy;

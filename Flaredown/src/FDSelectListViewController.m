@@ -59,7 +59,7 @@
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     self.questions = [entry treatments];
-    self.treatments = YES;
+    _listType = ListTypeTreatments;
 }
 
 - (void)initWithSymptoms
@@ -67,7 +67,15 @@
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     self.questions = (NSMutableArray *)[entry questionsForCatalog:@"symptoms"];
     self.masterSymptoms = [[[FDModelManager sharedManager] userObject] symptoms];
-    self.editSymptoms = YES;
+    _listType = ListTypeSymptoms;
+}
+
+- (void)initWithConditions
+{
+    FDEntry *entry = [[FDModelManager sharedManager] entry];
+    self.questions = (NSMutableArray *)[entry questionsForCatalog:@"conditions"];
+    self.masterConditions = [[[FDModelManager sharedManager] userObject] conditions];
+    _listType = ListTypeConditions;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -90,7 +98,7 @@
     UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
-    if(_treatments) {
+    if(_listType == ListTypeTreatments) {
         FDTreatment *treatment = [self.questions objectAtIndex:[indexPath row]];
         if([treatment taken]) {
             [self.selectedItems removeObject:indexPath];
@@ -99,7 +107,7 @@
             [self.selectedItems addObject:indexPath];
             [treatment setTaken:YES];
         }
-    } else {
+    } else if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
         FDResponse *response = [self.responses objectAtIndex:[indexPath row]];
         if([response value] == 1) {
             [self.selectedItems removeObject:indexPath];
@@ -152,10 +160,12 @@
  */
 - (IBAction)addItemButton:(id)sender
 {
-    if(!_treatments) {
+    if(_listType == ListTypeSymptoms) {
         [self openSymptomSearch:sender];
-    } else {
-        
+    } else if(_listType == ListTypeConditions) {
+        [self openConditionSearch:sender];
+    } else if(_listType == ListTypeTreatments) {
+    
         UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"AddTreatmentView" owner:self options:nil] objectAtIndex:0];
         [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
         popupView.layer.masksToBounds = YES;
@@ -181,6 +191,11 @@
 - (IBAction)openSymptomSearch:(id)sender
 {
     [_mainViewDelegate openSearch:@"symptoms"];
+}
+
+- (IBAction)openConditionSearch:(id)sender
+{
+    [_mainViewDelegate openSearch:@"conditions"];
 }
 
 - (IBAction)openTreatmentSearch:(id)sender
@@ -274,7 +289,7 @@
  */
 - (void)addListItem:(NSString *)title
 {
-    if(_treatments) {
+    if(_listType == ListTypeTreatments) {
         FDEntry *entry = [[FDModelManager sharedManager] entry];
         BOOL found = NO;
         for (FDTreatment *treatment in self.masterTreatments) {
@@ -323,7 +338,7 @@
  */
 - (void)removeListItem
 {
-    if(self.editSymptoms) {
+    if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
         FDEntry *entry = [[FDModelManager sharedManager] entry];
         
         FDQuestion *question = self.questions[self.removeIndex];
@@ -336,7 +351,7 @@
         
         [self.tableView reloadData];
         
-    } else if(_treatments) {
+    } else if(_listType == ListTypeTreatments) {
         FDEntry *entry = [[FDModelManager sharedManager] entry];
         
         FDTreatment *treatment = self.questions[self.removeIndex];
@@ -377,7 +392,7 @@
         return [self.questions count] + 1 + 1 + 1; //questions + add + done + title
     else if(_questions.count == 0)
         return 1;
-    if(_treatments)
+    if(_listType == ListTypeTreatments)
         return [self.questions count];
     return [self.responses count];
 }
@@ -392,10 +407,12 @@
             
             //1 title
             UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
-            if(_editSymptoms)
+            if(_listType == ListTypeSymptoms)
                 [titleLabel setText:NSLocalizedString(@"Edit Symptoms", nil)];
-            else
+            else if(_listType == ListTypeTreatments)
                 [titleLabel setText:NSLocalizedString(@"Edit Treatments", nil)];
+            else if(_listType == ListTypeConditions)
+                [titleLabel setText:NSLocalizedString(@"Edit Conditions", nil)];
             
         } else if([indexPath row] == self.questions.count + 2) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
@@ -407,7 +424,7 @@
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
             
-            if(_treatments) {
+            if(_listType == ListTypeTreatments) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
@@ -443,10 +460,12 @@
             
             //1 Add button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
-            if(_treatments)
+            if(_listType == ListTypeTreatments)
                 [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
-            else
+            else if(_listType == ListTypeSymptoms)
                 [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
+            else if(_listType == ListTypeConditions)
+                [button setTitle:NSLocalizedString(@"+ Add Condition", nil) forState:UIControlStateNormal];
         }
     } else if(_questions.count == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
@@ -454,12 +473,15 @@
         //1 Add button
         UIButton *button = (UIButton *)[cell viewWithTag:1];
             
-        if(_treatments) {
+        if(_listType == ListTypeTreatments) {
             [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
             [button addTarget:self action:@selector(openTreatmentSearch:) forControlEvents:UIControlEventTouchUpInside];
-        }else{
+        } else if(_listType == ListTypeSymptoms) {
             [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
             [button addTarget:self action:@selector(openSymptomSearch:) forControlEvents:UIControlEventTouchUpInside];
+        } else if(_listType == ListTypeConditions) {
+            [button setTitle:NSLocalizedString(@"+ Add Condition", nil) forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(openConditionSearch:) forControlEvents:UIControlEventTouchUpInside];
         }
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
@@ -468,7 +490,7 @@
         //Style
         [FDStyle addCellRoundedCornersToView:button];
         
-        if(_treatments) {
+        if(_listType == ListTypeTreatments) {
             //List button
             FDTreatment *treatment = self.questions[[indexPath row]];
             [button setTitle:[NSString stringWithFormat:@"%@ - %.02f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
@@ -478,7 +500,7 @@
             } else {
                 [self deselectButton:button];
             }
-        } else {
+        } else if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
             
             //List button
             FDQuestion *question = self.questions[[indexPath row]];
@@ -511,7 +533,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(_treatments && _dynamic)
+    if(_listType == ListTypeTreatments && _dynamic)
         return 90;
     return 50;
 }

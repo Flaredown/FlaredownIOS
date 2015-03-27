@@ -9,6 +9,7 @@
 #import "FDUser.h"
 #import "FDTreatment.h"
 #import "FDSymptom.h"
+#import "FDCondition.h"
 
 @implementation FDUser
 
@@ -42,6 +43,16 @@
                     [_symptoms addObject:[[FDSymptom alloc] initWithDictionary:symptom]];
             }
         }
+        _conditions = [[NSMutableArray alloc] init];
+        NSArray *conditionsMaster = [dictionary objectForKey:@"conditions"];
+        NSArray *conditionIds = [userDictionary objectForKey:@"condition_ids"];
+        for(int i = 0; i < conditionIds.count; i++) {
+            NSInteger conditionId = (NSInteger)conditionIds[i];
+            for (NSDictionary *condition in conditionsMaster) {
+                if((NSInteger)[condition objectForKey:@"id"] == conditionId)
+                    [_conditions addObject:[[FDCondition alloc] initWithDictionary:condition]];
+            }
+        }
     }
     return self;
 }
@@ -56,6 +67,10 @@
     for (FDSymptom *symptom in _symptoms) {
         [mutableSymptoms addObject:[symptom dictionaryCopy]];
     }
+    NSMutableArray *mutableConditions = [[NSMutableArray alloc] init];
+    for (FDCondition *condition in _conditions) {
+        [mutableConditions addObject:[condition dictionaryCopy]];
+    }
     return @{
              @"user":@{
                      @"id":[NSNumber numberWithInteger:_userId],
@@ -63,7 +78,8 @@
                      @"authentication_token":_authenticationToken
                      },
              @"treatments":mutableTreatments,
-             @"symptoms":mutableSymptoms
+             @"symptoms":mutableSymptoms,
+             @"conditions":mutableConditions
              };
 }
 

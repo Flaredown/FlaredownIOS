@@ -14,6 +14,12 @@
 #define EditListSegueIdentifier @"editList"
 #define SearchSegueIdentifier @"search"
 
+typedef enum : NSUInteger {
+    EditSegueTreatments,
+    EditSegueSymptoms,
+    EditSegueConditions
+} EditSegueType;
+
 @protocol FDPageContentViewControllerDelegate <NSObject>
 
 - (void)openSearch:(NSString *)type;
@@ -35,6 +41,6 @@
 @property (strong, nonatomic) UIViewController *popupController;
 
 @property int pageIndex;
-@property BOOL editSegueTreatments;
+@property EditSegueType editSegueType;
 
 @end
