@@ -17,6 +17,7 @@
 @interface FDContainerViewController : UIViewController
 
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
+@property (nonatomic, weak) id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
 @property (strong, nonatomic) NSString *currentSegueIdentifier;
 @property int pageIndex;

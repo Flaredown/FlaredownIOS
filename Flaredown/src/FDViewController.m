@@ -79,7 +79,7 @@
     if([[FDModelManager sharedManager] symptoms].count == 0) { //Add symptom page
         self.numPages++;
     }
-    if([[FDModelManager sharedManager] conditions].count == 0) { //ADd condition page
+    if([[FDModelManager sharedManager] conditions].count == 0) { //Add condition page
         self.numPages++;
     }
     
@@ -88,6 +88,11 @@
     
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+}
+
+- (void)decrementPage
+{
+    _pageIndex--;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
@@ -205,6 +210,7 @@
     if([segue.identifier isEqualToString:@"search"]) {
         UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
         FDSearchTableViewController *searchViewController = (FDSearchTableViewController *)dvc.topViewController;
+        searchViewController.mainViewDelegate = self;
         searchViewController.contentViewDelegate = self.pageViewController.viewControllers[0];
         if([_searchType isEqualToString:@"symptoms"])
             searchViewController.searchType = SearchSymptoms;

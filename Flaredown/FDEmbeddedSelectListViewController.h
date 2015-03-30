@@ -12,6 +12,7 @@
 
 @interface FDEmbeddedSelectListViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property FDSelectListViewController *listController;
 
 @end

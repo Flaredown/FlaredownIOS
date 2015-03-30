@@ -45,7 +45,7 @@ static NSString *inputsSessionLocation = @"inputs";
 
 - (int)numberOfQuestionSections
 {
-    int highestSection = 0;
+    int highestSection = -1;
     for (FDQuestion *question in [_entry questions]) {
         if([question section] > highestSection)
             highestSection = (int)[question section];

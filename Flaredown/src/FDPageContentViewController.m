@@ -191,6 +191,7 @@
         FDContainerViewController *containerViewController = (FDContainerViewController *)segue.destinationViewController;
         containerViewController.pageIndex = self.pageIndex;
         containerViewController.mainViewDelegate = _mainViewDelegate;
+        containerViewController.contentViewDelegate = self;
     } else if([segue.identifier isEqualToString:EditListSegueIdentifier]) {
         FDSelectListViewController *dvc = (FDSelectListViewController *)segue.destinationViewController;
         dvc.mainViewDelegate = _mainViewDelegate;

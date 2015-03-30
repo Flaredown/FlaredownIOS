@@ -13,6 +13,7 @@
 
 @interface FDSearchTableViewController : UITableViewController <UITextFieldDelegate, FDPageContentViewControllerDelegate>
 
+@property (nonatomic, strong) id <FDViewControllerDelegate> mainViewDelegate;
 @property (nonatomic, strong) id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
 @property enum SearchType

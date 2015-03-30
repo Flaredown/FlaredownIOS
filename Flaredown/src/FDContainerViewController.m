@@ -125,6 +125,11 @@
             [selectVC initWithQuestion:questions[0]];
         }
     }
+    
+    if([pageType isEqualToString:@"checkbox"]) {
+        FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+        listVC.contentViewDelegate = _contentViewDelegate;
+    }
 }
 
 - (void)swapFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController

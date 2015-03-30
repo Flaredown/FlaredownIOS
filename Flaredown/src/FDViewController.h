@@ -13,6 +13,7 @@
 - (void)refreshPages;
 - (id)instance;
 - (void)openSearch:(NSString *)type;
+- (void)decrementPage;
 
 @end
 

@@ -153,6 +153,11 @@
     [FDStyle addCellRoundedCornersToView:popupView.removeButton];
     
     [[FDPopupManager sharedManager] addPopupView:popupView];
+    
+    _removeIndex = [[self.tableView indexPathForCell:[self parentCellForView:sender]] row]-1;
+    
+    NSString *title = [NSString stringWithFormat:@"No longer tracking %@?", [_questions[_removeIndex] name]];
+    [popupView.titleLabel setText:title];
 }
 
 /*
@@ -165,6 +170,9 @@
     } else if(_listType == ListTypeConditions) {
         [self openConditionSearch:sender];
     } else if(_listType == ListTypeTreatments) {
+        
+        if(!_dynamic)
+           [_contentViewDelegate editList];
     
         UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"AddTreatmentView" owner:self options:nil] objectAtIndex:0];
         [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
@@ -270,21 +278,6 @@
 }
 
 /*
- *  Handles alert view response - adding items, removing items
- */
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if([buttonTitle isEqualToString:NSLocalizedString(@"Cancel", nil)])
-        return;
-    
-    if([alertView.title containsString:NSLocalizedString(@"No longer taking", nil)] || [alertView.title containsString:NSLocalizedString(@"No longer tracking", nil)]) {
-        [self removeListItem];
-    }
-}
-
-/*
  *  Add new item to the list with the specified title
  */
 - (void)addListItem:(NSString *)title
@@ -336,13 +329,24 @@
 /*
  *  Remove the item at the removeIndex and reload table
  */
-- (void)removeListItem
+- (IBAction)removeListItem:(id)sender
 {
+    FDEntry *entry = [[FDModelManager sharedManager] entry];
+    
+    NSInteger lastIndex = 0;
+    if(_listType == ListTypeConditions)
+        lastIndex = [entry questionsForCatalog:@"conditions"].count-1;
+    else if(_listType == ListTypeSymptoms)
+        lastIndex = [entry questionsForCatalog:@"symptoms"].count-1;
+    else if(_listType == ListTypeTreatments)
+        lastIndex = [entry treatments].count-1;
+    
+    if(_removeIndex == lastIndex && lastIndex != 0)
+        [_mainViewDelegate decrementPage];
+    
     if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
-        FDEntry *entry = [[FDModelManager sharedManager] entry];
         
         FDQuestion *question = self.questions[self.removeIndex];
-        
         FDResponse *response = [[FDResponse alloc] init];
         [response setResponseIdWithEntryId:[entry entryId] name:[question name]];
         
@@ -352,14 +356,16 @@
         [self.tableView reloadData];
         
     } else if(_listType == ListTypeTreatments) {
-        FDEntry *entry = [[FDModelManager sharedManager] entry];
         
         FDTreatment *treatment = self.questions[self.removeIndex];
-        
         [[entry treatments] removeObject:treatment];
+        [self.questions removeObject:treatment];
         
         [self.tableView reloadData];
+        
+        [[FDPopupManager sharedManager] removeTopPopup];
     }
+    [[FDPopupManager sharedManager] removeTopPopup];
 }
 
 - (void)addResponse:(FDResponse *)response
@@ -374,12 +380,6 @@
     [[[FDModelManager sharedManager] entry] removeResponse:response];
 }
 
-- (IBAction)doneButton:(id)sender
-{
-    [[FDPopupManager sharedManager] removeTopPopup];
-//    [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -389,7 +389,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if(self.dynamic)
-        return [self.questions count] + 1 + 1 + 1; //questions + add + done + title
+        return [self.questions count] + 1 + 1; //questions + add + title
     else if(_questions.count == 0)
         return 1;
     if(_listType == ListTypeTreatments)
@@ -413,13 +413,6 @@
                 [titleLabel setText:NSLocalizedString(@"Edit Treatments", nil)];
             else if(_listType == ListTypeConditions)
                 [titleLabel setText:NSLocalizedString(@"Edit Conditions", nil)];
-            
-        } else if([indexPath row] == self.questions.count + 2) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"done" forIndexPath:indexPath];
-            
-            //Round the button
-            UIButton *button = (UIButton *)[cell viewWithTag:1];
-            [FDStyle addCellRoundedCornersToView:button];
             
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
@@ -475,13 +468,13 @@
             
         if(_listType == ListTypeTreatments) {
             [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(openTreatmentSearch:) forControlEvents:UIControlEventTouchUpInside];
+//            [button addTarget:self action:@selector(openTreatmentSearch:) forControlEvents:UIControlEventTouchUpInside];
         } else if(_listType == ListTypeSymptoms) {
             [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(openSymptomSearch:) forControlEvents:UIControlEventTouchUpInside];
+//            [button addTarget:self action:@selector(openSymptomSearch:) forControlEvents:UIControlEventTouchUpInside];
         } else if(_listType == ListTypeConditions) {
             [button setTitle:NSLocalizedString(@"+ Add Condition", nil) forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(openConditionSearch:) forControlEvents:UIControlEventTouchUpInside];
+//            [button addTarget:self action:@selector(openConditionSearch:) forControlEvents:UIControlEventTouchUpInside];
         }
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];

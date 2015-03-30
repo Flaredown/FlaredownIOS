@@ -9,6 +9,7 @@
 #import "FDSearchTableViewController.h"
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
+#import "FDPopupManager.h"
 #import "FDTrackableResult.h"
 
 @interface FDSearchTableViewController ()
@@ -44,7 +45,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self resignFirstResponder];
-//    [_contentViewDelegate editList];
 }
 
 - (void)performSearch
@@ -179,8 +179,12 @@
     NSMutableArray *questions = [entry questions];
     
     if(_searchType == SearchSymptoms) {
-        NSInteger sectionToAdd = [[questions objectAtIndex:[questions count]-1] section]+1;
-        NSInteger indexToAdd = [questions indexOfObject:questions[[questions count]-1]]+1;
+        NSInteger sectionToAdd = 0;
+        NSInteger indexToAdd = 0;
+        if(questions.count > 0) {
+            sectionToAdd = [[questions lastObject] section]+1;
+            indexToAdd = questions.count;
+        }
         
         for(FDQuestion *question in [entry questions]) {
             if([[question catalog] isEqualToString:@"symptoms"]
@@ -278,7 +282,6 @@
         }];
     } else if(_searchType == SearchConditions) {
         
-        //TODO: Conditions
         NSInteger indexToAdd = 0;
         NSInteger sectionToAdd = 0;
         if([entry questionsForCatalog:@"conditions"].count > 0) {
@@ -341,12 +344,16 @@
 
 - (IBAction)closeSearch:(id)sender
 {
+    [_mainViewDelegate refreshPages];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)closeSearchWithTreatment:(FDTreatment *)treatment
 {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        [[FDPopupManager sharedManager] removeTopPopup];
+        [_contentViewDelegate addTreatmentPopupWithTreatment:treatment];
+    }];
 }
 
 -(UITableViewCell *)parentCellForView:(id)theView
