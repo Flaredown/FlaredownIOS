@@ -15,9 +15,14 @@
     view.layer.cornerRadius = FDCornerRadius;
 }
 
-+ (void)addCellRoundedCornersToView:(UIView *)view
++ (void)addSmallRoundedCornersToView:(UIView *)view
 {
-    view.layer.cornerRadius = FDCellCornerRadius;
+    view.layer.cornerRadius = FDSmallCornerRadius;
+}
+
++ (void)addLargeRoundedCornersToView:(UIView *)view
+{
+    view.layer.cornerRadius = FDLargeCornerRadius;
 }
 
 + (void)addShadowToView:(UIView *)view

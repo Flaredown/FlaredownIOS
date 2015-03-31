@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+static float const FDSmallCornerRadius = 7;
 static float const FDCornerRadius = 11;
-static float const FDCellCornerRadius = 22;
+static float const FDLargeCornerRadius = 22;
 
 @interface FDStyle : NSObject
 
 + (void)addRoundedCornersToView:(UIView *)view;
-+ (void)addCellRoundedCornersToView:(UIView *)view;
++ (void)addSmallRoundedCornersToView:(UIView *)view;
++ (void)addLargeRoundedCornersToView:(UIView *)view;
 + (void)addShadowToView:(UIView *)view;
 
 @end

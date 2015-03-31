@@ -345,7 +345,11 @@
 - (IBAction)closeSearch:(id)sender
 {
     [_mainViewDelegate refreshPages];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//    [_contentViewDelegate refreshEditList];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        [_contentViewDelegate closeEditList];
+        [_contentViewDelegate editList];
+    }];
 }
 
 - (void)closeSearchWithTreatment:(FDTreatment *)treatment

@@ -12,6 +12,7 @@
 #define SegueIdentifierSelectListView @"embedSelectListView"
 #define SegueIdentifierSelectCollectionView @"embedSelectCollectionView"
 #define SegueIdentifierNumberView @"embedNumberView"
+#define SegueIdentifierMeterView @"embedMeterView"
 #define SegueIdentifierNotesView @"embedNotesView"
 
 @interface FDContainerViewController : UIViewController

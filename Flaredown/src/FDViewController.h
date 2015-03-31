@@ -13,7 +13,7 @@
 - (void)refreshPages;
 - (id)instance;
 - (void)openSearch:(NSString *)type;
-- (void)decrementPage;
+- (void)adjustPageIndexForRemovedItem:(int)firstIndex;
 
 @end
 

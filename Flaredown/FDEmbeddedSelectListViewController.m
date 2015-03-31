@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [FDStyle addCellRoundedCornersToView:_doneButton];
+    [FDStyle addLargeRoundedCornersToView:_doneButton];
 }
 
 - (void)didReceiveMemoryWarning {

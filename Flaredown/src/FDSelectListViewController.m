@@ -150,7 +150,7 @@
     popupView.layer.masksToBounds = YES;
     [FDStyle addRoundedCornersToView:popupView];
     
-    [FDStyle addCellRoundedCornersToView:popupView.removeButton];
+    [FDStyle addLargeRoundedCornersToView:popupView.removeButton];
     
     [[FDPopupManager sharedManager] addPopupView:popupView];
     
@@ -333,16 +333,24 @@
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     
-    NSInteger lastIndex = 0;
-    if(_listType == ListTypeConditions)
-        lastIndex = [entry questionsForCatalog:@"conditions"].count-1;
-    else if(_listType == ListTypeSymptoms)
-        lastIndex = [entry questionsForCatalog:@"symptoms"].count-1;
-    else if(_listType == ListTypeTreatments)
-        lastIndex = [entry treatments].count-1;
-    
-    if(_removeIndex == lastIndex && lastIndex != 0)
-        [_mainViewDelegate decrementPage];
+    // Check to see if the page index needs to be decremented
+    // (If on last page of symptoms and it is removed, go back to the next symptoms page)
+    if(_listType == ListTypeConditions || _listType == ListTypeSymptoms) {
+        NSInteger lastIndex = 0;
+        if(_listType == ListTypeConditions)
+            lastIndex = [entry questionsForCatalog:@"conditions"].count-1;
+        else if(_listType == ListTypeSymptoms)
+            lastIndex = [entry questionsForCatalog:@"symptoms"].count-1;
+        
+        if(_removeIndex == lastIndex && _removeIndex != 0) {
+            int firstIndex;
+            if(_listType == ListTypeConditions)
+                firstIndex = [[entry questions] indexOfObject:[entry questionsForCatalog:@"conditions"].firstObject];
+            else if(_listType == ListTypeSymptoms)
+                firstIndex = [[entry questions] indexOfObject:[entry questionsForCatalog:@"symptoms"].firstObject];
+            [_mainViewDelegate adjustPageIndexForRemovedItem:firstIndex];
+        }
+    }
     
     if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
         
@@ -422,7 +430,7 @@
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 //Style
-                [FDStyle addCellRoundedCornersToView:button];
+                [FDStyle addLargeRoundedCornersToView:button];
                 
                 FDTreatment *treatment = self.questions[itemRow];
                 
@@ -440,7 +448,7 @@
                 
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
                 //Style
-                [FDStyle addCellRoundedCornersToView:button];
+                [FDStyle addLargeRoundedCornersToView:button];
                 
                 //1 List button
                 FDQuestion *question = self.questions[itemRow];
@@ -481,7 +489,7 @@
         
         UIButton *button = (UIButton *)[cell viewWithTag:1];
         //Style
-        [FDStyle addCellRoundedCornersToView:button];
+        [FDStyle addLargeRoundedCornersToView:button];
         
         if(_listType == ListTypeTreatments) {
             //List button

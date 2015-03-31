@@ -10,6 +10,7 @@
 #import "FDSelectListViewController.h"
 #import "FDNumberViewController.h"
 #import "FDSelectCollectionViewController.h"
+#import "FDMeterViewController.h"
 #import "FDModelManager.h"
 
 @interface FDContainerViewController ()
@@ -39,7 +40,12 @@
             self.currentSegueIdentifier = SegueIdentifierNotesView;
         }
     } else {
-        NSString *pageType = [[[FDModelManager sharedManager] questionsForSection:offsetIndex][0] kind];
+        FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
+        NSString *pageType = [question kind];
+        NSString *catalog = [question catalog];
+        if([catalog isEqualToString:@"symptoms"] || [catalog isEqualToString:@"conditions"]) {
+            pageType = @"meter";
+        }
         
         if([pageType isEqualToString:@"select"]) {
             self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
@@ -47,6 +53,8 @@
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
         } else if([pageType isEqualToString:@"number"]) {
             self.currentSegueIdentifier = SegueIdentifierNumberView;
+        } else if([pageType isEqualToString:@"meter"]) {
+            self.currentSegueIdentifier = SegueIdentifierMeterView;
         } else if([pageType isEqualToString:@"notes"]) {
             self.currentSegueIdentifier = SegueIdentifierNotesView;
         } else {
@@ -113,6 +121,9 @@
     } else {
         NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:offsetIndex];
         pageType = [questions[0] kind];
+        if([[questions[0] catalog] isEqualToString:@"symptoms"] || [[questions[0] catalog] isEqualToString:@"conditions"]) {
+            pageType = @"meter";
+        }
         
         if([pageType isEqualToString:@"checkbox"]) {
             FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
@@ -123,6 +134,9 @@
         } else if([pageType isEqualToString:@"select"]) {
             FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
             [selectVC initWithQuestion:questions[0]];
+        } else if([pageType isEqualToString:@"meter"]) {
+            FDMeterViewController *meterVC = (FDMeterViewController *)dvc;
+            [meterVC initWithQuestion:questions[0]];
         }
     }
     

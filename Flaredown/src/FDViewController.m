@@ -90,9 +90,10 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
-- (void)decrementPage
+- (void)adjustPageIndexForRemovedItem:(int)firstIndex
 {
-    _pageIndex--;
+    if(firstIndex != _pageIndex)
+        _pageIndex--;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController

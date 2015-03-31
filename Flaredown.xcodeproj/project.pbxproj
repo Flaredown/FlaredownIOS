@@ -40,6 +40,7 @@
 		ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */; };
 		ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51E1AC09FEE009B74EE /* FDPopup.m */; };
 		ED58E5221AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */; };
+		ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
@@ -128,6 +129,8 @@
 		ED58E51E1AC09FEE009B74EE /* FDPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPopup.m; sourceTree = "<group>"; };
 		ED58E5201AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEmbeddedSelectListViewController.h; sourceTree = "<group>"; };
 		ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEmbeddedSelectListViewController.m; sourceTree = "<group>"; };
+		ED7A171A1AC9F60C009B8D05 /* FDMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeterViewController.h; sourceTree = "<group>"; };
+		ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeterViewController.m; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */,
 				ED58E5201AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.h */,
 				ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */,
+				ED7A171A1AC9F60C009B8D05 /* FDMeterViewController.h */,
+				ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */,
 				101393F819D2432000BBB266 /* FDSelectListViewController.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
+				ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
 				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,
 			);
