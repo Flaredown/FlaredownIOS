@@ -46,7 +46,7 @@
     if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
         //Add conditions
         self.titleLabel.text = NSLocalizedString(@"You are not tracking any conditions", nil);
-        [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Conditions", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+        [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT CONDITIONS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
         [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 
         _editSegueType = EditSegueConditions;
@@ -54,7 +54,7 @@
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             self.titleLabel.text = NSLocalizedString(@"You are not tracking any symptoms", nil);
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT SYMPTOMS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueSymptoms;
@@ -64,7 +64,7 @@
                 self.titleLabel.text = NSLocalizedString(@"You are not tracking any treatments", nil);
             else
                 self.titleLabel.text = NSLocalizedString(@"Which treatments did you take?", nil);
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Treatments", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT TREATMENTS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueTreatments;
@@ -79,13 +79,13 @@
         if([[question catalog] isEqualToString:@"symptoms"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Symptoms", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT SYMPTOMS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueSymptoms;
         } else if([[question catalog] isEqualToString:@"conditions"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Edit Conditions", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT CONDITIONS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueConditions;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
@@ -99,7 +99,7 @@
         }else {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"What is your current level of %@?", nil), [question name]];
-            [self.secondaryTitleButton setTitle:@"Research Questions" forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"RESEARCH QUESTIONS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
         }
     }
     

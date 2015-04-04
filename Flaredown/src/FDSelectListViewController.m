@@ -371,7 +371,7 @@
         
         [self.tableView reloadData];
         
-        [[FDPopupManager sharedManager] removeTopPopup];
+//        [[FDPopupManager sharedManager] removeTopPopup];
     }
     [[FDPopupManager sharedManager] removeTopPopup];
 }

@@ -347,8 +347,9 @@
     [_mainViewDelegate refreshPages];
 //    [_contentViewDelegate refreshEditList];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        [_contentViewDelegate closeEditList];
-        [_contentViewDelegate editList];
+        [_contentViewDelegate refreshEditList];
+//        [_contentViewDelegate closeEditList];
+//        [_contentViewDelegate editList];
     }];
 }
 

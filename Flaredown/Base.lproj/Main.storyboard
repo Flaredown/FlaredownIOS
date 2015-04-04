@@ -30,8 +30,10 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
+            <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
         </mutableArray>
     </customFonts>
@@ -634,7 +636,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGh-Hw-0Bo">
-                                <rect key="frame" x="0.0" y="148" width="600" height="450"/>
+                                <rect key="frame" x="0.0" y="117" width="600" height="481"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZGh-Hw-0Bo" secondAttribute="height" multiplier="4:3" id="7Qh-17-pb1"/>
                                 </constraints>
@@ -648,17 +650,18 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yA-zo-cNj">
-                                <rect key="frame" x="217" y="42" width="166" height="30"/>
+                                <rect key="frame" x="217" y="42" width="166" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="166" id="0Y0-YG-7Lp"/>
                                 </constraints>
-                                <state key="normal" title="Subtitle / Edit">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="13"/>
+                                <state key="normal" title="SUBTITLE / EDIT">
+                                    <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hot-Re-0zM">
-                                <rect key="frame" x="34" y="72" width="533" height="76"/>
+                                <rect key="frame" x="34" y="81" width="533" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="76" id="1G0-75-wa1"/>
                                     <constraint firstAttribute="height" constant="85" id="5OI-M8-xBK"/>
@@ -667,11 +670,12 @@
                                     <constraint firstAttribute="height" constant="65" id="TRn-iQ-C9f"/>
                                     <constraint firstAttribute="height" constant="69" id="h4R-ek-ubW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="28"/>
+                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="1G0-75-wa1"/>
                                         <exclude reference="5OI-M8-xBK"/>
                                         <exclude reference="Mkp-4v-oNl"/>
                                         <exclude reference="Pgn-jg-KV3"/>
@@ -699,13 +703,14 @@
                             <constraint firstItem="LaK-fL-GPd" firstAttribute="top" secondItem="ZGh-Hw-0Bo" secondAttribute="bottom" id="Idp-zw-e2u"/>
                             <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" constant="8" id="Kat-CS-JvP"/>
                             <constraint firstItem="LaK-fL-GPd" firstAttribute="top" secondItem="ZGh-Hw-0Bo" secondAttribute="bottom" constant="2" id="MCD-vb-jou"/>
-                            <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="9yA-zo-cNj" secondAttribute="bottom" id="SuC-8V-caG"/>
+                            <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="9yA-zo-cNj" secondAttribute="bottom" constant="14" id="SuC-8V-caG"/>
                             <constraint firstItem="9yA-zo-cNj" firstAttribute="top" secondItem="tTC-vh-SNV" secondAttribute="bottom" constant="22" id="aXp-3X-NVE"/>
                             <constraint firstAttribute="centerX" secondItem="9yA-zo-cNj" secondAttribute="centerX" id="dyE-Vm-SlN"/>
                             <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="width" secondItem="vpa-zo-2U7" secondAttribute="width" id="hpZ-SE-1K1"/>
                             <constraint firstAttribute="centerX" secondItem="ZGh-Hw-0Bo" secondAttribute="centerX" id="iSW-pV-y2D"/>
                             <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="9yA-zo-cNj" secondAttribute="bottom" constant="8" id="jm5-f9-asN"/>
                             <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" id="nVl-3H-ams"/>
+                            <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" constant="8" id="qwe-Br-niQ"/>
                             <constraint firstItem="ZGh-Hw-0Bo" firstAttribute="top" secondItem="hot-Re-0zM" secondAttribute="bottom" id="s3f-ti-IkQ"/>
                             <constraint firstItem="hot-Re-0zM" firstAttribute="leading" secondItem="vpa-zo-2U7" secondAttribute="leadingMargin" constant="18" id="xwM-3s-rCn"/>
                             <constraint firstItem="hot-Re-0zM" firstAttribute="top" secondItem="9yA-zo-cNj" secondAttribute="bottom" constant="8" id="yuw-aQ-n2V"/>
@@ -715,6 +720,7 @@
                             <mask key="constraints">
                                 <exclude reference="jm5-f9-asN"/>
                                 <exclude reference="yuw-aQ-n2V"/>
+                                <exclude reference="EiV-r0-vkY"/>
                                 <exclude reference="Kat-CS-JvP"/>
                                 <exclude reference="nVl-3H-ams"/>
                                 <exclude reference="s3f-ti-IkQ"/>
@@ -744,7 +750,7 @@
                         <viewControllerLayoutGuide type="bottom" id="h6z-cZ-cd5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CaM-Jx-MMH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="481"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1749,7 +1755,7 @@
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1ic-5n-SwM"/>
         <segue reference="pti-0c-EDU"/>
-        <segue reference="S95-oh-nxf"/>
     </inferredMetricsTieBreakers>
 </document>

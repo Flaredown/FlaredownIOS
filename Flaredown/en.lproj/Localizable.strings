@@ -40,6 +40,11 @@
 "Which treatments did you take?" = "Which treatments did you take?";
 "Leave a note" = "Leave a note";
 
+"RESEARCH QUESTIONS" = "RESEARCH QUESTIONS";
+"EDIT TREATMENTS" = "EDIT TREATMENTS";
+"EDIT SYMPTOMS" = "EDIT SYMPTOMS";
+"EDIT CONDITIONS" = "EDIT CONDITIONS";
+
 //FDSelectListViewController.m
 "No longer taking %@?" = "No longer taking %@?";
 "No longer tracking %@?" = "No longer tracking %@?";
