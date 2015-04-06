@@ -11,12 +11,14 @@
 #import "FDHashtagFinder.h"
 #import "FDHashtagHighlightTextStorage.h"
 
+#import "FDStyle.h"
+
 @implementation FDHashtagTextView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     FDHashtagHighlightTextStorage *textStorage = [[FDHashtagHighlightTextStorage alloc] initWithHashtagFinder:FDHashtagFinder.new];
     textStorage.hashtagAttributes = @{
-                                      NSForegroundColorAttributeName: [UIColor blueColor],
+                                      NSForegroundColorAttributeName: [FDStyle blueColor],
                                       };
 
     NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];

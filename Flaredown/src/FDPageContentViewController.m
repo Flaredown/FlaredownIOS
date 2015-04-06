@@ -39,7 +39,7 @@
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     
-    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[UIColor lightGrayColor]};
+    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]};
     
     int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
     

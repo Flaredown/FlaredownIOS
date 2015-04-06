@@ -36,6 +36,7 @@
                                 <constraint firstAttribute="height" constant="70" id="UwO-cB-Hao"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="28"/>
+                            <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
@@ -46,13 +47,15 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIc-oa-8U0">
                             <rect key="frame" x="35" y="132" width="230" height="68"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dose (Daily)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-E6-R3i">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Daily dose (i.e. '30')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-E6-R3i">
                                     <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orr-dx-6DT">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units (i.e. 'Milligrams')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orr-dx-6DT">
                                     <rect key="frame" x="0.0" y="38" width="230" height="30"/>
+                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
@@ -83,7 +86,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                             <state key="normal" title="Cancel">
-                                <color key="titleColor" red="0.43529411759999997" green="0.83921568629999999" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.45098039215686275" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -104,7 +107,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="Done">
-                                <color key="titleColor" red="0.43529411759999997" green="0.83921568629999999" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.45098039215686275" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">

@@ -14,6 +14,7 @@
 "Treatments" = "Treatments";
 "Notes" = "Notes";
 "OFF" = "OFF";
+"edit" = "edit";
 
 //FDLoginViewController.m
 "Invalid email" = "Invalid email";
@@ -24,6 +25,8 @@
 
 "Error logging in" = "Error logging in";
 "Invalid email and/or password, please try again." = "Invalid email and/or password, please try again.";
+
+"Forgot password?" = "Forgot password?";
 
 //FDLaunchViewController.m
 "Error retreiving entry" = "Error retreiving entry";
@@ -75,6 +78,13 @@
 "Looks like there was an issue; please try again." = "Looks like there was an issue; please try again.";
 "Error creating treatment" = "Error creating treatment";
 "Looks like there was an issue creating the new treatment; please check the treatment name and try again." = "Looks like there was an issue creating the new treatment; please check the treatment name and try again.";
+
+//FDMeterViewController.m
+"Not active" = "Not active";
+"Slightly active" = "Slightly active";
+"Somewhat active" = "Somewhat active";
+"Very active" = "Very active";
+"Extremely active" = "Extremely active";
 
 //FDSearchTrackableViewController.m
 "Error retreiving results" = "Error retreiving results";

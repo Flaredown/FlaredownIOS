@@ -123,19 +123,19 @@
 
 - (void)selectButton:(UIButton *)button
 {
-    UIColor *selectColor = [UIColor colorWithRed:111.0f/255.0f green:214.0f/255.0f blue:201.0f/255.0f alpha:1.0f];
+    UIColor *selectColor = [FDStyle blueColor];
     [button setBackgroundColor:selectColor];
     
-    UIColor *selectTextColor = [UIColor whiteColor];
+    UIColor *selectTextColor = [FDStyle whiteColor];
     [button setTitleColor:selectTextColor forState:UIControlStateNormal];
 }
 
 - (void)deselectButton:(UIButton *)button
 {
-    UIColor *deselectColor = [UIColor colorWithRed:239.0f/255.0f green:239.0f/255.0f blue:244.0f/255.0f alpha:1.0f];
+    UIColor *deselectColor = [FDStyle lightGreyColor];
     [button setBackgroundColor:deselectColor];
     
-    UIColor *deselectTextColor = [UIColor colorWithRed:170.0f/255.0f green:170.0f/255.0f blue:170.f/255.0f alpha:1.0f];
+    UIColor *deselectTextColor = [FDStyle greyColor];
     [button setTitleColor:deselectTextColor forState:UIControlStateNormal];
 }
 
@@ -191,7 +191,7 @@
     } else {
         [self addItemButton:nil];
         _addTreatmentNameField.text = [treatment name] ?: @"";
-        _addTreatmentDoseField.text = [treatment quantity] ? [NSString stringWithFormat:@"%.02f", [treatment quantity]] : @"";
+        _addTreatmentDoseField.text = [treatment quantity] ? [FDStyle trimmedDecimal:[treatment quantity]] : @"";
         _addTreatmentUnitField.text = [treatment unit] ?: @"";
     }
 }
@@ -251,9 +251,9 @@
     [popupView needsUpdateConstraints];
     
     [_editTreatmentTitleLabel setText:[NSString stringWithFormat:@"Edit daily dosage of %@", [_editTreatment name]]];
-    [_editTreatmentDoseField setPlaceholder:[NSString stringWithFormat:@"%.02f", [_editTreatment quantity]]];
-    if([[_editTreatment unit] length] > 0)
-        [_editTreatmentUnitField setPlaceholder:[_editTreatment unit]];
+//    [_editTreatmentDoseField setPlaceholder:[FDStyle trimmedDecimal:[_editTreatment quantity]]];
+//    if([[_editTreatment unit] length] > 0)
+//        [_editTreatmentUnitField setPlaceholder:[_editTreatment unit]];
 }
 
 - (IBAction)editTreatment:(id)sender
@@ -440,8 +440,12 @@
                 
                 //2 Dosage and Units label
                 UILabel *label = (UILabel *)[cell viewWithTag:2];
-                NSString *quantityString = [NSString stringWithFormat:@"%.02f", [treatment quantity]];
+                NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
                 [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, [treatment unit]]];
+                
+                //4 Edit button
+                UIButton *editButton = (UIButton *)[cell viewWithTag:4];
+                [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"edit", nil) attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
                 
             } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
@@ -494,7 +498,8 @@
         if(_listType == ListTypeTreatments) {
             //List button
             FDTreatment *treatment = self.questions[[indexPath row]];
-            [button setTitle:[NSString stringWithFormat:@"%@ - %.02f %@", [treatment name], [treatment quantity], [treatment unit]] forState:UIControlStateNormal];
+            NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
+            [button setTitle:[NSString stringWithFormat:@"%@ - %@ %@", [treatment name], quantityString, [treatment unit]] forState:UIControlStateNormal];
             
             if([treatment taken]) {
                 [self selectButton:button];

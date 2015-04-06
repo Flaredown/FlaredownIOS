@@ -22,8 +22,8 @@ static UIColor *DeselectedColor;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SelectedColor = [UIColor colorWithRed:176.0/255.0 green:129.0/255.0 blue:217.0/255.0 alpha:1.0];
-    DeselectedColor = [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1.0];
+    SelectedColor = [FDStyle blueColor];
+    DeselectedColor = [FDStyle mediumGreyColor];
     
     _firstButton.layer.cornerRadius = 20.0;
     [FDStyle addSmallRoundedCornersToView:_secondButton];
@@ -81,13 +81,28 @@ static UIColor *DeselectedColor;
 - (void)setSelectedValue:(int)buttonIndex
 {
     FDInput *input = _inputs[buttonIndex];
-    NSString *title = [input metaLabel];
-    if(![title isEqual:[NSNull null]]) {
-        [_descriptionLabel setText:[input metaLabel]];
-    } else {
-        [_descriptionLabel setText:@""];
-        NSLog(@"Invalid meta label for input %i", buttonIndex);
+//    NSString *title = [input metaLabel];
+    
+    NSString *title = @"";
+    if(buttonIndex == 0) {
+        title = @"Not active";
+    } else if(buttonIndex == 1) {
+        title = @"Slightly active";
+    } else if(buttonIndex == 2) {
+        title = @"Somewhat active";
+    } else if(buttonIndex == 3) {
+        title = @"Very active";
+    } else if(buttonIndex == 4) {
+        title = @"Extremely active";
     }
+    [_descriptionLabel setText:NSLocalizedString(title, nil)];
+    
+//    if(![title isEqual:[NSNull null]]) {
+//        [_descriptionLabel setText:title];
+//    } else {
+//        [_descriptionLabel setText:@""];
+//        NSLog(@"Invalid meta label for input %i", buttonIndex);
+//    }
     [self.response setValue:[input value]];
 }
 
@@ -112,7 +127,6 @@ static UIColor *DeselectedColor;
 
 - (void)selectSecond
 {
-    [self selectFirst];
     [self setSelectedColor:_secondButton];
 }
 

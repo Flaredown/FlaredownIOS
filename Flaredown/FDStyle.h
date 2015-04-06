@@ -20,4 +20,13 @@ static float const FDLargeCornerRadius = 22;
 + (void)addLargeRoundedCornersToView:(UIView *)view;
 + (void)addShadowToView:(UIView *)view;
 
++ (UIColor *)indianKhakiColor;
++ (UIColor *)greyColor;
++ (UIColor *)blueColor;
++ (UIColor *)lightGreyColor;
++ (UIColor *)whiteColor;
++ (UIColor *)purpleColor;
++ (UIColor *)mediumGreyColor;
++ (NSString *)trimmedDecimal:(float)number;
+
 @end

@@ -35,6 +35,8 @@
     [FDStyle addShadowToView:_loginBtn];
     _loginBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_loginBtn];
+    
+    [_forgotPasswordButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Forgot password?", nil) attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle),NSForegroundColorAttributeName:[FDStyle indianKhakiColor]}] forState:UIControlStateNormal];
 
 #if DEBUG
     self.emailTextField.text = @"test@flaredown.com";

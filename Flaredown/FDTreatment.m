@@ -9,6 +9,8 @@
 #import "FDTreatment.h"
 #import "FDEntry.h"
 
+#import "FDStyle.h"
+
 @implementation FDTreatment
 
 @synthesize quantity = _quantity;
@@ -44,7 +46,7 @@
     return @{
              @"id":_treatmentId,
              @"name":_name,
-             @"quantity":_taken ? [NSString stringWithFormat:@"%.02f", _quantity] : [NSNull null],
+             @"quantity":_taken ? [FDStyle trimmedDecimal:_quantity] : [NSNull null],
              @"unit":_unit,
              };
 }
