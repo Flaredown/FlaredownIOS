@@ -40,8 +40,10 @@
 
     // TODO: use theming properties
     self.textView.font = [UIFont fontWithName:@"ProximaNova-Regular" size:18.f];
-
     
+    self.textView.returnKeyType = UIReturnKeyDone;
+    self.textView.delegate = self;
+
     //Set up keyboard listeners
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
@@ -68,18 +70,27 @@
     //Hashtag stuff here
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 - (void)keyboardWasShown:(NSNotification *)notification
 {
-//    NSDictionary *info = [notification userInfo];
-//    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    self.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - keyboardSize.height);
+    NSDictionary *info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.textViewContainer.frame = CGRectMake(self.textViewContainer.frame.origin.x, self.textViewContainer.frame.origin.y, self.textViewContainer.frame.size.width, self.textViewContainer.frame.size.height - keyboardSize.height);
 }
 
 - (void)keyboardWasHidden:(NSNotification *)notification
 {
-//    NSDictionary *info = [notification userInfo];
-//    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    self.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height + keyboardSize.height);
+    NSDictionary *info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.textViewContainer.frame = CGRectMake(self.textViewContainer.frame.origin.x, self.textViewContainer.frame.origin.y, self.textViewContainer.frame.size.width, self.textViewContainer.frame.size.height + keyboardSize.height);
     [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
 }
 

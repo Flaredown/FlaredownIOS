@@ -57,32 +57,29 @@
                                 <action selector="openTreatmentSearch:" destination="-1" eventType="touchUpInside" id="PFB-0L-eLJ"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of treatment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otI-88-v7e">
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of treatment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otI-88-v7e">
                             <rect key="frame" x="35" y="112" width="230" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="asz-tP-lEC"/>
                             </constraints>
                             <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="9hm-VM-XpG"/>
+                            </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Daily dose (i.e. '30')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EAj-G9-N6N">
+                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Daily dose (i.e. '30')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EAj-G9-N6N">
                             <rect key="frame" x="35" y="150" width="230" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="KBO-Ar-Qym"/>
                             </constraints>
                             <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units (i.e. 'Milligrams')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfJ-OX-KRK">
-                            <rect key="frame" x="35" y="188" width="230" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="QBc-90-5HM"/>
-                            </constraints>
-                            <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Vv5-j5-jdq"/>
+                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xt-mZ-Ika">
                             <rect key="frame" x="106" y="226" width="72" height="30"/>
@@ -126,6 +123,18 @@
                                 <action selector="addTreatment:" destination="-1" eventType="touchUpInside" id="8Gt-tO-E3X"/>
                             </connections>
                         </button>
+                        <textField opaque="NO" clipsSubviews="YES" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units (i.e. 'Milligrams')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfJ-OX-KRK">
+                            <rect key="frame" x="35" y="188" width="230" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="QBc-90-5HM"/>
+                            </constraints>
+                            <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Ivz-P9-6CL"/>
+                            </connections>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>

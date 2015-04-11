@@ -31,6 +31,8 @@ typedef enum : NSUInteger {
 @property ListType listType;
 @property int removeIndex;
 
+@property BOOL popupKeyboardOffset;
+
 //@property UIView *backgroundView;
 //@property UIView *popupView;
 

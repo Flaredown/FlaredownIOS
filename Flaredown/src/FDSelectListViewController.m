@@ -19,6 +19,8 @@
 #define POPUP_WIDTH 0.95
 #define POPUP_HEIGHT 0.5
 
+#define POPUP_KEYBOARD_OFFSET 60
+
 @interface FDSelectListViewController ()
 
 @end
@@ -30,6 +32,18 @@
     
     self.selectedItems = [[NSMutableArray alloc] init];
     self.responses = [[NSMutableArray alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)initWithQuestions:(NSMutableArray *)questions
@@ -80,6 +94,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     if(_dynamic)
         [_mainViewDelegate refreshPages];
 }
@@ -87,6 +102,26 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)keyboardWillShow
+{
+    FDPopup *popup = [[FDPopupManager sharedManager] topPopup];
+    if(popup) {
+        UIView *popupView = [popup view];
+        popupView.frame = CGRectMake(popupView.frame.origin.x, popupView.frame.origin.y - POPUP_KEYBOARD_OFFSET, popupView.frame.size.width, popupView.frame.size.height);
+        _popupKeyboardOffset = YES;
+    }
+}
+
+- (void)keyboardWillHide
+{
+    FDPopup *popup = [[FDPopupManager sharedManager] topPopup];
+    if(popup && _popupKeyboardOffset) {
+        UIView *popupView = [popup view];
+        popupView.frame = CGRectMake(popupView.frame.origin.x, popupView.frame.origin.y + POPUP_KEYBOARD_OFFSET, popupView.frame.size.width, popupView.frame.size.height);
+        _popupKeyboardOffset = NO;
+    }
 }
 
 // Toggle selected for target item
@@ -198,16 +233,19 @@
 
 - (IBAction)openSymptomSearch:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"symptoms"];
 }
 
 - (IBAction)openConditionSearch:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"conditions"];
 }
 
 - (IBAction)openTreatmentSearch:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"treatments"];
 }
 
@@ -254,6 +292,24 @@
 //    [_editTreatmentDoseField setPlaceholder:[FDStyle trimmedDecimal:[_editTreatment quantity]]];
 //    if([[_editTreatment unit] length] > 0)
 //        [_editTreatmentUnitField setPlaceholder:[_editTreatment unit]];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+//    [textField resignFirstResponder];
+//    return YES;
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder && [nextResponder isKindOfClass:[UITextField class]]) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    
+    return YES;
 }
 
 - (IBAction)editTreatment:(id)sender

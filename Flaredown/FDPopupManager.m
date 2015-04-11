@@ -75,7 +75,7 @@
 
 - (FDPopup *)topPopup
 {
-    return _popups[0];
+    return [_popups firstObject];
 }
 
 - (void)removeTopPopup

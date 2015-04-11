@@ -24,6 +24,8 @@
 };
 @property enum SearchType searchType;
 
+@property BOOL editing;
+
 @property NSMutableArray *results;
 @property NSString *searchText;
 @property NSTimer *timer;

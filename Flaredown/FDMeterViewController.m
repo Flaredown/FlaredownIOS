@@ -43,29 +43,29 @@ static UIColor *DeselectedColor;
     [self.response setResponseIdWithEntryId:[entry entryId] name:[self.question name]];
     if([entry responseForId:[self.response responseId]]) {
         self.response = [entry responseForId:[self.response responseId]];
+        
+        switch(self.response.value) {
+            case 0:
+                [self firstButtonPress:nil];
+                break;
+            case 1:
+                [self secondButtonPress:nil];
+                break;
+            case 2:
+                [self thirdButtonPress:nil];
+                break;
+            case 3:
+                [self fourthButtonPress:nil];
+                break;
+            case 4:
+                [self fifthButtonPress:nil];
+                break;
+            default:
+                break;
+        }
     } else {
         self.response = [self.response initWithEntry:entry question:question];
         [[[FDModelManager sharedManager] entry] insertResponse:self.response];
-    }
-    
-    switch(self.response.value) {
-        case 0:
-            [self firstButtonPress:nil];
-            break;
-        case 1:
-            [self secondButtonPress:nil];
-            break;
-        case 2:
-            [self thirdButtonPress:nil];
-            break;
-        case 3:
-            [self fourthButtonPress:nil];
-            break;
-        case 4:
-            [self fifthButtonPress:nil];
-            break;
-        default:
-            break;
     }
 }
 

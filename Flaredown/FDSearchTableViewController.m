@@ -31,6 +31,8 @@
     
     _results = [[NSMutableArray alloc] init];
     
+    _editing = YES;
+    
     [_contentViewDelegate closeEditList];
     
 //    [self.navigationController.view setBackgroundColor:[UIColor blackColor]];
@@ -106,6 +108,11 @@
     }];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _editing = YES;
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if(_timer != nil)
@@ -118,6 +125,14 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField endEditing:YES];
+    _editing = NO;
+    [self.tableView reloadData];
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -126,11 +141,14 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+//    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 0)
+//    if(section == 0)
+//        return 1;
+    if(_results.count == 0)
         return 1;
     return _results.count;
 }
@@ -138,15 +156,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell;
-    if([indexPath section] == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"search" forIndexPath:indexPath];
-        
-        //1 - TextField
-        UITextField *textField = (UITextField *)[cell viewWithTag:1];
-        textField.delegate = self;
-        [textField becomeFirstResponder];
-        
-    } else {
+//    if([indexPath section] == 0) {
+//        cell = [tableView dequeueReusableCellWithIdentifier:@"search" forIndexPath:indexPath];
+//        
+//        //1 - TextField
+//        UITextField *textField = (UITextField *)[cell viewWithTag:1];
+//        textField.delegate = self;
+//        [textField becomeFirstResponder];
+//        
+//    } else {
+    if(_results.count == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"placeholder" forIndexPath:indexPath];
+        return cell;
+    }
         cell = [tableView dequeueReusableCellWithIdentifier:@"result" forIndexPath:indexPath];
         
         FDTrackableResult *result = _results[[indexPath row]];
@@ -163,8 +185,27 @@
             [title setText:[NSString stringWithFormat:@"\"%@\"", [result name]]];
             [subtext setText:@"Add new condition"];
         }
-    }
+//    }
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"search"];
+    
+    //1 - TextField
+    UITextField *textField = (UITextField *)[cell viewWithTag:1];
+    textField.text = _searchText;
+    textField.delegate = self;
+    if(_editing)
+        [textField becomeFirstResponder];
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 63;
 }
 
 - (IBAction)selectItem:(UIButton *)sender
@@ -345,11 +386,8 @@
 - (IBAction)closeSearch:(id)sender
 {
     [_mainViewDelegate refreshPages];
-//    [_contentViewDelegate refreshEditList];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
         [_contentViewDelegate refreshEditList];
-//        [_contentViewDelegate closeEditList];
-//        [_contentViewDelegate editList];
     }];
 }
 
