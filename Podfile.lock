@@ -43,14 +43,14 @@ DEPENDENCIES:
   - Specta (~> 0.3)
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  DLAlertView: 0c6645d2e47b9f880192ae3581284695855ebaab
-  Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
-  Expecta+Snapshots: 4a56b9411c6ed156987072e52c39de67d864015a
-  FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  MJPopupViewController: b087684832981731f3d11b7a2ae6293a9073e011
-  OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
-  Specta: 1df326d6ec48603c77f507a0ab1f89ad2df1c582
+  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  DLAlertView: 73cb9ef682c3c25b0f1f014eee583c941eb14bfe
+  Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
+  Expecta+Snapshots: 4a0b46d3ba755bd43dffa7d53e4585fc6cbfe8cd
+  FBSnapshotTestCase: 26f32d8fa9eb30e9f09712ecfb097808bc79b898
+  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
+  OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
+  Specta: a353759f073ffcc0a365b782fe4aaeac064c03c6
 
 COCOAPODS: 0.35.0
