@@ -349,13 +349,6 @@
                                     <rect key="frame" x="312" y="579" width="177" height="61"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fd_remindericon" translatesAutoresizingMaskIntoConstraints="NO" id="RIe-HL-rLp">
-                                <rect key="frame" x="259" y="506" width="18" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="KHr-7S-IG4"/>
-                                    <constraint firstAttribute="width" constant="18" id="rQU-jq-I2x"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dd4-Nd-Pvi">
                                 <rect key="frame" x="285" y="501" width="145" height="30"/>
                                 <constraints>
@@ -379,6 +372,13 @@
                                     <action selector="alarmButton:" destination="b9W-3p-fbP" eventType="touchUpInside" id="z9S-Td-qEk"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fd_remindericon" translatesAutoresizingMaskIntoConstraints="NO" id="RIe-HL-rLp">
+                                <rect key="frame" x="259" y="506" width="18" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="KHr-7S-IG4"/>
+                                    <constraint firstAttribute="width" constant="18" id="rQU-jq-I2x"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.93333333330000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1806,7 +1806,7 @@
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j9h-cQ-iZY"/>
-        <segue reference="OiV-6j-fYP"/>
+        <segue reference="1ic-5n-SwM"/>
+        <segue reference="pti-0c-EDU"/>
     </inferredMetricsTieBreakers>
 </document>

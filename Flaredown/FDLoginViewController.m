@@ -10,6 +10,7 @@
 #import "FDNetworkManager.h"
 #import "FDModelManager.h"
 #import "FDStyle.h"
+#import "FDLocalizationManager.h"
 
 @interface FDLoginViewController ()
 @property (weak, nonatomic) IBOutlet UIView *loginCard;

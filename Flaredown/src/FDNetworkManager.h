@@ -26,6 +26,8 @@
 
 - (void)searchTrackables:(NSString *)searchText type:(NSString *)type email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
 
+- (void)getLocale:(NSString *)locale email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock;
+
 + (BOOL)networkReachable;
 
 @end

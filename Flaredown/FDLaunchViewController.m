@@ -12,6 +12,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "FDStyle.h"
 #import "FDPopupManager.h"
+#import "FDLocalizationManager.h"
 
 //relative to screen
 #define ALARM_WIDTH 0.9
@@ -61,6 +62,17 @@
         return;
     }
     
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
+        if(success) {
+            NSLog(@"Success!");
+            
+            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
+        } else {
+            NSLog(@"Failure!");
+        }
+    }];
+    
     if([[FDModelManager sharedManager] entry]) {
         _entryLoaded = YES;
     } else {
@@ -72,7 +84,6 @@
         [formatter setDateFormat:@"MMM-dd-yyyy"];
         NSString *dateString = [formatter stringFromDate:now];
         
-        FDUser *user = [[FDModelManager sharedManager] userObject];
         [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(success) {
