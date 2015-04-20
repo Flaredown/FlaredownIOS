@@ -33,17 +33,6 @@
                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqj-uz-M6K">
-                            <rect key="frame" x="125" y="50" width="51" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="31" id="0xh-VH-WNi"/>
-                                <constraint firstAttribute="width" constant="49" id="R96-hv-pcN"/>
-                            </constraints>
-                            <color key="onTintColor" red="0.45098039215686275" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="toggleReminder:" destination="-1" eventType="valueChanged" id="o6G-sF-sql"/>
-                            </connections>
-                        </switch>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Sa-Az-yT9">
                             <rect key="frame" x="215" y="258" width="67" height="43"/>
                             <constraints>
@@ -92,21 +81,35 @@
                                 <action selector="alarmDateChanged:" destination="-1" eventType="valueChanged" id="MLX-PH-5C6"/>
                             </connections>
                         </datePicker>
+                        <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqj-uz-M6K">
+                            <rect key="frame" x="125" y="50" width="51" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="0xh-VH-WNi"/>
+                                <constraint firstAttribute="width" constant="49" id="R96-hv-pcN"/>
+                            </constraints>
+                            <color key="onTintColor" red="0.45098039215686275" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="toggleReminder:" destination="-1" eventType="valueChanged" id="o6G-sF-sql"/>
+                            </connections>
+                        </switch>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="5pi-rB-tRY" secondAttribute="centerX" id="07L-32-CgJ"/>
                         <constraint firstAttribute="centerY" secondItem="lKM-aG-L3H" secondAttribute="centerY" constant="-13" id="4Ob-xA-An3"/>
                         <constraint firstItem="lKM-aG-L3H" firstAttribute="top" secondItem="dqj-uz-M6K" secondAttribute="bottom" constant="8" id="77a-Zo-12x"/>
+                        <constraint firstAttribute="bottom" secondItem="1Sa-Az-yT9" secondAttribute="bottom" constant="5" id="E5u-ny-Tku"/>
                         <constraint firstItem="dqj-uz-M6K" firstAttribute="top" secondItem="eiq-kd-szY" secondAttribute="bottom" constant="9" id="F2n-Q3-3fQ"/>
                         <constraint firstItem="1Sa-Az-yT9" firstAttribute="top" secondItem="5pi-rB-tRY" secondAttribute="top" id="F59-33-4ID"/>
                         <constraint firstAttribute="trailing" secondItem="lKM-aG-L3H" secondAttribute="trailing" constant="30" id="FNe-7e-acw"/>
+                        <constraint firstItem="eiq-kd-szY" firstAttribute="top" secondItem="Fvx-AL-ua3" secondAttribute="top" constant="21" id="GSO-mU-9Lv"/>
                         <constraint firstItem="lKM-aG-L3H" firstAttribute="top" secondItem="dqj-uz-M6K" secondAttribute="bottom" constant="8" id="JyV-a6-YH4"/>
                         <constraint firstItem="5pi-rB-tRY" firstAttribute="top" secondItem="lKM-aG-L3H" secondAttribute="bottom" constant="7" id="PoE-QE-61Z"/>
                         <constraint firstItem="5pi-rB-tRY" firstAttribute="top" secondItem="lKM-aG-L3H" secondAttribute="bottom" constant="8" id="TNy-Y7-8tb"/>
                         <constraint firstAttribute="centerY" secondItem="lKM-aG-L3H" secondAttribute="centerY" constant="-17" id="VGI-8T-SfF"/>
                         <constraint firstItem="5pi-rB-tRY" firstAttribute="top" secondItem="lKM-aG-L3H" secondAttribute="bottom" constant="8" id="VHV-bA-Zes"/>
                         <constraint firstAttribute="centerX" secondItem="dqj-uz-M6K" secondAttribute="centerX" constant="-0.5" id="WZg-N8-Mbp"/>
+                        <constraint firstAttribute="bottom" secondItem="5pi-rB-tRY" secondAttribute="bottom" constant="5" id="YDb-Fh-heR"/>
                         <constraint firstItem="5pi-rB-tRY" firstAttribute="top" secondItem="lKM-aG-L3H" secondAttribute="bottom" constant="8" id="aH1-py-Nqu"/>
                         <constraint firstItem="lKM-aG-L3H" firstAttribute="leading" secondItem="Fvx-AL-ua3" secondAttribute="leading" constant="30" id="drK-OB-ZcX"/>
                         <constraint firstAttribute="height" secondItem="lKM-aG-L3H" secondAttribute="height" multiplier="252:100" id="fH1-dc-TEB"/>
@@ -129,6 +132,7 @@
                             <exclude reference="hta-je-Gal"/>
                             <exclude reference="lMS-Gg-sqP"/>
                             <exclude reference="rCo-F0-oyf"/>
+                            <exclude reference="GSO-mU-9Lv"/>
                             <exclude reference="iio-RU-QD4"/>
                             <exclude reference="TNy-Y7-8tb"/>
                             <exclude reference="VHV-bA-Zes"/>

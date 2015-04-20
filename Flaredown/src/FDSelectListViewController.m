@@ -19,7 +19,7 @@
 #define POPUP_WIDTH 0.95
 #define POPUP_HEIGHT 0.5
 
-#define POPUP_KEYBOARD_OFFSET 60
+#define POPUP_KEYBOARD_OFFSET 120
 
 @interface FDSelectListViewController ()
 
@@ -107,20 +107,21 @@
 - (void)keyboardWillShow
 {
     FDPopup *popup = [[FDPopupManager sharedManager] topPopup];
-    if(popup) {
-        UIView *popupView = [popup view];
-        popupView.frame = CGRectMake(popupView.frame.origin.x, popupView.frame.origin.y - POPUP_KEYBOARD_OFFSET, popupView.frame.size.width, popupView.frame.size.height);
+    if(!_dynamic && popup && !_popupKeyboardOffset) {
         _popupKeyboardOffset = YES;
+        UIView *popupView = [popup view];
+        NSLog(@"%f",popupView.frame.origin.y);
+        popupView.frame = CGRectMake(popupView.frame.origin.x, popupView.frame.origin.y - POPUP_KEYBOARD_OFFSET, popupView.frame.size.width, popupView.frame.size.height);
     }
 }
 
 - (void)keyboardWillHide
 {
     FDPopup *popup = [[FDPopupManager sharedManager] topPopup];
-    if(popup && _popupKeyboardOffset) {
+    if(!_dynamic && popup && _popupKeyboardOffset) {
+        _popupKeyboardOffset = NO;
         UIView *popupView = [popup view];
         popupView.frame = CGRectMake(popupView.frame.origin.x, popupView.frame.origin.y + POPUP_KEYBOARD_OFFSET, popupView.frame.size.width, popupView.frame.size.height);
-        _popupKeyboardOffset = NO;
     }
 }
 
