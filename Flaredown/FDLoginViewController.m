@@ -38,7 +38,14 @@
     _loginBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_loginBtn];
     
+    [_loginBtn setTitle:FDLocalizedString(@"unauthenticated/login") forState:UIControlStateNormal];
+    
+    [_loginTitle setText:FDLocalizedString(@"unauthenticated/login")];
+    
     [_forgotPasswordButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Forgot password?", nil) attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle),NSForegroundColorAttributeName:[FDStyle indianKhakiColor]}] forState:UIControlStateNormal];
+    
+    self.emailTextField.placeholder = FDLocalizedString(@"unauthenticated/email");
+    self.passwordTextField.placeholder = FDLocalizedString(@"unauthenticated/password");
 
 #if DEBUG
     self.emailTextField.text = @"test@flaredown.com";
@@ -53,17 +60,27 @@
 
 - (IBAction)loginButton:(id)sender
 {
-    if([[_emailTextField text] length] == 0 || ![self stringIsValidEmail:[_emailTextField text]]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid email", nil)
-                                    message:NSLocalizedString(@"Please enter a valid email", nil)
+    NSString *emailStr = FDLocalizedString(@"unauthenticated/email");
+    NSString *passwordStr = FDLocalizedString(@"unauthenticated/password");
+    NSString *doneStr = FDLocalizedString(@"nav/done");
+    
+    if([[_emailTextField text] length] == 0) {
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:FDLocalizedString(@"nice_errors/field_required"), emailStr]
+                                    message:nil
                                    delegate:nil
-                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                          cancelButtonTitle:doneStr
+                          otherButtonTitles:nil] show];
+    } else if(![self stringIsValidEmail:[_emailTextField text]]) {
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:FDLocalizedString(@"nice_errors/field_invalid"), emailStr]
+                                    message:nil
+                                   delegate:nil
+                          cancelButtonTitle:doneStr
                           otherButtonTitles:nil] show];
     } else if([[_passwordTextField text] length] == 0) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid password", nil)
-                                    message:NSLocalizedString(@"Please enter a valid password", nil)
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:FDLocalizedString(@"nice_errors/field_invalid"), passwordStr]
+                                    message:nil
                                    delegate:nil
-                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                          cancelButtonTitle:doneStr
                           otherButtonTitles:nil] show];
     } else {
         
@@ -84,10 +101,10 @@
             else {
                 NSLog(@"Failure!");
                 
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error logging in", nil)
-                                            message:NSLocalizedString(@"Invalid email and/or password, please try again.", nil)
+                [[[UIAlertView alloc] initWithTitle:FDLocalizedString(@"nice_errors/bad_credentials")
+                                            message:FDLocalizedString(@"nice_errors/bad_credentials_description")
                                            delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  cancelButtonTitle:doneStr
                                   otherButtonTitles:nil] show];
             }
         }];
