@@ -34,6 +34,7 @@ typedef enum : NSUInteger {
 
 @property (weak, nonatomic) id <FDViewControllerDelegate> mainViewDelegate;
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 //Subtite or edit button

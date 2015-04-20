@@ -43,7 +43,9 @@
 		ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
+		EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB63F4B1AE1F30C006CA1B9 /* en.json */; };
 		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
+		EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */; };
 		EDD172C21AC47F4300820C4C /* FDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD172C11AC47F4300820C4C /* FDCondition.m */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
@@ -137,8 +139,11 @@
 		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDB63F4B1AE1F30C006CA1B9 /* en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en.json; sourceTree = "<group>"; };
 		EDBA0E221ABC95B5001F165F /* FDStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStyle.h; sourceTree = "<group>"; };
 		EDBA0E231ABC95B5001F165F /* FDStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStyle.m; sourceTree = "<group>"; };
+		EDCB7F531AE34569001EDD7F /* FDLocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLocalizationManager.h; sourceTree = "<group>"; };
+		EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLocalizationManager.m; sourceTree = "<group>"; };
 		EDD172C01AC47F4300820C4C /* FDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCondition.h; sourceTree = "<group>"; };
 		EDD172C11AC47F4300820C4C /* FDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCondition.m; sourceTree = "<group>"; };
 		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
@@ -217,6 +222,7 @@
 				101393D019D216D700BBB266 /* Main.storyboard */,
 				ED65B8621AA4D1C800974E6E /* views */,
 				85378A101A5214C50053D6CC /* fnt */,
+				EDB63F4A1AE1F2CA006CA1B9 /* Localization */,
 				101393D319D216D700BBB266 /* Images.xcassets */,
 				ED90725D1A68A7800012EFD6 /* Localizable.strings */,
 				101393C619D216D700BBB266 /* Supporting Files */,
@@ -368,6 +374,8 @@
 				EDDC72501A08441E0059815A /* FDModelManager.m */,
 				ED58E51A1AC09C3B009B74EE /* FDPopupManager.h */,
 				ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */,
+				EDCB7F531AE34569001EDD7F /* FDLocalizationManager.h */,
+				EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -417,6 +425,14 @@
 				10EED0B019E35FF5000464DD /* FDContainerViewController.m */,
 			);
 			name = "Page Containers";
+			sourceTree = "<group>";
+		};
+		EDB63F4A1AE1F2CA006CA1B9 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				EDB63F4B1AE1F30C006CA1B9 /* en.json */,
+			);
+			name = Localization;
 			sourceTree = "<group>";
 		};
 		EDDC724B1A083A950059815A /* Models */ = {
@@ -532,6 +548,7 @@
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */,
+				EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
 				85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */,
@@ -651,6 +668,7 @@
 				EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */,
 				101393F819D2432000BBB266 /* FDSelectListViewController.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
+				EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */,
 				ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
 				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,

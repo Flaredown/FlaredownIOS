@@ -31,11 +31,10 @@
     [super viewDidLoad];
     
     //Style
-    self.view.layer.masksToBounds = YES;
-//    self.view.clipsToBounds = NO;
-    [FDStyle addRoundedCornersToView:self.view];
-    [FDStyle addShadowToView:self.view];
-    self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    self.contentView.clipsToBounds = NO;
+    [FDStyle addRoundedCornersToView:self.contentView];
+    [FDStyle addShadowToView:self.contentView];
+    self.contentView.center = CGPointMake(self.contentView.frame.size.width / 2, self.contentView.frame.size.height / 2);
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
     
