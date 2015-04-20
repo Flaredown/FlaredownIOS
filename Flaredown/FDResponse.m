@@ -21,7 +21,7 @@
     if(self) {
         _responseId = [dictionary objectForKey:@"id"];
         _name = [dictionary objectForKey:@"name"];
-        _value = [dictionary objectForKey:@"value"] == [NSNull null] ? 0 : [[dictionary objectForKey:@"value"] intValue];
+        _value = [dictionary objectForKey:@"value"] == [NSNull null] ? -1 : [[dictionary objectForKey:@"value"] intValue];
         _catalog = [dictionary objectForKey:@"catalog"];
         _responded = NO;
     }
@@ -34,7 +34,7 @@
     if(self) {
         [self setResponseIdWithEntryId:[entry entryId] name:[question name]];
         _name = [question name];
-        _value = 0;
+        _value = -1;
         _catalog = [question catalog];
         _responded = NO;
     }

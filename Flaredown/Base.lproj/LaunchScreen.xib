@@ -12,8 +12,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch_image" translatesAutoresizingMaskIntoConstraints="NO" id="hQh-wr-9mg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_image" translatesAutoresizingMaskIntoConstraints="NO" id="hQh-wr-9mg">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="1065.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="600" id="6be-zx-bhx"/>
                         <constraint firstAttribute="width" secondItem="hQh-wr-9mg" secondAttribute="height" multiplier="40:71" id="VDY-9D-xIH"/>
@@ -76,7 +76,7 @@
                     <exclude reference="k3L-yk-LFD"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="445" y="491"/>
+            <point key="canvasLocation" x="445" y="739.75"/>
         </view>
     </objects>
     <resources>
