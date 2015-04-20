@@ -11,6 +11,8 @@
 #import "FDModelManager.h"
 #import "FDStyle.h"
 
+#import "FDLocalizationManager.h"
+
 @interface FDMeterViewController ()
 
 @end
@@ -85,15 +87,15 @@ static UIColor *DeselectedColor;
     
     NSString *title = @"";
     if(buttonIndex == 0) {
-        title = @"Not active";
+        title = FDLocalizedString(@"helpers/basic_0");
     } else if(buttonIndex == 1) {
-        title = @"Slightly active";
+        title = FDLocalizedString(@"helpers/basic_1");
     } else if(buttonIndex == 2) {
-        title = @"Somewhat active";
+        title = FDLocalizedString(@"helpers/basic_2");
     } else if(buttonIndex == 3) {
-        title = @"Very active";
+        title = FDLocalizedString(@"helpers/basic_3");
     } else if(buttonIndex == 4) {
-        title = @"Extremely active";
+        title = FDLocalizedString(@"helpers/basic_4");
     }
     [_descriptionLabel setText:NSLocalizedString(title, nil)];
     

@@ -417,6 +417,7 @@
                     </view>
                     <connections>
                         <outlet property="alarmButton" destination="dd4-Nd-Pvi" id="pOg-r7-yks"/>
+                        <outlet property="checkedInLabel" destination="sd0-VI-xc6" id="nMF-NE-PqV"/>
                         <outlet property="dateLabel" destination="TuD-SB-lW5" id="DQm-AR-HqL"/>
                         <outlet property="startButton" destination="c6n-5A-WG7" id="k47-6h-E5W"/>
                         <segue destination="Ffa-p7-jyZ" kind="presentation" identifier="login" id="Mz9-qs-Zid"/>
@@ -626,6 +627,8 @@
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="Xpm-fM-KJ8" id="j23-Lh-bKF"/>
+                        <outlet property="doneLabel" destination="X7k-Mf-7gH" id="dnA-B6-COr"/>
+                        <outlet property="seeYourGraphLabel" destination="8rE-RF-DUz" id="dvC-w9-9kg"/>
                         <outlet property="siteLabel" destination="eEX-46-q8T" id="wcV-9B-ddA"/>
                     </connections>
                 </viewController>

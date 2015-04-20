@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *siteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *seeYourGraphLabel;
+@property (weak, nonatomic) IBOutlet UILabel *doneLabel;
 
 @end
 
@@ -22,6 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //TODO: FDLocalizedString for seeYourGraphLabel
+    //TODO: FDLocalizedString for doneLabel
+    
     [_siteLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"flaredown.com" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}]];
     
     //Localized date

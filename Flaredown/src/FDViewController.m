@@ -13,6 +13,7 @@
 #import "FDPageContentViewController.h"
 #import "FDSearchTableViewController.h"
 #import "FDStyle.h"
+#import "FDLocalizationManager.h"
 
 @interface FDViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
@@ -33,6 +34,8 @@
     [FDStyle addShadowToView:_continueBtn];
     _continueBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_continueBtn];
+    
+    [_continueBtn setTitle:FDLocalizedString(@"onboarding/continue") forState:UIControlStateNormal];
     
     //Localized date
 //    NSString *dateString = [[[FDModelManager sharedManager] entry] date];

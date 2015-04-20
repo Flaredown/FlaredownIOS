@@ -9,6 +9,8 @@
 #import "FDSelectCollectionViewController.h"
 #import "FDModelManager.h"
 
+#import "FDLocalizationManager.h"
+
 @interface FDSelectCollectionViewController ()
 
 @end
@@ -105,7 +107,8 @@ static NSString * const numberCellIdentifier = @"numberCell";
     if(![[NSNull null] isEqual:labelText]) {
         UILabel *label = (UILabel *)[cell viewWithTag:2];
         label.numberOfLines = 0;
-        label.text = [self.inputs[[indexPath row]] label];
+        NSString *path = [NSString stringWithFormat:@"labels/%@", [self.inputs[[indexPath row]] label]];
+        label.text = FDLocalizedString(path);
     }
     
     [self setCellAppearance:cell];

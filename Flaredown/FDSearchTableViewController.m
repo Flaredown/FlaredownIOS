@@ -12,6 +12,8 @@
 #import "FDPopupManager.h"
 #import "FDTrackableResult.h"
 
+#import "FDLocalizationManager.h"
+
 @interface FDSearchTableViewController ()
 
 @end
@@ -22,11 +24,12 @@
     [super viewDidLoad];
     
     if(_searchType == SearchSymptoms) {
-        [self setTitle:@"Add Symptom"];
+        [self setTitle:FDLocalizedString(@"onboarding/add_a_symptom_title")];
     } else if(_searchType == SearchTreatments) {
+        //TODO: FDLocalizedString
         [self setTitle:@"Add Treatment"];
     } else if(_searchType == SearchConditions) {
-        [self setTitle:@"Add Condition"];
+        [self setTitle:FDLocalizedString(@"onboarding/add_condition")];
     }
     
     _results = [[NSMutableArray alloc] init];
@@ -96,6 +99,7 @@
         else {
             NSLog(@"Failure!");
             
+            //TODO: FDLocalizedString
             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving results", nil)
                                         message:NSLocalizedString(@"We couldn't get your search results, please try again.", nil)
                                        delegate:nil
@@ -180,10 +184,18 @@
         
         if([result count] != -1) {
             [title setText:[result name]];
-            [subtext setText:[NSString stringWithFormat:@"%i users", [result count]]];
+            //TODO: FDLocalizedString
+            [subtext setText:[NSString stringWithFormat:@"%i %@", [result count], @"users"]];
         } else {
+            //TODO: FDLocalizedString
+            if(_searchType == SearchConditions)
+                [subtext setText:@"Add new condition"];
+            else if(_searchType == SearchTreatments)
+                [subtext setText:@"Add new treatment"];
+            else if(_searchType == SearchSymptoms)
+                [subtext setText:@"Add new symptom"];
+                
             [title setText:[NSString stringWithFormat:@"\"%@\"", [result name]]];
-            [subtext setText:@"Add new condition"];
         }
 //    }
     return cell;
@@ -270,6 +282,7 @@
             else {
                 NSLog(@"Failure!");
                 
+                //TODO: FDLocalizedString
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
                                             message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
                                            delegate:nil
@@ -314,6 +327,7 @@
             else {
                 NSLog(@"Failure!");
                 
+                //TODO: FDLocalizedString
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
                                             message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
                                            delegate:nil
@@ -373,6 +387,7 @@
             else {
                 NSLog(@"Failure!");
                 
+                //TODO: FDLocalizedString
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating condition", nil)
                                             message:NSLocalizedString(@"Looks like there was an issue creating the new condition; please check the condition name and try again.", nil)
                                            delegate:nil

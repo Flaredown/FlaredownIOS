@@ -14,7 +14,13 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FDLaunchViewController"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FDLaunchViewController">
+            <connections>
+                <outlet property="alarmCancelButton" destination="5pi-rB-tRY" id="axW-uK-hdM"/>
+                <outlet property="alarmDoneButton" destination="1Sa-Az-yT9" id="Fh0-dx-Kc6"/>
+                <outlet property="alarmReminderLabel" destination="eiq-kd-szY" id="Bya-hX-leZ"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="298" height="306"/>

@@ -44,8 +44,8 @@
     }
     NSString *str = [currentDictionary objectForKey:[localePath substringFromIndex:rangeStart]];
     
-    //regex to replace "{{field}}" with %@
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"\\{\\{.*\\}\\}\"" options:NSRegularExpressionCaseInsensitive error:nil];
+    //regex to replace "{{field}}" or {{field}} with %@
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"\\{\\{.*\\}\\}\"|\\{\\{.*\\}\\}" options:NSRegularExpressionCaseInsensitive error:nil];
     str = [regex stringByReplacingMatchesInString:str options:0 range:NSMakeRange(0, str.length) withTemplate:@"%@"];
     
     return str;

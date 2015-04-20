@@ -14,6 +14,7 @@
 #import "FDPopupManager.h"
 #import "FDTreatment.h"
 #import "FDRemoveTrackableView.h"
+#import "FDLocalizationManager.h"
 
 //relative to screen
 #define POPUP_WIDTH 0.95
@@ -22,6 +23,14 @@
 #define POPUP_KEYBOARD_OFFSET 120
 
 @interface FDSelectListViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *addTreatmentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addTreatmentCancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *addTreatmentDoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *editTreatmentCancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *editTreatmentDoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *removeTreatmentCancelButton;
+
 
 @end
 
@@ -192,8 +201,16 @@
     
     _removeIndex = [[self.tableView indexPathForCell:[self parentCellForView:sender]] row]-1;
     
-    NSString *title = [NSString stringWithFormat:@"No longer tracking %@?", [_questions[_removeIndex] name]];
+    NSString *title;
+    if(_listType == ListTypeConditions)
+        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_condition_remove"), [_questions[_removeIndex] name]];
+    else if(_listType == ListTypeSymptoms)
+        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_symptom_remove"), [_questions[_removeIndex] name]];
+    else if(_listType == ListTypeTreatments)
+        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_treatment_remove"), [_questions[_removeIndex] name]];
     [popupView.titleLabel setText:title];
+    
+    [_removeTreatmentCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
 }
 
 /*
@@ -214,6 +231,13 @@
         [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
         popupView.layer.masksToBounds = YES;
         [FDStyle addRoundedCornersToView:popupView];
+        
+        //TODO: FDLocalizedString _addTreatmentLabel
+        //TODO: FDLocalizedString _addTreatmentDoseField placeholder
+        //TODO: FDLocalizedString _addTreatmentNameField placeholder
+        //TODO: FDLocalizedString _addTreatmentUnitField placeholder
+        [_addTreatmentCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+        [_addTreatmentDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
         
         [[FDPopupManager sharedManager] addPopupView:popupView];
     }
@@ -289,7 +313,12 @@
 
     [popupView needsUpdateConstraints];
     
+    //TODO: FDLocalizedString
     [_editTreatmentTitleLabel setText:[NSString stringWithFormat:@"Edit daily dosage of %@", [_editTreatment name]]];
+    //TODO: FDLocalizedString _editTreatmentDoseField placeholder
+    //TODO: FDLocalizedString _editTreatmentUnitField placeholder
+    [_editTreatmentCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+    [_editTreatmentDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
 //    [_editTreatmentDoseField setPlaceholder:[FDStyle trimmedDecimal:[_editTreatment quantity]]];
 //    if([[_editTreatment unit] length] > 0)
 //        [_editTreatmentUnitField setPlaceholder:[_editTreatment unit]];
@@ -372,6 +401,7 @@
                 else {
                     NSLog(@"Failure!");
                     
+                    //TODO: FDLocalizedString
                     [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
                                                 message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
                                                delegate:nil
@@ -473,10 +503,13 @@
             //1 title
             UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
             if(_listType == ListTypeSymptoms)
+                //TODO: FDLocalizedString
                 [titleLabel setText:NSLocalizedString(@"Edit Symptoms", nil)];
             else if(_listType == ListTypeTreatments)
+                //TODO: FDLocalizedString
                 [titleLabel setText:NSLocalizedString(@"Edit Treatments", nil)];
             else if(_listType == ListTypeConditions)
+                //TODO: FDLocalizedString
                 [titleLabel setText:NSLocalizedString(@"Edit Conditions", nil)];
             
         } else if([indexPath row] < self.questions.count + 1) {
@@ -502,6 +535,7 @@
                 
                 //4 Edit button
                 UIButton *editButton = (UIButton *)[cell viewWithTag:4];
+                //TODO: FDLocalizedString
                 [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"edit", nil) attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
                 
             } else {
@@ -523,28 +557,25 @@
             //1 Add button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             if(_listType == ListTypeTreatments)
+                //TODO: FDLocalizedString
                 [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
             else if(_listType == ListTypeSymptoms)
-                [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
+                [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_symptom_button")] forState:UIControlStateNormal];
             else if(_listType == ListTypeConditions)
-                [button setTitle:NSLocalizedString(@"+ Add Condition", nil) forState:UIControlStateNormal];
+                [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_condition")] forState:UIControlStateNormal];
         }
     } else if(_questions.count == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
 
         //1 Add button
         UIButton *button = (UIButton *)[cell viewWithTag:1];
-            
-        if(_listType == ListTypeTreatments) {
+        if(_listType == ListTypeTreatments)
+            //TODO: FDLocalizedString
             [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
-//            [button addTarget:self action:@selector(openTreatmentSearch:) forControlEvents:UIControlEventTouchUpInside];
-        } else if(_listType == ListTypeSymptoms) {
-            [button setTitle:NSLocalizedString(@"+ Add Symptom", nil) forState:UIControlStateNormal];
-//            [button addTarget:self action:@selector(openSymptomSearch:) forControlEvents:UIControlEventTouchUpInside];
-        } else if(_listType == ListTypeConditions) {
-            [button setTitle:NSLocalizedString(@"+ Add Condition", nil) forState:UIControlStateNormal];
-//            [button addTarget:self action:@selector(openConditionSearch:) forControlEvents:UIControlEventTouchUpInside];
-        }
+        else if(_listType == ListTypeSymptoms)
+            [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_symptom_button")] forState:UIControlStateNormal];
+        else if(_listType == ListTypeConditions)
+            [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_condition")] forState:UIControlStateNormal];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
         

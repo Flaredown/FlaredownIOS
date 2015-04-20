@@ -19,6 +19,10 @@
 #define ALARM_HEIGHT 0.55
 
 @interface FDLaunchViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *checkedInLabel;
+@property (weak, nonatomic) IBOutlet UILabel *alarmReminderLabel;
+@property (weak, nonatomic) IBOutlet UIButton *alarmDoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *alarmCancelButton;
 
 @end
 
@@ -29,6 +33,7 @@
     
     //Localized start button
     [_startButton setImage:[UIImage imageNamed:NSLocalizedString(@"fd_startBtn", nil)] forState:UIControlStateNormal];
+    [_checkedInLabel setText:FDLocalizedString(@"you_havent_checked_in_yet")];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -127,6 +132,12 @@
     
     _alarmView = alarmView;
     
+    //TODO: FDLocalizedString for "reminder"
+    
+    [_alarmDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
+    //TODO: FDLocalizedString
+    [_alarmCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+    
     //Reminder - 1
     UISwitch *switchItem = (UISwitch *)[alarmView viewWithTag:1];
     [switchItem setOn:[[FDModelManager sharedManager] reminder]];
@@ -182,6 +193,7 @@
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.repeatInterval = NSCalendarUnitDay;
     
+    //TODO: FDLocalizedString
     localNotification.alertBody = @"Don't forget to check into Flaredown today!";
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
@@ -199,6 +211,7 @@
 {
     NSString *title;
     if(![[FDModelManager sharedManager] reminder]) {
+        //TODO: FDLocalizedString
         title = NSLocalizedString(@"OFF", nil);
     } else {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

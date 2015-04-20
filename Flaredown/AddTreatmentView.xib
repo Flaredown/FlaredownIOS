@@ -17,7 +17,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FDSelectListViewController">
             <connections>
+                <outlet property="addTreatmentCancelButton" destination="3Xt-mZ-Ika" id="46U-hT-zoe"/>
+                <outlet property="addTreatmentDoneButton" destination="Cgh-YU-Pub" id="NY9-QV-PBH"/>
                 <outlet property="addTreatmentDoseField" destination="EAj-G9-N6N" id="awe-vl-zJa"/>
+                <outlet property="addTreatmentLabel" destination="CuW-SP-A2K" id="nYi-GL-7Lr"/>
                 <outlet property="addTreatmentNameField" destination="otI-88-v7e" id="0rM-VG-NYB"/>
                 <outlet property="addTreatmentUnitField" destination="dfJ-OX-KRK" id="CZf-Jd-gIP"/>
             </connections>
