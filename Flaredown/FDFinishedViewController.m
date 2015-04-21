@@ -10,6 +10,8 @@
 #import "FDModelManager.h"
 #import "FDUser.h"
 
+#import "FDLocalizationManager.h"
+
 @interface FDFinishedViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *siteLabel;
@@ -24,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //TODO: FDLocalizedString for seeYourGraphLabel
-    //TODO: FDLocalizedString for doneLabel
+    [_seeYourGraphLabel setText:FDLocalizedString(@"see_your_graph")];
+    [_doneLabel setText:FDLocalizedString(@"all_done")];
     
     [_siteLabel setAttributedText:[[NSAttributedString alloc] initWithString:@"flaredown.com" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}]];
     

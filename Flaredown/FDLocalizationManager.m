@@ -44,6 +44,11 @@
     }
     NSString *str = [currentDictionary objectForKey:[localePath substringFromIndex:rangeStart]];
     
+    if(!str) {
+        NSLog(@"Localization string: %@ not found", localePath);
+        return @"";
+    }
+    
     //regex to replace "{{field}}" or {{field}} with %@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"\\{\\{.*\\}\\}\"|\\{\\{.*\\}\\}" options:NSRegularExpressionCaseInsensitive error:nil];
     str = [regex stringByReplacingMatchesInString:str options:0 range:NSMakeRange(0, str.length) withTemplate:@"%@"];

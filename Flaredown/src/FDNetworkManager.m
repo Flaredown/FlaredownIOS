@@ -208,6 +208,7 @@ static NSString *api = @"/v1";
 
 + (BOOL)networkReachable
 {
+    //TODO: FDLocalizedString
     if([AFNetworkReachabilityManager sharedManager].reachable)
         return YES;
     NSLog(@"No network connection");

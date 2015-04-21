@@ -198,7 +198,7 @@
             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
                                         message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
                                        delegate:nil
-                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                               otherButtonTitles:nil] show];
         }
     }];

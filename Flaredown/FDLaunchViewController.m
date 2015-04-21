@@ -111,7 +111,7 @@
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving entry", nil)
                                             message:NSLocalizedString(@"Looks like there was a problem retreiving your entry, please try again.", nil)
                                            delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                                   otherButtonTitles:nil] show];
             }
             _entryLoaded = YES;
@@ -132,11 +132,10 @@
     
     _alarmView = alarmView;
     
-    //TODO: FDLocalizedString for "reminder"
+    [_alarmReminderLabel setText:FDLocalizedString(@"alarm_reminder_title")];
     
     [_alarmDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
-    //TODO: FDLocalizedString
-    [_alarmCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+    [_alarmCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
     
     //Reminder - 1
     UISwitch *switchItem = (UISwitch *)[alarmView viewWithTag:1];
@@ -193,8 +192,7 @@
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.repeatInterval = NSCalendarUnitDay;
     
-    //TODO: FDLocalizedString
-    localNotification.alertBody = @"Don't forget to check into Flaredown today!";
+    localNotification.alertBody = FDLocalizedString(@"alarm_reminder_text");
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
@@ -211,8 +209,7 @@
 {
     NSString *title;
     if(![[FDModelManager sharedManager] reminder]) {
-        //TODO: FDLocalizedString
-        title = NSLocalizedString(@"OFF", nil);
+        title = FDLocalizedString(@"alarm_off_caps");
     } else {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];

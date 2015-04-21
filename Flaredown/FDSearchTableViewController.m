@@ -26,8 +26,7 @@
     if(_searchType == SearchSymptoms) {
         [self setTitle:FDLocalizedString(@"onboarding/add_a_symptom_title")];
     } else if(_searchType == SearchTreatments) {
-        //TODO: FDLocalizedString
-        [self setTitle:@"Add Treatment"];
+        [self setTitle:FDLocalizedString(@"add_treatment")];
     } else if(_searchType == SearchConditions) {
         [self setTitle:FDLocalizedString(@"onboarding/add_condition")];
     }
@@ -99,11 +98,10 @@
         else {
             NSLog(@"Failure!");
             
-            //TODO: FDLocalizedString
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving results", nil)
-                                        message:NSLocalizedString(@"We couldn't get your search results, please try again.", nil)
+            [[[UIAlertView alloc] initWithTitle:FDLocalizedString(@"nice_errors/search_error")
+                                        message:FDLocalizedString(@"nice_errors/search_error_details")
                                        delegate:nil
-                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                               otherButtonTitles:nil] show];
         }
         [self.tableView reloadData];
@@ -184,16 +182,14 @@
         
         if([result count] != -1) {
             [title setText:[result name]];
-            //TODO: FDLocalizedString
-            [subtext setText:[NSString stringWithFormat:@"%i %@", [result count], @"users"]];
+            [subtext setText:[NSString stringWithFormat:@"%i %@", [result count], FDLocalizedString(@"add_trackable_users")]];
         } else {
-            //TODO: FDLocalizedString
             if(_searchType == SearchConditions)
-                [subtext setText:@"Add new condition"];
+                [subtext setText:FDLocalizedString(@"onboarding/add_new_condition")];
             else if(_searchType == SearchTreatments)
-                [subtext setText:@"Add new treatment"];
+                [subtext setText:FDLocalizedString(@"add_new_treatment")];
             else if(_searchType == SearchSymptoms)
-                [subtext setText:@"Add new symptom"];
+                [subtext setText:FDLocalizedString(@"onboarding/add_new_symptom")];
                 
             [title setText:[NSString stringWithFormat:@"\"%@\"", [result name]]];
         }
@@ -281,12 +277,11 @@
             }
             else {
                 NSLog(@"Failure!");
-                
-                //TODO: FDLocalizedString
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating symptom", nil)
-                                            message:NSLocalizedString(@"Looks like there was an issue creating the new symptom; please check the symptom name and try again.", nil)
+            
+                [[[UIAlertView alloc] initWithTitle:FDLocalizedString(@"nice_errors/search_add_symptom_error")
+                                            message:FDLocalizedString(@"nice_errors/search_add_symptom_error_description")
                                            delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                                   otherButtonTitles:nil] show];
             }
         }];
@@ -327,11 +322,10 @@
             else {
                 NSLog(@"Failure!");
                 
-                //TODO: FDLocalizedString
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
-                                            message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
+                [[[UIAlertView alloc] initWithTitle:FDLocalizedString(@"nice_errors/search_add_treatment_error")
+                                            message:FDLocalizedString(@"nice_errors/search_add_treatment_error_description")
                                            delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                                   otherButtonTitles:nil] show];
             }
         }];
@@ -387,11 +381,10 @@
             else {
                 NSLog(@"Failure!");
                 
-                //TODO: FDLocalizedString
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating condition", nil)
-                                            message:NSLocalizedString(@"Looks like there was an issue creating the new condition; please check the condition name and try again.", nil)
+                [[[UIAlertView alloc] initWithTitle:FDLocalizedString(@"nice_errors/search_add_condition_error")
+                                            message:FDLocalizedString(@"nice_errors/search_add_condition_error_description")
                                            delegate:nil
-                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                  cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                                   otherButtonTitles:nil] show];
             }
         }];

@@ -210,7 +210,7 @@
         title = [NSString stringWithFormat:FDLocalizedString(@"confirm_treatment_remove"), [_questions[_removeIndex] name]];
     [popupView.titleLabel setText:title];
     
-    [_removeTreatmentCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+    [_removeTreatmentCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
 }
 
 /*
@@ -232,11 +232,12 @@
         popupView.layer.masksToBounds = YES;
         [FDStyle addRoundedCornersToView:popupView];
         
-        //TODO: FDLocalizedString _addTreatmentLabel
-        //TODO: FDLocalizedString _addTreatmentDoseField placeholder
-        //TODO: FDLocalizedString _addTreatmentNameField placeholder
-        //TODO: FDLocalizedString _addTreatmentUnitField placeholder
-        [_addTreatmentCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+        [_addTreatmentLabel setText:FDLocalizedString(@"add_treatment")];
+        [_addTreatmentDoseField setPlaceholder:FDLocalizedString(@"edit_treatment_dose_placeholder")];
+        [_addTreatmentNameField setPlaceholder:FDLocalizedString(@"edit_treatment_name_placeholder")];
+        [_addTreatmentUnitField setPlaceholder:FDLocalizedString(@"edit_treatment_unit_placeholder")];
+        
+        [_addTreatmentCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
         [_addTreatmentDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
         
         [[FDPopupManager sharedManager] addPopupView:popupView];
@@ -313,11 +314,12 @@
 
     [popupView needsUpdateConstraints];
     
-    //TODO: FDLocalizedString
-    [_editTreatmentTitleLabel setText:[NSString stringWithFormat:@"Edit daily dosage of %@", [_editTreatment name]]];
-    //TODO: FDLocalizedString _editTreatmentDoseField placeholder
-    //TODO: FDLocalizedString _editTreatmentUnitField placeholder
-    [_editTreatmentCancelButton setTitle:FDLocalizedString(@"nav/back") forState:UIControlStateNormal];
+    [_editTreatmentTitleLabel setText:[NSString stringWithFormat:@"%@ %@", FDLocalizedString(@"nav/edit"), [_editTreatment name]]];
+    
+    [_editTreatmentDoseField setPlaceholder:FDLocalizedString(@"edit_treatment_dose_placeholder")];
+    [_editTreatmentUnitField setPlaceholder:FDLocalizedString(@"edit_treatment_unit_placeholder")];
+    
+    [_editTreatmentCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
     [_editTreatmentDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
 //    [_editTreatmentDoseField setPlaceholder:[FDStyle trimmedDecimal:[_editTreatment quantity]]];
 //    if([[_editTreatment unit] length] > 0)
@@ -401,11 +403,10 @@
                 else {
                     NSLog(@"Failure!");
                     
-                    //TODO: FDLocalizedString
-                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error creating treatment", nil)
-                                                message:NSLocalizedString(@"Looks like there was an issue creating the new treatment; please check the treatment name and try again.", nil)
+                    [[[UIAlertView alloc] initWithTitle:FDLocalizedString(@"nice_errors/search_add_treatment_error")
+                                                message:FDLocalizedString(@"nice_errors/search_add_treatment_error_description")
                                                delegate:nil
-                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                      cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
                                       otherButtonTitles:nil] show];
                 }
             }];
@@ -503,14 +504,11 @@
             //1 title
             UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
             if(_listType == ListTypeSymptoms)
-                //TODO: FDLocalizedString
-                [titleLabel setText:NSLocalizedString(@"Edit Symptoms", nil)];
+                [titleLabel setText:FDLocalizedString(@"onboarding/edit_symptoms")];
             else if(_listType == ListTypeTreatments)
-                //TODO: FDLocalizedString
-                [titleLabel setText:NSLocalizedString(@"Edit Treatments", nil)];
+                [titleLabel setText:FDLocalizedString(@"edit_treatments")];
             else if(_listType == ListTypeConditions)
-                //TODO: FDLocalizedString
-                [titleLabel setText:NSLocalizedString(@"Edit Conditions", nil)];
+                [titleLabel setText:FDLocalizedString(@"onboarding/edit_conditions")];
             
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
@@ -535,8 +533,7 @@
                 
                 //4 Edit button
                 UIButton *editButton = (UIButton *)[cell viewWithTag:4];
-                //TODO: FDLocalizedString
-                [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"edit", nil) attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
+                [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
                 
             } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
@@ -557,8 +554,7 @@
             //1 Add button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             if(_listType == ListTypeTreatments)
-                //TODO: FDLocalizedString
-                [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
+                [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"add_treatment")] forState:UIControlStateNormal];
             else if(_listType == ListTypeSymptoms)
                 [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_symptom_button")] forState:UIControlStateNormal];
             else if(_listType == ListTypeConditions)
@@ -570,8 +566,7 @@
         //1 Add button
         UIButton *button = (UIButton *)[cell viewWithTag:1];
         if(_listType == ListTypeTreatments)
-            //TODO: FDLocalizedString
-            [button setTitle:NSLocalizedString(@"+ Add Treatment", nil) forState:UIControlStateNormal];
+            [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"add_treatment")] forState:UIControlStateNormal];
         else if(_listType == ListTypeSymptoms)
             [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_symptom_button")] forState:UIControlStateNormal];
         else if(_listType == ListTypeConditions)

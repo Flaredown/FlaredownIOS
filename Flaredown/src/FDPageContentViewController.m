@@ -46,8 +46,7 @@
     if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
         //Add conditions
         self.titleLabel.text = FDLocalizedString(@"oops_no_conditions_being_tracked");
-        //TODO: FDLocalizedString
-        [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT CONDITIONS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+        [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_conditions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
         [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 
         _editSegueType = EditSegueConditions;
@@ -55,8 +54,7 @@
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             self.titleLabel.text = FDLocalizedString(@"oops_no_symptoms_being_tracked");
-            //TODO: FDLocalizedString
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT SYMPTOMS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_symptoms_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueSymptoms;
@@ -66,16 +64,14 @@
                 self.titleLabel.text = FDLocalizedString(@"oops_no_treatments_being_tracked");
             else
                 self.titleLabel.text = FDLocalizedString(@"which_treatments_taken_today");
-            //TODO: FDLocalizedString
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT TREATMENTS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"edit_treatments_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueTreatments;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
-            //TODO: FDLocalizedString
-            self.titleLabel.text = NSLocalizedString(@"Leave a note", nil);
+            self.titleLabel.text = FDLocalizedString(@"leave_a_note");
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
@@ -83,34 +79,27 @@
         if([[question catalog] isEqualToString:@"symptoms"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"symptom_question_prompt"), [question name]];
-            //TODO: FDLocalizedString
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT SYMPTOMS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_symptoms_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueSymptoms;
         } else if([[question catalog] isEqualToString:@"conditions"]) {
             if(![[NSNull null] isEqual:[question name]])
-                //TODO: FDLocalizedString
-                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How active is your %@ today?", nil), [question name]];
-            //TODO: FDLocalizedString
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"EDIT CONDITIONS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+                self.titleLabel.text = FDLocalizedString(@"condition_question_prompt");
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_conditions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueConditions;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
             if(![[NSNull null] isEqual:[question name]])
-                //TODO: FDLocalizedString
-                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Check any complications:", nil)];
+                self.titleLabel.text = FDLocalizedString(@"complications_question_prompt");
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
         } else if([[question kind] isEqualToString:@"number"]) {
             if(![[NSNull null] isEqual:[question name]])
-                //TODO: FDLocalizedString
-                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"How many %@ today?", nil), [question name]];
+                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
         }else {
             if(![[NSNull null] isEqual:[question name]])
-                //TODO: FDLocalizedString
-                self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"What is your current level of %@?", nil), [question name]];
-            //TODO: FDLocalizedString
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"RESEARCH QUESTIONS", nil) attributes:underlineAttribute] forState:UIControlStateNormal];
+                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"catalog_question_prompt"), [question name]];
+            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"research_questions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
         }
     }
     
