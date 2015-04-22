@@ -58,7 +58,7 @@
         NSDate *date = [dateFormat dateFromString:[[[FDModelManager sharedManager] entry] date]];
         NSDate *now = [NSDate date];
         if([now compare:date] == NSOrderedDescending) {
-            [[FDModelManager sharedManager] clearCurrentEntry];
+            [[FDModelManager sharedManager] entry];
         }
     }
     
@@ -68,15 +68,6 @@
     }
     
     FDUser *user = [[FDModelManager sharedManager] userObject];
-    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
-        if(success) {
-            NSLog(@"Success!");
-            
-            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
-        } else {
-            NSLog(@"Failure!");
-        }
-    }];
     
     if([[FDModelManager sharedManager] entry]) {
         _entryLoaded = YES;
@@ -115,6 +106,16 @@
                                   otherButtonTitles:nil] show];
             }
             _entryLoaded = YES;
+        }];
+        
+        [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
+            if(success) {
+                NSLog(@"Success!");
+                
+                [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
+            } else {
+                NSLog(@"Failure!");
+            }
         }];
     }
 }

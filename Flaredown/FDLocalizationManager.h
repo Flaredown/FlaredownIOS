@@ -18,6 +18,8 @@
 
 - (NSString *)localizedStringForPath:(NSString *)path;
 - (void)setLocalizationDictionaryForCurrentLocale:(NSDictionary *)content;
+- (void)clearLocalizationDictionaryForCurrentLocale:(NSDictionary *)content;
+
 - (NSString *)currentLocale;
 
 @end

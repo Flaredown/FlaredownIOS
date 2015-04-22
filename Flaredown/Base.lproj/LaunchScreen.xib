@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -12,8 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_image" translatesAutoresizingMaskIntoConstraints="NO" id="hQh-wr-9mg">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="1065.5"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="hQh-wr-9mg">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="600" id="6be-zx-bhx"/>
                         <constraint firstAttribute="width" secondItem="hQh-wr-9mg" secondAttribute="height" multiplier="40:71" id="VDY-9D-xIH"/>
@@ -23,6 +22,7 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="6be-zx-bhx"/>
+                            <exclude reference="VDY-9D-xIH"/>
                             <exclude reference="no0-DS-6hT"/>
                             <exclude reference="zcj-z7-ymD"/>
                         </mask>
@@ -48,6 +48,7 @@
             <constraints>
                 <constraint firstItem="hQh-wr-9mg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3ML-ZN-cl8"/>
                 <constraint firstAttribute="centerY" secondItem="hQh-wr-9mg" secondAttribute="centerY" id="9sg-uq-eop"/>
+                <constraint firstAttribute="bottom" secondItem="hQh-wr-9mg" secondAttribute="bottom" id="SAi-ZY-X1C"/>
                 <constraint firstItem="hQh-wr-9mg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bXm-xY-AxS"/>
                 <constraint firstAttribute="bottom" secondItem="hQh-wr-9mg" secondAttribute="bottom" id="dHg-Qb-llw"/>
                 <constraint firstAttribute="trailing" secondItem="hQh-wr-9mg" secondAttribute="trailing" id="k3L-yk-LFD"/>
@@ -80,6 +81,6 @@
         </view>
     </objects>
     <resources>
-        <image name="launch_image" width="320" height="568"/>
+        <image name="LaunchImage" width="320" height="568"/>
     </resources>
 </document>

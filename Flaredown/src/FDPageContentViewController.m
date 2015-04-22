@@ -84,21 +84,36 @@
             _editSegueType = EditSegueSymptoms;
         } else if([[question catalog] isEqualToString:@"conditions"]) {
             if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = FDLocalizedString(@"condition_question_prompt");
+                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"condition_question_prompt"), [question name]];
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_conditions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueConditions;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
-            if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = FDLocalizedString(@"complications_question_prompt");
+            if(![[NSNull null] isEqual:[question name]]) {
+                NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                self.titleLabel.text = FDLocalizedString(path);
+                if(self.titleLabel.text.length == 0)
+                    self.titleLabel.text = FDLocalizedString(@"complications_question_prompt");
+            }
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
         } else if([[question kind] isEqualToString:@"number"]) {
-            if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
+            if(![[NSNull null] isEqual:[question name]]) {
+                NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                self.titleLabel.text = FDLocalizedString(path);
+                if(self.titleLabel.text.length == 0)
+                    self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
+            }
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
         }else {
-            if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"catalog_question_prompt"), [question name]];
+            if(![[NSNull null] isEqual:[question name]]) {
+                NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                self.titleLabel.text = FDLocalizedString(path);
+                if(self.titleLabel.text.length == 0)
+                    self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"catalog_question_prompt"), [question name]];
+            }
             [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"research_questions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
         }
     }

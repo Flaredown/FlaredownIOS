@@ -253,6 +253,7 @@
         [self addItemButton:nil];
         _addTreatmentNameField.text = [treatment name] ?: @"";
         _addTreatmentDoseField.text = [treatment quantity] ? [FDStyle trimmedDecimal:[treatment quantity]] : @"";
+        
         _addTreatmentUnitField.text = [treatment unit] ?: @"";
     }
 }
@@ -529,7 +530,14 @@
                 //2 Dosage and Units label
                 UILabel *label = (UILabel *)[cell viewWithTag:2];
                 NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
-                [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, [treatment unit]]];
+                
+                NSString *unitString = [treatment unit];
+                NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
+                NSString *localizedUnit = FDLocalizedString(path);
+                if(localizedUnit.length > 0)
+                    unitString = localizedUnit;
+                
+                [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, unitString]];
                 
                 //4 Edit button
                 UIButton *editButton = (UIButton *)[cell viewWithTag:4];
@@ -582,18 +590,31 @@
             //List button
             FDTreatment *treatment = self.questions[[indexPath row]];
             NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
-            [button setTitle:[NSString stringWithFormat:@"%@ - %@ %@", [treatment name], quantityString, [treatment unit]] forState:UIControlStateNormal];
+            
+            NSString *unitString = [treatment unit];
+            NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
+            NSString *localizedUnit = FDLocalizedString(path);
+            if(localizedUnit.length > 0)
+                unitString = localizedUnit;
+            
+            [button setTitle:[NSString stringWithFormat:@"%@ - %@ %@", [treatment name], quantityString, unitString] forState:UIControlStateNormal];
             
             if([treatment taken]) {
                 [self selectButton:button];
             } else {
                 [self deselectButton:button];
             }
-        } else if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
+        } else {
             
             //List button
             FDQuestion *question = self.questions[[indexPath row]];
-            [button setTitle:[question name] forState:UIControlStateNormal];
+            
+            NSString *path = [NSString stringWithFormat:@"catalogs/%@/%@", [question catalog], [question name]];
+            NSString *localizedTitle = FDLocalizedString(path);
+            if(localizedTitle.length > 0)
+                [button setTitle:localizedTitle forState:UIControlStateNormal];
+            else
+                [button setTitle:[question name] forState:UIControlStateNormal];
             
             FDResponse *response = self.responses[[indexPath row]];
             if([response value] == 1) {

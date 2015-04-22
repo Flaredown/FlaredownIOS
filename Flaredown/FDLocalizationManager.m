@@ -63,16 +63,30 @@
 
 - (NSDictionary *)localizationDictionaryForCurrentLocale
 {
+    NSString *locale = [self currentLocale];
+    NSString *prefsPath = [@"locale-" stringByAppendingString:locale];
+    
     if(!_currentLocalizationDictionary) {
-        NSString *locale = [self currentLocale];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:locale ofType:@"json"];
-        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        //check prefs
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        if(error) {
-            NSLog(@"Localization dictionary not found for locale: %@", locale);
-            return nil;
+        NSDictionary *json = [userDefaults objectForKey:prefsPath];
+        
+        //Use default if not stored
+        if(!json) {
+    
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:locale ofType:@"json"];
+            NSData *data = [NSData dataWithContentsOfFile:filePath];
+            
+            NSError *error;
+            json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            
+            if(error) {
+                NSLog(@"Locale file not found for locale: %@", locale);
+                return nil;
+            }
+            
+            [userDefaults setObject:json forKey:[@"locale-" stringByAppendingString:locale]];
         }
         _currentLocalizationDictionary = json;
     }
@@ -82,25 +96,27 @@
 - (void)setLocalizationDictionaryForCurrentLocale:(NSDictionary *)content
 {
     NSString *locale = [self currentLocale];
+    NSString *prefsPath = [@"locale-" stringByAppendingString:locale];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:locale ofType:@"json"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:content forKey:prefsPath];
     
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:content options:0 error:&error];
+    _currentLocalizationDictionary = content;
     
-    if(error) {
-        NSLog(@"Error serializing localization json data: %@", error);
-        return;
-    }
+    NSLog(@"Successfully saved new locale data");
+}
+
+- (void)clearLocalizationDictionaryForCurrentLocale:(NSDictionary *)content
+{
+    NSString *locale = [self currentLocale];
+    NSString *prefsPath = [@"locale-" stringByAppendingString:locale];
     
-    [data writeToFile:filePath options:0 error:&error];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:prefsPath];
     
-    if(error) {
-        NSLog(@"Error writing localization json to file: %@", error);
-        return;
-    }
+    _currentLocalizationDictionary = nil;
     
-    NSLog(@"Successfully wrote localization data to file");
+    NSLog(@"Successfully cleared old locale data");
 }
 
 @end

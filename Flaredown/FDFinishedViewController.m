@@ -49,7 +49,7 @@
 - (IBAction)siteButton:(id)sender
 {
     FDUser *user = [[FDModelManager sharedManager] userObject];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://staging.flaredown.com/login?user_email=%@&user_token=%@", [user email], [user authenticationToken]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://staging.flaredown.com/login?user_email=%@&user_token=%@", [user email], [user authenticationToken]]];
     
     if (![[UIApplication sharedApplication] openURL:url]) {
         NSLog(@"%@%@",@"Failed to open url:",[url description]);

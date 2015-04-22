@@ -108,7 +108,7 @@ static NSString * const numberCellIdentifier = @"numberCell";
         UILabel *label = (UILabel *)[cell viewWithTag:2];
         label.numberOfLines = 0;
         NSString *path = [NSString stringWithFormat:@"labels/%@", [self.inputs[[indexPath row]] label]];
-        label.text = FDLocalizedString(path);
+        [label setText:FDLocalizedString(path)];
     }
     
     [self setCellAppearance:cell];
