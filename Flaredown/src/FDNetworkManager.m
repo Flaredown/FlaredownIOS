@@ -9,7 +9,7 @@
 #import "FDNetworkManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
-static NSString *host = @"http://api-staging.flaredown.com";
+static NSString *host = @"https://api-staging.flaredown.com";
 static NSString *api = @"/v1";
 
 @implementation FDNetworkManager
