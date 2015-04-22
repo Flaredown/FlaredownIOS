@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alarmReminderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alarmDoneButton;
 @property (weak, nonatomic) IBOutlet UIButton *alarmCancelButton;
+@property (weak, nonatomic) IBOutlet UILabel *checkinButtonLabel;
 
 @end
 
@@ -34,6 +35,7 @@
     //Localized start button
     [_startButton setImage:[UIImage imageNamed:NSLocalizedString(@"fd_startBtn", nil)] forState:UIControlStateNormal];
     [_checkedInLabel setText:FDLocalizedString(@"you_havent_checked_in_yet")];
+    [_checkinButtonLabel setText:FDLocalizedString(@"onboarding/checkin")];
 }
 
 - (void)viewDidAppear:(BOOL)animated

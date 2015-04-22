@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,8 +22,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-4m-paE">
                     <rect key="frame" x="0.0" y="0.0" width="298" height="220"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No longer tracking Trackable Name?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91T-xR-Jhv">
-                            <rect key="frame" x="30" y="35" width="238" height="67"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No longer tracking Trackable Name?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91T-xR-Jhv">
+                            <rect key="frame" x="30" y="16" width="238" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="238" id="Qzc-KJ-uBa"/>
                                 <constraint firstAttribute="height" constant="67" id="Tmf-pT-vpg"/>
@@ -35,6 +34,7 @@
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="Qzc-KJ-uBa"/>
+                                    <exclude reference="Tmf-pT-vpg"/>
                                 </mask>
                             </variation>
                         </label>
@@ -94,6 +94,7 @@
                         <constraint firstAttribute="centerY" secondItem="ter-Co-ibQ" secondAttribute="centerY" constant="-22" id="OtN-NK-sI2"/>
                         <constraint firstItem="1xc-cL-6hA" firstAttribute="top" secondItem="ter-Co-ibQ" secondAttribute="bottom" constant="8" id="SYa-2g-CQs"/>
                         <constraint firstItem="91T-xR-Jhv" firstAttribute="trailing" secondItem="ter-Co-ibQ" secondAttribute="trailing" constant="-3" id="T9b-tI-mk5"/>
+                        <constraint firstItem="91T-xR-Jhv" firstAttribute="top" secondItem="gsQ-4m-paE" secondAttribute="top" constant="16" id="bBn-h8-j7g"/>
                         <constraint firstItem="1xc-cL-6hA" firstAttribute="top" secondItem="ter-Co-ibQ" secondAttribute="bottom" constant="8" id="bJo-oy-OWB"/>
                         <constraint firstItem="ter-Co-ibQ" firstAttribute="top" secondItem="91T-xR-Jhv" secondAttribute="bottom" constant="16" id="ech-Uw-Wjr"/>
                         <constraint firstAttribute="centerY" secondItem="ter-Co-ibQ" secondAttribute="centerY" constant="-13" id="lvh-de-NdZ"/>

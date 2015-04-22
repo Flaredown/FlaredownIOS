@@ -93,25 +93,29 @@
     CGFloat keyboardY = [UIApplication sharedApplication].keyWindow.frame.size.height - keyboardSize.height;
     self.keyboardOffset = absY2 - keyboardY;
     
-    self.textViewBottomConstraint.constant += self.keyboardOffset;
+//    self.textViewBottomConstraint.constant += self.keyboardOffset;
     
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
+    
+    [self.mainViewDelegate toggleCardBumped];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     NSDictionary *info = [notification userInfo];
     
-    self.textViewBottomConstraint.constant -= self.keyboardOffset;
+//    self.textViewBottomConstraint.constant -= self.keyboardOffset;
     
      NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
     [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
+    
+    [self.mainViewDelegate toggleCardBumped];
 }
 
 @end

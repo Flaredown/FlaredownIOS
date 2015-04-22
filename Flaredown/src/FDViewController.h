@@ -14,6 +14,7 @@
 - (id)instance;
 - (void)openSearch:(NSString *)type;
 - (void)adjustPageIndexForRemovedItem:(int)firstIndex;
+- (void)toggleCardBumped;
 
 @end
 
@@ -26,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property NSString *searchType;
+
+@property BOOL cardBumped;
 
 @end
 

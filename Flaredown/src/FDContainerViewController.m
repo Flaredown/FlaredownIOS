@@ -11,6 +11,7 @@
 #import "FDNumberViewController.h"
 #import "FDSelectCollectionViewController.h"
 #import "FDMeterViewController.h"
+#import "FDNotesViewController.h"
 #import "FDModelManager.h"
 
 @interface FDContainerViewController ()
@@ -117,6 +118,8 @@
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             pageType = @"notes";
+            FDNotesViewController *notesVC = (FDNotesViewController *)dvc;
+            notesVC.mainViewDelegate = _mainViewDelegate;
         }
     } else {
         NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:offsetIndex];

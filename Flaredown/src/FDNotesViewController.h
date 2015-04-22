@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FDViewController.h"
+
 @interface FDNotesViewController : UIViewController <UITextViewDelegate>
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
+//@property (nonatomic, weak) id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
 - (void)keyboardWasShown:(NSNotification *)notification;
 - (void)keyboardWasHidden:(NSNotification *)notification;

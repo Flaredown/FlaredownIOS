@@ -7,6 +7,9 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="ProximaNova-Bold.otf">
+            <string>ProximaNova-Bold</string>
+        </mutableArray>
         <mutableArray key="ProximaNova-Regular.otf">
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
@@ -382,6 +385,16 @@
                                     <action selector="alarmButton:" destination="b9W-3p-fbP" eventType="touchUpInside" id="z9S-Td-qEk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check In!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u28-vX-PJ5">
+                                <rect key="frame" x="225" y="282" width="150" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="4b8-Eo-wsC"/>
+                                    <constraint firstAttribute="height" constant="36" id="fLH-nD-8Gc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="30"/>
+                                <color key="textColor" red="0.94901960784313721" green="0.93333333333333335" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.93333333330000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -393,6 +406,7 @@
                             <constraint firstAttribute="centerX" secondItem="c6n-5A-WG7" secondAttribute="centerX" id="HVk-8V-f7u"/>
                             <constraint firstItem="RIe-HL-rLp" firstAttribute="centerY" secondItem="dd4-Nd-Pvi" secondAttribute="centerY" constant="-0.5" id="HwM-3p-JhA"/>
                             <constraint firstAttribute="centerX" secondItem="TuD-SB-lW5" secondAttribute="centerX" id="Jzb-LZ-sSX"/>
+                            <constraint firstItem="c6n-5A-WG7" firstAttribute="centerY" secondItem="u28-vX-PJ5" secondAttribute="centerY" constant="0.5" id="L51-EO-3et"/>
                             <constraint firstItem="dd4-Nd-Pvi" firstAttribute="leading" secondItem="RIe-HL-rLp" secondAttribute="trailing" constant="6" id="LyG-uj-E4E"/>
                             <constraint firstItem="c6n-5A-WG7" firstAttribute="top" secondItem="TuD-SB-lW5" secondAttribute="bottom" constant="41.5" id="MdE-qJ-sgb"/>
                             <constraint firstItem="sd0-VI-xc6" firstAttribute="leading" secondItem="RIe-HL-rLp" secondAttribute="trailing" constant="-78" id="No7-aL-wHB"/>
@@ -402,6 +416,7 @@
                             <constraint firstItem="dd4-Nd-Pvi" firstAttribute="top" secondItem="sd0-VI-xc6" secondAttribute="bottom" constant="34" id="d6G-WC-W1r"/>
                             <constraint firstItem="c6n-5A-WG7" firstAttribute="top" secondItem="TuD-SB-lW5" secondAttribute="bottom" constant="32" id="iEl-bj-zTI"/>
                             <constraint firstItem="TuD-SB-lW5" firstAttribute="leading" secondItem="cAf-0N-mph" secondAttribute="leadingMargin" id="m54-qa-tuf"/>
+                            <constraint firstItem="c6n-5A-WG7" firstAttribute="centerX" secondItem="u28-vX-PJ5" secondAttribute="centerX" id="p6M-DB-IBz"/>
                             <constraint firstAttribute="centerX" secondItem="sd0-VI-xc6" secondAttribute="centerX" constant="-0.5" id="rbZ-sK-Avq"/>
                             <constraint firstItem="sd0-VI-xc6" firstAttribute="top" secondItem="c6n-5A-WG7" secondAttribute="bottom" constant="15" id="ylw-ss-Bq7"/>
                         </constraints>
@@ -420,6 +435,7 @@
                     <connections>
                         <outlet property="alarmButton" destination="dd4-Nd-Pvi" id="pOg-r7-yks"/>
                         <outlet property="checkedInLabel" destination="sd0-VI-xc6" id="nMF-NE-PqV"/>
+                        <outlet property="checkinButtonLabel" destination="u28-vX-PJ5" id="bmM-ZC-7Gv"/>
                         <outlet property="dateLabel" destination="TuD-SB-lW5" id="DQm-AR-HqL"/>
                         <outlet property="startButton" destination="c6n-5A-WG7" id="k47-6h-E5W"/>
                         <segue destination="Ffa-p7-jyZ" kind="presentation" identifier="login" id="Mz9-qs-Zid"/>

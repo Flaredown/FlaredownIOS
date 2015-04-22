@@ -15,6 +15,8 @@
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
 
+#define CARD_BUMP_OFFSET 60
+
 @interface FDViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
 
@@ -98,6 +100,17 @@
 {
     if(firstIndex != _pageIndex)
         _pageIndex--;
+}
+
+- (void)toggleCardBumped
+{
+    CGRect frame = _pageViewController.view.frame;
+    if(_cardBumped) {
+        [_pageViewController.view setFrame:CGRectMake(frame.origin.x, frame.origin.y + CARD_BUMP_OFFSET, frame.size.width, frame.size.height)];
+    } else {
+        [_pageViewController.view setFrame:CGRectMake(frame.origin.x, frame.origin.y - CARD_BUMP_OFFSET, frame.size.width, frame.size.height)];
+    }
+    _cardBumped = !_cardBumped;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
