@@ -23,13 +23,26 @@
         
         _questions = [[NSMutableArray alloc] init];
         int section = 0;
-        for (NSString *catalog in _catalogs) {
-            NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:catalog];
+        
+        if([_catalogs containsObject:@"conditions"]) {
+            NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:@"conditions"];
             for(int i = 0; i < catalogDefinition.count; i++) {
                 for (NSDictionary *questionDefinition in catalogDefinition[i]) {
-                    [_questions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:section]];
+                    [_questions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:@"conditions" section:section]];
                 }
                 section++;
+            }
+        }
+        
+        for (NSString *catalog in _catalogs) {
+            if(![catalog isEqualToString:@"conditions"]) {
+                NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:catalog];
+                for(int i = 0; i < catalogDefinition.count; i++) {
+                    for (NSDictionary *questionDefinition in catalogDefinition[i]) {
+                        [_questions addObject:[[FDQuestion alloc] initWithDictionary:questionDefinition catalog:catalog section:section]];
+                    }
+                    section++;
+                }
             }
         }
         
@@ -53,10 +66,21 @@
 
 - (NSDictionary *)dictionaryCopy
 {
-    NSMutableArray *mutableQuestions = [[NSMutableArray alloc] init];
-    for (FDQuestion *question in _questions) {
-        [mutableQuestions addObject:[question dictionaryCopy]];
+    NSMutableDictionary *catalogDefinitions = [[NSMutableDictionary alloc] init];
+    for (NSString *catalog in _catalogs) {
+        [catalogDefinitions setObject:[[NSMutableArray alloc] init] forKey:catalog];
     }
+
+    int lastSection = -1;
+    for (FDQuestion *question in _questions) {
+        NSMutableArray *catalogDefinition = [catalogDefinitions objectForKey:[question catalog]];
+        if([question section] != lastSection) {
+            [catalogDefinition addObject:[[NSMutableArray alloc] init]];
+            lastSection = [question section];
+        }
+        [[catalogDefinition lastObject] addObject:[question dictionaryCopy]];
+    }
+    
     NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
     for (FDResponse *response in _responses) {
         [mutableResponses addObject:[response dictionaryCopy]];
@@ -69,11 +93,11 @@
              @"id":_entryId,
              @"date":_date,
              @"catalogs":_catalogs,
-             @"questions":mutableQuestions,
+             @"catalog_definitions":catalogDefinitions,
              @"notes":_notes,
              @"responses":mutableResponses,
              @"treatments":mutableTreatments,
-             @"scores":_scores
+             @"scores":_scores ?: [[NSArray alloc] init]
              };
 }
 

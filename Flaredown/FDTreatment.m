@@ -23,7 +23,7 @@
         _name = [dictionary objectForKey:@"name"];
         _quantity = [[dictionary objectForKey:@"quantity"] isEqual:[NSNull null]] ? 0 : [[dictionary objectForKey:@"quantity"] floatValue];
         _unit = ![dictionary objectForKey:@"unit"] || [[dictionary objectForKey:@"unit"] isEqual:[NSNull null]] ? @"" : [dictionary objectForKey:@"unit"];
-        _taken = NO;
+        _taken = [dictionary objectForKey:@"taken"] ? [[dictionary objectForKey:@"taken"] boolValue]: NO;
     }
     return self;
 }
@@ -48,6 +48,7 @@
              @"name":_name,
              @"quantity":_taken ? [FDStyle trimmedDecimal:_quantity] : [NSNull null],
              @"unit":_unit,
+             @"taken":@(_taken)
              };
 }
 

@@ -16,7 +16,7 @@
     if(self) {
         _helper = [dictionary objectForKey:@"helper"];
 //        _inputId = [[dictionary objectForKey:@"id"] intValue];
-        _label = [dictionary objectForKey:@"label"];
+        _label = [[dictionary objectForKey:@"label"] isEqual:[NSNull null]] ? nil : [dictionary objectForKey:@"label"];
         _metaLabel = [dictionary objectForKey:@"meta_label"];
         _value = [[dictionary objectForKey:@"value"] intValue];
     }
@@ -28,7 +28,7 @@
     return @{
              @"helper":_helper,
 //             @"id":[NSNumber numberWithInteger:_inputId],
-             @"label":_label,
+             @"label":_label ?: [NSNull null],
              @"meta_label":_metaLabel,
              @"value":[NSNumber numberWithInteger:_value]
              };

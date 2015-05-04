@@ -38,6 +38,9 @@ static NSString * const numberCellIdentifier = @"numberCell";
     [self.response setResponseIdWithEntryId:[entry entryId] name:[self.question name]];
     if([entry responseForId:[self.response responseId]]) {
         self.response = [entry responseForId:[self.response responseId]];
+        self.selectedIndex = self.response.value;
+        if(self.response.value >= 0)
+            self.itemSelected = YES;
     } else {
         self.response = [self.response initWithEntry:entry question:question];
         [[[FDModelManager sharedManager] entry] insertResponse:self.response];
@@ -102,6 +105,13 @@ static NSString * const numberCellIdentifier = @"numberCell";
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         label.text = [NSString stringWithFormat:@"%d", [input value]];
     }
+    
+    if(self.selectedIndex >= 0) {
+        if([indexPath row] == self.selectedIndex)
+            [self selectCell:cell];
+        else
+            [self deselectCell:cell];
+    }
 
     NSString *labelText = [self.inputs[[indexPath row]] label];
     if(![[NSNull null] isEqual:labelText]) {
@@ -151,6 +161,7 @@ static NSString * const numberCellIdentifier = @"numberCell";
     NSInteger row = [indexPath row];
     FDInput *input = self.inputs[row];
     [self.response setValue:[input value]];
+    self.selectedIndex = self.response.value;
 }
 
 - (void)deselectCell:(UICollectionViewCell *)cell

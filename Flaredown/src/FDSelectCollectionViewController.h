@@ -17,6 +17,7 @@
 @property NSArray *inputs;
 
 @property BOOL itemSelected;
+@property int selectedIndex;
 
 - (void)initWithQuestion:(FDQuestion *)question;
 
