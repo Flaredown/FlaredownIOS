@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UIView *loginCard;
+@property BOOL cardBumped;
 
 @end

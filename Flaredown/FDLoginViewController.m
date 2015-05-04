@@ -12,10 +12,14 @@
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
 
+#define CARD_BUMP_OFFSET 100
+
 @interface FDLoginViewController ()
-@property (weak, nonatomic) IBOutlet UIView *loginCard;
+
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UILabel *loginTitle;
+@property (weak, nonatomic) IBOutlet UIView *logoContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginCardYConstraint;
 
 @end
 
@@ -23,6 +27,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(keyboardOnScreen:) name:UIKeyboardWillShowNotification object:nil];
     
     [_emailTextField setDelegate:self];
     [_passwordTextField setDelegate:self];
@@ -51,6 +58,23 @@
     self.emailTextField.text = @"test@flaredown.com";
     self.passwordTextField.text = @"testing123";
 #endif
+}
+
+- (void)keyboardOnScreen:(NSNotification *)notification
+{
+    NSDictionary *info = notification.userInfo;
+    NSValue *value = info[UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect rawFrame = [value CGRectValue];
+    CGRect keyboardFrame = [self.view convertRect:rawFrame fromView:nil];
+    float keyboardY = keyboardFrame.origin.y;
+    
+    float y2 = [_passwordTextField.superview convertPoint:_passwordTextField.frame.origin toView:nil].y + _passwordTextField.frame.size.height;
+    if(y2 < keyboardY) {
+        return;
+    }
+    
+    [self toggleCardBumped];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,6 +158,11 @@
     return NO;
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     [self dismissKeyboard];
@@ -142,7 +171,8 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self dismissKeyboard];
+    if(_cardBumped)
+        [self toggleCardBumped];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -166,7 +196,23 @@
 
 }
 
-
+- (void)toggleCardBumped
+{
+    CGRect frame = _loginCard.frame;
+    
+    CGRect newFrame;
+    _loginCard.translatesAutoresizingMaskIntoConstraints = YES;
+    _logoContainerView.translatesAutoresizingMaskIntoConstraints = YES;
+    if(_cardBumped) {
+        newFrame = CGRectMake(frame.origin.x, frame.origin.y + CARD_BUMP_OFFSET, frame.size.width, frame.size.height);
+    } else {
+        newFrame = CGRectMake(frame.origin.x, frame.origin.y - CARD_BUMP_OFFSET, frame.size.width, frame.size.height);
+    }
+    [UIView animateWithDuration:0.3 animations:^ {
+       [_loginCard setFrame:newFrame];
+    }];
+    _cardBumped = !_cardBumped;
+}
 
 #pragma mark - Navigation
 

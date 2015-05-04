@@ -276,8 +276,10 @@
                         <outlet property="emailTextField" destination="rlh-Tn-Gdb" id="JIu-5P-Q5z"/>
                         <outlet property="forgotPasswordButton" destination="TCf-2g-LO4" id="reT-yf-PWt"/>
                         <outlet property="loginBtn" destination="emL-iO-WlK" id="Dmo-DA-Ahe"/>
-                        <outlet property="loginCard" destination="jvL-6i-G6n" id="Z1O-Ig-NQg"/>
+                        <outlet property="loginCard" destination="jvL-6i-G6n" id="Ecw-cA-Ilp"/>
+                        <outlet property="loginCardYConstraint" destination="9st-8A-zFN" id="uym-Wd-yVC"/>
                         <outlet property="loginTitle" destination="7Gl-7E-8VE" id="SdC-Lg-pwR"/>
+                        <outlet property="logoContainerView" destination="Tj5-ex-Xg0" id="yAo-iL-VKb"/>
                         <outlet property="passwordTextField" destination="yo4-RY-kXr" id="GAP-8j-XpU"/>
                     </connections>
                 </viewController>
@@ -1876,7 +1878,7 @@
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j9h-cQ-iZY"/>
         <segue reference="1ic-5n-SwM"/>
+        <segue reference="pti-0c-EDU"/>
     </inferredMetricsTieBreakers>
 </document>

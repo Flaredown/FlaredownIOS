@@ -203,11 +203,11 @@
     
     NSString *title;
     if(_listType == ListTypeConditions)
-        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_condition_remove"), [_questions[_removeIndex] name]];
+        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_short_remove"), [_questions[_removeIndex] name]];
     else if(_listType == ListTypeSymptoms)
-        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_symptom_remove"), [_questions[_removeIndex] name]];
+        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_short_remove"), [_questions[_removeIndex] name]];
     else if(_listType == ListTypeTreatments)
-        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_treatment_remove"), [_questions[_removeIndex] name]];
+        title = [NSString stringWithFormat:FDLocalizedString(@"confirm_short_remove"), [_questions[_removeIndex] name]];
     [popupView.titleLabel setText:title];
     
     [_removeTreatmentCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
