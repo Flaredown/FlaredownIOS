@@ -134,13 +134,28 @@
     }
 }
 
+- (IBAction)listItemSwitch:(id)sender
+{
+    UITableViewCell *cell = [self parentCellForView:sender];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    FDTreatment *treatment = [self.questions objectAtIndex:[indexPath row]];
+    if([treatment taken]) {
+        [self.selectedItems removeObject:indexPath];
+        [treatment setTaken:NO];
+    } else {
+        [self.selectedItems addObject:indexPath];
+        [treatment setTaken:YES];
+    }
+}
+
 // Toggle selected for target item
 - (IBAction)listItemButton:(id)sender
 {
     if(self.dynamic)
         return;
     UIButton *button = (UIButton *)sender;
-    UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
+    UITableViewCell *cell = [self parentCellForView:button];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
     if(_listType == ListTypeTreatments) {
@@ -514,47 +529,46 @@
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
             
-            if(_listType == ListTypeTreatments) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
+//            if(_listType == ListTypeTreatments) {
+//                cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
+//                
+//                FDTreatment *treatment = self.questions[itemRow];
+//                
+//                //1 List label
+//                UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
+//                [titleLabel setText:[treatment name]];
+//                
+//                //2 Dosage and Units label
+//                UILabel *label = (UILabel *)[cell viewWithTag:2];
+//                NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
+//                
+//                NSString *unitString = [treatment unit];
+//                NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
+//                NSString *localizedUnit = FDLocalizedString(path);
+//                if(localizedUnit.length > 0)
+//                    unitString = localizedUnit;
+//                
+//                [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, unitString]];
+//                
+//                //4 Edit button
+//                UIButton *editButton = (UIButton *)[cell viewWithTag:4];
+//                [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
+//                
+//                //5 Switch
+//                UISwitch *toggleSwitch = (UISwitch *)[cell viewWithTag:5];
+//                [toggleSwitch setOn:[treatment taken]];
                 
-                UIButton *button = (UIButton *)[cell viewWithTag:1];
-                //Style
-                [FDStyle addLargeRoundedCornersToView:button];
-                
-                FDTreatment *treatment = self.questions[itemRow];
-                
-                //1 List button
-                [button setTitle:[treatment name] forState:UIControlStateNormal];
-                [self selectButton:button];
-                
-                //2 Dosage and Units label
-                UILabel *label = (UILabel *)[cell viewWithTag:2];
-                NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
-                
-                NSString *unitString = [treatment unit];
-                NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
-                NSString *localizedUnit = FDLocalizedString(path);
-                if(localizedUnit.length > 0)
-                    unitString = localizedUnit;
-                
-                [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, unitString]];
-                
-                //4 Edit button
-                UIButton *editButton = (UIButton *)[cell viewWithTag:4];
-                [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
-                
-            } else {
+//            } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
-                
-                UIButton *button = (UIButton *)[cell viewWithTag:1];
-                //Style
-                [FDStyle addLargeRoundedCornersToView:button];
                 
                 //1 List button
                 FDQuestion *question = self.questions[itemRow];
+            
+                UIButton *button = (UIButton *)[cell viewWithTag:1];
+                [FDStyle addLargeRoundedCornersToView:button];
                 [button setTitle:[question name] forState:UIControlStateNormal];
                 [self selectButton:button];
-            }
+//            }
             
         } else if([indexPath row] == self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
@@ -580,15 +594,17 @@
         else if(_listType == ListTypeConditions)
             [button setTitle:[NSString stringWithFormat:@"+ %@", FDLocalizedString(@"onboarding/add_condition")] forState:UIControlStateNormal];
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
-        
-        UIButton *button = (UIButton *)[cell viewWithTag:1];
-        //Style
-        [FDStyle addLargeRoundedCornersToView:button];
-        
         if(_listType == ListTypeTreatments) {
-            //List button
+            cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
+            
             FDTreatment *treatment = self.questions[[indexPath row]];
+            
+            //1 List label
+            UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
+            [titleLabel setText:[treatment name]];
+            
+            //2 Dosage and Units label
+            UILabel *label = (UILabel *)[cell viewWithTag:2];
             NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
             
             NSString *unitString = [treatment unit];
@@ -597,14 +613,23 @@
             if(localizedUnit.length > 0)
                 unitString = localizedUnit;
             
-            [button setTitle:[NSString stringWithFormat:@"%@ - %@ %@", [treatment name], quantityString, unitString] forState:UIControlStateNormal];
+            [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, unitString]];
             
-            if([treatment taken]) {
-                [self selectButton:button];
-            } else {
-                [self deselectButton:button];
-            }
+            //4 Edit button
+            UIButton *editButton = (UIButton *)[cell viewWithTag:4];
+            [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
+            
+            //5 Switch
+            UISwitch *toggleSwitch = (UISwitch *)[cell viewWithTag:5];
+            [toggleSwitch setOn:[treatment taken]];
+            
         } else {
+            
+            cell = [tableView dequeueReusableCellWithIdentifier:@"staticListItem" forIndexPath:indexPath];
+            
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            //Style
+            [FDStyle addLargeRoundedCornersToView:button];
             
             //List button
             FDQuestion *question = self.questions[[indexPath row]];
@@ -643,7 +668,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(_listType == ListTypeTreatments && _dynamic)
+    if(_listType == ListTypeTreatments && !_dynamic)
         return 90;
     return 50;
 }

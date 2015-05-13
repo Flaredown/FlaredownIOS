@@ -12,6 +12,7 @@
 #import "FDSelectCollectionViewController.h"
 #import "FDMeterViewController.h"
 #import "FDNotesViewController.h"
+#import "FDTagsCollectionViewController.h"
 #import "FDModelManager.h"
 
 @interface FDContainerViewController ()
@@ -37,8 +38,8 @@
             //Treatments
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
-            //Notes
-            self.currentSegueIdentifier = SegueIdentifierNotesView;
+            //Tags
+            self.currentSegueIdentifier = SegueIdentifierTagsView;
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
@@ -56,8 +57,8 @@
             self.currentSegueIdentifier = SegueIdentifierNumberView;
         } else if([pageType isEqualToString:@"meter"]) {
             self.currentSegueIdentifier = SegueIdentifierMeterView;
-        } else if([pageType isEqualToString:@"notes"]) {
-            self.currentSegueIdentifier = SegueIdentifierNotesView;
+        } else if([pageType isEqualToString:@"tags"]) {
+            self.currentSegueIdentifier = SegueIdentifierTagsView;
         } else {
             NSLog(@"Invalid page kind");
             return;
@@ -116,10 +117,10 @@
             [listVC initWithTreatments];
             listVC.mainViewDelegate = _mainViewDelegate;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
-            //Notes
-            pageType = @"notes";
-            FDNotesViewController *notesVC = (FDNotesViewController *)dvc;
-            notesVC.mainViewDelegate = _mainViewDelegate;
+            //Tags
+            pageType = @"tags";
+            FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)dvc;
+//            tagsVC.mainViewDelegate = _mainViewDelegate;
         }
     } else {
         NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:offsetIndex];

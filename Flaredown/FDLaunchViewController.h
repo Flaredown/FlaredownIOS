@@ -12,6 +12,7 @@
 
 @property BOOL entryLoaded;
 @property BOOL segueReady;
+@property BOOL entryPreloaded;
 @property BOOL reminderOn;
 @property NSDate *reminderTime;
 

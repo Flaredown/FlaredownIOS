@@ -71,7 +71,8 @@
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
-            self.titleLabel.text = FDLocalizedString(@"leave_a_note");
+            self.titleLabel.text = FDLocalizedString(@"tag_your_day");
+//            self.titleLabel.text = FDLocalizedString(@"leave_a_note");
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];

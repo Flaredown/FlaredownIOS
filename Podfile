@@ -6,6 +6,8 @@ target 'Flaredown' do
   pod 'DLAlertView', '~> 1.2'
   pod 'MBProgressHUD', '~> 0.9'
   pod 'MJPopupViewController', '~> 0.4'
+  pod 'KTCenterFlowLayout'
+  pod 'UICollectionViewLeftAlignedLayout'
 end
 
 target 'FlaredownTests' do

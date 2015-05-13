@@ -14,6 +14,7 @@
 #define SegueIdentifierNumberView @"embedNumberView"
 #define SegueIdentifierMeterView @"embedMeterView"
 #define SegueIdentifierNotesView @"embedNotesView"
+#define SegueIdentifierTagsView @"embedTagsView"
 
 @interface FDContainerViewController : UIViewController
 

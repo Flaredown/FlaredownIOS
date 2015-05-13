@@ -14,6 +14,7 @@
 #import "FDSearchTableViewController.h"
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
+#import "FDSummaryCollectionViewController.h"
 
 #define CARD_BUMP_OFFSET 60
 
@@ -51,25 +52,55 @@
     
     self.pageIndex = 0;
     
-    //Create page view controller
-//    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController = [[UIPageViewController alloc]
                                initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                               options:@{UIPageViewControllerOptionInterPageSpacingKey:@10}];
+                               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                               options:@{UIPageViewControllerOptionInterPageSpacingKey:@10}];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
     [self refreshPages];
     
-    //change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0, 80, self.view.frame.size.width, self.view.frame.size.height - 140);
     
-//    self.pageViewController.view.frame = CGRectMake(10, 80, self.view.frame.size.width - 20, self.view.frame.size.height - 140);
+    //Create summary view controller
+    self.summaryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"summary"];
+    [self.summaryViewController setMainViewDelegate:self];
+    self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
+    self.summaryViewController.view.frame = CGRectMake(10, 90, self.view.frame.size.width - 20, self.view.frame.size.height - 160);
     
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
+    if(_loadSummary)
+        [self showSummary];
+    else
+        [self showPages];
+}
+
+- (void)showPages
+{
+    if([self.summaryViewController parentViewController])
+        [self removeViewController:self.summaryViewController];
+    [self addViewController:self.pageViewController];
+}
+
+- (void)showSummary
+{
+    self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
+    if([self.pageViewController parentViewController])
+        [self removeViewController:self.pageViewController];
+    [self addViewController:self.summaryViewController];
+}
+
+- (void)addViewController:(UIViewController *)viewController
+{
+    [self addChildViewController:viewController];
+    [self.view addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self];
+}
+
+- (void)removeViewController:(UIViewController *)viewController
+{
+    [viewController removeFromParentViewController];
+    [viewController.view removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,6 +142,13 @@
         [_pageViewController.view setFrame:CGRectMake(frame.origin.x, frame.origin.y - CARD_BUMP_OFFSET, frame.size.width, frame.size.height)];
     }
     _cardBumped = !_cardBumped;
+}
+
+- (void)openPage:(int)pageIndex
+{
+    [self showPages];
+    self.pageIndex = pageIndex;
+    [self refreshPages];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
@@ -180,6 +218,9 @@
 
 - (IBAction)continueButton:(id)sender
 {
+    if(self.pageViewController == nil)
+        return;
+    
     if(self.pageIndex < self.numPages - 1) {
         UIViewController *vc = [self viewControllerAtIndex:self.pageIndex+1];
         NSArray *viewControllers = @[vc];
@@ -203,7 +244,8 @@
         if(success) {
             NSLog(@"Success!");
             
-            [self performSegueWithIdentifier:@"finish" sender:self];
+            [self showSummary];
+//            [self performSegueWithIdentifier:@"finish" sender:self];
         }
         else {
             NSLog(@"Failure!");

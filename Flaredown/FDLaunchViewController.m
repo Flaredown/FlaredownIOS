@@ -13,6 +13,8 @@
 #import "FDStyle.h"
 #import "FDPopupManager.h"
 #import "FDLocalizationManager.h"
+#import "FDSummaryCollectionViewController.h"
+#import "FDViewController.h"
 
 //relative to screen
 #define ALARM_WIDTH 0.9
@@ -73,9 +75,13 @@
     
     if([[FDModelManager sharedManager] entry]) {
         _entryLoaded = YES;
+        _entryPreloaded = YES;
+        [self performSegueWithIdentifier:@"start" sender:nil];
+        return;
     } else {
         NSLog(@"New entry");
         _entryLoaded = NO;
+        _entryPreloaded = NO;
         
         NSDate *now = [NSDate date];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -96,7 +102,7 @@
                 [[FDModelManager sharedManager] setInputs:[mutableInputs copy]];
                 
                 if(_segueReady)
-                    [self performSegueWithIdentifier:@"start" sender:self];
+                    [self performSegueWithIdentifier:@"start" sender:nil];
             }
             else {
                 NSLog(@"Failure!");
@@ -200,14 +206,6 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
 - (void)setAlarmButtonTitle
 {
     NSString *title;
@@ -249,14 +247,26 @@
     [[FDPopupManager sharedManager] removeTopPopup];
 }
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+- (IBAction)checkinButton:(id)sender
 {
     if(!_entryLoaded) {
         _segueReady = YES;
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        return NO;
+        return;
     }
-    return YES;
+    [self performSegueWithIdentifier:@"start" sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"start"]) {
+        FDViewController *dvc = (FDViewController *)segue.destinationViewController;
+        if(_entryPreloaded) {
+            dvc.loadSummary = YES;
+        } else {
+            dvc.loadSummary = NO;
+        }
+    }
 }
 
 @end

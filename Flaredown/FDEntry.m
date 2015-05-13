@@ -163,6 +163,13 @@
     [_responses removeObject:[self responseForId:[responseToRemove responseId]]];
 }
 
+- (FDResponse *)responseForQuestion:(FDQuestion *)question
+{
+    FDResponse *response = [[FDResponse alloc] init];
+    [response setResponseIdWithEntryId:[self entryId] name:[question name]];
+    return [self responseForId:[response responseId]];
+}
+
 - (void)insertResponse:(FDResponse *)response
 {
     if(!response) {
