@@ -23,6 +23,12 @@
 #define NO_SYMPTOMS (SYMPTOM_COUNT == 0)
 #define SYMPTOM_END (SYMPTOM_BASE + (NO_SYMPTOMS ? 1 : SYMPTOM_COUNT))
 
+#define TREATMENT_TITLE (SYMPTOM_END)
+#define TREATMENT_BASE (TREATMENT_TITLE+1)
+#define TREATMENT_COUNT [[_entry treatments] count]
+#define NO_TREATMENTS (TREATMENT_COUNT == 0)
+#define TREATMENT_END (TREATMENT_BASE + (NO_TREATMENTS ? 1 : TREATMENT_COUNT))
+
 @interface FDSummaryCollectionViewController ()
 
 @end
@@ -47,7 +53,7 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
     [FDStyle addShadowToView:self.collectionView];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     
-//    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -88,6 +94,9 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
     } else if(section >= SYMPTOM_BASE && section < SYMPTOM_END) {
         //symptoms
         [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]-SYMPTOM_COUNT+1+section-SYMPTOM_BASE];
+    } else if(section >= TREATMENT_BASE && section < TREATMENT_END) {
+        //treatments
+        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+1];
     }
 }
 
@@ -103,6 +112,9 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
         [_mainViewDelegate openPage:0];
     } else if(section >= SYMPTOM_BASE && section < SYMPTOM_END) {
         //symptoms
+        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]-SYMPTOM_COUNT+1];
+    } else if(section >= TREATMENT_BASE && section < TREATMENT_END) {
+        //treatments
         [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+1];
     }
 }
@@ -127,8 +139,9 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
     
     NSUInteger conditions = CONDITION_END - CONDITION_BASE + 1;
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1;
+    NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1;
     
-    return conditions+symptoms;
+    return conditions+symptoms+treatments;
 }
 
 
@@ -147,6 +160,13 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
             return 1;
         FDQuestion *question = [_entry questionsForCatalog:@"symptoms"][section-SYMPTOM_BASE];
         return [self numberOfItemsForQuestion:question];
+    } else if(section == TREATMENT_TITLE) {
+        return 1;
+    } else if(section < TREATMENT_END) {
+        if(NO_TREATMENTS)
+            return 1;
+        FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
+        return [self numberOfItemsForTreatment:treatment];
     }
     return 0;
 }
@@ -157,6 +177,13 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
         return 2;
     }
     return 1 + [[_entry responseForQuestion:question] value];
+}
+
+- (NSInteger)numberOfItemsForTreatment:(FDTreatment *)treatment
+{
+    if(![treatment taken])
+        return 2;
+    return 1 + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -229,6 +256,36 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
             }
         }
+    } else if(section == TREATMENT_TITLE) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
+        
+        //1 Button
+        UILabel *label = (UILabel *)[cell viewWithTag:1];
+        [label setText:FDLocalizedString(@"treatments")];
+        
+    } else if(section < TREATMENT_END) {
+        if(NO_TREATMENTS) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
+        } else {
+            FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
+            
+            if(row == 0) {
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNameIdentifier forIndexPath:indexPath];
+                
+                //1 Label
+                UILabel *label = (UILabel *)[cell viewWithTag:1];
+                [label setText:[treatment name]];
+                
+            } else if([treatment taken]) {
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
+                
+                //1 Button
+                UIButton *button = (UIButton *)[cell viewWithTag:1];
+                [FDStyle addSmallRoundedCornersToView:button];
+            } else {
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
+            }
+        }
     }
     return cell;
 }
@@ -272,6 +329,21 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
             else
                 return CGSizeMake(115, 35);
             }
+    } else if(section == TREATMENT_TITLE) {
+        return CGSizeMake(collectionView.frame.size.width, 40);
+    } else if(section < TREATMENT_END) {
+        if(NO_TREATMENTS) {
+            return CGSizeMake(collectionView.frame.size.width, 50);
+        } else {
+            FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
+            
+            if(row == 0)
+                return CGSizeMake(collectionView.frame.size.width, 30);
+            else if([treatment taken])
+                return CGSizeMake(54, 15);
+            else
+                return CGSizeMake(115, 35);
+        }
     }
     return CGSizeZero;
 }
