@@ -36,6 +36,10 @@
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */; };
+		ED4BDEB11B168013008DAEA4 /* FDTreatmentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */; };
+		ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4BDEB31B168C54008DAEA4 /* FDDose.m */; };
+		ED4BDEB61B191511008DAEA4 /* AddDoseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */; };
+		ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */; };
 		ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */; };
 		ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */; };
 		ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */; };
@@ -126,6 +130,12 @@
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
 		ED432AFB1B02A46A00FFAA51 /* FDTagsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTagsCollectionViewController.h; sourceTree = "<group>"; };
 		ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTagsCollectionViewController.m; sourceTree = "<group>"; };
+		ED4BDEAF1B168013008DAEA4 /* FDTreatmentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatmentCollectionViewController.h; sourceTree = "<group>"; };
+		ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatmentCollectionViewController.m; sourceTree = "<group>"; };
+		ED4BDEB21B168C54008DAEA4 /* FDDose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDose.h; sourceTree = "<group>"; };
+		ED4BDEB31B168C54008DAEA4 /* FDDose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDose.m; sourceTree = "<group>"; };
+		ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDoseView.xib; sourceTree = "<group>"; };
+		ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditDoseView.xib; sourceTree = "<group>"; };
 		ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoveTrackableView.xib; sourceTree = "<group>"; };
 		ED58E5141AC09B88009B74EE /* FDRemoveTrackableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRemoveTrackableView.h; sourceTree = "<group>"; };
 		ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRemoveTrackableView.m; sourceTree = "<group>"; };
@@ -367,6 +377,8 @@
 				EDD802A31A804CB900464D24 /* AddTreatmentView.xib */,
 				ED31E4831A888262008306F3 /* EditTreatmentView.xib */,
 				ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */,
+				ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */,
+				ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -405,6 +417,8 @@
 				ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */,
 				ED432AFB1B02A46A00FFAA51 /* FDTagsCollectionViewController.h */,
 				ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */,
+				ED4BDEAF1B168013008DAEA4 /* FDTreatmentCollectionViewController.h */,
+				ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -460,6 +474,8 @@
 				EDEA826E1A115FCC00A80416 /* FDInput.m */,
 				EDEBC6A81A424907007742C5 /* FDTreatment.h */,
 				EDEBC6A91A424907007742C5 /* FDTreatment.m */,
+				ED4BDEB21B168C54008DAEA4 /* FDDose.h */,
+				ED4BDEB31B168C54008DAEA4 /* FDDose.m */,
 				ED2853C61A6C2043002D95E6 /* FDSymptom.h */,
 				ED2853C71A6C2043002D95E6 /* FDSymptom.m */,
 				EDD172C01AC47F4300820C4C /* FDCondition.h */,
@@ -557,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
+				ED4BDEB61B191511008DAEA4 /* AddDoseView.xib in Resources */,
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */,
 				EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */,
@@ -569,6 +586,7 @@
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
+				ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +689,7 @@
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
+				ED4BDEB11B168013008DAEA4 /* FDTreatmentCollectionViewController.m in Sources */,
 				42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
@@ -680,6 +699,7 @@
 				EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */,
 				101393F819D2432000BBB266 /* FDSelectListViewController.m in Sources */,
 				ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */,
+				ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
 				EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */,
 				ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */,

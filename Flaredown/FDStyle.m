@@ -33,6 +33,12 @@
     view.layer.shadowOffset = CGSizeMake(0, 4);
 }
 
++ (void)addBorderToView:(UIView *)view withColor:(UIColor *)color
+{
+    view.layer.borderColor = [color CGColor];
+    view.layer.borderWidth = FDBorderWidth;
+}
+
 + (UIColor *)indianKhakiColor
 {
     return [UIColor colorWithRed:195.0/255.0 green:179.0/255.0 blue:153.0/255.0 alpha:1.0];
@@ -66,6 +72,11 @@
 + (UIColor *)mediumGreyColor
 {
     return [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)blackColor
+{
+    return [UIColor colorWithRed:74.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1.0];
 }
 
 + (NSString *)trimmedDecimal:(float)number

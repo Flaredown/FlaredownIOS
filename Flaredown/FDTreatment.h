@@ -7,18 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "FDDose.h"
 @class FDEntry;
 
 @interface FDTreatment : NSObject
 
 @property NSString *treatmentId;
 @property NSString *name;
-@property float quantity;
-@property NSString *unit;
 @property BOOL taken;
+@property NSMutableArray *doses;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
-- (id)initWithTitle:(NSString *)title quantity:(float)quantity unit:(NSString *)unit entry:(FDEntry *)entry;
+- (id)initWithTitle:(NSString *)title entry:(FDEntry *)entry;
+- (NSArray *)arrayCopy;
 - (NSDictionary *)dictionaryCopy;
+- (NSDictionary *)dictionaryCopyWithDose:(FDDose *)dose;
 
 @end

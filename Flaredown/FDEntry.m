@@ -55,8 +55,21 @@
         _responses = mutableResponses;
         
         _treatments = [[NSMutableArray alloc] init];
+        NSMutableArray *allTreatments = [[NSMutableArray alloc] init];
         for(NSDictionary *treatment in [dictionary objectForKey:@"treatments"]) {
-            [_treatments addObject:[[FDTreatment alloc] initWithDictionary:treatment]];
+            [allTreatments addObject:[[FDTreatment alloc] initWithDictionary:treatment]];
+        }
+        for(FDTreatment *newTreatment in allTreatments) {
+            bool found = NO;
+            for(FDTreatment *masterTreatment in _treatments) {
+                if([[masterTreatment name] isEqualToString:[newTreatment name]]) {
+                    [[masterTreatment doses] addObject:[newTreatment doses][0]];
+                    found = YES;
+                }
+                break;
+            }
+            if(!found)
+               [_treatments addObject:newTreatment];
         }
         
         _scores = [dictionary objectForKey:@"scores"];
@@ -87,7 +100,16 @@
     }
     NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
     for(FDTreatment *treatment in _treatments) {
-        [mutableTreatments addObject:[treatment dictionaryCopy]];
+        if([treatment taken]) {
+            if([[treatment doses] count] == 0)
+                [mutableTreatments addObject:[treatment dictionaryCopy]];
+            else {
+                NSArray *treatmentDictionaries = [treatment arrayCopy];
+                for (NSDictionary *treatmentDictionary in treatmentDictionaries) {
+                    [mutableTreatments addObject:treatmentDictionary];
+                }
+            }
+        }
     }
     return @{
              @"id":_entryId,
@@ -109,7 +131,16 @@
     }
     NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
     for(FDTreatment *treatment in _treatments) {
-        [mutableTreatments addObject:[treatment dictionaryCopy]];
+        if([treatment taken]) {
+            if([[treatment doses] count] == 0)
+                [mutableTreatments addObject:[treatment dictionaryCopy]];
+            else {
+                NSArray *treatmentDictionaries = [treatment arrayCopy];
+                for (NSDictionary *treatmentDictionary in treatmentDictionaries) {
+                    [mutableTreatments addObject:treatmentDictionary];
+                }
+            }
+        }
     }
     return @{
              @"responses":mutableResponses,

@@ -16,12 +16,6 @@
 #import "FDRemoveTrackableView.h"
 #import "FDLocalizationManager.h"
 
-//relative to screen
-#define POPUP_WIDTH 0.95
-#define POPUP_HEIGHT 0.5
-
-#define POPUP_KEYBOARD_OFFSET 120
-
 @interface FDSelectListViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *addTreatmentLabel;
@@ -248,9 +242,7 @@
         [FDStyle addRoundedCornersToView:popupView];
         
         [_addTreatmentLabel setText:FDLocalizedString(@"add_treatment")];
-        [_addTreatmentDoseField setPlaceholder:FDLocalizedString(@"edit_treatment_dose_placeholder")];
         [_addTreatmentNameField setPlaceholder:FDLocalizedString(@"edit_treatment_name_placeholder")];
-        [_addTreatmentUnitField setPlaceholder:FDLocalizedString(@"edit_treatment_unit_placeholder")];
         
         [_addTreatmentCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
         [_addTreatmentDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
@@ -267,9 +259,6 @@
     } else {
         [self addItemButton:nil];
         _addTreatmentNameField.text = [treatment name] ?: @"";
-        _addTreatmentDoseField.text = [treatment quantity] ? [FDStyle trimmedDecimal:[treatment quantity]] : @"";
-        
-        _addTreatmentUnitField.text = [treatment unit] ?: @"";
     }
 }
 
@@ -294,18 +283,10 @@
 - (IBAction)addTreatment:(id)sender
 {
     NSString *name;
-    float dose;
-    NSString *unit;
     if(_addTreatmentNameField.text.length == 0)
         return;
-    if(_addTreatmentDoseField.text.length == 0 || [_addTreatmentDoseField.text floatValue] <= 0)
-        return;
-    if(_addTreatmentUnitField.text.length == 0)
-        return;
     name = _addTreatmentNameField.text;
-    dose = [_addTreatmentDoseField.text floatValue];
-    unit = _addTreatmentUnitField.text;
-    FDTreatment *treatment = [[FDTreatment alloc] initWithTitle:name quantity:dose unit:unit entry:[[FDModelManager sharedManager] entry]];
+    FDTreatment *treatment = [[FDTreatment alloc] initWithTitle:name entry:[[FDModelManager sharedManager] entry]];
     [[[[FDModelManager sharedManager] entry] treatments] addObject:treatment];
     
     [self.tableView reloadData];
@@ -362,10 +343,10 @@
 
 - (IBAction)editTreatment:(id)sender
 {
-    if(_editTreatmentDoseField.text.length > 0 && [_editTreatmentDoseField.text floatValue] > 0)
-        [_editTreatment setQuantity:[_editTreatmentDoseField.text floatValue]];
-    if(_editTreatmentUnitField.text.length > 0)
-        [_editTreatment setUnit:_editTreatmentUnitField.text];
+//    if(_editTreatmentDoseField.text.length > 0 && [_editTreatmentDoseField.text floatValue] > 0)
+//        [_editTreatment setQuantity:[_editTreatmentDoseField.text floatValue]];
+//    if(_editTreatmentUnitField.text.length > 0)
+//        [_editTreatment setUnit:_editTreatmentUnitField.text];
     
     [self.tableView reloadData];
     [self hidePopupView];
@@ -410,7 +391,7 @@
                 if(success) {
                     NSLog(@"Success!");
                     
-                    FDTreatment *newTreatment = [[FDTreatment alloc] initWithTitle:title quantity:0.0f unit:@"" entry:entry];
+                    FDTreatment *newTreatment = [[FDTreatment alloc] initWithTitle:title entry:entry];
                     [newTreatment setTaken:YES];
                     [[entry treatments] addObject:newTreatment];
                     
@@ -605,9 +586,9 @@
             
             //2 Dosage and Units label
             UILabel *label = (UILabel *)[cell viewWithTag:2];
-            NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
+            NSString *quantityString = @"";//[FDStyle trimmedDecimal:[treatment quantity]];
             
-            NSString *unitString = [treatment unit];
+            NSString *unitString = @"";//[treatment unit];
             NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
             NSString *localizedUnit = FDLocalizedString(path);
             if(localizedUnit.length > 0)

@@ -43,6 +43,9 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -874,8 +877,8 @@
                                             </state>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="rup-mr-cwi"/>
                                                     <exclude reference="38Q-xc-dOO"/>
+                                                    <exclude reference="rup-mr-cwi"/>
                                                 </mask>
                                             </variation>
                                             <connections>
@@ -898,6 +901,53 @@
                                     <mask key="constraints">
                                         <exclude reference="DPt-uf-rt2"/>
                                         <exclude reference="Vcl-C8-9L8"/>
+                                    </mask>
+                                </variation>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentTaken" id="ZQ5-Qn-R2v">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6j-tz-iEv">
+                                            <rect key="frame" x="8" y="0.0" width="117" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="117" id="dc9-cN-6jw"/>
+                                                <constraint firstAttribute="height" constant="32" id="tLa-nb-w4g"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                            <state key="normal" title="Taken today">
+                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dc9-cN-6jw"/>
+                                                    <exclude reference="tLa-nb-w4g"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="questionButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="q4G-ll-jdd"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="x6j-tz-iEv" secondAttribute="centerX" constant="-0.5" id="4zB-Rg-mzE"/>
+                                    <constraint firstAttribute="centerY" secondItem="x6j-tz-iEv" secondAttribute="centerY" id="HGu-tC-sad"/>
+                                    <constraint firstItem="x6j-tz-iEv" firstAttribute="trailing" secondItem="ZQ5-Qn-R2v" secondAttribute="trailingMargin" id="YPy-iP-ptE"/>
+                                    <constraint firstItem="x6j-tz-iEv" firstAttribute="leading" secondItem="ZQ5-Qn-R2v" secondAttribute="leadingMargin" id="dIo-VS-jsc"/>
+                                    <constraint firstItem="x6j-tz-iEv" firstAttribute="top" secondItem="ZQ5-Qn-R2v" secondAttribute="topMargin" constant="-8" id="mj7-ks-1NN"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="x6j-tz-iEv" secondAttribute="bottom" id="y7B-Hy-Qkr"/>
+                                </constraints>
+                                <size key="customSize" width="133" height="35"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4zB-Rg-mzE"/>
+                                        <exclude reference="HGu-tC-sad"/>
                                     </mask>
                                 </variation>
                             </collectionViewCell>
@@ -1083,6 +1133,7 @@
                         <segue destination="54Q-TF-cW1" kind="custom" identifier="embedNumberView" id="Ude-4d-T6t"/>
                         <segue destination="pQr-Jf-reS" kind="custom" identifier="embedMeterView" id="nuB-pV-K2e"/>
                         <segue destination="bO9-g1-uWJ" kind="custom" identifier="embedTagsView" id="qXg-6L-cVX"/>
+                        <segue destination="OGN-KC-zkZ" kind="custom" identifier="embedTreatmentsCollectionView" id="7oi-By-LEb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPH-98-R6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1952,6 +2003,165 @@
             </objects>
             <point key="canvasLocation" x="1429" y="1228"/>
         </scene>
+        <!--Treatment Collection View Controller-->
+        <scene sceneID="irP-x4-rdh">
+            <objects>
+                <collectionViewController storyboardIdentifier="TreatmentCollection" id="OGN-KC-zkZ" customClass="FDTreatmentCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IKg-27-Iir">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="5Yl-eB-WAG" customClass="UICollectionViewLeftAlignedLayout">
+                            <size key="itemSize" width="214" height="94"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatment" id="D5e-LV-ktB">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="214" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUC-pN-aVc">
+                                            <rect key="frame" x="8" y="6" width="51" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="aFy-8p-s3X"/>
+                                                <constraint firstAttribute="width" constant="49" id="pKq-m1-ZwD"/>
+                                            </constraints>
+                                            <color key="onTintColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="toggleTreatment:" destination="OGN-KC-zkZ" eventType="valueChanged" id="2vu-WP-Iuu"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1e-Kv-2ce">
+                                            <rect key="frame" x="64" y="8" width="142" height="28"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
+                                            <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="KUC-pN-aVc" firstAttribute="leading" secondItem="D5e-LV-ktB" secondAttribute="leadingMargin" id="Sdg-SI-mdD"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="M1e-Kv-2ce" secondAttribute="bottom" id="W4F-UH-rEg"/>
+                                    <constraint firstItem="M1e-Kv-2ce" firstAttribute="leading" secondItem="KUC-pN-aVc" secondAttribute="trailing" constant="7" id="ZY2-eq-0tz"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="M1e-Kv-2ce" secondAttribute="trailing" id="axe-iL-wgb"/>
+                                    <constraint firstAttribute="centerY" secondItem="KUC-pN-aVc" secondAttribute="centerY" constant="0.5" id="iN9-o0-nJf"/>
+                                    <constraint firstItem="M1e-Kv-2ce" firstAttribute="top" secondItem="D5e-LV-ktB" secondAttribute="topMargin" id="rqb-5c-5TM"/>
+                                </constraints>
+                                <size key="customSize" width="214" height="44"/>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addDose" id="ETs-Lf-9Tm">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Ot-zIR">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="QEh-6k-hYP"/>
+                                                <constraint firstAttribute="width" constant="60" id="TUa-lh-rgF"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                            <state key="normal" title="Add dose">
+                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="TUa-lh-rgF"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="addDose:" destination="OGN-KC-zkZ" eventType="touchUpInside" id="P1A-aF-ZFN"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="ZaC-Ot-zIR" secondAttribute="bottom" constant="-8" id="2CF-z9-3ch"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" constant="-8" id="2NE-di-OAy"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="bottom" secondItem="ETs-Lf-9Tm" secondAttribute="bottomMargin" id="6c0-1e-5qA"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="leading" secondItem="ETs-Lf-9Tm" secondAttribute="leadingMargin" constant="-8" id="IqM-Z4-Ekv"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="trailing" secondItem="ETs-Lf-9Tm" secondAttribute="trailingMargin" id="bhH-4C-z19"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="leading" secondItem="ETs-Lf-9Tm" secondAttribute="leadingMargin" id="bn3-QH-3WU"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="ZaC-Ot-zIR" secondAttribute="trailing" constant="-8" id="jXC-JB-uh4"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" id="npF-Ov-EfX"/>
+                                    <constraint firstAttribute="centerY" secondItem="ZaC-Ot-zIR" secondAttribute="centerY" id="zDb-NO-ub0"/>
+                                </constraints>
+                                <size key="customSize" width="60" height="17"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2CF-z9-3ch"/>
+                                        <exclude reference="2NE-di-OAy"/>
+                                        <exclude reference="6c0-1e-5qA"/>
+                                        <exclude reference="bhH-4C-z19"/>
+                                        <exclude reference="bn3-QH-3WU"/>
+                                        <exclude reference="npF-Ov-EfX"/>
+                                    </mask>
+                                </variation>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dose" id="Xev-dC-Nd7">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="77" height="34"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2C-ob-aaH">
+                                            <rect key="frame" x="0.0" y="4.5" width="77" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="J2q-MB-8ZT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                            <state key="normal" title="qty unit">
+                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="editDose:" destination="OGN-KC-zkZ" eventType="touchUpInside" id="GyN-NY-Alg"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="z2C-ob-aaH" secondAttribute="centerX" id="5Bc-cN-pcL"/>
+                                    <constraint firstAttribute="centerY" secondItem="z2C-ob-aaH" secondAttribute="centerY" id="BRR-8Z-5GJ"/>
+                                    <constraint firstItem="z2C-ob-aaH" firstAttribute="trailing" secondItem="Xev-dC-Nd7" secondAttribute="trailingMargin" id="HVL-Ro-GNP"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="z2C-ob-aaH" secondAttribute="trailing" constant="-8" id="YlM-RR-3BO"/>
+                                    <constraint firstItem="z2C-ob-aaH" firstAttribute="leading" secondItem="Xev-dC-Nd7" secondAttribute="leadingMargin" id="ZNW-yT-NZi"/>
+                                    <constraint firstItem="z2C-ob-aaH" firstAttribute="leading" secondItem="Xev-dC-Nd7" secondAttribute="leadingMargin" id="cin-dl-SnD"/>
+                                    <constraint firstItem="z2C-ob-aaH" firstAttribute="leading" secondItem="Xev-dC-Nd7" secondAttribute="leadingMargin" constant="-8" id="gmW-UC-bJd"/>
+                                    <constraint firstItem="z2C-ob-aaH" firstAttribute="trailing" secondItem="Xev-dC-Nd7" secondAttribute="trailingMargin" id="kJG-zQ-QRn"/>
+                                </constraints>
+                                <size key="customSize" width="77" height="34"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HVL-Ro-GNP"/>
+                                        <exclude reference="ZNW-yT-NZi"/>
+                                        <exclude reference="cin-dl-SnD"/>
+                                        <exclude reference="kJG-zQ-QRn"/>
+                                    </mask>
+                                </variation>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="OGN-KC-zkZ" id="7oW-Dc-UbR"/>
+                            <outlet property="delegate" destination="OGN-KC-zkZ" id="h3i-JE-AeI"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Fa-Gk-6Uh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="805" y="1943"/>
+        </scene>
         <!--Meter View Controller-->
         <scene sceneID="UbZ-al-T8l">
             <objects>
@@ -2303,7 +2513,7 @@
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1ic-5n-SwM"/>
-        <segue reference="pti-0c-EDU"/>
+        <segue reference="j9h-cQ-iZY"/>
+        <segue reference="S95-oh-nxf"/>
     </inferredMetricsTieBreakers>
 </document>

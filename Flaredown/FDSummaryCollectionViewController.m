@@ -40,6 +40,7 @@ static NSString * const ItemNameIdentifier = @"itemName";
 static NSString * const ItemValueIdentifier = @"itemValue";
 static NSString * const ItemNoneIdentifier = @"itemNone";
 static NSString * const ItemNoValueIdentifier = @"itemNoValue";
+static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -277,11 +278,7 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
                 [label setText:[treatment name]];
                 
             } else if([treatment taken]) {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
-                
-                //1 Button
-                UIButton *button = (UIButton *)[cell viewWithTag:1];
-                [FDStyle addSmallRoundedCornersToView:button];
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentTakenIdentifier forIndexPath:indexPath];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
             }
@@ -340,7 +337,7 @@ static NSString * const ItemNoValueIdentifier = @"itemNoValue";
             if(row == 0)
                 return CGSizeMake(collectionView.frame.size.width, 30);
             else if([treatment taken])
-                return CGSizeMake(54, 15);
+                return CGSizeMake(115, 35);
             else
                 return CGSizeMake(115, 35);
         }

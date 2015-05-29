@@ -11,6 +11,12 @@
 
 #import "FDPopup.h"
 
+//relative to screen
+#define POPUP_WIDTH 0.95
+#define POPUP_HEIGHT 0.5
+
+#define POPUP_KEYBOARD_OFFSET 120
+
 @interface FDPopupManager : NSObject
 
 @property NSMutableArray *popups;

@@ -36,7 +36,7 @@
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
-            self.currentSegueIdentifier = SegueIdentifierSelectListView;
+            self.currentSegueIdentifier = SegueIdentifierTreatmentsCollectionView;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Tags
             self.currentSegueIdentifier = SegueIdentifierTagsView;
@@ -112,10 +112,10 @@
             listVC.listType = ListTypeSymptoms;
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
-            pageType = @"checkbox";
-            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
-            [listVC initWithTreatments];
-            listVC.mainViewDelegate = _mainViewDelegate;
+//            pageType = @"checkbox";
+//            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+//            [listVC initWithTreatments];
+//            listVC.mainViewDelegate = _mainViewDelegate;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Tags
             pageType = @"tags";

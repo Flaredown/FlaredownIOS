@@ -12,6 +12,7 @@
 static float const FDSmallCornerRadius = 7;
 static float const FDCornerRadius = 11;
 static float const FDLargeCornerRadius = 22;
+static float const FDBorderWidth = 1;
 
 @interface FDStyle : NSObject
 
@@ -19,6 +20,7 @@ static float const FDLargeCornerRadius = 22;
 + (void)addSmallRoundedCornersToView:(UIView *)view;
 + (void)addLargeRoundedCornersToView:(UIView *)view;
 + (void)addShadowToView:(UIView *)view;
++ (void)addBorderToView:(UIView *)view withColor:(UIColor *)color;
 
 + (UIColor *)indianKhakiColor;
 + (UIColor *)greyColor;
@@ -27,6 +29,8 @@ static float const FDLargeCornerRadius = 22;
 + (UIColor *)whiteColor;
 + (UIColor *)purpleColor;
 + (UIColor *)mediumGreyColor;
++ (UIColor *)blackColor;
+
 + (NSString *)trimmedDecimal:(float)number;
 
 @end
