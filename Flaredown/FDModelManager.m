@@ -8,6 +8,8 @@
 
 #import "FDModelManager.h"
 
+#import "FDStyle.h"
+
 @implementation FDModelManager
 
 static NSString *userObjectSessionLocation = @"userObject";
@@ -27,9 +29,27 @@ static NSString *inputsSessionLocation = @"inputs";
 - (id)init
 {
     if(self = [super init]) {
-        
+        _entries = [[NSMutableDictionary alloc] init];
+        _selectedDate = [NSDate date];
+        _inputs = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+- (void)setEntry:(FDEntry *)entry forDate:(NSDate *)date
+{
+    [_entries setObject:entry forKey:[FDStyle dateStringForDate:date]];
+}
+
+- (void)setSelectedDate:(NSDate *)date
+{
+    _entry = [_entries objectForKey:[FDStyle dateStringForDate:date]];
+    _selectedDate = date;
+}
+
+- (void)addInput:(FDInput *)input
+{
+    [_inputs addObject:input];
 }
 
 - (NSMutableArray *)questionsForSection:(int)section

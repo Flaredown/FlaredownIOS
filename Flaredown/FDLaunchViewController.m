@@ -57,9 +57,7 @@
     
     if([[FDModelManager sharedManager] entry]) {
         // Convert string to date object
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"MMM-dd-yyyy"];
-        NSDate *date = [dateFormat dateFromString:[[[FDModelManager sharedManager] entry] date]];
+        NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date]];
         NSDate *now = [NSDate date];
         if([now compare:date] == NSOrderedDescending) {
             [[FDModelManager sharedManager] entry];
@@ -84,22 +82,19 @@
         _entryPreloaded = NO;
         
         NSDate *now = [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MMM-dd-yyyy"];
-        NSString *dateString = [formatter stringFromDate:now];
+        NSString *dateString = [FDStyle dateStringForDate:now];
         
         [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(success) {
                 NSLog(@"Success!");
                 
-                [[FDModelManager sharedManager] setEntry:[[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]]];
+                [[FDModelManager sharedManager] setEntry:[[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]] forDate:now];
+                [[FDModelManager sharedManager] setSelectedDate:now];
                 
-                NSMutableArray *mutableInputs = [[NSMutableArray alloc] init];
                 for (NSDictionary *input in [responseObject objectForKey:@"inputs"]) {
-                    [mutableInputs addObject:[[FDInput alloc] initWithDictionary:input]];
+                    [[FDModelManager sharedManager] addInput:[[FDInput alloc] initWithDictionary:input]];
                 }
-                [[FDModelManager sharedManager] setInputs:[mutableInputs copy]];
                 
                 if(_segueReady)
                     [self performSegueWithIdentifier:@"start" sender:nil];

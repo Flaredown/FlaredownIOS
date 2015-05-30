@@ -89,4 +89,21 @@
     return decimalString;
 }
 
++ (NSDateFormatter *)dateFormatter
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM-dd-yyyy"];
+    return formatter;
+}
+
++ (NSString *)dateStringForDate:(NSDate *)date
+{
+    return [[self dateFormatter] stringFromDate:date];
+}
+
++ (NSDate *)dateFromString:(NSString *)date
+{
+    return [[self dateFormatter] dateFromString:date];
+}
+
 @end

@@ -20,11 +20,14 @@
 
 @property FDUser *userObject;
 @property FDEntry *entry;
-@property NSArray *inputs;
+@property (nonatomic) NSDate *selectedDate;
+@property NSMutableDictionary *entries;
+@property NSMutableArray *inputs;
 
 + (id)sharedManager;
 
-//- (FDInput *)inputForId:(int)inputId;
+- (void)setEntry:(FDEntry *)entry forDate:(NSDate *)date;
+- (void)addInput:(FDInput *)input;
 - (NSMutableArray *)questionsForSection:(int)section;
 - (int)numberOfQuestionSections;
 - (NSMutableArray *)symptoms;

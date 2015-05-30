@@ -486,43 +486,73 @@
                                     <action selector="continueButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="rTp-ps-f1F"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 13, 2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXH-Qh-Psa">
-                                <rect key="frame" x="180" y="39" width="241" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgj-B7-hkt">
+                                <rect key="frame" x="243" y="39" width="114" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="0oo-gP-6t3"/>
-                                    <constraint firstAttribute="height" constant="24" id="Ge9-DT-KCo"/>
-                                    <constraint firstAttribute="width" constant="140" id="qG7-ad-zfQ"/>
-                                    <constraint firstAttribute="width" constant="241" id="wof-n9-mcm"/>
+                                    <constraint firstAttribute="width" constant="241" id="1yc-FH-Aig"/>
+                                    <constraint firstAttribute="height" constant="24" id="aoz-wL-3NZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="21"/>
-                                <color key="textColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                <state key="normal" title="September 28">
+                                    <color key="titleColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Ge9-DT-KCo"/>
-                                        <exclude reference="qG7-ad-zfQ"/>
+                                        <exclude reference="1yc-FH-Aig"/>
                                     </mask>
                                 </variation>
-                            </label>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlH-aL-N3T">
+                                <rect key="frame" x="386" y="44" width="13" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="U3u-qs-2lz"/>
+                                    <constraint firstAttribute="width" constant="13" id="hUD-Zk-uDk"/>
+                                </constraints>
+                                <state key="normal" title="&gt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextDayButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="SVq-yO-F9i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuz-b9-Tbw">
+                                <rect key="frame" x="201" y="44.5" width="13" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="aPO-AS-LWG"/>
+                                    <constraint firstAttribute="width" constant="13" id="aQa-gz-r8o"/>
+                                </constraints>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="previousDayButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="jUo-aB-DMc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.93333333333333335" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="NXH-Qh-Psa" secondAttribute="centerX" id="Blb-L2-Weo"/>
+                            <constraint firstItem="YlH-aL-N3T" firstAttribute="leading" secondItem="tgj-B7-hkt" secondAttribute="trailing" constant="29" id="1sc-D1-wa3"/>
+                            <constraint firstItem="tgj-B7-hkt" firstAttribute="leading" secondItem="cuz-b9-Tbw" secondAttribute="trailing" constant="29" id="4Nr-JV-ATS"/>
+                            <constraint firstItem="cuz-b9-Tbw" firstAttribute="centerX" secondItem="tgj-B7-hkt" secondAttribute="centerX" id="BBa-Xm-6IC"/>
                             <constraint firstAttribute="centerX" secondItem="lyQ-Pr-M0f" secondAttribute="centerX" id="CDg-VK-Vl0"/>
-                            <constraint firstItem="NXH-Qh-Psa" firstAttribute="top" secondItem="pL7-zq-2by" secondAttribute="bottom" constant="19" id="KLv-oQ-3fw"/>
+                            <constraint firstAttribute="centerX" secondItem="tgj-B7-hkt" secondAttribute="centerX" id="I91-fI-sH0"/>
                             <constraint firstItem="LCL-90-tkV" firstAttribute="top" secondItem="lyQ-Pr-M0f" secondAttribute="bottom" constant="10" id="M6y-je-Vzu"/>
-                            <constraint firstItem="NXH-Qh-Psa" firstAttribute="top" secondItem="pL7-zq-2by" secondAttribute="bottom" constant="-2" id="Se3-qX-bE3"/>
+                            <constraint firstItem="tgj-B7-hkt" firstAttribute="leading" secondItem="cuz-b9-Tbw" secondAttribute="trailing" constant="29" id="Ov8-0H-Smo"/>
+                            <constraint firstItem="tgj-B7-hkt" firstAttribute="top" secondItem="pL7-zq-2by" secondAttribute="bottom" constant="19" id="hV1-wg-dZF"/>
+                            <constraint firstItem="cuz-b9-Tbw" firstAttribute="centerY" secondItem="tgj-B7-hkt" secondAttribute="centerY" id="rUc-1a-Vaw"/>
+                            <constraint firstItem="YlH-aL-N3T" firstAttribute="centerY" secondItem="tgj-B7-hkt" secondAttribute="centerY" id="yMv-Sp-T5V"/>
                             <constraint firstAttribute="width" secondItem="lyQ-Pr-M0f" secondAttribute="width" multiplier="60:55" id="zwX-7O-eVa"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Se3-qX-bE3"/>
+                                <exclude reference="BBa-Xm-6IC"/>
+                                <exclude reference="Ov8-0H-Smo"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="continueBtn" destination="lyQ-Pr-M0f" id="txH-wg-cop"/>
-                        <outlet property="dateLabel" destination="NXH-Qh-Psa" id="2As-BR-hEf"/>
                         <segue destination="Zvz-CY-M8D" kind="show" identifier="finish" id="RRC-oB-iPK"/>
                         <segue destination="t1N-rz-86q" kind="show" identifier="search" id="j9h-cQ-iZY"/>
                     </connections>

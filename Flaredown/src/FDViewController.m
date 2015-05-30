@@ -229,7 +229,55 @@
     } else {
         [self submitEntry];
     }
-    
+}
+
+- (IBAction)previousDayButton:(id)sender
+{
+    [self getPreviousEntry];
+}
+
+- (IBAction)nextDayButton:(id)sender
+{
+    [self getNextEntry];
+}
+
+- (void)getEntryForDate:(NSDate *)date
+{
+    FDModelManager *modelManager = [FDModelManager sharedManager];
+    if(![[modelManager entries] objectForKey:[FDStyle dateStringForDate:date]]) {
+        FDUser *user = [modelManager userObject];
+        NSString *dateString = [FDStyle dateStringForDate:date];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[FDNetworkManager sharedManager] getEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if(success) {
+                NSDictionary *entryDictionary = [responseObject objectForKey:@"entry"];
+                [modelManager setEntry:[[FDEntry alloc] initWithDictionary:entryDictionary] forDate:date];
+                [modelManager setSelectedDate:date];
+                self.pageIndex = 0;
+                [self refreshPages];
+            } else {
+                //show error
+            }
+        }];
+    } else {
+        [modelManager setSelectedDate:date];
+        [self refreshPages];
+    }
+}
+
+- (void)getPreviousEntry
+{
+    NSDate *date = [[FDModelManager sharedManager] selectedDate];
+    date = [date dateByAddingTimeInterval:-1*24*60*60];
+    [self getEntryForDate:date];
+}
+
+- (void)getNextEntry
+{
+    NSDate *date = [[FDModelManager sharedManager] selectedDate];
+    date = [date dateByAddingTimeInterval:1*24*60*60];
+    [self getEntryForDate:date];
 }
 
 - (void)submitEntry
