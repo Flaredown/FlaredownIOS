@@ -30,8 +30,6 @@
 @property int numPages;
 @property int pageIndex;
 
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-
 @property NSString *searchType;
 
 @property BOOL cardBumped;

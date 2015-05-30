@@ -502,6 +502,9 @@
                                         <exclude reference="1yc-FH-Aig"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="dateButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="u2m-zJ-qzE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlH-aL-N3T">
                                 <rect key="frame" x="386" y="44" width="13" height="13"/>
@@ -553,6 +556,9 @@
                     </view>
                     <connections>
                         <outlet property="continueBtn" destination="lyQ-Pr-M0f" id="txH-wg-cop"/>
+                        <outlet property="dateButton" destination="tgj-B7-hkt" id="InC-c6-Y6O"/>
+                        <outlet property="nextDayButton" destination="YlH-aL-N3T" id="PgI-2C-dnh"/>
+                        <outlet property="previousDayButton" destination="cuz-b9-Tbw" id="PVJ-MS-2qz"/>
                         <segue destination="Zvz-CY-M8D" kind="show" identifier="finish" id="RRC-oB-iPK"/>
                         <segue destination="t1N-rz-86q" kind="show" identifier="search" id="j9h-cQ-iZY"/>
                     </connections>

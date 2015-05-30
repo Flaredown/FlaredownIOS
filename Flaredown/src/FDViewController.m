@@ -19,7 +19,11 @@
 #define CARD_BUMP_OFFSET 60
 
 @interface FDViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
+@property (weak, nonatomic) IBOutlet UIButton *dateButton;
+@property (weak, nonatomic) IBOutlet UIButton *previousDayButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextDayButton;
 
 @end
 
@@ -43,12 +47,10 @@
     //Localized date
 //    NSString *dateString = [[[FDModelManager sharedManager] entry] date];
     NSDate *now = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
-    [dateFormatter setLocale:[NSLocale currentLocale]];
-    NSString *dateString = [dateFormatter stringFromDate:now];
-    [_dateLabel setText:dateString];
+    [self setDateTitle:now];
+    
+    [_previousDayButton setHidden:YES];
+    [_nextDayButton setHidden:YES];
     
     self.pageIndex = 0;
     
@@ -73,6 +75,16 @@
         [self showSummary];
     else
         [self showPages];
+}
+
+- (void)setDateTitle:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    [_dateButton setTitle:dateString forState:UIControlStateNormal];
 }
 
 - (void)showPages
@@ -231,6 +243,13 @@
     }
 }
 
+- (IBAction)dateButton:(id)sender
+{
+    [_previousDayButton setHidden:NO];
+    [_nextDayButton setHidden:NO];
+}
+
+
 - (IBAction)previousDayButton:(id)sender
 {
     [self getPreviousEntry];
@@ -253,6 +272,7 @@
             if(success) {
                 NSDictionary *entryDictionary = [responseObject objectForKey:@"entry"];
                 [modelManager setEntry:[[FDEntry alloc] initWithDictionary:entryDictionary] forDate:date];
+                [self setDateTitle:date];
                 [modelManager setSelectedDate:date];
                 self.pageIndex = 0;
                 [self refreshPages];
@@ -261,6 +281,7 @@
             }
         }];
     } else {
+        [self setDateTitle:date];
         [modelManager setSelectedDate:date];
         [self refreshPages];
     }
