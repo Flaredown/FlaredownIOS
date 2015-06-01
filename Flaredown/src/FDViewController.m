@@ -89,17 +89,27 @@
 
 - (void)showPages
 {
-    if([self.summaryViewController parentViewController])
-        [self removeViewController:self.summaryViewController];
+    [self hideSummary];
     [self addViewController:self.pageViewController];
+}
+
+- (void)hidePages
+{
+    if([self.pageViewController parentViewController])
+        [self removeViewController:self.pageViewController];
 }
 
 - (void)showSummary
 {
+    [self hidePages];
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
-    if([self.pageViewController parentViewController])
-        [self removeViewController:self.pageViewController];
     [self addViewController:self.summaryViewController];
+}
+
+- (void)hideSummary
+{
+    if([self.summaryViewController parentViewController])
+        [self removeViewController:self.summaryViewController];
 }
 
 - (void)addViewController:(UIViewController *)viewController
@@ -245,19 +255,29 @@
 
 - (IBAction)dateButton:(id)sender
 {
-    [_previousDayButton setHidden:NO];
-    [_nextDayButton setHidden:NO];
+    [_previousDayButton setHidden:!_previousDayButton.hidden];
+    [_nextDayButton setHidden:!_nextDayButton.hidden];
+    if([self selectedDateIsToday])
+       [_nextDayButton setHidden:YES];
 }
-
 
 - (IBAction)previousDayButton:(id)sender
 {
     [self getPreviousEntry];
+    if(_nextDayButton.hidden)
+       [_nextDayButton setHidden:NO];
 }
 
 - (IBAction)nextDayButton:(id)sender
 {
     [self getNextEntry];
+    if([self selectedDateIsToday])
+        [_nextDayButton setHidden:YES];
+}
+
+- (BOOL)selectedDateIsToday
+{
+    return [[NSCalendar currentCalendar] isDateInToday:[[FDModelManager sharedManager] selectedDate]];
 }
 
 - (void)getEntryForDate:(NSDate *)date
@@ -267,15 +287,15 @@
         FDUser *user = [modelManager userObject];
         NSString *dateString = [FDStyle dateStringForDate:date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [[FDNetworkManager sharedManager] getEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+        [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(success) {
                 NSDictionary *entryDictionary = [responseObject objectForKey:@"entry"];
                 [modelManager setEntry:[[FDEntry alloc] initWithDictionary:entryDictionary] forDate:date];
                 [self setDateTitle:date];
                 [modelManager setSelectedDate:date];
-                self.pageIndex = 0;
-                [self refreshPages];
+                [self hideSummary];
+                [self showSummary];
             } else {
                 //show error
             }
@@ -283,8 +303,15 @@
     } else {
         [self setDateTitle:date];
         [modelManager setSelectedDate:date];
-        [self refreshPages];
+        [self hideSummary];
+        [self showSummary];
     }
+}
+
+- (void)showInitialPage
+{
+    self.pageIndex = 0;
+    [self refreshPages];
 }
 
 - (void)getPreviousEntry

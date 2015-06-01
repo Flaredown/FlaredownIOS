@@ -486,11 +486,55 @@
                                     <action selector="continueButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="rTp-ps-f1F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlH-aL-N3T">
+                                <rect key="frame" x="357" y="39" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="NcW-tV-cEs"/>
+                                    <constraint firstAttribute="height" constant="13" id="U3u-qs-2lz"/>
+                                    <constraint firstAttribute="height" constant="22" id="WQP-lD-0J4"/>
+                                    <constraint firstAttribute="width" constant="13" id="hUD-Zk-uDk"/>
+                                </constraints>
+                                <state key="normal" image="fd_daySwitchArrowRight">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="U3u-qs-2lz"/>
+                                        <exclude reference="WQP-lD-0J4"/>
+                                        <exclude reference="hUD-Zk-uDk"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="nextDayButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="SVq-yO-F9i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuz-b9-Tbw">
+                                <rect key="frame" x="183" y="39" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="UUO-SO-PyN"/>
+                                    <constraint firstAttribute="height" constant="13" id="aPO-AS-LWG"/>
+                                    <constraint firstAttribute="width" constant="13" id="aQa-gz-r8o"/>
+                                    <constraint firstAttribute="height" constant="22" id="pZu-Bj-I4J"/>
+                                </constraints>
+                                <state key="normal" image="fd_daySwitchArrowLeft">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aPO-AS-LWG"/>
+                                        <exclude reference="aQa-gz-r8o"/>
+                                        <exclude reference="pZu-Bj-I4J"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="previousDayButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="jUo-aB-DMc"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgj-B7-hkt">
-                                <rect key="frame" x="243" y="39" width="114" height="24"/>
+                                <rect key="frame" x="243" y="39" width="114" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="241" id="1yc-FH-Aig"/>
-                                    <constraint firstAttribute="height" constant="24" id="aoz-wL-3NZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="aoz-wL-3NZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                 <state key="normal" title="September 28">
@@ -506,42 +550,20 @@
                                     <action selector="dateButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="u2m-zJ-qzE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlH-aL-N3T">
-                                <rect key="frame" x="386" y="44" width="13" height="13"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="13" id="U3u-qs-2lz"/>
-                                    <constraint firstAttribute="width" constant="13" id="hUD-Zk-uDk"/>
-                                </constraints>
-                                <state key="normal" title="&gt;">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextDayButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="SVq-yO-F9i"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuz-b9-Tbw">
-                                <rect key="frame" x="201" y="44.5" width="13" height="13"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="13" id="aPO-AS-LWG"/>
-                                    <constraint firstAttribute="width" constant="13" id="aQa-gz-r8o"/>
-                                </constraints>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="previousDayButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="jUo-aB-DMc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.93333333333333335" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="YlH-aL-N3T" firstAttribute="leading" secondItem="tgj-B7-hkt" secondAttribute="trailing" constant="29" id="1sc-D1-wa3"/>
-                            <constraint firstItem="tgj-B7-hkt" firstAttribute="leading" secondItem="cuz-b9-Tbw" secondAttribute="trailing" constant="29" id="4Nr-JV-ATS"/>
+                            <constraint firstItem="YlH-aL-N3T" firstAttribute="leading" secondItem="tgj-B7-hkt" secondAttribute="trailing" id="1sc-D1-wa3"/>
+                            <constraint firstItem="tgj-B7-hkt" firstAttribute="leading" secondItem="cuz-b9-Tbw" secondAttribute="trailing" id="4Nr-JV-ATS"/>
+                            <constraint firstItem="YlH-aL-N3T" firstAttribute="bottom" secondItem="tgj-B7-hkt" secondAttribute="bottom" id="5QF-Dc-wNS"/>
                             <constraint firstItem="cuz-b9-Tbw" firstAttribute="centerX" secondItem="tgj-B7-hkt" secondAttribute="centerX" id="BBa-Xm-6IC"/>
                             <constraint firstAttribute="centerX" secondItem="lyQ-Pr-M0f" secondAttribute="centerX" id="CDg-VK-Vl0"/>
                             <constraint firstAttribute="centerX" secondItem="tgj-B7-hkt" secondAttribute="centerX" id="I91-fI-sH0"/>
                             <constraint firstItem="LCL-90-tkV" firstAttribute="top" secondItem="lyQ-Pr-M0f" secondAttribute="bottom" constant="10" id="M6y-je-Vzu"/>
                             <constraint firstItem="tgj-B7-hkt" firstAttribute="leading" secondItem="cuz-b9-Tbw" secondAttribute="trailing" constant="29" id="Ov8-0H-Smo"/>
+                            <constraint firstItem="cuz-b9-Tbw" firstAttribute="top" secondItem="tgj-B7-hkt" secondAttribute="top" id="Ubq-jW-FAe"/>
+                            <constraint firstItem="YlH-aL-N3T" firstAttribute="top" secondItem="tgj-B7-hkt" secondAttribute="top" id="ce1-nF-Ihp"/>
+                            <constraint firstItem="cuz-b9-Tbw" firstAttribute="bottom" secondItem="tgj-B7-hkt" secondAttribute="bottom" id="fAt-Vr-Wuk"/>
                             <constraint firstItem="tgj-B7-hkt" firstAttribute="top" secondItem="pL7-zq-2by" secondAttribute="bottom" constant="19" id="hV1-wg-dZF"/>
                             <constraint firstItem="cuz-b9-Tbw" firstAttribute="centerY" secondItem="tgj-B7-hkt" secondAttribute="centerY" id="rUc-1a-Vaw"/>
                             <constraint firstItem="YlH-aL-N3T" firstAttribute="centerY" secondItem="tgj-B7-hkt" secondAttribute="centerY" id="yMv-Sp-T5V"/>
@@ -550,7 +572,9 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="BBa-Xm-6IC"/>
+                                <exclude reference="rUc-1a-Vaw"/>
                                 <exclude reference="Ov8-0H-Smo"/>
+                                <exclude reference="yMv-Sp-T5V"/>
                             </mask>
                         </variation>
                     </view>
@@ -2543,6 +2567,8 @@
     </scenes>
     <resources>
         <image name="face" width="300" height="241"/>
+        <image name="fd_daySwitchArrowLeft" width="13" height="9"/>
+        <image name="fd_daySwitchArrowRight" width="13" height="9"/>
         <image name="fd_doneGraphic" width="177" height="177"/>
         <image name="fd_logo" width="280" height="38"/>
         <image name="fd_remindericon" width="36" height="39"/>
