@@ -73,6 +73,7 @@
         }
         
         _scores = [dictionary objectForKey:@"scores"];
+        _tags = [[dictionary objectForKey:@"tags"] mutableCopy];
     }
     return self;
 }
@@ -119,7 +120,8 @@
              @"notes":_notes,
              @"responses":mutableResponses,
              @"treatments":mutableTreatments,
-             @"scores":_scores ?: [[NSArray alloc] init]
+             @"scores":_scores ?: [[NSArray alloc] init],
+             @"tags":_tags
              };
 }
 
@@ -145,7 +147,8 @@
     return @{
              @"responses":mutableResponses,
              @"treatments":mutableTreatments,
-             @"notes":_notes
+             @"notes":_notes,
+             @"tags":_tags
              };
 }
 

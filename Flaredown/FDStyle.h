@@ -14,6 +14,10 @@ static float const FDCornerRadius = 11;
 static float const FDLargeCornerRadius = 22;
 static float const FDBorderWidth = 1;
 
+#define ROUNDED_CORNER_OFFSET 20
+#define TAG_HEIGHT 30
+#define TAG_FONT [UIFont fontWithName:@"ProximaNova-Regular" size:19.0f]
+
 @interface FDStyle : NSObject
 
 + (void)addRoundedCornersToView:(UIView *)view;

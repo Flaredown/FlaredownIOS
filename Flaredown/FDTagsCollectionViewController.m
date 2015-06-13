@@ -7,12 +7,12 @@
 //
 
 #import "FDTagsCollectionViewController.h"
+#import "FDModelManager.h"
 
+#import "FDTrackableResult.h"
+
+#import "FDNetworkManager.h"
 #import "FDStyle.h"
-
-#define ROUNDED_CORNER_OFFSET 20
-#define TAG_HEIGHT 30
-#define TAG_FONT [UIFont fontWithName:@"ProximaNova-Regular" size:19.0f]
 
 @interface FDTagsCollectionViewController ()
 
@@ -22,10 +22,27 @@
 
 static NSString * const AddTagIdentifier = @"addTag";
 static NSString * const TagIdentifier = @"tag";
+static NSString * const PopularIdentifier = @"popular";
+static NSString * const PopularTagIdentifier = @"popularTag";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _tags = [@[@"poopy", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants", @"pants"] mutableCopy];
+    _tags = [[[FDModelManager sharedManager] entry] tags];
+    _popularTags = [[NSMutableArray alloc] init];
+    
+    FDModelManager *modelManager = [FDModelManager sharedManager];
+    FDUser *user = [modelManager userObject];
+    [[FDNetworkManager sharedManager] getPopularTagsWithEmail:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+        if(success) {
+            for (NSDictionary *dictionary in responseObject) {
+                FDTrackableResult *result = [[FDTrackableResult alloc] initWithDictionary:dictionary];
+                if(![_tags containsObject:result])
+                    [_popularTags addObject:result];
+            }
+            [self.collectionView reloadSections:[[NSIndexSet alloc] initWithIndex:3]];
+        }
+            
+    }];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -38,15 +55,45 @@ static NSString * const TagIdentifier = @"tag";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)addTagButton:(id)sender
+{
+    
 }
-*/
+
+- (IBAction)tagButton:(id)sender
+{
+    
+}
+
+- (IBAction)popularTagButton:(id)sender
+{
+    UICollectionViewCell *cell = [self parentCellForView:sender];
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    FDTrackableResult *tag = _popularTags[[indexPath row]];
+    if([_tags containsObject:[tag name]])
+        return;
+    [_tags addObject:[tag name]];
+    [_popularTags removeObject:tag];
+    
+    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
+    [indexSet addIndex:1];
+    [indexSet addIndex:3];
+    [self.collectionView reloadSections:indexSet];
+}
+
+- (UICollectionViewCell *)parentCellForView:(id)theView
+{
+    id viewSuperView = [theView superview];
+    while (viewSuperView != nil) {
+        if ([viewSuperView isKindOfClass:[UICollectionViewCell class]]) {
+            return (UICollectionViewCell *)viewSuperView;
+        }
+        else {
+            viewSuperView = [viewSuperView superview];
+        }
+    }
+    return nil;
+}
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -61,9 +108,9 @@ static NSString * const TagIdentifier = @"tag";
     } else if(section == 1) {
         return _tags.count;
     } else if(section == 2) {
-        //return 1;
+        return 1;
     } else if(section == 3) {
-
+        return _popularTags.count;
     }
     return 0;
 }
@@ -87,6 +134,15 @@ static NSString * const TagIdentifier = @"tag";
         
 //        [FDStyle addRoundedCornersToView:button];
         [button setTitle:_tags[row] forState:UIControlStateNormal];
+    } else if(section == 2) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:PopularIdentifier forIndexPath:indexPath];
+    } else if(section == 3) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:PopularTagIdentifier forIndexPath:indexPath];
+        
+        //1 Button
+        UIButton *button = (UIButton *)[cell viewWithTag:1];
+        FDTrackableResult *tag = _popularTags[row];
+        [button setTitle:[tag name] forState:UIControlStateNormal];
     }
     
     // Configure the cell
@@ -106,7 +162,9 @@ static NSString * const TagIdentifier = @"tag";
         buttonRect.size.width += ROUNDED_CORNER_OFFSET;
         return buttonRect.size;
     } else if(section == 3) {
-        
+        FDTrackableResult *tag = _popularTags[row];
+        CGRect buttonRect = [[tag name] boundingRectWithSize:CGSizeMake(collectionView.frame.size.width, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
+        return buttonRect.size;
     }
     return CGSizeMake(175, 50);
 }

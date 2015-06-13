@@ -11,5 +11,6 @@
 @interface FDTagsCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
 
 @property NSMutableArray *tags;
+@property NSMutableArray *popularTags;
 
 @end

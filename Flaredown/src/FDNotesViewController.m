@@ -64,6 +64,17 @@
 #endif
 }
 
+- (IBAction)cancelButton:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)doneButton:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -100,7 +111,7 @@
         [self.view layoutIfNeeded];
     }];
     
-    [self.mainViewDelegate toggleCardBumped];
+//    [self.mainViewDelegate toggleCardBumped];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
@@ -113,9 +124,9 @@
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
-    [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
+//    [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
     
-    [self.mainViewDelegate toggleCardBumped];
+//    [self.mainViewDelegate toggleCardBumped];
 }
 
 @end

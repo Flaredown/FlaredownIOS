@@ -29,6 +29,14 @@
 #define NO_TREATMENTS (TREATMENT_COUNT == 0)
 #define TREATMENT_END (TREATMENT_BASE + (NO_TREATMENTS ? 1 : TREATMENT_COUNT))
 
+#define TAG_TITLE (TREATMENT_END)
+#define TAG_BASE (TAG_TITLE+1)
+#define TAG_COUNT [[_entry tags] count]
+#define NO_TAGS (TAG_COUNT == 0)
+#define TAG_END (TAG_BASE + 2)
+
+#define NOTE_BASE (TAG_END)
+
 @interface FDSummaryCollectionViewController ()
 
 @end
@@ -41,6 +49,8 @@ static NSString * const ItemValueIdentifier = @"itemValue";
 static NSString * const ItemNoneIdentifier = @"itemNone";
 static NSString * const ItemNoValueIdentifier = @"itemNoValue";
 static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
+static NSString * const TagIdentifier = @"tag";
+static NSString * const AddNoteIdentifier = @"addNote";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,6 +108,9 @@ static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
     } else if(section >= TREATMENT_BASE && section < TREATMENT_END) {
         //treatments
         [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+1];
+    } else if(section >= TAG_BASE && section < TAG_END) {
+        //tags
+        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+2];
     }
 }
 
@@ -117,6 +130,12 @@ static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
     } else if(section >= TREATMENT_BASE && section < TREATMENT_END) {
         //treatments
         [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+1];
+    } else if(section >= TAG_BASE && section < TAG_END) {
+        //tags
+        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+2];
+    } else if(section >= NOTE_BASE) {
+        //notes
+        [self performSegueWithIdentifier:@"notes" sender:nil];
     }
 }
 
@@ -141,8 +160,10 @@ static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
     NSUInteger conditions = CONDITION_END - CONDITION_BASE + 1;
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1;
     NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1;
+    NSUInteger tags = 2;
+    NSUInteger notes = 2;
     
-    return conditions+symptoms+treatments;
+    return conditions+symptoms+treatments+tags+notes;
 }
 
 
@@ -168,6 +189,14 @@ static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
             return 1;
         FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
         return [self numberOfItemsForTreatment:treatment];
+    } else if(section == TAG_TITLE) {
+        return 1;
+    } else if (section < TAG_END) {
+        if(NO_TAGS)
+            return 1;
+        return [[[[FDModelManager sharedManager] entry] tags] count];
+    } else if(section == NOTE_BASE) {
+        return 1;
     }
     return 0;
 }
@@ -283,6 +312,29 @@ static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
             }
         }
+    } else if(section == TAG_TITLE) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
+        
+        //1 Button
+        UILabel *label = (UILabel *)[cell viewWithTag:1];
+        [label setText:@"tags"]; //TODO:Localized
+    } else if(section < TAG_END) {
+        if(NO_TAGS) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
+        } else {
+            NSString *tag = [_entry tags][row];
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:TagIdentifier forIndexPath:indexPath];
+            
+            //1  Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [button setTitle:tag forState:UIControlStateNormal];
+        }
+    } else if(section == NOTE_BASE) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddNoteIdentifier forIndexPath:indexPath];
+        
+        //1 Button
+        UIButton *button = (UIButton *)[cell viewWithTag:1];
+        [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
     }
     return cell;
 }
@@ -341,6 +393,19 @@ static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
             else
                 return CGSizeMake(115, 35);
         }
+    } else if(section == TAG_TITLE) {
+        return CGSizeMake(collectionView.frame.size.width, 40);
+    } else if(section < TAG_END) {
+        if(NO_TAGS) {
+            return CGSizeMake(collectionView.frame.size.width, 50);
+        } else {
+            NSString *tag = [[[FDModelManager sharedManager] entry] tags][row];
+            CGRect buttonRect = [tag boundingRectWithSize:CGSizeMake(collectionView.frame.size.width-ROUNDED_CORNER_OFFSET, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
+            buttonRect.size.width += ROUNDED_CORNER_OFFSET;
+            return buttonRect.size;
+        }
+    } else if(section == NOTE_BASE) {
+        return CGSizeMake(collectionView.frame.size.width, 50);
     }
     return CGSizeZero;
 }

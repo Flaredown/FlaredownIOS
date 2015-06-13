@@ -21,6 +21,7 @@
 @property NSMutableArray *responses;
 @property NSMutableArray *treatments;
 @property NSArray *scores;
+@property NSMutableArray *tags;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionaryCopy;
