@@ -69,7 +69,7 @@
     self.summaryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"summary"];
     [self.summaryViewController setMainViewDelegate:self];
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
-    self.summaryViewController.view.frame = CGRectMake(10, 90, self.view.frame.size.width - 20, self.view.frame.size.height - 160);
+    self.summaryViewController.view.frame = CGRectMake(10, 80, self.view.frame.size.width - 20, self.view.frame.size.height - 140 + _continueBtn.frame.size.height);
     
     if(_loadSummary)
         [self showSummary];
@@ -91,6 +91,8 @@
 {
     [self hideSummary];
     [self addViewController:self.pageViewController];
+    
+    [_continueBtn setHidden:NO];
 }
 
 - (void)hidePages
@@ -104,6 +106,8 @@
     [self hidePages];
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
     [self addViewController:self.summaryViewController];
+    
+    [_continueBtn setHidden:YES];
 }
 
 - (void)hideSummary

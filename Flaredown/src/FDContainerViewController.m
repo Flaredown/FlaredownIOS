@@ -120,7 +120,7 @@
             //Tags
             pageType = @"tags";
             FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)dvc;
-//            tagsVC.mainViewDelegate = _mainViewDelegate;
+            tagsVC.mainViewDelegate = _mainViewDelegate;
         }
     } else {
         NSMutableArray *questions = [[FDModelManager sharedManager] questionsForSection:offsetIndex];

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FDViewController.h"
+
 @interface FDTagsCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property NSMutableArray *tags;
 @property NSMutableArray *popularTags;

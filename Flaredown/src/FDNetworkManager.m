@@ -189,29 +189,12 @@ static NSString *api = @"/v1";
         url = [NSString stringWithFormat:@"%@/treatments/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     } else if([type isEqualToString:@"conditions"]) {
         url = [NSString stringWithFormat:@"%@/conditions/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    } else if([type isEqualToString:@"tags"]) {
+        url = [NSString stringWithFormat:@"%@/tags/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     } else {
         NSLog(@"Invalid search type in searchTrackables method of FDNetworkManager");
         completionBlock(false, nil);
     }
-    
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
-    
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-    
-}
-
-- (void)searchTags:(NSString *)searchText email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url;
-    url = [NSString stringWithFormat:@"%@/tags/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
     

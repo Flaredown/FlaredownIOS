@@ -20,7 +20,8 @@
 {
     SearchSymptoms,
     SearchTreatments,
-    SearchConditions
+    SearchConditions,
+    SearchTags
 };
 @property enum SearchType searchType;
 

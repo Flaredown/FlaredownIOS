@@ -57,6 +57,7 @@
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
 		EDDC72541A08886E0059815A /* FDEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72531A08886E0059815A /* FDEntry.m */; };
+		EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */; };
 		EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */; };
 		EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEE1A9545400074F189 /* FDTrackableResult.m */; };
 		EDEA82691A11572400A80416 /* FDQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82681A11572400A80416 /* FDQuestion.m */; };
@@ -169,6 +170,8 @@
 		EDDC72501A08441E0059815A /* FDModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelManager.m; sourceTree = "<group>"; };
 		EDDC72521A08886E0059815A /* FDEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEntry.h; sourceTree = "<group>"; };
 		EDDC72531A08886E0059815A /* FDEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEntry.m; sourceTree = "<group>"; };
+		EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSettingsViewController.h; sourceTree = "<group>"; };
+		EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSettingsViewController.m; sourceTree = "<group>"; };
 		EDE98DEA1A9273ED0074F189 /* FDSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSearchTableViewController.h; sourceTree = "<group>"; };
 		EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSearchTableViewController.m; sourceTree = "<group>"; };
 		EDE98DED1A9545400074F189 /* FDTrackableResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTrackableResult.h; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				ED88614A1A11F368002469B3 /* FDFinishedViewController.m */,
 				EDC7CD141B02C9DE00C2CE43 /* FDSummaryCollectionViewController.h */,
 				EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */,
+				EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */,
+				EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -675,6 +680,7 @@
 				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
 				ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */,
+				EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */,
 				ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
 				EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */,

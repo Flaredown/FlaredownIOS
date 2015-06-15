@@ -10,6 +10,7 @@
 #import "FDModelManager.h"
 
 #import "FDTrackableResult.h"
+#import "FDSearchTableViewController.h"
 
 #import "FDNetworkManager.h"
 #import "FDStyle.h"
@@ -36,7 +37,14 @@ static NSString * const PopularTagIdentifier = @"popularTag";
         if(success) {
             for (NSDictionary *dictionary in responseObject) {
                 FDTrackableResult *result = [[FDTrackableResult alloc] initWithDictionary:dictionary];
-                if(![_tags containsObject:result])
+                BOOL found = NO;
+                for (NSString *tag in _tags) {
+                    if([tag isEqualToString:[result name]]) {
+                        found = YES;
+                        break;
+                    }
+                }
+                if(!found)
                     [_popularTags addObject:result];
             }
             [self.collectionView reloadSections:[[NSIndexSet alloc] initWithIndex:3]];
@@ -57,7 +65,7 @@ static NSString * const PopularTagIdentifier = @"popularTag";
 
 - (IBAction)addTagButton:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"search" sender:nil];
 }
 
 - (IBAction)tagButton:(id)sender
@@ -199,5 +207,17 @@ static NSString * const PopularTagIdentifier = @"popularTag";
 	
 }
 */
+
+#pragma mark navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"search"]) {
+        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        FDSearchTableViewController *dvc = (FDSearchTableViewController *)navigationController.viewControllers[0];
+        [dvc setSearchType:SearchTags];
+        [dvc setMainViewDelegate:_mainViewDelegate];
+    }
+}
 
 @end

@@ -29,6 +29,8 @@
         [self setTitle:FDLocalizedString(@"add_treatment")];
     } else if(_searchType == SearchConditions) {
         [self setTitle:FDLocalizedString(@"onboarding/add_condition")];
+    } else if(_searchType == SearchTags) {
+        [self setTitle:@"tags"]; //TODO:Localized
     }
     
     _results = [[NSMutableArray alloc] init];
@@ -69,6 +71,8 @@
         searchType = @"treatments";
     else if(_searchType == SearchConditions)
         searchType = @"conditions";
+    else if(_searchType == SearchTags)
+        searchType = @"tags";
     
     [[FDNetworkManager sharedManager] searchTrackables:_searchText type:searchType email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         
@@ -190,6 +194,8 @@
                 [subtext setText:FDLocalizedString(@"add_new_treatment")];
             else if(_searchType == SearchSymptoms)
                 [subtext setText:FDLocalizedString(@"onboarding/add_new_symptom")];
+            else if(_searchType == SearchTags)
+                [subtext setText:@"add tag"]; //TODO:Localized
                 
             [title setText:[NSString stringWithFormat:@"\"%@\"", [result name]]];
         }
@@ -385,6 +391,41 @@
                                             message:FDLocalizedString(@"nice_errors/search_add_condition_error_description")
                                            delegate:nil
                                   cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+                                  otherButtonTitles:nil] show];
+            }
+        }];
+    } else if(_searchType == SearchTags) {
+        
+        for(NSString *tag in [entry tags]) {
+            if([tag isEqualToString:title]) {
+                [self closeSearch:sender];
+                return;
+            }
+        }
+        
+        //Check the new symptom against the API for validation
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        FDUser *user = [[FDModelManager sharedManager] userObject];
+        [[FDNetworkManager sharedManager] createConditionWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            if(success) {
+                NSLog(@"Success!");
+                
+                NSString *newTag = title;
+                [[entry tags] addObject:newTag];
+                
+                [self closeSearch:sender];
+            }
+            else {
+                NSLog(@"Failure!");
+                //TODO:Localized
+                [[[UIAlertView alloc] initWithTitle:@"error with add tag"
+                                            message:@"there was an error adding this tag"
+                                           delegate:nil
+                                  cancelButtonTitle:@"okayy"
                                   otherButtonTitles:nil] show];
             }
         }];
