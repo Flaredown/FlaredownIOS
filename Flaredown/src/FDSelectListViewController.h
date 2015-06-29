@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FDPageContentViewController.h"
 @class FDTreatment;
+@class FDQuestion;
 
 typedef enum : NSUInteger {
     ListTypeSymptoms,

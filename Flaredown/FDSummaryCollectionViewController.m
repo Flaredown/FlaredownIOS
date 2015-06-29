@@ -56,7 +56,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
     [super viewDidLoad];
     
     //Style
-    self.collectionView.clipsToBounds = NO;
+//    self.collectionView.clipsToBounds = NO;
     self.collectionView.frame = CGRectMake(self.view.frame.origin.x+10, self.view.frame.origin.y+10, self.view.frame.size.width-20, self.view.frame.size.height-20);
     
     self.view.layer.masksToBounds = YES;

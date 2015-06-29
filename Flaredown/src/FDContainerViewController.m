@@ -10,6 +10,7 @@
 #import "FDSelectListViewController.h"
 #import "FDNumberViewController.h"
 #import "FDSelectCollectionViewController.h"
+#import "FDSelectQuestionTableViewController.h"
 #import "FDMeterViewController.h"
 #import "FDNotesViewController.h"
 #import "FDTagsCollectionViewController.h"
@@ -50,7 +51,8 @@
         }
         
         if([pageType isEqualToString:@"select"]) {
-            self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
+//            self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
+            self.currentSegueIdentifier = SegueIdentifierSelectQuestionTableView;
         } else if([pageType isEqualToString:@"checkbox"]) {
             self.currentSegueIdentifier = SegueIdentifierSelectListView;
         } else if([pageType isEqualToString:@"number"]) {
@@ -136,8 +138,10 @@
         } else if([pageType isEqualToString:@"number"]) {
             [((FDNumberViewController *)dvc) initWithQuestion:questions[0]];
         } else if([pageType isEqualToString:@"select"]) {
-            FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
-            [selectVC initWithQuestion:questions[0]];
+            FDSelectQuestionTableViewController *tableVC = (FDSelectQuestionTableViewController *)dvc;
+            [tableVC initWithQuestion:questions[0]];
+//            FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
+//            [selectVC initWithQuestions:questions];
         } else if([pageType isEqualToString:@"meter"]) {
             FDMeterViewController *meterVC = (FDMeterViewController *)dvc;
             [meterVC initWithQuestion:questions[0]];

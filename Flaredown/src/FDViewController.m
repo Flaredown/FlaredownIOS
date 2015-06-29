@@ -17,6 +17,14 @@
 #import "FDSummaryCollectionViewController.h"
 
 #define CARD_BUMP_OFFSET 60
+#define CARD_INSET 10
+#define CARD_OFFSET_Y 80
+#define CARD_HEIGHT_DIFF 140
+
+#define ANIMATION_DURATION 0.5
+
+#define SUMMARY_RECT (CGRectMake(CARD_INSET, CARD_OFFSET_Y, self.view.frame.size.width - CARD_INSET*2, self.view.frame.size.height - CARD_HEIGHT_DIFF + _continueBtn.frame.size.height))
+#define PAGE_RECT (CGRectMake(0, CARD_OFFSET_Y, self.view.frame.size.width, self.view.frame.size.height - CARD_HEIGHT_DIFF))
 
 @interface FDViewController ()
 
@@ -63,13 +71,13 @@
     
     [self refreshPages];
     
-    self.pageViewController.view.frame = CGRectMake(0, 80, self.view.frame.size.width, self.view.frame.size.height - 140);
+    self.pageViewController.view.frame = PAGE_RECT;
     
     //Create summary view controller
     self.summaryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"summary"];
     [self.summaryViewController setMainViewDelegate:self];
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
-    self.summaryViewController.view.frame = CGRectMake(10, 80, self.view.frame.size.width - 20, self.view.frame.size.height - 140 + _continueBtn.frame.size.height);
+    self.summaryViewController.view.frame = SUMMARY_RECT;
     
     if(_loadSummary)
         [self showSummary];
@@ -92,20 +100,52 @@
     [self hideSummary];
     [self addViewController:self.pageViewController];
     
+    if([self.summaryViewController parentViewController]) {
+        
+        CGRect pageRect = PAGE_RECT;
+        self.pageViewController.view.frame = CGRectMake(pageRect.origin.x, self.view.frame.size.height, pageRect.size.width, pageRect.size.height);
+        
+        [self transitionFromViewController:self.summaryViewController toViewController:self.pageViewController duration:ANIMATION_DURATION options:0 animations:^{
+            self.pageViewController.view.frame = pageRect;
+            CGRect summaryRect = SUMMARY_RECT;
+            self.summaryViewController.view.frame = CGRectMake(summaryRect.origin.x, self.view.frame.size.height, summaryRect.size.width, summaryRect.size.height);
+        } completion:^(BOOL finished) {
+            [self removeViewController:self.summaryViewController];
+            [self.pageViewController didMoveToParentViewController:self];
+        }];
+    }
+
+    //TODO: Animate continue button coming on screen as well
     [_continueBtn setHidden:NO];
 }
 
 - (void)hidePages
 {
     if([self.pageViewController parentViewController])
-        [self removeViewController:self.pageViewController];
+        [self.pageViewController willMoveToParentViewController:nil];
 }
 
 - (void)showSummary
 {
     [self hidePages];
-    self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
     [self addViewController:self.summaryViewController];
+    
+    self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
+    
+    if([self.pageViewController parentViewController]) {
+        
+        CGRect summaryRect = SUMMARY_RECT;
+        self.summaryViewController.view.frame = CGRectMake(summaryRect.origin.x, self.view.frame.size.height, summaryRect.size.width, summaryRect.size.height);
+        
+        [self transitionFromViewController:self.pageViewController toViewController:self.summaryViewController duration:ANIMATION_DURATION options:0 animations:^{
+            self.summaryViewController.view.frame = summaryRect;
+            CGRect pageRect = PAGE_RECT;
+            self.pageViewController.view.frame = CGRectMake(pageRect.origin.x, self.view.frame.size.height, pageRect.size.width, pageRect.size.height);
+        } completion:^(BOOL finished) {
+            [self removeViewController:self.pageViewController];
+            [self.summaryViewController didMoveToParentViewController:self];
+        }];
+    }
     
     [_continueBtn setHidden:YES];
 }
@@ -113,14 +153,14 @@
 - (void)hideSummary
 {
     if([self.summaryViewController parentViewController])
-        [self removeViewController:self.summaryViewController];
+        [self.summaryViewController willMoveToParentViewController:nil];
 }
 
 - (void)addViewController:(UIViewController *)viewController
 {
     [self addChildViewController:viewController];
     [self.view addSubview:viewController.view];
-    [viewController didMoveToParentViewController:self];
+//    [viewController didMoveToParentViewController:self];
 }
 
 - (void)removeViewController:(UIViewController *)viewController
