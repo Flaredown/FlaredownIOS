@@ -44,18 +44,6 @@ static NSString * const DoseID = @"dose";
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)toggleTreatment:(id)sender
-{
-    UICollectionViewCell *cell = [self parentCellForView:sender];
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-    NSInteger section = [indexPath section];
-    
-    FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
-    [treatment setTaken:![treatment taken]];
-    
-    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:section]];
-}
-
 - (IBAction)addDose:(id)sender
 {
     UICollectionViewCell *cell = [self parentCellForView:sender];
@@ -148,7 +136,7 @@ static NSString * const DoseID = @"dose";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
-    return [treatment taken] ? 2 + [[treatment doses] count] : 1;
+    return [[treatment doses] count] > 0 ? 2 + [[treatment doses] count] : 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -163,17 +151,10 @@ static NSString * const DoseID = @"dose";
     if(row == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentID forIndexPath:indexPath];
         
-        //1 Switch
-        UISwitch *switchButton = (UISwitch *)[cell viewWithTag:1];
-        [switchButton setOn:[treatment taken]];
-        
         //2 Label
         UILabel *label = (UILabel *)[cell viewWithTag:2];
         [label setText:[treatment name]];
-        if([treatment taken])
-           [label setTextColor:[FDStyle blackColor]];
-        else
-            [label setTextColor:[FDStyle greyColor]];
+        [label setTextColor:[FDStyle blackColor]];
         
     } else if(row == [[treatment doses] count]+1) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddDoseID forIndexPath:indexPath];

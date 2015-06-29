@@ -101,14 +101,12 @@
     }
     NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
     for(FDTreatment *treatment in _treatments) {
-        if([treatment taken]) {
-            if([[treatment doses] count] == 0)
-                [mutableTreatments addObject:[treatment dictionaryCopy]];
-            else {
-                NSArray *treatmentDictionaries = [treatment arrayCopy];
-                for (NSDictionary *treatmentDictionary in treatmentDictionaries) {
-                    [mutableTreatments addObject:treatmentDictionary];
-                }
+        if([[treatment doses] count] == 0)
+            [mutableTreatments addObject:[treatment dictionaryCopy]];
+        else {
+            NSArray *treatmentDictionaries = [treatment arrayCopy];
+            for (NSDictionary *treatmentDictionary in treatmentDictionaries) {
+                [mutableTreatments addObject:treatmentDictionary];
             }
         }
     }
@@ -133,14 +131,12 @@
     }
     NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
     for(FDTreatment *treatment in _treatments) {
-        if([treatment taken]) {
-            if([[treatment doses] count] == 0)
-                [mutableTreatments addObject:[treatment dictionaryCopy]];
-            else {
-                NSArray *treatmentDictionaries = [treatment arrayCopy];
-                for (NSDictionary *treatmentDictionary in treatmentDictionaries) {
-                    [mutableTreatments addObject:treatmentDictionary];
-                }
+        if([[treatment doses] count] == 0)
+            [mutableTreatments addObject:[treatment dictionaryCopy]];
+        else {
+            NSArray *treatmentDictionaries = [treatment arrayCopy];
+            for (NSDictionary *treatmentDictionary in treatmentDictionaries) {
+                [mutableTreatments addObject:treatmentDictionary];
             }
         }
     }

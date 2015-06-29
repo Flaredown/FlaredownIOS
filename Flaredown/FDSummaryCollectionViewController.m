@@ -211,9 +211,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
 
 - (NSInteger)numberOfItemsForTreatment:(FDTreatment *)treatment
 {
-    if(![treatment taken])
-        return 2;
-    return 1 + 1;
+    return [[treatment doses] count] > 0 ? 1 + [[treatment doses] count] : 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -306,7 +304,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[treatment name]];
                 
-            } else if([treatment taken]) {
+            } else if([[treatment doses] count] == 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentTakenIdentifier forIndexPath:indexPath];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
@@ -385,11 +383,8 @@ static NSString * const AddNoteIdentifier = @"addNote";
             return CGSizeMake(collectionView.frame.size.width, 50);
         } else {
             FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
-            
             if(row == 0)
                 return CGSizeMake(collectionView.frame.size.width, 30);
-            else if([treatment taken])
-                return CGSizeMake(115, 35);
             else
                 return CGSizeMake(115, 35);
         }

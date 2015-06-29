@@ -15,7 +15,6 @@
 
 @property NSString *treatmentId;
 @property NSString *name;
-@property BOOL taken;
 @property NSMutableArray *doses;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

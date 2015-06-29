@@ -29,8 +29,6 @@
             [dose setUnit:unit];
             [_doses addObject:dose];
         }
-        
-        _taken = [dictionary objectForKey:@"taken"] ? [[dictionary objectForKey:@"taken"] boolValue]: NO;
     }
     return self;
 }
@@ -41,7 +39,6 @@
     if(self) {
         _treatmentId = [NSString stringWithFormat:@"%@___%@", title, [entry entryId]];
         _name = title;
-        _taken = YES;
     }
     return self;
 }
@@ -62,7 +59,6 @@
              @"name":_name,
              @"quantity":[NSNull null],
              @"unit":[NSNull null],
-             @"taken":@(_taken)
              };
 }
 
@@ -73,7 +69,6 @@
              @"name":_name,
              @"quantity":[FDStyle trimmedDecimal:[dose quantity]],
              @"unit":[dose unit],
-             @"taken":@(_taken)
              };
 }
 

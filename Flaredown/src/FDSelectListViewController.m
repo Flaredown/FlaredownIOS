@@ -128,21 +128,6 @@
     }
 }
 
-- (IBAction)listItemSwitch:(id)sender
-{
-    UITableViewCell *cell = [self parentCellForView:sender];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    FDTreatment *treatment = [self.questions objectAtIndex:[indexPath row]];
-    if([treatment taken]) {
-        [self.selectedItems removeObject:indexPath];
-        [treatment setTaken:NO];
-    } else {
-        [self.selectedItems addObject:indexPath];
-        [treatment setTaken:YES];
-    }
-}
-
 // Toggle selected for target item
 - (IBAction)listItemButton:(id)sender
 {
@@ -154,13 +139,6 @@
 
     if(_listType == ListTypeTreatments) {
         FDTreatment *treatment = [self.questions objectAtIndex:[indexPath row]];
-        if([treatment taken]) {
-            [self.selectedItems removeObject:indexPath];
-            [treatment setTaken:NO];
-        } else {
-            [self.selectedItems addObject:indexPath];
-            [treatment setTaken:YES];
-        }
     } else if(_listType == ListTypeSymptoms || _listType == ListTypeConditions) {
         FDResponse *response = [self.responses objectAtIndex:[indexPath row]];
         if([response value] == 1) {
@@ -392,7 +370,6 @@
                     NSLog(@"Success!");
                     
                     FDTreatment *newTreatment = [[FDTreatment alloc] initWithTitle:title entry:entry];
-                    [newTreatment setTaken:YES];
                     [[entry treatments] addObject:newTreatment];
                     
                     [self.tableView reloadData];
@@ -599,10 +576,6 @@
             //4 Edit button
             UIButton *editButton = (UIButton *)[cell viewWithTag:4];
             [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
-            
-            //5 Switch
-            UISwitch *toggleSwitch = (UISwitch *)[cell viewWithTag:5];
-            [toggleSwitch setOn:[treatment taken]];
             
         } else {
             
