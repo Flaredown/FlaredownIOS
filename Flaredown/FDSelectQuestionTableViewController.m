@@ -18,7 +18,7 @@
 
 @implementation FDSelectQuestionTableViewController
 
-static NSString * const listeItemIdentifier = @"listItem";
+static NSString * const listItemIdentifier = @"listItem";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,7 +64,7 @@ static NSString * const listeItemIdentifier = @"listItem";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:listItemIdentifier forIndexPath:indexPath];
     
     FDInput *input = self.inputs[[indexPath row]];
     
@@ -123,10 +123,12 @@ static NSString * const listeItemIdentifier = @"listItem";
 
 - (void)setCellAppearance:(UITableViewCell *)cell
 {
+    //1 Button
+    UIButton *button = (UIButton *)[cell viewWithTag:1];
     if(cell.selected) {
-        [cell setBackgroundColor:[FDStyle blueColor]];
+        [button setBackgroundColor:[FDStyle blueColor]];
     } else {
-        [cell setBackgroundColor:[FDStyle lightGreyColor]];
+        [button setBackgroundColor:[FDStyle lightGreyColor]];
     }
 }
 

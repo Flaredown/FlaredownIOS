@@ -61,6 +61,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -1717,7 +1718,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmU-AN-Ebz">
-                                            <rect key="frame" x="253" y="10" width="36" height="41"/>
+                                            <rect key="frame" x="265" y="10" width="36" height="41"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="36" id="LXx-la-sEs"/>
                                                 <constraint firstAttribute="height" constant="41" id="d9h-PS-pLo"/>
@@ -1739,83 +1740,66 @@
                                                 <action selector="removeItemButton:" destination="XTt-dF-ZiA" eventType="touchUpInside" id="fkJ-ab-oT6"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCE-43-2lU">
-                                            <rect key="frame" x="146" y="51" width="34" height="24"/>
+                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dA9-bx-AzX">
+                                            <rect key="frame" x="19" y="11" width="246" height="40"/>
+                                            <color key="backgroundColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fd_remindericon" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-IQ-K2X">
+                                            <rect key="frame" x="39" y="61" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="LwU-EZ-isR"/>
-                                                <constraint firstAttribute="width" constant="34" id="dy6-hD-HBw"/>
-                                                <constraint firstAttribute="height" constant="24" id="hKx-cF-zYI"/>
+                                                <constraint firstAttribute="height" constant="20" id="338-iE-Rxe"/>
+                                                <constraint firstAttribute="width" constant="20" id="sJI-z8-oCP"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                            <state key="normal" title="edit">
-                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder on" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yC-lh-F7B">
+                                            <rect key="frame" x="71" y="56" width="100.5" height="30"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                            <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qtb-eo-qjk">
+                                            <rect key="frame" x="29" y="56" width="152.5" height="30"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="LwU-EZ-isR"/>
-                                                </mask>
-                                            </variation>
                                             <connections>
-                                                <action selector="editItemButton:" destination="XTt-dF-ZiA" eventType="touchUpInside" id="8gT-Z5-jkT"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60S-6M-V2m">
-                                            <rect key="frame" x="128" y="51" width="18" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="J67-UE-ht6"/>
-                                                <constraint firstAttribute="height" constant="30" id="Sw4-cK-FNa"/>
-                                                <constraint firstAttribute="width" constant="34" id="adu-Pr-Dbu"/>
-                                                <constraint firstAttribute="width" constant="18" id="zUh-5s-iWG"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                            <state key="normal" title="-">
-                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="Sw4-cK-FNa"/>
-                                                    <exclude reference="adu-Pr-Dbu"/>
-                                                </mask>
-                                            </variation>
-                                            <connections>
-                                                <action selector="editItemButton:" destination="XTt-dF-ZiA" eventType="touchUpInside" id="nky-a1-Pnk"/>
+                                                <action selector="openTreatmentReminderPopup:" destination="XTt-dF-ZiA" eventType="touchUpInside" id="fGJ-go-X2z"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Treatment Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Plb-dQ-DEv">
-                                            <rect key="frame" x="39" y="20" width="206" height="22"/>
-                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="22"/>
-                                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx unit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfN-Cw-Cts">
-                                            <rect key="frame" x="59" y="51" width="68.5" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="D97-0U-MtU"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <rect key="frame" x="39" y="21" width="206" height="20"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="lCE-43-2lU" firstAttribute="leading" secondItem="60S-6M-V2m" secondAttribute="trailing" id="0zK-oR-olO"/>
-                                        <constraint firstItem="wfN-Cw-Cts" firstAttribute="top" secondItem="60S-6M-V2m" secondAttribute="top" id="179-be-XVo"/>
-                                        <constraint firstItem="Plb-dQ-DEv" firstAttribute="leading" secondItem="wfN-Cw-Cts" secondAttribute="leading" constant="-20" id="5um-pX-JLG"/>
+                                        <constraint firstItem="BzP-IQ-K2X" firstAttribute="top" secondItem="Plb-dQ-DEv" secondAttribute="bottom" constant="20" id="49u-Zc-jB2"/>
+                                        <constraint firstItem="5yC-lh-F7B" firstAttribute="bottom" secondItem="Qtb-eo-qjk" secondAttribute="bottom" id="A9J-am-baT"/>
+                                        <constraint firstItem="dA9-bx-AzX" firstAttribute="leading" secondItem="Plb-dQ-DEv" secondAttribute="leading" constant="-20" id="Czi-lq-CkP"/>
                                         <constraint firstAttribute="centerY" secondItem="Plb-dQ-DEv" secondAttribute="centerY" constant="14.5" id="D2X-Ux-Prb"/>
                                         <constraint firstItem="Plb-dQ-DEv" firstAttribute="centerY" secondItem="tmU-AN-Ebz" secondAttribute="centerY" id="G9r-zH-IB0"/>
-                                        <constraint firstItem="wfN-Cw-Cts" firstAttribute="top" secondItem="Plb-dQ-DEv" secondAttribute="bottom" constant="9" id="NsZ-iK-AK0"/>
+                                        <constraint firstItem="5yC-lh-F7B" firstAttribute="leading" secondItem="BzP-IQ-K2X" secondAttribute="trailing" constant="12" id="OjI-AS-iu3"/>
                                         <constraint firstItem="Plb-dQ-DEv" firstAttribute="leading" secondItem="aXR-ss-uLu" secondAttribute="leadingMargin" constant="31" id="Qtd-OT-Reg"/>
-                                        <constraint firstItem="lCE-43-2lU" firstAttribute="leading" secondItem="wfN-Cw-Cts" secondAttribute="trailing" constant="8" id="RAE-RC-QLc"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="tmU-AN-Ebz" secondAttribute="trailing" constant="23" id="RDa-hB-JlE"/>
-                                        <constraint firstItem="lCE-43-2lU" firstAttribute="top" secondItem="wfN-Cw-Cts" secondAttribute="top" id="XSq-ZY-5Dq"/>
+                                        <constraint firstItem="BzP-IQ-K2X" firstAttribute="leading" secondItem="Plb-dQ-DEv" secondAttribute="leading" id="XUI-fB-cJc"/>
                                         <constraint firstItem="tmU-AN-Ebz" firstAttribute="leading" secondItem="Plb-dQ-DEv" secondAttribute="trailing" constant="8" id="awN-lG-O7u"/>
-                                        <constraint firstItem="60S-6M-V2m" firstAttribute="leading" secondItem="wfN-Cw-Cts" secondAttribute="trailing" constant="0.5" id="wNC-Hm-Xpn"/>
-                                        <constraint firstItem="lCE-43-2lU" firstAttribute="leading" secondItem="wfN-Cw-Cts" secondAttribute="trailing" constant="8" id="yfI-6E-bI2"/>
+                                        <constraint firstItem="5yC-lh-F7B" firstAttribute="centerY" secondItem="BzP-IQ-K2X" secondAttribute="centerY" id="cl5-YX-4zz"/>
+                                        <constraint firstItem="dA9-bx-AzX" firstAttribute="centerY" secondItem="Plb-dQ-DEv" secondAttribute="centerY" id="gQF-qW-6dd"/>
+                                        <constraint firstItem="5yC-lh-F7B" firstAttribute="leading" secondItem="Qtb-eo-qjk" secondAttribute="leading" id="h4Q-ON-gTZ"/>
+                                        <constraint firstItem="BzP-IQ-K2X" firstAttribute="leading" secondItem="Qtb-eo-qjk" secondAttribute="leading" constant="10" id="i3I-QO-hUN"/>
+                                        <constraint firstItem="dA9-bx-AzX" firstAttribute="centerX" secondItem="Plb-dQ-DEv" secondAttribute="centerX" id="iX1-AM-m5F"/>
+                                        <constraint firstItem="5yC-lh-F7B" firstAttribute="top" secondItem="Qtb-eo-qjk" secondAttribute="top" id="mD0-WX-XgS"/>
+                                        <constraint firstItem="dA9-bx-AzX" firstAttribute="top" secondItem="Plb-dQ-DEv" secondAttribute="top" constant="-10" id="me7-Ko-T7T"/>
+                                        <constraint firstItem="5yC-lh-F7B" firstAttribute="trailing" secondItem="Qtb-eo-qjk" secondAttribute="trailing" constant="-10" id="oXJ-F7-wgt"/>
+                                        <constraint firstItem="tmU-AN-Ebz" firstAttribute="leading" secondItem="dA9-bx-AzX" secondAttribute="trailing" id="opx-ut-0Ew"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Plb-dQ-DEv" secondAttribute="trailing" constant="67" id="yvP-F8-AW2"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="RAE-RC-QLc"/>
-                                            <exclude reference="yfI-6E-bI2"/>
+                                            <exclude reference="h4Q-ON-gTZ"/>
+                                            <exclude reference="RDa-hB-JlE"/>
+                                            <exclude reference="awN-lG-O7u"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -2926,22 +2910,22 @@
         <scene sceneID="NGf-8b-XId">
             <objects>
                 <tableViewController id="YW0-dC-RQx" customClass="FDSelectQuestionTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9dn-Uj-tJd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="9dn-Uj-tJd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="listItem" id="tx6-rj-zAN">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="listItem" rowHeight="55" id="tx6-rj-zAN">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tx6-rj-zAN" id="uZS-yA-RCE">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlx-5F-I8O">
-                                            <rect key="frame" x="176" y="2" width="249" height="41"/>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlx-5F-I8O">
+                                            <rect key="frame" x="175.5" y="6.5" width="250" height="40"/>
                                             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="249" id="RFd-Vf-KIP"/>
-                                                <constraint firstAttribute="height" constant="41" id="itj-8e-CFJ"/>
+                                                <constraint firstAttribute="width" constant="250" id="RFd-Vf-KIP"/>
+                                                <constraint firstAttribute="height" constant="40" id="itj-8e-CFJ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
@@ -2955,7 +2939,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="Qlx-5F-I8O" secondAttribute="centerY" id="XPL-1z-nJ6"/>
-                                        <constraint firstAttribute="centerX" secondItem="Qlx-5F-I8O" secondAttribute="centerX" constant="-0.5" id="XQl-9W-Kq8"/>
+                                        <constraint firstAttribute="centerX" secondItem="Qlx-5F-I8O" secondAttribute="centerX" id="XQl-9W-Kq8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>

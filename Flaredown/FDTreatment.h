@@ -16,6 +16,8 @@
 @property NSString *treatmentId;
 @property NSString *name;
 @property NSMutableArray *doses;
+@property NSMutableArray *reminderTimes;
+@property NSMutableArray *reminderDays;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithTitle:(NSString *)title entry:(FDEntry *)entry;

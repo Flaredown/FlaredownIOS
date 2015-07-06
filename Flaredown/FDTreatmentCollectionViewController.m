@@ -155,10 +155,7 @@ static NSString * const DoseID = @"dose";
         UILabel *label = (UILabel *)[cell viewWithTag:2];
         [label setText:[treatment name]];
         [label setTextColor:[FDStyle blackColor]];
-        
-    } else if(row == [[treatment doses] count]+1) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddDoseID forIndexPath:indexPath];
-    } else {
+    } else if(row <= [[treatment doses] count]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:DoseID forIndexPath:indexPath];
         
         //1 Button
@@ -169,6 +166,8 @@ static NSString * const DoseID = @"dose";
         [button setTitle:title forState:UIControlStateNormal];
         [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
         [FDStyle addRoundedCornersToView:button];
+    } else if(row == [[treatment doses] count] + 1) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddDoseID forIndexPath:indexPath];
     }
     
     return cell;

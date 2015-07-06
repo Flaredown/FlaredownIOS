@@ -58,6 +58,8 @@
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
 		EDDC72541A08886E0059815A /* FDEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72531A08886E0059815A /* FDEntry.m */; };
+		EDE45C801B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */; };
+		EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */; };
 		EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */; };
 		EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */; };
 		EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEE1A9545400074F189 /* FDTrackableResult.m */; };
@@ -173,6 +175,9 @@
 		EDDC72501A08441E0059815A /* FDModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelManager.m; sourceTree = "<group>"; };
 		EDDC72521A08886E0059815A /* FDEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEntry.h; sourceTree = "<group>"; };
 		EDDC72531A08886E0059815A /* FDEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEntry.m; sourceTree = "<group>"; };
+		EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TreatmentReminderPopup.storyboard; sourceTree = "<group>"; };
+		EDE45C811B41DE9500C3A31F /* FDTreatmentReminderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatmentReminderTableViewController.h; sourceTree = "<group>"; };
+		EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatmentReminderTableViewController.m; sourceTree = "<group>"; };
 		EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSettingsViewController.h; sourceTree = "<group>"; };
 		EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSettingsViewController.m; sourceTree = "<group>"; };
 		EDE98DEA1A9273ED0074F189 /* FDSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSearchTableViewController.h; sourceTree = "<group>"; };
@@ -385,6 +390,7 @@
 				ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */,
 				ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */,
 				ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */,
+				EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -427,6 +433,8 @@
 				ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */,
 				ED4BDEAF1B168013008DAEA4 /* FDTreatmentCollectionViewController.h */,
 				ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */,
+				EDE45C811B41DE9500C3A31F /* FDTreatmentReminderTableViewController.h */,
+				EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -584,6 +592,7 @@
 			files = (
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
 				ED4BDEB61B191511008DAEA4 /* AddDoseView.xib in Resources */,
+				EDE45C801B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard in Resources */,
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */,
 				EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */,
@@ -702,6 +711,7 @@
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
 				ED4BDEB11B168013008DAEA4 /* FDTreatmentCollectionViewController.m in Sources */,
 				42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */,
+				EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,
 				1013943319DA0BD200BBB266 /* FDNumberViewController.m in Sources */,

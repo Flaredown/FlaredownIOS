@@ -15,6 +15,7 @@
 #import "FDTreatment.h"
 #import "FDRemoveTrackableView.h"
 #import "FDLocalizationManager.h"
+#import "FDTreatmentReminderTableViewController.h"
 
 @interface FDSelectListViewController ()
 
@@ -24,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *editTreatmentCancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *editTreatmentDoneButton;
 @property (weak, nonatomic) IBOutlet UIButton *removeTreatmentCancelButton;
-
 
 @end
 
@@ -330,6 +330,24 @@
     [self hidePopupView];
 }
 
+- (IBAction)openTreatmentReminderPopup:(id)sender
+{
+    NSInteger editRow = [[self.tableView indexPathForCell:[self parentCellForView:sender]] row] - 1;
+    FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][editRow];
+    
+    FDTreatmentReminderTableViewController *viewController = [[UIStoryboard storyboardWithName:@"TreatmentReminderPopup" bundle:nil] instantiateInitialViewController];
+    [viewController setTreatment:treatment];
+    
+    UIView *popupView = viewController.view;
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+    popupView.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:popupView];
+    [[FDPopupManager sharedManager] addPopupView:popupView withViewController:viewController];
+    
+//    [popupView needsUpdateConstraints];
+
+}
+
 - (IBAction)closePopupView:(UIButton *)sender
 {
     [self hidePopupView];
@@ -487,36 +505,26 @@
         } else if([indexPath row] < self.questions.count + 1) {
             int itemRow = [indexPath row] - 1;
             
-//            if(_listType == ListTypeTreatments) {
-//                cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
-//                
-//                FDTreatment *treatment = self.questions[itemRow];
-//                
-//                //1 List label
-//                UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
-//                [titleLabel setText:[treatment name]];
-//                
-//                //2 Dosage and Units label
-//                UILabel *label = (UILabel *)[cell viewWithTag:2];
-//                NSString *quantityString = [FDStyle trimmedDecimal:[treatment quantity]];
-//                
-//                NSString *unitString = [treatment unit];
-//                NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
-//                NSString *localizedUnit = FDLocalizedString(path);
-//                if(localizedUnit.length > 0)
-//                    unitString = localizedUnit;
-//                
-//                [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, unitString]];
-//                
-//                //4 Edit button
-//                UIButton *editButton = (UIButton *)[cell viewWithTag:4];
-//                [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
-//                
-//                //5 Switch
-//                UISwitch *toggleSwitch = (UISwitch *)[cell viewWithTag:5];
-//                [toggleSwitch setOn:[treatment taken]];
+            if(_listType == ListTypeTreatments) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicTreatment" forIndexPath:indexPath];
                 
-//            } else {
+                FDTreatment *treatment = self.questions[[indexPath row]-1];
+                
+                //1 Treatment label
+                UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
+                [titleLabel setText:[treatment name]];
+                
+                //2 Treatment cell view
+                UIView *view = [cell viewWithTag:2];
+                [FDStyle addLargeRoundedCornersToView:view];
+                
+                //4 Reminder imageview
+                UIImageView *reminderImageView = (UIImageView *)[cell viewWithTag:4];
+                
+                //5 Reminder label
+                UILabel *reminderLabel = (UILabel *)[cell viewWithTag:5];
+                
+            } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicListItem" forIndexPath:indexPath];
                 
                 //1 List button
@@ -526,7 +534,7 @@
                 [FDStyle addLargeRoundedCornersToView:button];
                 [button setTitle:[question name] forState:UIControlStateNormal];
                 [self selectButton:button];
-//            }
+            }
             
         } else if([indexPath row] == self.questions.count + 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"addItem" forIndexPath:indexPath];
@@ -557,25 +565,19 @@
             
             FDTreatment *treatment = self.questions[[indexPath row]];
             
-            //1 List label
+            //1 Treatment label
             UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
             [titleLabel setText:[treatment name]];
             
-            //2 Dosage and Units label
-            UILabel *label = (UILabel *)[cell viewWithTag:2];
-            NSString *quantityString = @"";//[FDStyle trimmedDecimal:[treatment quantity]];
+            //2 Treatment cell view
+            UIView *view = [cell viewWithTag:2];
+            [FDStyle addLargeRoundedCornersToView:view];
             
-            NSString *unitString = @"";//[treatment unit];
-            NSString *path = [@"treatment_units/" stringByAppendingString:unitString];
-            NSString *localizedUnit = FDLocalizedString(path);
-            if(localizedUnit.length > 0)
-                unitString = localizedUnit;
+            //4 Reminder imageview
+            UIImageView *reminderImageView = (UIImageView *)[cell viewWithTag:4];
             
-            [label setText:[NSString stringWithFormat:@"%@ %@", quantityString, unitString]];
-            
-            //4 Edit button
-            UIButton *editButton = (UIButton *)[cell viewWithTag:4];
-            [editButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"nav/edit_lowercase") attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]}] forState:UIControlStateNormal];
+            //5 Reminder label
+            UILabel *reminderLabel = (UILabel *)[cell viewWithTag:5];
             
         } else {
             
@@ -622,7 +624,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(_listType == ListTypeTreatments && !_dynamic)
+    if(_listType == ListTypeTreatments)
         return 90;
     return 50;
 }
