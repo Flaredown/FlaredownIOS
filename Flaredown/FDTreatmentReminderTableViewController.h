@@ -13,4 +13,8 @@
 
 @property FDTreatment *treatment;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *reminderTimePicker;
+@property (weak, nonatomic) IBOutlet UIButton *reminderTimeCancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *reminderTimeDoneButton;
+
 @end

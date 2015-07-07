@@ -345,7 +345,6 @@
     [[FDPopupManager sharedManager] addPopupView:popupView withViewController:viewController];
     
 //    [popupView needsUpdateConstraints];
-
 }
 
 - (IBAction)closePopupView:(UIButton *)sender

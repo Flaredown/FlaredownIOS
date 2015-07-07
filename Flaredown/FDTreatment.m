@@ -13,14 +13,24 @@
 
 @implementation FDTreatment
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
+- (id)init
 {
     self = [super init];
+    if(self) {
+        _doses = [[NSMutableArray alloc] init];
+        _reminderTimes = [[NSMutableArray alloc] init];
+        _reminderDays = [@[@NO, @NO, @NO, @NO, @NO, @NO, @NO] mutableCopy];
+    }
+    return self;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [self init];
     if(self) {
         _treatmentId = [dictionary objectForKey:@"id"];
         _name = [dictionary objectForKey:@"name"];
         
-        _doses = [[NSMutableArray alloc] init];
         float quantity = [[dictionary objectForKey:@"quantity"] isEqual:[NSNull null]] ? 0 : [[dictionary objectForKey:@"quantity"] floatValue];
         NSString *unit = ![dictionary objectForKey:@"unit"] || [[dictionary objectForKey:@"unit"] isEqual:[NSNull null]] ? @"" : [dictionary objectForKey:@"unit"];
         if([dictionary objectForKey:@"quantity"] != [NSNull null] && [dictionary objectForKey:@"unit"] != [NSNull null]) {
@@ -35,7 +45,7 @@
 
 - (id)initWithTitle:(NSString *)title entry:(FDEntry *)entry
 {
-    self = [super init];
+    self = [self init];
     if(self) {
         _treatmentId = [NSString stringWithFormat:@"%@___%@", title, [entry entryId]];
         _name = title;

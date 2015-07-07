@@ -40,6 +40,8 @@
 		ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4BDEB31B168C54008DAEA4 /* FDDose.m */; };
 		ED4BDEB61B191511008DAEA4 /* AddDoseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */; };
 		ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */; };
+		ED4F91A21B4AEB220013D3AB /* ReminderTimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */; };
+		ED4F91A51B4AFFA90013D3AB /* FDNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4F91A41B4AFFA90013D3AB /* FDNotificationManager.m */; };
 		ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */; };
 		ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */; };
 		ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */; };
@@ -140,6 +142,9 @@
 		ED4BDEB31B168C54008DAEA4 /* FDDose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDose.m; sourceTree = "<group>"; };
 		ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDoseView.xib; sourceTree = "<group>"; };
 		ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditDoseView.xib; sourceTree = "<group>"; };
+		ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderTimePickerView.xib; sourceTree = "<group>"; };
+		ED4F91A31B4AFFA90013D3AB /* FDNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNotificationManager.h; sourceTree = "<group>"; };
+		ED4F91A41B4AFFA90013D3AB /* FDNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNotificationManager.m; sourceTree = "<group>"; };
 		ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoveTrackableView.xib; sourceTree = "<group>"; };
 		ED58E5141AC09B88009B74EE /* FDRemoveTrackableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRemoveTrackableView.h; sourceTree = "<group>"; };
 		ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRemoveTrackableView.m; sourceTree = "<group>"; };
@@ -391,6 +396,7 @@
 				ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */,
 				ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */,
 				EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */,
+				ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -406,6 +412,8 @@
 				ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */,
 				EDCB7F531AE34569001EDD7F /* FDLocalizationManager.h */,
 				EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */,
+				ED4F91A31B4AFFA90013D3AB /* FDNotificationManager.h */,
+				ED4F91A41B4AFFA90013D3AB /* FDNotificationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -602,6 +610,7 @@
 				EDEB41CA1A7B2A58007C67C4 /* AlarmView.xib in Resources */,
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
+				ED4F91A21B4AEB220013D3AB /* ReminderTimePickerView.xib in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
@@ -710,6 +719,7 @@
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,
 				101393F519D22C0800BBB266 /* FDViewController.m in Sources */,
 				ED4BDEB11B168013008DAEA4 /* FDTreatmentCollectionViewController.m in Sources */,
+				ED4F91A51B4AFFA90013D3AB /* FDNotificationManager.m in Sources */,
 				42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */,
 				EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,

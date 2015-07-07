@@ -18,9 +18,11 @@
 @property NSMutableArray *doses;
 @property NSMutableArray *reminderTimes;
 @property NSMutableArray *reminderDays;
+@property NSMutableArray *notifications;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithTitle:(NSString *)title entry:(FDEntry *)entry;
+
 - (NSArray *)arrayCopy;
 - (NSDictionary *)dictionaryCopy;
 - (NSDictionary *)dictionaryCopyWithDose:(FDDose *)dose;

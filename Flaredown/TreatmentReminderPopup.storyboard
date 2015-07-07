@@ -58,6 +58,9 @@
                                         <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7MA-cM-xjn">
                                             <rect key="frame" x="23" y="6" width="51" height="31"/>
                                             <color key="onTintColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="toggleDay:" destination="4YD-p2-qOv" eventType="valueChanged" id="Rdu-JO-Fw7"/>
+                                            </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>
@@ -102,6 +105,9 @@
                                                 <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="removeTimeButton:" destination="4YD-p2-qOv" eventType="touchUpInside" id="wjN-oB-Ezu"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4j-He-hNA">
                                             <rect key="frame" x="38" y="12" width="79.5" height="20"/>
@@ -140,6 +146,9 @@
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="addTimeButton:" destination="4YD-p2-qOv" eventType="touchUpInside" id="ozu-3E-1NL"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

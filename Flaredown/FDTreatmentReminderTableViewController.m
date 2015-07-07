@@ -9,6 +9,10 @@
 #import "FDTreatmentReminderTableViewController.h"
 
 #import "FDTreatment.h"
+#import "FDNotificationManager.h"
+#import "FDLocalizationManager.h"
+#import "FDPopupManager.h"
+#import "FDStyle.h"
 
 #define TITLE (0)
 #define DAYS_START (TITLE + 1)
@@ -49,6 +53,84 @@ static NSArray *daysOfTheWeek;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)refreshReminders
+{
+    [[FDNotificationManager sharedManager] setRemindersForTreatment:_treatment];
+}
+
+- (IBAction)toggleDay:(id)sender
+{
+    UITableViewCell *cell = [self parentCellForView:sender];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSInteger row = [indexPath row];
+    NSInteger dayIndex = row - DAYS_START;
+    
+    //Toggle reminder
+    if([[_treatment reminderDays][dayIndex] boolValue])
+        [_treatment reminderDays][dayIndex] = @NO;
+    else
+        [_treatment reminderDays][dayIndex] = @YES;
+    [self refreshReminders];
+}
+
+- (IBAction)removeTimeButton:(id)sender
+{
+    UITableViewCell *cell = [self parentCellForView:sender];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSInteger row = [indexPath row];
+    NSInteger timeIndex = row - TIME_START;
+    
+    [self removeTimeAtIndex:timeIndex];
+}
+
+- (void)removeTimeAtIndex:(NSInteger)index
+{
+    [[_treatment reminderTimes] removeObjectAtIndex:index];
+    [self refreshReminders];
+    [self.tableView reloadData];
+}
+
+- (IBAction)addTimeButton:(id)sender
+{
+    UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"ReminderTimePickerView" owner:self options:nil] objectAtIndex:0];
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+    popupView.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:popupView];
+    [[FDPopupManager sharedManager] addPopupView:popupView];
+    
+    [_reminderTimeCancelButton addTarget:[FDPopupManager sharedManager] action:@selector(removeTopPopup) forControlEvents:UIControlEventTouchUpInside];
+    
+    [popupView needsUpdateConstraints];
+}
+
+- (IBAction)addTimeDone:(id)sender
+{
+    NSDate *date = [_reminderTimePicker date];
+    [self addTime:date];
+    [[FDPopupManager sharedManager] removeTopPopup];
+}
+
+- (void)addTime:(NSDate *)time
+{
+    [[_treatment reminderTimes] addObject:time];
+    [self refreshReminders];
+    [self.tableView reloadData];
+}
+
+- (UITableViewCell *)parentCellForView:(id)theView
+{
+    id viewSuperView = [theView superview];
+    while (viewSuperView != nil) {
+        if ([viewSuperView isKindOfClass:[UITableViewCell class]]) {
+            return (UITableViewCell *)viewSuperView;
+        }
+        else {
+            viewSuperView = [viewSuperView superview];
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -56,7 +138,7 @@ static NSArray *daysOfTheWeek;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1 + daysOfTheWeek.count + 1 + 0 + 1;
+    return 1 + [daysOfTheWeek count] + 1 + [[_treatment reminderTimes] count] + 1;
 }
 
 
@@ -79,7 +161,7 @@ static NSArray *daysOfTheWeek;
         
         //1 Switch
         UISwitch *daySwitch = (UISwitch *)[cell viewWithTag:1];
-        [daySwitch setOn:(BOOL)[_treatment reminderDays][dayIndex]];
+        [daySwitch setOn:[[_treatment reminderDays][dayIndex] boolValue]];
         
         //2 Label
         UILabel *label = (UILabel *)[cell viewWithTag:2];
@@ -99,6 +181,8 @@ static NSArray *daysOfTheWeek;
         
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
+        NSString *title = [NSDateFormatter localizedStringFromDate:reminderTime dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+        [label setText:title];
         
         //2 Remove button
         UIButton *button = (UIButton *)[cell viewWithTag:2];

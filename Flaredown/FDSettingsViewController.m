@@ -13,6 +13,7 @@
 #import "FDModelManager.h"
 #import "FDPopupManager.h"
 #import "FDLocalizationManager.h"
+#import "FDNotificationManager.h"
 
 //relative to screen
 #define ALARM_WIDTH 0.9
@@ -47,6 +48,10 @@
 {
     [[FDModelManager sharedManager] setReminder:![[FDModelManager sharedManager] reminder]];
     [self setupReminderLabel];
+    if([[FDModelManager sharedManager] reminder])
+        [[FDNotificationManager sharedManager] setCheckinReminder:[[FDModelManager sharedManager] reminderTime]];
+    else
+        [[FDNotificationManager sharedManager] removeCheckinReminder];
 }
 
 - (IBAction)doneButton:(id)sender
@@ -80,11 +85,8 @@
 - (IBAction)closeAlarmView:(UIButton *)sender
 {
     [[FDModelManager sharedManager] setReminderTime:_reminderTime];
-    if([[FDModelManager sharedManager] reminder]) {
-        [self setNewNotification];
-    } else
-        //TODO: adjust this to handle multiple notifications
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    if([[FDModelManager sharedManager] reminder])
+        [[FDNotificationManager sharedManager] setCheckinReminder:[[FDModelManager sharedManager] reminderTime]];
     [self setupReminderLabel];
     [self hideAlarmView];
 }
@@ -121,32 +123,11 @@
     UIDatePicker *datePicker = (UIDatePicker *)[alarmView viewWithTag:2];
     [datePicker setDate:[[FDModelManager sharedManager] reminderTime]];
     _reminderTime = [[FDModelManager sharedManager] reminderTime];
-    
-    UIUserNotificationType types = UIUserNotificationTypeBadge |
-    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-    
-    UIUserNotificationSettings *mySettings =
-    [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    
-    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
 }
 
 - (IBAction)alarmDateChanged:(UIDatePicker *)sender
 {
     _reminderTime = sender.date;
-}
-
-- (void)setNewNotification
-{
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    
-    localNotification.fireDate = [[FDModelManager sharedManager] reminderTime];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.repeatInterval = NSCalendarUnitDay;
-    
-    localNotification.alertBody = FDLocalizedString(@"alarm_reminder_text");
 }
 
 /*
