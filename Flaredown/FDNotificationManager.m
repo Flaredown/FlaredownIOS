@@ -63,7 +63,7 @@ static NSString * const NotificationIdentifierCheckin = @"checkin";
                 [reminderDateComponents setWeekday:i+1]; //Sunday = 1
                 NSDate *reminderDate = [calendar dateFromComponents:reminderDateComponents];
                 //set notification identifier as simply treatment name since these are always reset at the same time
-                [self addNotificationWithDate:reminderDate repeatInterval:NSCalendarUnitWeekday text:[treatment name] identifier:[treatment name]]; //TODO:Localization
+                [self addNotificationWithDate:reminderDate repeatInterval:NSCalendarUnitWeekOfYear text:[treatment name] identifier:[treatment name]]; //TODO:Localization
             }
         }
     }
@@ -78,7 +78,6 @@ static NSString * const NotificationIdentifierCheckin = @"checkin";
 {
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     localNotification.fireDate = date;
-//    localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.repeatInterval = repeatInterval;
     localNotification.alertBody = text;
     [localNotification.userInfo setValue:identifier forKey:NotificationIdentifierKey];

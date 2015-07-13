@@ -65,15 +65,7 @@ static NSString * const listItemIdentifier = @"listItem";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:listItemIdentifier forIndexPath:indexPath];
-    
-    FDInput *input = self.inputs[[indexPath row]];
-    
-    if(self.selectedIndex >= 0) {
-        if([indexPath row] == self.selectedIndex)
-            [self selectCell:cell];
-        else
-            [self deselectCell:cell];
-    }
+    NSInteger row = [indexPath row];
     
     NSString *labelText = [self.inputs[[indexPath row]] label];
     if(![labelText isEqual:[NSNull null]]) {
@@ -83,53 +75,52 @@ static NSString * const listItemIdentifier = @"listItem";
         [button setTitle:FDLocalizedString(path) forState:UIControlStateNormal];
     }
     
-    [self setCellAppearance:cell];
+    [self setCellAppearance:cell selected:(row == self.selectedIndex)];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)listItemButton:(id)sender
 {
-    self.itemSelected = YES;
-    
-    NSInteger rows = [tableView numberOfRowsInSection:0];
-    for(int i = 0; i < rows; i++) {
-        [self deselectCell:[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]]];
-    }
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = (UITableViewCell *)[self parentCellForView:sender];
     [self selectCell:cell];
 }
 
 - (void)selectCell:(UITableViewCell *)cell
 {
-    [cell setSelected:YES];
-    
-    [self setCellAppearance:cell];
-    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     NSInteger row = [indexPath row];
     FDInput *input = self.inputs[row];
     [self.response setValue:[input value]];
-    self.selectedIndex = self.response.value;
+    self.selectedIndex = row;
+    [self.tableView reloadData];
 }
 
-- (void)deselectCell:(UITableViewCell *)cell
-{
-    [cell setSelected:NO];
-    
-    [self setCellAppearance:cell];
-}
-
-- (void)setCellAppearance:(UITableViewCell *)cell
+- (void)setCellAppearance:(UITableViewCell *)cell selected:(BOOL)selected
 {
     //1 Button
     UIButton *button = (UIButton *)[cell viewWithTag:1];
-    if(cell.selected) {
+    if(selected) {
         [button setBackgroundColor:[FDStyle blueColor]];
+        [button setTitleColor:[FDStyle whiteColor] forState:UIControlStateNormal];
     } else {
         [button setBackgroundColor:[FDStyle lightGreyColor]];
+        [button setTitleColor:[FDStyle greyColor] forState:UIControlStateNormal];
     }
+}
+
+- (UITableViewCell *)parentCellForView:(id)theView
+{
+    id viewSuperView = [theView superview];
+    while (viewSuperView != nil) {
+        if ([viewSuperView isKindOfClass:[UITableViewCell class]]) {
+            return (UITableViewCell *)viewSuperView;
+        }
+        else {
+            viewSuperView = [viewSuperView superview];
+        }
+    }
+    return nil;
 }
 
 @end

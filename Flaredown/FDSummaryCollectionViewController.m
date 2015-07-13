@@ -304,7 +304,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[treatment name]];
                 
-            } else if([[treatment doses] count] == 0) {
+            } else if([[treatment doses] count] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentTakenIdentifier forIndexPath:indexPath];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
