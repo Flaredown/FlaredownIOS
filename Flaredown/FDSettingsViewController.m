@@ -15,6 +15,8 @@
 #import "FDLocalizationManager.h"
 #import "FDNotificationManager.h"
 
+#import "FDViewController.h"
+
 //relative to screen
 #define ALARM_WIDTH 0.9
 #define ALARM_HEIGHT 0.55
@@ -128,6 +130,18 @@
 - (IBAction)alarmDateChanged:(UIDatePicker *)sender
 {
     _reminderTime = sender.date;
+}
+
+- (IBAction)logoutButton:(id)sender
+{
+    FDViewController *viewController = (FDViewController *)self.presentingViewController;
+    UIViewController *launchViewController = viewController.presentingViewController;
+    [[FDModelManager sharedManager] logout];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [viewController dismissViewControllerAnimated:NO completion:^{
+//            [launchViewController performSegueWithIdentifier:@"login" sender:nil];
+        }];
+    }];
 }
 
 /*

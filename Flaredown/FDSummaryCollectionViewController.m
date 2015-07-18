@@ -33,7 +33,7 @@
 #define TAG_BASE (TAG_TITLE+1)
 #define TAG_COUNT [[_entry tags] count]
 #define NO_TAGS (TAG_COUNT == 0)
-#define TAG_END (TAG_BASE + 2)
+#define TAG_END (TAG_BASE + 1)
 
 #define NOTE_BASE (TAG_END)
 
@@ -57,11 +57,11 @@ static NSString * const AddNoteIdentifier = @"addNote";
     
     //Style
 //    self.collectionView.clipsToBounds = NO;
-    self.collectionView.frame = CGRectMake(self.view.frame.origin.x+10, self.view.frame.origin.y+10, self.view.frame.size.width-20, self.view.frame.size.height-20);
+    self.collectionView.frame = CGRectMake(self.view.frame.origin.x+10, self.view   .frame.origin.y+10, self.view.frame.size.width-20, self.view.frame.size.height-20);
     
     self.view.layer.masksToBounds = YES;
     [FDStyle addRoundedCornersToView:self.view];
-    [FDStyle addShadowToView:self.collectionView];
+    [FDStyle addShadowToView:self.view];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     
     self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -161,7 +161,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1;
     NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1;
     NSUInteger tags = 2;
-    NSUInteger notes = 2;
+    NSUInteger notes = 1;
     
     return conditions+symptoms+treatments+tags+notes;
 }
@@ -231,6 +231,14 @@ static NSString * const AddNoteIdentifier = @"addNote";
     } else if(section < CONDITION_END) {
         if(NO_CONDITIONS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [button setTitle:@"+ Add a condition" forState:UIControlStateNormal];//TODO:Localized
+            
+            //2 Label
+            UILabel *label = (UILabel *)[cell viewWithTag:2];
+            [label setText:@"No conditions"];//TODO:Localized
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
@@ -263,6 +271,14 @@ static NSString * const AddNoteIdentifier = @"addNote";
     } else if(section < SYMPTOM_END) {
         if(NO_SYMPTOMS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [button setTitle:@"+ Add a symptom" forState:UIControlStateNormal];//TODO:Localized
+            
+            //2 Label
+            UILabel *label = (UILabel *)[cell viewWithTag:2];
+            [label setText:@"No symptoms"];//TODO:Localized
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"symptoms"][section-SYMPTOM_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
@@ -294,6 +310,14 @@ static NSString * const AddNoteIdentifier = @"addNote";
     } else if(section < TREATMENT_END) {
         if(NO_TREATMENTS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [button setTitle:@"+ Add a treatment" forState:UIControlStateNormal];//TODO:Localized
+            
+            //2 Label
+            UILabel *label = (UILabel *)[cell viewWithTag:2];
+            [label setText:@"No treatments"];//TODO:Localized
         } else {
             FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
             
@@ -313,12 +337,20 @@ static NSString * const AddNoteIdentifier = @"addNote";
     } else if(section == TAG_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
-        //1 Button
+        //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
-        [label setText:@"tags"]; //TODO:Localized
+        [label setText:@"Tags"]; //TODO:Localized
     } else if(section < TAG_END) {
         if(NO_TAGS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [button setTitle:@"+ Add a tag" forState:UIControlStateNormal];//TODO:Localized
+            
+            //2 Label
+            UILabel *label = (UILabel *)[cell viewWithTag:2];
+            [label setText:@"No tags"];//TODO:Localized
         } else {
             NSString *tag = [_entry tags][row];
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TagIdentifier forIndexPath:indexPath];
@@ -326,12 +358,15 @@ static NSString * const AddNoteIdentifier = @"addNote";
             //1  Button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             [button setTitle:tag forState:UIControlStateNormal];
+            button.layer.cornerRadius = button.frame.size.height/2;
         }
     } else if(section == NOTE_BASE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddNoteIdentifier forIndexPath:indexPath];
         
         //1 Button
         UIButton *button = (UIButton *)[cell viewWithTag:1];
+        if([[_entry notes] length] > 0)
+            
         [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
     }
     return cell;

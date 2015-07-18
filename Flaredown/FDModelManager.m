@@ -169,6 +169,17 @@ static NSString *inputsSessionLocation = @"inputs";
     }
 }
 
+- (void)logout
+{
+    _entries = [[NSMutableDictionary alloc] init];
+    _inputs = [[NSMutableArray alloc] init];
+    _selectedDate = nil;
+    _entry = nil;
+    _userObject = nil;
+    
+    [self clearSession];
+}
+
 - (void)clearCurrentEntry
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:entrySessionLocation];

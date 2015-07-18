@@ -424,7 +424,7 @@
                         <outlet property="dateLabel" destination="TuD-SB-lW5" id="DQm-AR-HqL"/>
                         <outlet property="startButton" destination="c6n-5A-WG7" id="k47-6h-E5W"/>
                         <segue destination="Ffa-p7-jyZ" kind="presentation" identifier="login" id="Mz9-qs-Zid"/>
-                        <segue destination="4rV-QE-nqY" kind="show" identifier="start" id="YX4-yg-hB6"/>
+                        <segue destination="4rV-QE-nqY" kind="presentation" identifier="start" id="YX4-yg-hB6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-Ap-VO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -879,7 +879,7 @@
                                                 <action selector="noItemsButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="8vK-jf-MKT"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not tracking any symptoms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewk-TY-lJc">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not tracking any symptoms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewk-TY-lJc">
                                             <rect key="frame" x="8" y="8" width="117" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="ac5-EL-Pue"/>
@@ -1237,6 +1237,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logoutButton:" destination="Uur-gf-zav" eventType="touchUpInside" id="G6s-n8-HVl"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anv-DD-HLd">
                                         <rect key="frame" x="35" y="123" width="498" height="40"/>
@@ -2920,8 +2923,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tx6-rj-zAN" id="uZS-yA-RCE">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlx-5F-I8O">
-                                            <rect key="frame" x="175.5" y="6.5" width="250" height="40"/>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlx-5F-I8O">
+                                            <rect key="frame" x="175.5" y="7.5" width="250" height="40"/>
                                             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="250" id="RFd-Vf-KIP"/>

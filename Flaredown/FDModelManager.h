@@ -38,6 +38,8 @@
 - (NSDate *)reminderTime;
 - (void)setReminderTime:(NSDate *)reminderTime;
 
+- (void)logout;
+
 - (void)saveSession;
 - (void)restoreSession;
 - (void)clearCurrentEntry;
