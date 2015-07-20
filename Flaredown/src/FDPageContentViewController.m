@@ -38,15 +38,13 @@
     self.contentView.center = CGPointMake(self.contentView.frame.size.width / 2, self.contentView.frame.size.height / 2);
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
-    
-    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:[FDStyle greyColor]};
-    
+
     int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
     
     if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
         //Add conditions
         self.titleLabel.text = FDLocalizedString(@"oops_no_conditions_being_tracked");
-        [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_conditions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
+        [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
         [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
 
         _editSegueType = EditSegueConditions;
@@ -54,7 +52,7 @@
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             self.titleLabel.text = FDLocalizedString(@"oops_no_symptoms_being_tracked");
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_symptoms_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueSymptoms;
@@ -64,7 +62,7 @@
                 self.titleLabel.text = FDLocalizedString(@"oops_no_treatments_being_tracked");
             else
                 self.titleLabel.text = FDLocalizedString(@"which_treatments_taken_today");
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"edit_treatments_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"edit_treatments_caps") color:[FDStyle blueColor]];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueTreatments;
@@ -80,13 +78,13 @@
         if([[question catalog] isEqualToString:@"symptoms"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"symptom_question_prompt"), [question name]];
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_symptoms_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueSymptoms;
         } else if([[question catalog] isEqualToString:@"conditions"]) {
             if(![[NSNull null] isEqual:[question name]])
                 self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"condition_question_prompt"), [question name]];
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"onboarding/edit_conditions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueConditions;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
@@ -115,7 +113,7 @@
                 if(self.titleLabel.text.length == 0)
                     self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"catalog_question_prompt"), [question name]];
             }
-            [self.secondaryTitleButton setAttributedTitle:[[NSAttributedString alloc] initWithString:FDLocalizedString(@"research_questions_caps") attributes:underlineAttribute] forState:UIControlStateNormal];
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"research_questions_caps") color:[FDStyle greyColor]];
         }
     }
     
@@ -139,6 +137,12 @@
 //        /* create the new string */x
 //        self.titleLabel.text = [[folded uppercaseString] stringByAppendingString:[title substringFromIndex:1]];
 //
+}
+
+- (void)underlineButton:(UIButton *)button withText:(NSString *)text color:(UIColor *)color
+{
+    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:color};
+    [button setAttributedTitle:[[NSAttributedString alloc] initWithString:text attributes:underlineAttribute] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
