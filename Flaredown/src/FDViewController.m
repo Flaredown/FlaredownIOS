@@ -158,6 +158,11 @@
         [self.summaryViewController willMoveToParentViewController:nil];
 }
 
+- (void)refreshSummary
+{
+    [self.summaryViewController refresh];
+}
+
 - (void)addViewController:(UIViewController *)viewController
 {
     [self addChildViewController:viewController];
@@ -340,8 +345,7 @@
                 [modelManager setEntry:[[FDEntry alloc] initWithDictionary:entryDictionary] forDate:date];
                 [self setDateTitle:date];
                 [modelManager setSelectedDate:date];
-                [self hideSummary];
-                [self showSummary];
+                [self refreshSummary];
             } else {
                 //show error
             }
@@ -349,8 +353,7 @@
     } else {
         [self setDateTitle:date];
         [modelManager setSelectedDate:date];
-        [self hideSummary];
-        [self showSummary];
+        [self refreshSummary];
     }
 }
 

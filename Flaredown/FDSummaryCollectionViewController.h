@@ -17,4 +17,6 @@
 
 @property FDEntry *entry;
 
+- (void)refresh;
+
 @end

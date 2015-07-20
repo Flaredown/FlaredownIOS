@@ -74,12 +74,18 @@ static NSString * const AddNoteIdentifier = @"addNote";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.collectionView reloadData];
+//    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refresh
+{
+    _entry = [[FDModelManager sharedManager] entry];
+    [self.collectionView reloadData];
 }
 
 /*
