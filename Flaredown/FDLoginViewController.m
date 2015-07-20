@@ -188,7 +188,7 @@
 
 - (IBAction)forgotPasswordButton:(id)sender
 {
-    NSURL *url = [NSURL URLWithString:@"http://staging.flaredown.com/reset-your-password"];
+    NSURL *url = [NSURL URLWithString:@"http://app.flaredown.com/reset-your-password"];
     
     if (![[UIApplication sharedApplication] openURL:url]) {
         NSLog(@"%@%@",@"Failed to open url:",[url description]);
