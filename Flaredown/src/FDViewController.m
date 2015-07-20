@@ -114,6 +114,8 @@
             [self.pageViewController didMoveToParentViewController:self];
         }];
     }
+    
+    [[FDModelManager sharedManager] saveSession];
 
     //TODO: Animate continue button coming on screen as well
     [_continueBtn setHidden:NO];
