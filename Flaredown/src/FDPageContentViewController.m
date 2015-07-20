@@ -152,6 +152,9 @@
 //    if([self valueForKey:@"_parentViewController"] == nil)
 //        [self setValue:(FDViewController *)[_mainViewDelegate instance] forKey:@"_parentViewController"];
     
+//    if(_popupController)
+//        return;
+    
     FDEmbeddedSelectListViewController *containerController = (FDEmbeddedSelectListViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"FDEmbeddedSelectListViewController"];
     
     //Style

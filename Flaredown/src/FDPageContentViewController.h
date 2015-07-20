@@ -41,6 +41,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *secondaryTitleButton;
 
 @property (retain, nonatomic) UIViewController *popupController;
+@property BOOL openEditList;
 
 @property int pageIndex;
 @property EditSegueType editSegueType;

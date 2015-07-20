@@ -242,12 +242,14 @@
 
 - (IBAction)openSymptomSearch:(id)sender
 {
+    [_contentViewDelegate editList];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"symptoms"];
 }
 
 - (IBAction)openConditionSearch:(id)sender
 {
+    [_contentViewDelegate editList];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"conditions"];
 }

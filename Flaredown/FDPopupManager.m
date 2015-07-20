@@ -83,12 +83,15 @@
     if(_popups.count > 0) {
         FDPopup *popup = _popups[0];
         [UIView transitionWithView:popup.view.superview duration:0.2
-                           options:UIViewAnimationOptionTransitionCrossDissolve
+                           options:UIViewAnimationOptionTransitionNone
                         animations:^ {
+                            popup.view.alpha = 0;
+                            popup.backgroundView.alpha = 0;
+                        }
+                        completion:^(BOOL finished) {
                             [popup.view removeFromSuperview];
                             [popup.backgroundView removeFromSuperview];
-                        }
-                        completion:nil];
+                        }];
         [_popups removeObjectAtIndex:0];
     } else {
         NSLog(@"No popups to remove");
