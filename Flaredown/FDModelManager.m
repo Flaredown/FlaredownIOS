@@ -127,9 +127,8 @@ static NSString *inputsSessionLocation = @"inputs";
         [[NSUserDefaults standardUserDefaults] setObject:userObjectData forKey:userObjectSessionLocation];
     }
     
-    if(_entry != nil) {
-        NSData *entryData = [NSKeyedArchiver archivedDataWithRootObject:[_entry dictionaryCopy]];
-        [[NSUserDefaults standardUserDefaults] setObject:entryData forKey:entrySessionLocation];
+    if(_entries != nil) {
+        [[NSUserDefaults standardUserDefaults] setObject:[self encodeEntriesDictionary] forKey:entrySessionLocation];
     }
     
     if(_inputs != nil) {
@@ -153,9 +152,8 @@ static NSString *inputsSessionLocation = @"inputs";
     }
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:entrySessionLocation]) {
-        NSData *entryData = [[NSUserDefaults standardUserDefaults] objectForKey:entrySessionLocation];
-        NSDictionary *entryDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:entryData];
-        _entry = [[FDEntry alloc] initWithDictionary:entryDictionary];
+        _entries = [self decodeEntriesDictionary];
+        [self setSelectedDate:[NSDate date]];
     }
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:inputsSessionLocation]) {
@@ -167,6 +165,26 @@ static NSString *inputsSessionLocation = @"inputs";
         }
         _inputs = [mutableInputs copy];
     }
+}
+
+- (NSData *)encodeEntriesDictionary
+{
+    NSMutableDictionary *entryDictionaries = [[NSMutableDictionary alloc] init];;
+    for(NSString *key in _entries) {
+        [entryDictionaries setObject:[[_entries objectForKey:key] dictionaryCopy] forKey:key];
+    }
+    return [NSKeyedArchiver archivedDataWithRootObject:entryDictionaries];
+}
+
+- (NSMutableDictionary *)decodeEntriesDictionary
+{
+    NSData *entryData = [[NSUserDefaults standardUserDefaults] objectForKey:entrySessionLocation];
+    NSDictionary *entryDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:entryData];
+    NSMutableDictionary *entries = [[NSMutableDictionary alloc] init];
+    for(NSString *key in entryDictionary) {
+        [entries setObject:[[FDEntry alloc] initWithDictionary:[entryDictionary objectForKey:key]] forKey:key];
+    }
+    return [entries mutableCopy];
 }
 
 - (void)logout

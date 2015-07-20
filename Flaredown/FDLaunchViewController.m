@@ -80,8 +80,11 @@
             if(success) {
                 NSLog(@"Success!");
                 
+                FDEntry *entry;
                 [[FDModelManager sharedManager] setEntry:[[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]] forDate:now];
+                entry = [[FDModelManager sharedManager] entry];
                 [[FDModelManager sharedManager] setSelectedDate:now];
+                entry = [[FDModelManager sharedManager] entry];
                 
                 for (NSDictionary *input in [responseObject objectForKey:@"inputs"]) {
                     [[FDModelManager sharedManager] addInput:[[FDInput alloc] initWithDictionary:input]];
