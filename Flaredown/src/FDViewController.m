@@ -52,13 +52,13 @@
     
     [_continueBtn setTitle:FDLocalizedString(@"onboarding/continue") forState:UIControlStateNormal];
     
+    if([self selectedDateIsToday])
+        [_nextDayButton setHidden:YES];
+    
     //Localized date
 //    NSString *dateString = [[[FDModelManager sharedManager] entry] date];
     NSDate *now = [NSDate date];
     [self setDateTitle:now];
-    
-    [_previousDayButton setHidden:YES];
-    [_nextDayButton setHidden:YES];
     
     self.pageIndex = 0;
     
@@ -302,14 +302,6 @@
     } else {
         [self submitEntry];
     }
-}
-
-- (IBAction)dateButton:(id)sender
-{
-    [_previousDayButton setHidden:!_previousDayButton.hidden];
-    [_nextDayButton setHidden:!_nextDayButton.hidden];
-    if([self selectedDateIsToday])
-       [_nextDayButton setHidden:YES];
 }
 
 - (IBAction)previousDayButton:(id)sender

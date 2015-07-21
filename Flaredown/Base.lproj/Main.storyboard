@@ -518,9 +518,6 @@
                                         <exclude reference="1yc-FH-Aig"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <action selector="dateButton:" destination="4rV-QE-nqY" eventType="touchUpInside" id="u2m-zJ-qzE"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNC-qb-KRB">
                                 <rect key="frame" x="542" y="36" width="36" height="36"/>
