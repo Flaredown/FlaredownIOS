@@ -971,14 +971,14 @@
                                                 <constraint firstAttribute="height" constant="32" id="sR1-Bf-tlO"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
-                                            <state key="normal" title="No doses">
+                                            <state key="normal" title="No dose">
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="sR1-Bf-tlO"/>
                                                     <exclude reference="5Sz-Rf-b8w"/>
+                                                    <exclude reference="sR1-Bf-tlO"/>
                                                 </mask>
                                             </variation>
                                             <connections>
@@ -1175,9 +1175,9 @@
                                 <size key="customSize" width="77" height="34"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="dcL-iv-y22"/>
                                         <exclude reference="pzh-AQ-vXf"/>
                                         <exclude reference="t0d-OK-Jr3"/>
-                                        <exclude reference="dcL-iv-y22"/>
                                         <exclude reference="tP8-EY-XKR"/>
                                     </mask>
                                 </variation>

@@ -44,6 +44,7 @@
 
 #define NOTES_FONT_SIZE 16
 #define NOTES_LABEL_PADDING 8
+#define COLLECTION_CONTENT_INSET 10
 
 @interface FDSummaryCollectionViewController ()
 
@@ -75,7 +76,7 @@ static NSString * const NotesIdentifier = @"notes";
     [FDStyle addShadowToView:self.view];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     
-    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.collectionView.contentInset = UIEdgeInsetsMake(COLLECTION_CONTENT_INSET, COLLECTION_CONTENT_INSET, COLLECTION_CONTENT_INSET, COLLECTION_CONTENT_INSET);
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -413,51 +414,53 @@ static NSString * const NotesIdentifier = @"notes";
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     
+    float maxWidth = self.collectionView.frame.size.width-COLLECTION_CONTENT_INSET*2;
+    
     if(section == CONDITION_TITLE) {
-        return CGSizeMake(collectionView.frame.size.width, 40);
+        return CGSizeMake(maxWidth, 40);
     } else if(section < CONDITION_END) {
         if(NO_CONDITIONS) {
-            return CGSizeMake(collectionView.frame.size.width, 50);
+            return CGSizeMake(maxWidth, 50);
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
             
             if(row == 0)
-                return CGSizeMake(collectionView.frame.size.width, 30);
+                return CGSizeMake(maxWidth, 30);
             else if(response && [response value] > 0)
                 return CGSizeMake(54, 15);
             else
                 return CGSizeMake(115, 35);
         }
     } else if(section == SYMPTOM_TITLE) {
-        return CGSizeMake(collectionView.frame.size.width, 40);
+        return CGSizeMake(maxWidth, 40);
     } else if(section < SYMPTOM_END) {
         if(NO_SYMPTOMS) {
-            return CGSizeMake(collectionView.frame.size.width, 50);
+            return CGSizeMake(maxWidth, 50);
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"symptoms"][section-SYMPTOM_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
             
             if(row == 0)
-                return CGSizeMake(collectionView.frame.size.width, 30);
+                return CGSizeMake(maxWidth, 30);
             else if(response && [response value] > 0)
                 return CGSizeMake(54, 15);
             else
                 return CGSizeMake(115, 35);
             }
     } else if(section == TREATMENT_TITLE) {
-        return CGSizeMake(collectionView.frame.size.width, 40);
+        return CGSizeMake(maxWidth, 40);
     } else if(section < TREATMENT_END) {
         if(NO_TREATMENTS) {
-            return CGSizeMake(collectionView.frame.size.width, 50);
+            return CGSizeMake(maxWidth, 50);
         } else {
             FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
             if(row == 0)
-                return CGSizeMake(collectionView.frame.size.width, 30);
+                return CGSizeMake(maxWidth, 30);
             else {
                 if([[treatment doses] count] > 0) {
                     FDDose *dose = [treatment doses][row-1];
-                    CGSize doseSize = CGSizeMake(collectionView.frame.size.width, 32);
+                    CGSize doseSize = CGSizeMake(maxWidth, 32);
                     NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
                     UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:DOSE_FONT_SIZE];
                     CGRect rect = [title boundingRectWithSize:doseSize
@@ -470,30 +473,30 @@ static NSString * const NotesIdentifier = @"notes";
             }
         }
     } else if(section == TAG_TITLE) {
-        return CGSizeMake(collectionView.frame.size.width, 40);
+        return CGSizeMake(maxWidth, 40);
     } else if(section < TAG_END) {
         if(NO_TAGS) {
-            return CGSizeMake(collectionView.frame.size.width, 50);
+            return CGSizeMake(maxWidth, 50);
         } else {
             NSString *tag = [[[FDModelManager sharedManager] entry] tags][row];
-            CGRect buttonRect = [tag boundingRectWithSize:CGSizeMake(collectionView.frame.size.width-ROUNDED_CORNER_OFFSET, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
+            CGRect buttonRect = [tag boundingRectWithSize:CGSizeMake(maxWidth-ROUNDED_CORNER_OFFSET, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
             buttonRect.size.width += ROUNDED_CORNER_OFFSET;
             return buttonRect.size;
         }
     } else if(section == NOTE_TITLE) {
-        return CGSizeMake(collectionView.frame.size.width, 40);
+        return CGSizeMake(maxWidth, 40);
     } else if(section < NOTE_END) {
         if([[_entry notes] length] > 0) {
-            CGSize notesSize = CGSizeMake(self.collectionView.frame.size.width - NOTES_LABEL_PADDING * 2, CGFLOAT_MAX);
+            CGSize notesSize = CGSizeMake(maxWidth - NOTES_LABEL_PADDING * 2, CGFLOAT_MAX);
             NSString *notes = [_entry notes];
             UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:NOTES_FONT_SIZE];
             CGRect rect = [notes boundingRectWithSize:notesSize
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:@{NSFontAttributeName:font}
                                               context:nil];
-            return CGSizeMake(collectionView.frame.size.width, rect.size.height + NOTES_LABEL_PADDING*2);
+            return CGSizeMake(maxWidth, rect.size.height + NOTES_LABEL_PADDING*2);
         } else {
-            return CGSizeMake(collectionView.frame.size.width, 50);
+            return CGSizeMake(maxWidth, 50);
         }
     }
     return CGSizeZero;
