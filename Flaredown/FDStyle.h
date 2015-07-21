@@ -18,6 +18,9 @@ static float const FDBorderWidth = 1;
 #define TAG_HEIGHT 30
 #define TAG_FONT [UIFont fontWithName:@"ProximaNova-Regular" size:19.0f]
 
+#define DOSE_FONT_SIZE 15
+#define DOSE_BUTTON_PADDING 25
+
 @interface FDStyle : NSObject
 
 + (void)addRoundedCornersToView:(UIView *)view;

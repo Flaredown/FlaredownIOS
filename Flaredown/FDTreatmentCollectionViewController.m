@@ -15,9 +15,6 @@
 
 #define CONTENT_INSET 20
 
-#define DOSE_FONT_SIZE 15
-#define DOSE_BUTTON_PADDING 25
-
 @interface FDTreatmentCollectionViewController ()
 
 @end

@@ -11,6 +11,9 @@
 #import "FDStyle.h"
 #import "FDModelManager.h"
 
+#import "FDTreatmentCollectionViewController.h"
+#import "FDNotesViewController.h"
+
 #define CONDITION_TITLE 0
 #define CONDITION_BASE (CONDITION_TITLE+1)
 #define CONDITION_COUNT [[_entry questionsForCatalog:@"conditions"] count]
@@ -35,7 +38,12 @@
 #define NO_TAGS (TAG_COUNT == 0)
 #define TAG_END (TAG_BASE + 1)
 
-#define NOTE_BASE (TAG_END)
+#define NOTE_TITLE (TAG_END)
+#define NOTE_BASE (NOTE_TITLE+1)
+#define NOTE_END (NOTE_BASE + 1)
+
+#define NOTES_FONT_SIZE 16
+#define NOTES_LABEL_PADDING 8
 
 @interface FDSummaryCollectionViewController ()
 
@@ -48,9 +56,12 @@ static NSString * const ItemNameIdentifier = @"itemName";
 static NSString * const ItemValueIdentifier = @"itemValue";
 static NSString * const ItemNoneIdentifier = @"itemNone";
 static NSString * const ItemNoValueIdentifier = @"itemNoValue";
+static NSString * const TreatmentNoValueIdentifier = @"treatmentNoValue";
 static NSString * const TreatmentTakenIdentifier = @"treatmentTaken";
 static NSString * const TagIdentifier = @"tag";
 static NSString * const AddNoteIdentifier = @"addNote";
+static NSString * const DoseIdentifier = @"dose";
+static NSString * const NotesIdentifier = @"notes";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -87,16 +98,6 @@ static NSString * const AddNoteIdentifier = @"addNote";
     _entry = [[FDModelManager sharedManager] entry];
     [self.collectionView reloadData];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)questionButton:(id)sender
 {
@@ -167,7 +168,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1;
     NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1;
     NSUInteger tags = 2;
-    NSUInteger notes = 1;
+    NSUInteger notes = 2;
     
     return conditions+symptoms+treatments+tags+notes;
 }
@@ -201,7 +202,9 @@ static NSString * const AddNoteIdentifier = @"addNote";
         if(NO_TAGS)
             return 1;
         return [[[[FDModelManager sharedManager] entry] tags] count];
-    } else if(section == NOTE_BASE) {
+    } else if(section == NOTE_TITLE) {
+        return 1;
+    } else if(section < NOTE_END) {
         return 1;
     }
     return 0;
@@ -335,9 +338,20 @@ static NSString * const AddNoteIdentifier = @"addNote";
                 [label setText:[treatment name]];
                 
             } else if([[treatment doses] count] > 0) {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentTakenIdentifier forIndexPath:indexPath];
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:DoseIdentifier forIndexPath:indexPath];
+                
+                NSInteger doseRow = row - 1;
+                
+                //1 Button
+                UIButton *button = (UIButton *)[cell viewWithTag:1];
+                
+                FDDose *dose = [treatment doses][doseRow];
+                NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
+                [button setTitle:title forState:UIControlStateNormal];
+                [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
+                [FDStyle addRoundedCornersToView:button];
             } else {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentNoValueIdentifier forIndexPath:indexPath];
             }
         }
     } else if(section == TAG_TITLE) {
@@ -366,14 +380,28 @@ static NSString * const AddNoteIdentifier = @"addNote";
             [button setTitle:tag forState:UIControlStateNormal];
             button.layer.cornerRadius = button.frame.size.height/2;
         }
-    } else if(section == NOTE_BASE) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddNoteIdentifier forIndexPath:indexPath];
+    } else if(section == NOTE_TITLE) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
-        //1 Button
-        UIButton *button = (UIButton *)[cell viewWithTag:1];
-        if([[_entry notes] length] > 0)
+        //1 Label
+        UILabel *label = (UILabel *)[cell viewWithTag:1];
+        [label setText:@"Notes"]; //TODO:Localized
+
+    } else if(section < NOTE_END) {
+        if([[_entry notes] length] > 0) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:NotesIdentifier forIndexPath:indexPath];
             
-        [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
+            //1 Label
+            UILabel *label = (UILabel *)[cell viewWithTag:1];
+            [label setText:[_entry notes]];
+        } else {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddNoteIdentifier forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+                
+            [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
+        }
     }
     return cell;
 }
@@ -426,8 +454,20 @@ static NSString * const AddNoteIdentifier = @"addNote";
             FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
             if(row == 0)
                 return CGSizeMake(collectionView.frame.size.width, 30);
-            else
-                return CGSizeMake(115, 35);
+            else {
+                if([[treatment doses] count] > 0) {
+                    FDDose *dose = [treatment doses][row-1];
+                    CGSize doseSize = CGSizeMake(collectionView.frame.size.width, 32);
+                    NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
+                    UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:DOSE_FONT_SIZE];
+                    CGRect rect = [title boundingRectWithSize:doseSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:font}
+                                                      context:nil];
+                    return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, doseSize.height);
+                } else
+                    return CGSizeMake(115, 35);
+            }
         }
     } else if(section == TAG_TITLE) {
         return CGSizeMake(collectionView.frame.size.width, 40);
@@ -440,10 +480,33 @@ static NSString * const AddNoteIdentifier = @"addNote";
             buttonRect.size.width += ROUNDED_CORNER_OFFSET;
             return buttonRect.size;
         }
-    } else if(section == NOTE_BASE) {
-        return CGSizeMake(collectionView.frame.size.width, 50);
+    } else if(section == NOTE_TITLE) {
+        return CGSizeMake(collectionView.frame.size.width, 40);
+    } else if(section < NOTE_END) {
+        if([[_entry notes] length] > 0) {
+            CGSize notesSize = CGSizeMake(self.collectionView.frame.size.width - NOTES_LABEL_PADDING * 2, CGFLOAT_MAX);
+            NSString *notes = [_entry notes];
+            UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:NOTES_FONT_SIZE];
+            CGRect rect = [notes boundingRectWithSize:notesSize
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:@{NSFontAttributeName:font}
+                                              context:nil];
+            return CGSizeMake(collectionView.frame.size.width, rect.size.height + NOTES_LABEL_PADDING*2);
+        } else {
+            return CGSizeMake(collectionView.frame.size.width, 50);
+        }
     }
     return CGSizeZero;
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"notes"]) {
+        FDNotesViewController *dvc = segue.destinationViewController;
+        [dvc setMainViewDelegate:_mainViewDelegate];
+    }
 }
 
 //- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section

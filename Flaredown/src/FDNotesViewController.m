@@ -73,6 +73,7 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
+    [_mainViewDelegate refreshSummary];
 }
 
 - (void)didReceiveMemoryWarning {

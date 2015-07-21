@@ -374,6 +374,8 @@
     FDEntry *entry = [[FDModelManager sharedManager] entry];
     FDUser *user = [[FDModelManager sharedManager] userObject];
     
+    [self refreshSummary];
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[FDNetworkManager sharedManager] putEntry:[entry responseDictionaryCopy] date:[entry date] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         

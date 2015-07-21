@@ -13,6 +13,7 @@
 @protocol FDViewControllerDelegate <NSObject>
 
 - (void)refreshPages;
+- (void)refreshSummary;
 - (id)instance;
 - (void)openSearch:(NSString *)type;
 - (void)adjustPageIndexForRemovedItem:(int)firstIndex;

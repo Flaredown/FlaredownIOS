@@ -63,6 +63,8 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -955,6 +957,53 @@
                                     </mask>
                                 </variation>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentNoValue" id="Nwm-om-Nk9">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mr-uG-bFC">
+                                            <rect key="frame" x="8" y="0.0" width="117" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="117" id="5Sz-Rf-b8w"/>
+                                                <constraint firstAttribute="height" constant="32" id="sR1-Bf-tlO"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                            <state key="normal" title="No doses">
+                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="sR1-Bf-tlO"/>
+                                                    <exclude reference="5Sz-Rf-b8w"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="questionButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="tDn-kB-aNb"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="9mr-uG-bFC" secondAttribute="centerY" id="EUx-9a-2gV"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="9mr-uG-bFC" secondAttribute="bottom" id="GCf-6b-MLR"/>
+                                    <constraint firstItem="9mr-uG-bFC" firstAttribute="trailing" secondItem="Nwm-om-Nk9" secondAttribute="trailingMargin" id="Hyv-IU-ikl"/>
+                                    <constraint firstItem="9mr-uG-bFC" firstAttribute="leading" secondItem="Nwm-om-Nk9" secondAttribute="leadingMargin" id="Si5-6B-axr"/>
+                                    <constraint firstAttribute="centerX" secondItem="9mr-uG-bFC" secondAttribute="centerX" constant="-0.5" id="VnT-DK-dUr"/>
+                                    <constraint firstItem="9mr-uG-bFC" firstAttribute="top" secondItem="Nwm-om-Nk9" secondAttribute="topMargin" constant="-8" id="W98-6x-yK3"/>
+                                </constraints>
+                                <size key="customSize" width="133" height="35"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="EUx-9a-2gV"/>
+                                        <exclude reference="VnT-DK-dUr"/>
+                                    </mask>
+                                </variation>
+                            </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentTaken" id="ZQ5-Qn-R2v">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1088,6 +1137,106 @@
                                     <constraint firstItem="Uiy-R0-CJB" firstAttribute="leading" secondItem="8sA-BP-XnY" secondAttribute="leadingMargin" id="r0o-vK-CaZ"/>
                                 </constraints>
                                 <size key="customSize" width="138" height="39"/>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dose" id="Nek-OQ-BYc">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="77" height="34"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOv-F8-fJt">
+                                            <rect key="frame" x="0.0" y="4.5" width="77" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="rN0-jS-zzo"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                            <state key="normal" title="qty unit">
+                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="editDose:" destination="OGN-KC-zkZ" eventType="touchUpInside" id="KrL-TF-fO5"/>
+                                                <action selector="questionButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="OaT-lO-Jc1"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="WOv-F8-fJt" firstAttribute="leading" secondItem="Nek-OQ-BYc" secondAttribute="leadingMargin" constant="-8" id="0K7-cu-VNu"/>
+                                    <constraint firstAttribute="centerX" secondItem="WOv-F8-fJt" secondAttribute="centerX" id="5P4-Xy-3cJ"/>
+                                    <constraint firstAttribute="centerY" secondItem="WOv-F8-fJt" secondAttribute="centerY" id="5a6-v4-mnH"/>
+                                    <constraint firstItem="WOv-F8-fJt" firstAttribute="leading" secondItem="Nek-OQ-BYc" secondAttribute="leadingMargin" id="dcL-iv-y22"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="WOv-F8-fJt" secondAttribute="trailing" constant="-8" id="mK0-VB-aJe"/>
+                                    <constraint firstItem="WOv-F8-fJt" firstAttribute="trailing" secondItem="Nek-OQ-BYc" secondAttribute="trailingMargin" id="pzh-AQ-vXf"/>
+                                    <constraint firstItem="WOv-F8-fJt" firstAttribute="leading" secondItem="Nek-OQ-BYc" secondAttribute="leadingMargin" id="t0d-OK-Jr3"/>
+                                    <constraint firstItem="WOv-F8-fJt" firstAttribute="trailing" secondItem="Nek-OQ-BYc" secondAttribute="trailingMargin" id="tP8-EY-XKR"/>
+                                </constraints>
+                                <size key="customSize" width="77" height="34"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pzh-AQ-vXf"/>
+                                        <exclude reference="t0d-OK-Jr3"/>
+                                        <exclude reference="dcL-iv-y22"/>
+                                        <exclude reference="tP8-EY-XKR"/>
+                                    </mask>
+                                </variation>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="notes" id="G9n-j4-S3h">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFE-hu-ysT">
+                                            <rect key="frame" x="8" y="8" width="156" height="34"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="noItemsButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="IAe-aT-Yfj"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes start here and go like this..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyD-hf-hdM">
+                                            <rect key="frame" x="8" y="8" width="156" height="34"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                            <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="HFE-hu-ysT" secondAttribute="bottom" id="3y8-K8-vU9"/>
+                                    <constraint firstItem="HFE-hu-ysT" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="5ZB-xq-AaB"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" id="7cL-Mt-VUM"/>
+                                    <constraint firstItem="HFE-hu-ysT" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" id="9Dx-dg-Taw"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="iyD-hf-hdM" secondAttribute="trailing" id="BfV-b6-a72"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="HUc-5T-hWf"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="trailing" secondItem="G9n-j4-S3h" secondAttribute="trailingMargin" constant="8" id="Jfs-t4-cIr"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="iyD-hf-hdM" secondAttribute="bottom" id="Owi-hI-iS5"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="bottom" secondItem="G9n-j4-S3h" secondAttribute="bottomMargin" constant="-8" id="bpJ-7f-zsy"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="bottom" secondItem="G9n-j4-S3h" secondAttribute="bottomMargin" constant="8" id="gFx-SY-nQa"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="HFE-hu-ysT" secondAttribute="trailing" id="ivd-lM-Nra"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="iyD-hf-hdM" secondAttribute="bottom" id="nNl-sM-0OQ"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" id="p2G-QO-U62"/>
+                                    <constraint firstAttribute="centerX" secondItem="iyD-hf-hdM" secondAttribute="centerX" id="qKa-9Q-JZ7"/>
+                                    <constraint firstAttribute="centerY" secondItem="iyD-hf-hdM" secondAttribute="centerY" id="tpe-Ct-jU3"/>
+                                    <constraint firstItem="iyD-hf-hdM" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="wkE-ag-t7X"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7cL-Mt-VUM"/>
+                                        <exclude reference="HUc-5T-hWf"/>
+                                        <exclude reference="Jfs-t4-cIr"/>
+                                        <exclude reference="bpJ-7f-zsy"/>
+                                        <exclude reference="gFx-SY-nQa"/>
+                                        <exclude reference="nNl-sM-0OQ"/>
+                                        <exclude reference="qKa-9Q-JZ7"/>
+                                        <exclude reference="tpe-Ct-jU3"/>
+                                    </mask>
+                                </variation>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -2474,8 +2623,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Ot-zIR">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="26"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlR-vK-aOL">
+                                            <rect key="frame" x="8" y="4" width="64" height="13"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                            <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Ot-zIR">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="QEh-6k-hYP"/>
                                                 <constraint firstAttribute="width" constant="60" id="TUa-lh-rgF"/>
@@ -2495,12 +2650,6 @@
                                                 <action selector="addDose:" destination="OGN-KC-zkZ" eventType="touchUpInside" id="P1A-aF-ZFN"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlR-vK-aOL">
-                                            <rect key="frame" x="8" y="4" width="64" height="13"/>
-                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
-                                            <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
