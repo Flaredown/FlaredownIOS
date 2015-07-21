@@ -11,7 +11,6 @@
 		101393CC19D216D700BBB266 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393CB19D216D700BBB266 /* AppDelegate.m */; };
 		101393D219D216D700BBB266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 101393D019D216D700BBB266 /* Main.storyboard */; };
 		101393D419D216D700BBB266 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 101393D319D216D700BBB266 /* Images.xcassets */; };
-		101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 101393D519D216D700BBB266 /* LaunchScreen.xib */; };
 		101393E319D216D700BBB266 /* FlaredownTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393E219D216D700BBB266 /* FlaredownTests.m */; };
 		101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393F119D22AF700BBB266 /* FDPageContentViewController.m */; };
 		101393F519D22C0800BBB266 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393F319D22C0800BBB266 /* FDViewController.m */; };
@@ -93,7 +92,6 @@
 		101393CB19D216D700BBB266 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		101393D119D216D700BBB266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		101393D319D216D700BBB266 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		101393D619D216D700BBB266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		101393DC19D216D700BBB266 /* FlaredownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlaredownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		101393E119D216D700BBB266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		101393E219D216D700BBB266 /* FlaredownTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlaredownTests.m; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		ED9072611A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDB519951B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSelectQuestionTableViewController.h; sourceTree = "<group>"; };
 		EDB519961B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSelectQuestionTableViewController.m; sourceTree = "<group>"; };
@@ -250,7 +247,6 @@
 				101393EF19D2290E00BBB266 /* src */,
 				101393CA19D216D700BBB266 /* AppDelegate.h */,
 				101393CB19D216D700BBB266 /* AppDelegate.m */,
-				101393D519D216D700BBB266 /* LaunchScreen.xib */,
 				101393D019D216D700BBB266 /* Main.storyboard */,
 				ED65B8621AA4D1C800974E6E /* views */,
 				85378A101A5214C50053D6CC /* fnt */,
@@ -612,7 +608,6 @@
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
 				ED4F91A21B4AEB220013D3AB /* ReminderTimePickerView.xib in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
-				101393D719D216D700BBB266 /* LaunchScreen.xib in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
 				ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */,
 			);
@@ -769,15 +764,6 @@
 				ED9072601A68AC1E0012EFD6 /* es */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		101393D519D216D700BBB266 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				101393D619D216D700BBB266 /* Base */,
-				ED9072611A68AC1E0012EFD6 /* es */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 		ED90725D1A68A7800012EFD6 /* Localizable.strings */ = {

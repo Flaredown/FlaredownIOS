@@ -62,6 +62,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -2444,7 +2445,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1e-Kv-2ce">
-                                            <rect key="frame" x="8" y="8" width="198" height="28"/>
+                                            <rect key="frame" x="8" y="20" width="198" height="20"/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -2453,33 +2454,43 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="M1e-Kv-2ce" firstAttribute="bottom" secondItem="D5e-LV-ktB" secondAttribute="bottomMargin" constant="8" id="1rE-QU-330"/>
                                     <constraint firstItem="M1e-Kv-2ce" firstAttribute="leading" secondItem="D5e-LV-ktB" secondAttribute="leadingMargin" id="G4d-kE-QA3"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="M1e-Kv-2ce" secondAttribute="bottom" constant="-4" id="KHG-R4-Knt"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="M1e-Kv-2ce" secondAttribute="bottom" id="W4F-UH-rEg"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="M1e-Kv-2ce" secondAttribute="trailing" id="axe-iL-wgb"/>
                                     <constraint firstItem="M1e-Kv-2ce" firstAttribute="top" secondItem="D5e-LV-ktB" secondAttribute="topMargin" id="rqb-5c-5TM"/>
                                 </constraints>
                                 <size key="customSize" width="214" height="44"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1rE-QU-330"/>
+                                        <exclude reference="W4F-UH-rEg"/>
+                                        <exclude reference="rqb-5c-5TM"/>
+                                    </mask>
+                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addDose" id="ETs-Lf-9Tm">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Ot-zIR">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Ot-zIR">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="QEh-6k-hYP"/>
                                                 <constraint firstAttribute="width" constant="60" id="TUa-lh-rgF"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                            <state key="normal" title="Add dose">
+                                            <state key="normal">
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="QEh-6k-hYP"/>
                                                     <exclude reference="TUa-lh-rgF"/>
                                                 </mask>
                                             </variation>
@@ -2487,6 +2498,12 @@
                                                 <action selector="addDose:" destination="OGN-KC-zkZ" eventType="touchUpInside" id="P1A-aF-ZFN"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlR-vK-aOL">
+                                            <rect key="frame" x="8" y="4" width="64" height="13"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                            <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -2495,13 +2512,22 @@
                                     <constraint firstItem="ZaC-Ot-zIR" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" constant="-8" id="2NE-di-OAy"/>
                                     <constraint firstItem="ZaC-Ot-zIR" firstAttribute="bottom" secondItem="ETs-Lf-9Tm" secondAttribute="bottomMargin" id="6c0-1e-5qA"/>
                                     <constraint firstItem="ZaC-Ot-zIR" firstAttribute="leading" secondItem="ETs-Lf-9Tm" secondAttribute="leadingMargin" constant="-8" id="IqM-Z4-Ekv"/>
+                                    <constraint firstItem="MlR-vK-aOL" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" constant="-4" id="LHz-GD-Fqa"/>
+                                    <constraint firstAttribute="centerY" secondItem="MlR-vK-aOL" secondAttribute="centerY" id="P0n-kO-tOh"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="ZaC-Ot-zIR" secondAttribute="bottom" constant="-8" id="V7v-Pv-S9v"/>
                                     <constraint firstItem="ZaC-Ot-zIR" firstAttribute="trailing" secondItem="ETs-Lf-9Tm" secondAttribute="trailingMargin" id="bhH-4C-z19"/>
                                     <constraint firstItem="ZaC-Ot-zIR" firstAttribute="leading" secondItem="ETs-Lf-9Tm" secondAttribute="leadingMargin" id="bn3-QH-3WU"/>
+                                    <constraint firstItem="MlR-vK-aOL" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" constant="-8" id="fUt-W9-5bK"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="MlR-vK-aOL" secondAttribute="trailing" id="hwC-5i-gxD"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="ZaC-Ot-zIR" secondAttribute="trailing" constant="-8" id="jXC-JB-uh4"/>
+                                    <constraint firstItem="MlR-vK-aOL" firstAttribute="leading" secondItem="ETs-Lf-9Tm" secondAttribute="leadingMargin" id="kba-aW-bYo"/>
                                     <constraint firstItem="ZaC-Ot-zIR" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" id="npF-Ov-EfX"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="MlR-vK-aOL" secondAttribute="bottom" id="oOY-sN-Ua7"/>
+                                    <constraint firstItem="ZaC-Ot-zIR" firstAttribute="top" secondItem="ETs-Lf-9Tm" secondAttribute="topMargin" constant="-8" id="t1R-cz-npV"/>
+                                    <constraint firstItem="MlR-vK-aOL" firstAttribute="leading" secondItem="ETs-Lf-9Tm" secondAttribute="leadingMargin" id="yKr-Ap-Lnv"/>
                                     <constraint firstAttribute="centerY" secondItem="ZaC-Ot-zIR" secondAttribute="centerY" id="zDb-NO-ub0"/>
                                 </constraints>
-                                <size key="customSize" width="60" height="17"/>
+                                <size key="customSize" width="80" height="30"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="2CF-z9-3ch"/>
@@ -2510,6 +2536,11 @@
                                         <exclude reference="bhH-4C-z19"/>
                                         <exclude reference="bn3-QH-3WU"/>
                                         <exclude reference="npF-Ov-EfX"/>
+                                        <exclude reference="zDb-NO-ub0"/>
+                                        <exclude reference="P0n-kO-tOh"/>
+                                        <exclude reference="fUt-W9-5bK"/>
+                                        <exclude reference="oOY-sN-Ua7"/>
+                                        <exclude reference="yKr-Ap-Lnv"/>
                                     </mask>
                                 </variation>
                             </collectionViewCell>

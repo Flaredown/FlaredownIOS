@@ -180,9 +180,9 @@ static NSString * const DoseID = @"dose";
     NSInteger row = [indexPath row];
     NSInteger section = [indexPath section];
     
-    CGSize treatmentSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 45);
-    CGSize addDoseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 20);
-    CGSize doseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
+    CGSize treatmentSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
+    CGSize addDoseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
+    CGSize doseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 32);
     
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
     
