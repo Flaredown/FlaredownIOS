@@ -11,7 +11,11 @@
 #import "FDQuestion.h"
 #import "FDResponse.h"
 
+#import "FDViewController.h"
+
 @interface FDMeterViewController : UIViewController
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *firstButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;

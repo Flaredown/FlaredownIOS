@@ -113,6 +113,8 @@ static UIColor *DeselectedColor;
     [self clearSelection];
     [self selectFirst];
     [self setSelectedValue:0];
+    if(sender)
+        [_mainViewDelegate nextQuestion];
 }
 
 - (void)selectFirst
@@ -125,6 +127,8 @@ static UIColor *DeselectedColor;
     [self clearSelection];
     [self selectSecond];
     [self setSelectedValue:1];
+    if(sender)
+        [_mainViewDelegate nextQuestion];
 }
 
 - (void)selectSecond
@@ -137,6 +141,8 @@ static UIColor *DeselectedColor;
     [self clearSelection];
     [self selectThird];
     [self setSelectedValue:2];
+    if(sender)
+        [_mainViewDelegate nextQuestion];
 }
 
 - (void)selectThird
@@ -150,6 +156,8 @@ static UIColor *DeselectedColor;
     [self clearSelection];
     [self selectFourth];
     [self setSelectedValue:3];
+    if(sender)
+        [_mainViewDelegate nextQuestion];
 }
 
 - (void)selectFourth
@@ -163,6 +171,8 @@ static UIColor *DeselectedColor;
     [self clearSelection];
     [self selectFifth];
     [self setSelectedValue:4];
+    if(sender)
+        [_mainViewDelegate nextQuestion];
 }
 
 - (void)selectFifth

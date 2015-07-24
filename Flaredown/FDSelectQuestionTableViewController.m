@@ -94,6 +94,7 @@ static NSString * const listItemIdentifier = @"listItem";
     [self.response setValue:[input value]];
     self.selectedIndex = row;
     [self.tableView reloadData];
+    [_mainViewDelegate nextQuestion];
 }
 
 - (void)setCellAppearance:(UITableViewCell *)cell selected:(BOOL)selected

@@ -23,8 +23,10 @@
 
 #define ANIMATION_DURATION 0.5
 
-#define SUMMARY_RECT (CGRectMake(CARD_INSET, CARD_OFFSET_Y, self.view.frame.size.width - CARD_INSET*2, self.view.frame.size.height - CARD_HEIGHT_DIFF + _continueBtn.frame.size.height))
-#define PAGE_RECT (CGRectMake(0, CARD_OFFSET_Y, self.view.frame.size.width, self.view.frame.size.height - CARD_HEIGHT_DIFF))
+#define CONTENT_RECT (CGRectMake(0, CARD_OFFSET_Y, self.view.frame.size.width, self.view.frame.size.height - CARD_HEIGHT_DIFF))
+
+#define SUMMARY_RECT (CGRectMake(CARD_INSET, 0, CONTENT_RECT.size.width-CARD_INSET*2, CONTENT_RECT.size.height + _continueBtn.frame.size.height))
+#define PAGE_RECT (CGRectMake(0, 0, CONTENT_RECT.size.width, CONTENT_RECT.size.height))
 
 @interface FDViewController ()
 
@@ -47,7 +49,7 @@
     //Style
     [FDStyle addRoundedCornersToView:_continueBtn];
     [FDStyle addShadowToView:_continueBtn];
-    _continueBtn.center=  CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    _continueBtn.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [self.view addSubview:_continueBtn];
     
     [_continueBtn setTitle:FDLocalizedString(@"onboarding/continue") forState:UIControlStateNormal];
@@ -60,24 +62,23 @@
     NSDate *now = [NSDate date];
     [self setDateTitle:now];
     
-    self.pageIndex = 0;
+    _contentView = [[UIView alloc] initWithFrame:CONTENT_RECT];
+    [self.view addSubview:_contentView];
     
+    //Create page view controller
+    self.pageIndex = 0;
     self.pageViewController = [[UIPageViewController alloc]
                                initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                options:@{UIPageViewControllerOptionInterPageSpacingKey:@10}];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
-    
     [self refreshPages];
-    
-    self.pageViewController.view.frame = PAGE_RECT;
     
     //Create summary view controller
     self.summaryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"summary"];
     [self.summaryViewController setMainViewDelegate:self];
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
-    self.summaryViewController.view.frame = SUMMARY_RECT;
     
     if(_loadSummary)
         [self showSummary];
@@ -101,18 +102,18 @@
     [self addViewController:self.pageViewController];
     
     if([self.summaryViewController parentViewController]) {
-        
-        CGRect pageRect = PAGE_RECT;
-        self.pageViewController.view.frame = CGRectMake(pageRect.origin.x, self.view.frame.size.height, pageRect.size.width, pageRect.size.height);
-        
+    
+        self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
         [self transitionFromViewController:self.summaryViewController toViewController:self.pageViewController duration:ANIMATION_DURATION options:0 animations:^{
-            self.pageViewController.view.frame = pageRect;
-            CGRect summaryRect = SUMMARY_RECT;
-            self.summaryViewController.view.frame = CGRectMake(summaryRect.origin.x, self.view.frame.size.height, summaryRect.size.width, summaryRect.size.height);
+            self.pageViewController.view.frame = PAGE_RECT;
+            self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
         } completion:^(BOOL finished) {
             [self removeViewController:self.summaryViewController];
             [self.pageViewController didMoveToParentViewController:self];
         }];
+    } else {
+        self.pageViewController.view.frame = PAGE_RECT;
+        self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
     }
     
     [[FDModelManager sharedManager] saveSession];
@@ -136,17 +137,17 @@
     
     if([self.pageViewController parentViewController]) {
         
-        CGRect summaryRect = SUMMARY_RECT;
-        self.summaryViewController.view.frame = CGRectMake(summaryRect.origin.x, self.view.frame.size.height, summaryRect.size.width, summaryRect.size.height);
-        
+        self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
         [self transitionFromViewController:self.pageViewController toViewController:self.summaryViewController duration:ANIMATION_DURATION options:0 animations:^{
-            self.summaryViewController.view.frame = summaryRect;
-            CGRect pageRect = PAGE_RECT;
-            self.pageViewController.view.frame = CGRectMake(pageRect.origin.x, self.view.frame.size.height, pageRect.size.width, pageRect.size.height);
+            self.summaryViewController.view.frame = SUMMARY_RECT;
+            self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
         } completion:^(BOOL finished) {
             [self removeViewController:self.pageViewController];
             [self.summaryViewController didMoveToParentViewController:self];
         }];
+    } else {
+        self.summaryViewController.view.frame = SUMMARY_RECT;
+        self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
     }
     
     [_continueBtn setHidden:YES];
@@ -166,8 +167,7 @@
 - (void)addViewController:(UIViewController *)viewController
 {
     [self addChildViewController:viewController];
-    [self.view addSubview:viewController.view];
-//    [viewController didMoveToParentViewController:self];
+    [self.contentView addSubview:viewController.view];
 }
 
 - (void)removeViewController:(UIViewController *)viewController
@@ -290,6 +290,11 @@
 }
 
 - (IBAction)continueButton:(id)sender
+{
+    [self nextQuestion];
+}
+
+- (void)nextQuestion
 {
     if(self.pageViewController == nil)
         return;

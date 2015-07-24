@@ -140,11 +140,13 @@
         } else if([pageType isEqualToString:@"select"]) {
             FDSelectQuestionTableViewController *tableVC = (FDSelectQuestionTableViewController *)dvc;
             [tableVC initWithQuestion:questions[0]];
+            tableVC.mainViewDelegate = _mainViewDelegate;
 //            FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
 //            [selectVC initWithQuestions:questions];
         } else if([pageType isEqualToString:@"meter"]) {
             FDMeterViewController *meterVC = (FDMeterViewController *)dvc;
             [meterVC initWithQuestion:questions[0]];
+            meterVC.mainViewDelegate = _mainViewDelegate;
         }
     }
     

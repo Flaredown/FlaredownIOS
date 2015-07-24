@@ -69,9 +69,8 @@ static NSString * const NotesIdentifier = @"notes";
     
     //Style
 //    self.collectionView.clipsToBounds = NO;
-    self.collectionView.frame = CGRectMake(self.view.frame.origin.x+10, self.view   .frame.origin.y+10, self.view.frame.size.width-20, self.view.frame.size.height-20);
+//    self.collectionView.frame = CGRectMake(self.view.frame.origin.x+10, self.view.frame.origin.y+10, self.view.frame.size.width-20, self.view.frame.size.height-50);
     
-    self.view.layer.masksToBounds = YES;
     [FDStyle addRoundedCornersToView:self.view];
     [FDStyle addShadowToView:self.view];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
@@ -349,7 +348,7 @@ static NSString * const NotesIdentifier = @"notes";
                 FDDose *dose = [treatment doses][doseRow];
                 NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
                 [button setTitle:title forState:UIControlStateNormal];
-                [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
+//                [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
                 [FDStyle addRoundedCornersToView:button];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentNoValueIdentifier forIndexPath:indexPath];
@@ -379,7 +378,8 @@ static NSString * const NotesIdentifier = @"notes";
             //1  Button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             [button setTitle:tag forState:UIControlStateNormal];
-            button.layer.cornerRadius = button.frame.size.height/2;
+            [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
+            [FDStyle addRoundedCornersToView:button];
         }
     } else if(section == NOTE_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
@@ -479,9 +479,10 @@ static NSString * const NotesIdentifier = @"notes";
             return CGSizeMake(maxWidth, 50);
         } else {
             NSString *tag = [[[FDModelManager sharedManager] entry] tags][row];
-            CGRect buttonRect = [tag boundingRectWithSize:CGSizeMake(maxWidth-ROUNDED_CORNER_OFFSET, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
-            buttonRect.size.width += ROUNDED_CORNER_OFFSET;
-            return buttonRect.size;
+            CGSize tagSize = CGSizeMake(maxWidth, 32);
+            UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:DOSE_FONT_SIZE];
+            CGRect rect = [tag boundingRectWithSize:tagSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+            return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, tagSize.height);
         }
     } else if(section == NOTE_TITLE) {
         return CGSizeMake(maxWidth, 40);

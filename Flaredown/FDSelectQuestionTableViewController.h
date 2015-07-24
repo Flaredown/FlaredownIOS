@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "FDViewController.h"
+
 @class FDQuestion;
 @class FDResponse;
 
 @interface FDSelectQuestionTableViewController : UITableViewController
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property FDQuestion *question;
 @property FDResponse *response;

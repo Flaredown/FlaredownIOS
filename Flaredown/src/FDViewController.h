@@ -19,6 +19,7 @@
 - (void)adjustPageIndexForRemovedItem:(int)firstIndex;
 - (void)toggleCardBumped;
 - (void)openPage:(int)pageIndex;
+- (void)nextQuestion;
 
 @end
 
@@ -26,6 +27,7 @@
 
 @property BOOL loadSummary;
 
+@property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) FDSummaryCollectionViewController *summaryViewController;
 @property int numPages;

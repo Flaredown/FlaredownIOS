@@ -452,8 +452,6 @@
 				EDEA82BD1A11952300A80416 /* FDLaunchViewController.m */,
 				ED8861491A11F368002469B3 /* FDFinishedViewController.h */,
 				ED88614A1A11F368002469B3 /* FDFinishedViewController.m */,
-				EDC7CD141B02C9DE00C2CE43 /* FDSummaryCollectionViewController.h */,
-				EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */,
 				EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */,
 				EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */,
 			);
@@ -469,6 +467,8 @@
 				101393F119D22AF700BBB266 /* FDPageContentViewController.m */,
 				10EED0AF19E35FF5000464DD /* FDContainerViewController.h */,
 				10EED0B019E35FF5000464DD /* FDContainerViewController.m */,
+				EDC7CD141B02C9DE00C2CE43 /* FDSummaryCollectionViewController.h */,
+				EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */,
 			);
 			name = "Page Containers";
 			sourceTree = "<group>";

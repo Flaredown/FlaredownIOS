@@ -65,6 +65,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -1059,14 +1060,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYc-k7-7pY">
-                                            <rect key="frame" x="10.5" y="3" width="50" height="30"/>
+                                            <rect key="frame" x="0.0" y="5.5" width="71" height="25"/>
                                             <color key="backgroundColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="GM0-mu-h0A"/>
-                                                <constraint firstAttribute="height" constant="30" id="WCA-kw-KeH"/>
+                                                <constraint firstAttribute="height" constant="25" id="WCA-kw-KeH"/>
                                                 <constraint firstAttribute="width" constant="146" id="ge5-eP-Mum"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="19"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             <state key="normal" title="Tag">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1086,8 +1087,10 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="iYc-k7-7pY" firstAttribute="leading" secondItem="Q6Z-U8-Wv5" secondAttribute="leadingMargin" constant="-8" id="CNq-vc-SYf"/>
                                     <constraint firstAttribute="centerX" secondItem="iYc-k7-7pY" secondAttribute="centerX" id="EP8-YT-XXa"/>
                                     <constraint firstAttribute="centerY" secondItem="iYc-k7-7pY" secondAttribute="centerY" id="a86-jm-Ju2"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="iYc-k7-7pY" secondAttribute="trailing" constant="-8" id="sIV-Ac-lCM"/>
                                     <constraint firstItem="iYc-k7-7pY" firstAttribute="trailing" secondItem="Q6Z-U8-Wv5" secondAttribute="trailingMargin" id="v0I-WV-EcO"/>
                                     <constraint firstItem="iYc-k7-7pY" firstAttribute="leading" secondItem="Q6Z-U8-Wv5" secondAttribute="leadingMargin" id="wz5-2D-89I"/>
                                 </constraints>
@@ -1150,7 +1153,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="rN0-jS-zzo"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                             <state key="normal" title="qty unit">
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
@@ -2472,14 +2475,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKZ-2X-9TW">
-                                            <rect key="frame" x="10.5" y="3" width="50" height="30"/>
+                                            <rect key="frame" x="0.0" y="3" width="71" height="30"/>
                                             <color key="backgroundColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="146" id="phX-7x-bxb"/>
                                                 <constraint firstAttribute="height" constant="30" id="yKv-zE-1lC"/>
                                                 <constraint firstAttribute="height" constant="30" id="ybv-v1-6VR"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="19"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             <state key="normal" title="Tag">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2499,6 +2502,8 @@
                                 </view>
                                 <constraints>
                                     <constraint firstItem="SKZ-2X-9TW" firstAttribute="trailing" secondItem="Mm6-BK-u5Z" secondAttribute="trailingMargin" id="Djn-pa-N2S"/>
+                                    <constraint firstItem="SKZ-2X-9TW" firstAttribute="leading" secondItem="Mm6-BK-u5Z" secondAttribute="leadingMargin" constant="-8" id="MDY-Jd-sG2"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="SKZ-2X-9TW" secondAttribute="trailing" constant="-8" id="WUy-hU-eTU"/>
                                     <constraint firstItem="SKZ-2X-9TW" firstAttribute="leading" secondItem="Mm6-BK-u5Z" secondAttribute="leadingMargin" id="a19-H7-cGh"/>
                                     <constraint firstAttribute="centerY" secondItem="SKZ-2X-9TW" secondAttribute="centerY" id="k1m-23-cgm"/>
                                     <constraint firstAttribute="centerX" secondItem="SKZ-2X-9TW" secondAttribute="centerX" id="oBP-Tc-bqR"/>
@@ -3145,8 +3150,8 @@
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S95-oh-nxf"/>
-        <segue reference="j9h-cQ-iZY"/>
         <segue reference="u8n-9I-Erz"/>
+        <segue reference="1ic-5n-SwM"/>
+        <segue reference="pti-0c-EDU"/>
     </inferredMetricsTieBreakers>
 </document>

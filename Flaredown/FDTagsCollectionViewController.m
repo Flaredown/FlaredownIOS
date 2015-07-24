@@ -166,9 +166,11 @@ static NSString * const PopularTagIdentifier = @"popularTag";
     NSInteger section = [indexPath section];
     
     if(section == 1) {
-        CGRect buttonRect = [_tags[row] boundingRectWithSize:CGSizeMake(collectionView.frame.size.width-ROUNDED_CORNER_OFFSET, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
-        buttonRect.size.width += ROUNDED_CORNER_OFFSET;
-        return buttonRect.size;
+        NSString *tag = _tags[row];
+        CGSize tagSize = CGSizeMake(collectionView.frame.size.width-ROUNDED_CORNER_OFFSET, 38);
+        UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:16];
+        CGRect rect = [tag boundingRectWithSize:tagSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+        return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, tagSize.height);
     } else if(section == 3) {
         FDTrackableResult *tag = _popularTags[row];
         CGRect buttonRect = [[tag name] boundingRectWithSize:CGSizeMake(collectionView.frame.size.width, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
