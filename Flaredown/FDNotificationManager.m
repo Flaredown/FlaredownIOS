@@ -10,6 +10,7 @@
 
 #import "FDTreatment.h"
 #import "FDLocalizationManager.h"
+#import "FDModelManager.h"
 
 @implementation FDNotificationManager
 
@@ -56,9 +57,11 @@ static NSString * const NotificationIdentifierCheckin = @"checkin";
     [self removeRemindersForTreatment:treatment];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     [calendar setLocale:[NSLocale localeWithLocaleIdentifier:[[FDLocalizationManager sharedManager] currentLocale]]];
-    for(NSDate *reminderTime in [treatment reminderTimes]) {
-        for(int i = 0; i < [[treatment reminderDays] count]; i++) {
-            if([[treatment reminderDays][i] boolValue]) {
+    NSArray *reminderTimes = [[FDModelManager sharedManager] reminderTimesForTreatment:treatment];
+    for(NSDate *reminderTime in reminderTimes) {
+        NSArray *reminderDays = [[FDModelManager sharedManager] reminderDaysForTreatment:treatment];
+        for(int i = 0; i < [reminderDays count]; i++) {
+            if([reminderDays[i] boolValue]) {
                 NSDateComponents *reminderDateComponents = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:reminderTime];
                 [reminderDateComponents setWeekday:i+1]; //Sunday = 1
                 
@@ -66,9 +69,7 @@ static NSString * const NotificationIdentifierCheckin = @"checkin";
                 NSInteger targetDay = [nowDateComponents day] + [reminderDateComponents weekday] - [nowDateComponents weekday];
                 [reminderDateComponents setDay:targetDay];
                 
-                NSLog(@"%i", [reminderDateComponents weekday]);
                 NSDate *reminderDate = [calendar dateFromComponents:reminderDateComponents];
-                NSLog(@"%i", [calendar component:NSCalendarUnitWeekday fromDate:reminderDate]);
                 //set notification identifier as simply treatment name since these are always reset at the same time
                 [self addNotificationWithDate:reminderDate repeatInterval:NSCalendarUnitWeekOfYear text:[treatment name] identifier:[treatment name]]; //TODO:Localization
             }

@@ -23,6 +23,9 @@
 @property (nonatomic) NSDate *selectedDate;
 @property NSMutableDictionary *entries;
 @property NSMutableArray *inputs;
+@property NSMutableDictionary *treatmentReminderTimes;
+@property NSMutableDictionary *treatmentReminderDays;
+
 
 + (id)sharedManager;
 
@@ -37,6 +40,12 @@
 - (void)setReminder:(BOOL)reminder;
 - (NSDate *)reminderTime;
 - (void)setReminderTime:(NSDate *)reminderTime;
+
+- (NSArray *)reminderTimesForTreatment:(FDTreatment *)treatment;
+- (void)addReminderTime:(NSDate *)date forTreatment:(FDTreatment *)treatment;
+- (void)removeReminderTimeAtIndex:(NSInteger)index forTreatment:(FDTreatment *)treatment;
+- (NSMutableArray *)reminderDaysForTreatment:(FDTreatment *)treatment;
+- (void)setReminderDay:(NSInteger)dayOfTheWeek forTreatment:(FDTreatment *)treatment on:(BOOL)on;
 
 - (void)logout;
 

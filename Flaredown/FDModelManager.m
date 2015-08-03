@@ -15,6 +15,8 @@
 static NSString *userObjectSessionLocation = @"userObject";
 static NSString *entrySessionLocation = @"entry";
 static NSString *inputsSessionLocation = @"inputs";
+static NSString *treatmentReminderTimesLocation = @"treatmentReminderTimes";
+static NSString *treatmentReminderDaysLocation = @"treatmentReminderDays";
 
 + (id)sharedManager
 {
@@ -32,6 +34,8 @@ static NSString *inputsSessionLocation = @"inputs";
         _entries = [[NSMutableDictionary alloc] init];
         _selectedDate = [NSDate date];
         _inputs = [[NSMutableArray alloc] init];
+        _treatmentReminderTimes = [[NSMutableDictionary alloc] init];
+        _treatmentReminderDays = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -120,6 +124,40 @@ static NSString *inputsSessionLocation = @"inputs";
     [[NSUserDefaults standardUserDefaults] setObject:reminderTime forKey:@"checkin_time"];
 }
 
+- (NSArray *)reminderTimesForTreatment:(FDTreatment *)treatment
+{
+    return [_treatmentReminderTimes objectForKey:[treatment name]];
+}
+
+- (void)addReminderTime:(NSDate *)date forTreatment:(FDTreatment *)treatment
+{
+    if(![_treatmentReminderTimes objectForKey:[treatment name]])
+        [_treatmentReminderTimes setObject:[[NSMutableArray alloc] init] forKey:[treatment name]];
+    [[_treatmentReminderTimes objectForKey:[treatment name]] addObject:date];
+}
+
+- (void)removeReminderTimeAtIndex:(NSInteger)index forTreatment:(FDTreatment *)treatment
+{
+    if(![_treatmentReminderTimes objectForKey:[treatment name]]) {
+        NSLog(@"Attempted to remove reminder for invalid treatment: %@", [treatment name]);
+        return;
+    }
+    [[_treatmentReminderTimes objectForKey:[treatment name]] removeObjectAtIndex:index];
+}
+
+- (NSMutableArray *)reminderDaysForTreatment:(FDTreatment *)treatment
+{
+    return [_treatmentReminderDays objectForKey:[treatment name]];
+}
+
+- (void)setReminderDay:(NSInteger)dayOfTheWeek forTreatment:(FDTreatment *)treatment on:(BOOL)on
+{
+    if(![_treatmentReminderDays objectForKey:[treatment name]]) {
+        [_treatmentReminderDays setObject:[[NSMutableArray alloc] initWithArray:@[@NO, @NO, @NO, @NO, @NO, @NO, @NO]] forKey:[treatment name]];
+    }
+    [[_treatmentReminderDays objectForKey:[treatment name]] setObject:@(on) atIndex:dayOfTheWeek];
+}
+
 - (void)saveSession
 {
     if(_userObject != nil) {
@@ -139,6 +177,12 @@ static NSString *inputsSessionLocation = @"inputs";
         NSData *inputsData = [NSKeyedArchiver archivedDataWithRootObject:mutableInputs];
         [[NSUserDefaults standardUserDefaults] setObject:inputsData forKey:inputsSessionLocation];
     }
+    
+    NSData *treatmentReminderTimesData = [NSKeyedArchiver archivedDataWithRootObject:_treatmentReminderTimes];
+    [[NSUserDefaults standardUserDefaults] setObject:treatmentReminderTimesData forKey:treatmentReminderTimesLocation];
+    
+    NSData *treatmentReminderDaysData = [NSKeyedArchiver archivedDataWithRootObject:_treatmentReminderDays];
+    [[NSUserDefaults standardUserDefaults] setObject:treatmentReminderDaysData forKey:treatmentReminderDaysLocation];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -164,6 +208,16 @@ static NSString *inputsSessionLocation = @"inputs";
             [mutableInputs addObject:[[FDInput alloc] initWithDictionary:input]];
         }
         _inputs = [mutableInputs copy];
+    }
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:treatmentReminderTimesLocation]) {
+        NSData *treatmentReminderTimesData = [[NSUserDefaults standardUserDefaults] objectForKey:treatmentReminderTimesLocation];
+        _treatmentReminderTimes = [NSKeyedUnarchiver unarchiveObjectWithData:treatmentReminderTimesData];
+    }
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:treatmentReminderDaysLocation]) {
+        NSData *treatmentReminderDaysData = [[NSUserDefaults standardUserDefaults] objectForKey:treatmentReminderDaysLocation];
+        _treatmentReminderDays = [NSKeyedUnarchiver unarchiveObjectWithData:treatmentReminderDaysData];
     }
 }
 

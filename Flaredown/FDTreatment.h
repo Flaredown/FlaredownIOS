@@ -16,8 +16,6 @@
 @property NSString *treatmentId;
 @property NSString *name;
 @property NSMutableArray *doses;
-@property NSMutableArray *reminderTimes;
-@property NSMutableArray *reminderDays;
 @property NSMutableArray *notifications;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

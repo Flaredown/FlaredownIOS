@@ -18,8 +18,6 @@
     self = [super init];
     if(self) {
         _doses = [[NSMutableArray alloc] init];
-        _reminderTimes = [[NSMutableArray alloc] init];
-        _reminderDays = [@[@NO, @NO, @NO, @NO, @NO, @NO, @NO] mutableCopy];
     }
     return self;
 }

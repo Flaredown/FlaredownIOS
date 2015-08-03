@@ -11,6 +11,7 @@
 #import "FDTreatment.h"
 #import "FDNotificationManager.h"
 #import "FDLocalizationManager.h"
+#import "FDModelManager.h"
 #import "FDPopupManager.h"
 #import "FDStyle.h"
 
@@ -19,7 +20,7 @@
 #define DAYS_END (DAYS_START + daysOfTheWeek.count)
 #define TIME_TITLE (DAYS_END)
 #define TIME_START (TIME_TITLE + 1)
-#define TIME_END (TIME_START + [[_treatment reminderTimes] count])
+#define TIME_END (TIME_START + [[[FDModelManager sharedManager] reminderTimesForTreatment:_treatment] count])
 
 @interface FDTreatmentReminderTableViewController ()
 
@@ -66,10 +67,7 @@ static NSArray *daysOfTheWeek;
     NSInteger dayIndex = row - DAYS_START;
     
     //Toggle reminder
-    if([[_treatment reminderDays][dayIndex] boolValue])
-        [_treatment reminderDays][dayIndex] = @NO;
-    else
-        [_treatment reminderDays][dayIndex] = @YES;
+    [[FDModelManager sharedManager] setReminderDay:dayIndex forTreatment:_treatment on:![[[FDModelManager sharedManager] reminderDaysForTreatment:_treatment][dayIndex] boolValue]];
     [self refreshReminders];
 }
 
@@ -85,7 +83,7 @@ static NSArray *daysOfTheWeek;
 
 - (void)removeTimeAtIndex:(NSInteger)index
 {
-    [[_treatment reminderTimes] removeObjectAtIndex:index];
+    [[FDModelManager sharedManager] removeReminderTimeAtIndex:index forTreatment:_treatment];
     [self refreshReminders];
     [self.tableView reloadData];
 }
@@ -112,7 +110,7 @@ static NSArray *daysOfTheWeek;
 
 - (void)addTime:(NSDate *)time
 {
-    [[_treatment reminderTimes] addObject:time];
+    [[FDModelManager sharedManager] addReminderTime:time forTreatment:_treatment];
     [self refreshReminders];
     [self.tableView reloadData];
 }
@@ -138,7 +136,7 @@ static NSArray *daysOfTheWeek;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1 + [daysOfTheWeek count] + 1 + [[_treatment reminderTimes] count] + 1;
+    return 1 + [daysOfTheWeek count] + 1 + [[[FDModelManager sharedManager] reminderTimesForTreatment:_treatment] count] + 1;
 }
 
 
@@ -161,7 +159,7 @@ static NSArray *daysOfTheWeek;
         
         //1 Switch
         UISwitch *daySwitch = (UISwitch *)[cell viewWithTag:1];
-        [daySwitch setOn:[[_treatment reminderDays][dayIndex] boolValue]];
+        [daySwitch setOn:[[[FDModelManager sharedManager] reminderDaysForTreatment:_treatment][dayIndex] boolValue]];
         
         //2 Label
         UILabel *label = (UILabel *)[cell viewWithTag:2];
@@ -177,7 +175,7 @@ static NSArray *daysOfTheWeek;
         cell = [tableView dequeueReusableCellWithIdentifier:TimeCellIdentifier forIndexPath:indexPath];
         
         NSInteger timeIndex = row - TIME_START;
-        NSDate *reminderTime = [_treatment reminderTimes][timeIndex];
+        NSDate *reminderTime = [[FDModelManager sharedManager] reminderTimesForTreatment:_treatment][timeIndex];
         
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
