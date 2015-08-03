@@ -59,9 +59,16 @@ static NSString * const NotificationIdentifierCheckin = @"checkin";
     for(NSDate *reminderTime in [treatment reminderTimes]) {
         for(int i = 0; i < [[treatment reminderDays] count]; i++) {
             if([[treatment reminderDays][i] boolValue]) {
-                NSDateComponents *reminderDateComponents = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitWeekday) fromDate:reminderTime];
+                NSDateComponents *reminderDateComponents = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:reminderTime];
                 [reminderDateComponents setWeekday:i+1]; //Sunday = 1
+                
+                NSDateComponents *nowDateComponents = [calendar components:(NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:[NSDate date]];
+                NSInteger targetDay = [nowDateComponents day] + [reminderDateComponents weekday] - [nowDateComponents weekday];
+                [reminderDateComponents setDay:targetDay];
+                
+                NSLog(@"%i", [reminderDateComponents weekday]);
                 NSDate *reminderDate = [calendar dateFromComponents:reminderDateComponents];
+                NSLog(@"%i", [calendar component:NSCalendarUnitWeekday fromDate:reminderDate]);
                 //set notification identifier as simply treatment name since these are always reset at the same time
                 [self addNotificationWithDate:reminderDate repeatInterval:NSCalendarUnitWeekOfYear text:[treatment name] identifier:[treatment name]]; //TODO:Localization
             }
