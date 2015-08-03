@@ -197,6 +197,23 @@ static NSArray *daysOfTheWeek;
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row = [indexPath row];
+    if(row == TITLE) {
+        return 100;
+    } else if(row >= DAYS_START && row < DAYS_END) {
+        return 45;
+    } else if(row == TIME_TITLE) {
+        return 65;
+    } else if(row >= TIME_START && row < TIME_END) {
+        return 45;
+    } else if(row == TIME_END) {
+        return 65;
+    }
+    return 0;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -75,6 +75,8 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -1795,6 +1797,52 @@
                                     <constraint firstItem="qW2-Go-fha" firstAttribute="top" secondItem="aB9-qW-s3s" secondAttribute="topMargin" constant="-8" id="lGD-fr-F2H"/>
                                 </constraints>
                                 <size key="customSize" width="568" height="180"/>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="agreements" id="Tlo-9D-X3A">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3R-dg-5Hb">
+                                            <rect key="frame" x="198" y="23" width="172" height="30"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                            <state key="normal" title="Terms and Conditions">
+                                                <color key="titleColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRe-X4-KXk">
+                                            <rect key="frame" x="230" y="68" width="108" height="30"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                            <state key="normal" title="Privacy Policy">
+                                                <color key="titleColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="X3R-dg-5Hb" secondAttribute="centerX" id="2vt-S0-AlV"/>
+                                    <constraint firstItem="fRe-X4-KXk" firstAttribute="top" secondItem="X3R-dg-5Hb" secondAttribute="bottom" constant="15" id="4Uu-EU-OOh"/>
+                                    <constraint firstItem="X3R-dg-5Hb" firstAttribute="centerX" secondItem="fRe-X4-KXk" secondAttribute="centerX" id="H3u-sB-eM0"/>
+                                    <constraint firstItem="fRe-X4-KXk" firstAttribute="top" secondItem="X3R-dg-5Hb" secondAttribute="bottom" constant="15" id="HH5-PT-VYU"/>
+                                    <constraint firstAttribute="centerY" secondItem="X3R-dg-5Hb" secondAttribute="centerY" constant="22" id="RN9-oc-no5"/>
+                                    <constraint firstItem="X3R-dg-5Hb" firstAttribute="centerX" secondItem="fRe-X4-KXk" secondAttribute="centerX" id="hZj-rY-rEF"/>
+                                    <constraint firstItem="X3R-dg-5Hb" firstAttribute="top" secondItem="fRe-X4-KXk" secondAttribute="bottom" constant="30" id="oKU-UY-6lX"/>
+                                    <constraint firstItem="X3R-dg-5Hb" firstAttribute="centerY" secondItem="fRe-X4-KXk" secondAttribute="centerY" id="rei-3Z-Vqr"/>
+                                </constraints>
+                                <size key="customSize" width="568" height="120"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hZj-rY-rEF"/>
+                                        <exclude reference="oKU-UY-6lX"/>
+                                        <exclude reference="rei-3Z-Vqr"/>
+                                        <exclude reference="4Uu-EU-OOh"/>
+                                    </mask>
+                                </variation>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="navigation" id="4ZM-Oj-JvF">

@@ -17,6 +17,9 @@
 #import "FDLocalizationManager.h"
 #import "FDTreatmentReminderTableViewController.h"
 
+#define TREATMENT_POPUP_WIDTH 0.9
+#define TREATMENT_POPUP_HEIGHT 0.9
+
 @interface FDSelectListViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *addTreatmentLabel;
@@ -337,16 +340,18 @@
     NSInteger editRow = [[self.tableView indexPathForCell:[self parentCellForView:sender]] row] - 1;
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][editRow];
     
+    //open popup
     FDTreatmentReminderTableViewController *viewController = [[UIStoryboard storyboardWithName:@"TreatmentReminderPopup" bundle:nil] instantiateInitialViewController];
     [viewController setTreatment:treatment];
     
-    UIView *popupView = viewController.view;
-    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+    UIView *popupView = [[UIView alloc] init];
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*TREATMENT_POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*TREATMENT_POPUP_HEIGHT/2, self.view.window.frame.size.width*TREATMENT_POPUP_WIDTH, self.view.window.frame.size.height*TREATMENT_POPUP_HEIGHT)];
     popupView.layer.masksToBounds = YES;
     [FDStyle addRoundedCornersToView:popupView];
+    [popupView addSubview:viewController.view];
+    viewController.view.frame = CGRectMake(0, 0, popupView.frame.size.width, popupView.frame.size.height);
     [[FDPopupManager sharedManager] addPopupView:popupView withViewController:viewController];
-    
-//    [popupView needsUpdateConstraints];
+
 }
 
 - (IBAction)closePopupView:(UIButton *)sender

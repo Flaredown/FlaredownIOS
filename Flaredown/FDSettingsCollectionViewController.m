@@ -28,6 +28,9 @@
 #define ALARM_WIDTH 0.9
 #define ALARM_HEIGHT 0.55
 
+#define TREATMENT_POPUP_WIDTH 0.9
+#define TREATMENT_POPUP_HEIGHT 0.9
+
 @interface FDSettingsCollectionViewController ()
 
 @end
@@ -38,6 +41,7 @@ static NSString * const ReminderCellIdentifier = @"reminder";
 static NSString * const TreatmentReminderTitleCellIdentifier = @"treatmentReminderTitle";
 static NSString * const TreatmentReminderCellIdentifier = @"treatmentReminder";
 static NSString * const AccountCellIdentifier = @"account";
+static NSString * const AgreementsCellIdentifier = @"agreements";
 
 static NSString * const NavigationHeaderIdentifier = @"navigation";
 
@@ -121,10 +125,12 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
     FDTreatmentReminderTableViewController *viewController = [[UIStoryboard storyboardWithName:@"TreatmentReminderPopup" bundle:nil] instantiateInitialViewController];
     [viewController setTreatment:treatment];
     
-    UIView *popupView = viewController.view;
-    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*POPUP_HEIGHT/2, self.view.window.frame.size.width*POPUP_WIDTH, self.view.window.frame.size.height*POPUP_HEIGHT)];
+    UIView *popupView = [[UIView alloc] init];
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*TREATMENT_POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*TREATMENT_POPUP_HEIGHT/2, self.view.window.frame.size.width*TREATMENT_POPUP_WIDTH, self.view.window.frame.size.height*TREATMENT_POPUP_HEIGHT)];
     popupView.layer.masksToBounds = YES;
     [FDStyle addRoundedCornersToView:popupView];
+    [popupView addSubview:viewController.view];
+    viewController.view.frame = CGRectMake(0, 0, popupView.frame.size.width, popupView.frame.size.height);
     [[FDPopupManager sharedManager] addPopupView:popupView withViewController:viewController];
 }
 
@@ -143,11 +149,11 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if(section == 0 || section == 2)
+    if(section == 0 || section == 2 || section == 3)
         return 1;
     else if(section == 1)
         return 1 + _treatments.count;
@@ -188,10 +194,14 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
         else
             [reminderTimeLabel setAlpha:0.4f];
         
+        [FDStyle addRoundedCornersToView:cell];
+        [FDStyle addShadowToView:cell];
         
     } else if(section == 1) {
         if(row == 0) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentReminderTitleCellIdentifier forIndexPath:indexPath];
+            [FDStyle addRoundedCornersToTopOfView:cell];
+            [FDStyle addShadowToView:cell];
         } else {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentReminderCellIdentifier forIndexPath:indexPath];
             
@@ -199,19 +209,19 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             FDTreatment *treatment = _treatments[row-1];
             [button setTitle:[treatment name] forState:UIControlStateNormal];
+            
+            if(row == [self.collectionView numberOfItemsInSection:section] - 1) {
+                [FDStyle addRoundedCornersToBottomOfView:cell];
+                [FDStyle addShadowToView:cell];
+            }
         }
     } else if(section == 2) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:AccountCellIdentifier forIndexPath:indexPath];
-    }
-    
-    if(section == 0 || section == 2) {
         [FDStyle addRoundedCornersToView:cell];
-    } else if(row == 0) {
-        [FDStyle addRoundedCornersToTopOfView:cell];
-    } else if(row == [self collectionView:collectionView numberOfItemsInSection:section]-1) {
-        [FDStyle addRoundedCornersToBottomOfView:cell];
+        [FDStyle addShadowToView:cell];
+    } else if(section == 3) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:AgreementsCellIdentifier forIndexPath:indexPath];
     }
-    [FDStyle addShadowToView:cell];
     
     return cell;
 }
