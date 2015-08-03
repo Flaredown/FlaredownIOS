@@ -62,6 +62,7 @@
 		EDE45C801B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */; };
 		EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */; };
 		EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */; };
+		EDE8B3051B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE8B3041B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m */; };
 		EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */; };
 		EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEE1A9545400074F189 /* FDTrackableResult.m */; };
 		EDEA82691A11572400A80416 /* FDQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = EDEA82681A11572400A80416 /* FDQuestion.m */; };
@@ -182,6 +183,8 @@
 		EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatmentReminderTableViewController.m; sourceTree = "<group>"; };
 		EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSettingsViewController.h; sourceTree = "<group>"; };
 		EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSettingsViewController.m; sourceTree = "<group>"; };
+		EDE8B3031B6AEDB500B2DEDD /* FDSettingsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSettingsCollectionViewController.h; sourceTree = "<group>"; };
+		EDE8B3041B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSettingsCollectionViewController.m; sourceTree = "<group>"; };
 		EDE98DEA1A9273ED0074F189 /* FDSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSearchTableViewController.h; sourceTree = "<group>"; };
 		EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSearchTableViewController.m; sourceTree = "<group>"; };
 		EDE98DED1A9545400074F189 /* FDTrackableResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTrackableResult.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				ED88614A1A11F368002469B3 /* FDFinishedViewController.m */,
 				EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */,
 				EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */,
+				EDE8B3031B6AEDB500B2DEDD /* FDSettingsCollectionViewController.h */,
+				EDE8B3041B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
 				ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */,
+				EDE8B3051B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m in Sources */,
 				EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */,
 				ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,

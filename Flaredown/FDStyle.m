@@ -12,7 +12,8 @@
 
 + (void)addRoundedCornersToView:(UIView *)view
 {
-    view.layer.cornerRadius = FDCornerRadius;
+//    view.layer.cornerRadius = FDCornerRadius;
+    [self roundCornersWithRadius:FDCornerRadius topLeft:YES topRight:YES bottomLeft:YES bottomRight:YES forView:view];
 }
 
 + (void)addSmallRoundedCornersToView:(UIView *)view
@@ -37,6 +38,31 @@
 {
     view.layer.borderColor = [color CGColor];
     view.layer.borderWidth = FDBorderWidth;
+}
+
++ (void)addRoundedCornersToTopOfView:(UIView *)view
+{
+    [self roundCornersWithRadius:FDCornerRadius topLeft:YES topRight:YES bottomLeft:NO bottomRight:NO forView:view];
+}
+
++ (void)addRoundedCornersToBottomOfView:(UIView *)view
+{
+    [self roundCornersWithRadius:FDCornerRadius topLeft:NO topRight:NO bottomLeft:YES bottomRight:YES forView:view];
+}
+
++ (void)roundCornersWithRadius:(float)radius topLeft:(BOOL)topLeft topRight:(BOOL)topRight bottomLeft:(BOOL)bottomLeft bottomRight:(BOOL)bottomRight forView:(UIView *)view
+{
+    UIRectCorner corner = 0;
+    corner = topLeft ? corner | UIRectCornerTopLeft : corner;
+    corner = topRight ? corner | UIRectCornerTopRight : corner;
+    corner = bottomLeft ? corner | UIRectCornerBottomLeft : corner;
+    corner = bottomRight ? corner | UIRectCornerBottomRight : corner;
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, radius)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    view.layer.mask = maskLayer;
 }
 
 + (UIColor *)indianKhakiColor

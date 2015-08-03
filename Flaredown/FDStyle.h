@@ -29,6 +29,9 @@ static float const FDBorderWidth = 1;
 + (void)addShadowToView:(UIView *)view;
 + (void)addBorderToView:(UIView *)view withColor:(UIColor *)color;
 
++ (void)addRoundedCornersToTopOfView:(UIView *)view;
++ (void)addRoundedCornersToBottomOfView:(UIView *)view;
+
 + (UIColor *)indianKhakiColor;
 + (UIColor *)greyColor;
 + (UIColor *)blueColor;
