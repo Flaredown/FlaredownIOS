@@ -46,7 +46,7 @@
             }
         }
         
-        _notes = ![[NSNull null] isEqual:[dictionary objectForKey:@"notes"]] ?  [dictionary objectForKey:@"notes"]: @"";
+        _notes = ([dictionary objectForKey:@"notes"] && ![[NSNull null] isEqual:[dictionary objectForKey:@"notes"]]) ? [dictionary objectForKey:@"notes"]: @"";
         
         NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
         for(NSDictionary *response in [dictionary objectForKey:@"responses"]) {
@@ -72,8 +72,8 @@
                [_treatments addObject:newTreatment];
         }
         
-        _scores = [dictionary objectForKey:@"scores"];
-        _tags = [[dictionary objectForKey:@"tags"] mutableCopy];
+        _scores = [dictionary objectForKey:@"scores"] ? [dictionary objectForKey:@"scores"] : [[NSMutableArray alloc] init];
+        _tags = [dictionary objectForKey:@"tags"] ? [[dictionary objectForKey:@"tags"] mutableCopy] : [[NSMutableArray alloc] init];
     }
     return self;
 }

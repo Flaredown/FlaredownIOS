@@ -68,19 +68,12 @@ static NSString * const NotesIdentifier = @"notes";
     [super viewDidLoad];
     
     //Style
-//    self.collectionView.clipsToBounds = NO;
-//    self.collectionView.frame = CGRectMake(self.view.frame.origin.x+10, self.view.frame.origin.y+10, self.view.frame.size.width-20, self.view.frame.size.height-50);
+//    [FDStyle addRoundedCornersToView:self.view];
+//    [FDStyle addShadowToView:self.view];
     
-    [FDStyle addRoundedCornersToView:self.view];
-    [FDStyle addShadowToView:self.view];
     self.view.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     
     self.collectionView.contentInset = UIEdgeInsetsMake(COLLECTION_CONTENT_INSET, COLLECTION_CONTENT_INSET, COLLECTION_CONTENT_INSET, COLLECTION_CONTENT_INSET);
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated

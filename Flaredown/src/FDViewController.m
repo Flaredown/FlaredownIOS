@@ -149,6 +149,8 @@
         self.summaryViewController.view.frame = SUMMARY_RECT;
         self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
     }
+    [FDStyle addRoundedCornersToView:self.summaryViewController.view];
+    [FDStyle addShadowToView:self.summaryViewController.view];
     
     [_continueBtn setHidden:YES];
 }
