@@ -74,9 +74,7 @@ static NSString * const DoseID = @"dose";
     [dose setUnit:_addDoseUnitTextField.text];
     [[_selectedTreatment doses] addObject:dose];
     
-    _selectedTreatment = nil;
-    [self.collectionView reloadData];
-    [[FDPopupManager sharedManager] removeTopPopup];
+    [self clearSelection];
 }
 
 - (IBAction)editDose:(id)sender
@@ -88,6 +86,7 @@ static NSString * const DoseID = @"dose";
     NSInteger row = [indexPath row];
     
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
+    _selectedTreatment = treatment;
     FDDose *dose = [treatment doses][row-1];
     _selectedDose = dose;
     
@@ -114,13 +113,26 @@ static NSString * const DoseID = @"dose";
     [_selectedDose setQuantity:[_editDoseQuantityTextField.text floatValue]];
     [_selectedDose setUnit:_editDoseUnitTextField.text];
     
-    _selectedDose = nil;
-    [self.collectionView reloadData];
-    [[FDPopupManager sharedManager] removeTopPopup];
+    [self clearSelection];
+}
+
+- (IBAction)removeDoseButton:(id)sender
+{
+    [[_selectedTreatment doses] removeObject:_selectedDose];
+    
+    [self clearSelection];
 }
 
 - (IBAction)cancelButton:(id)sender
 {
+    [[FDPopupManager sharedManager] removeTopPopup];
+}
+
+- (void)clearSelection
+{
+    _selectedTreatment = nil;
+    _selectedDose = nil;
+    [self.collectionView reloadData];
     [[FDPopupManager sharedManager] removeTopPopup];
 }
 

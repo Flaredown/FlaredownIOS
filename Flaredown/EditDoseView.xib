@@ -10,6 +10,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -59,6 +60,21 @@
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0LF-gu-oOz">
+                    <rect key="frame" x="35" y="373" width="72" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="26u-jy-u3S"/>
+                        <constraint firstAttribute="height" constant="30" id="nSH-lN-uRi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                    <state key="normal" title="Remove">
+                        <color key="titleColor" red="0.89411764705882346" green="0.36862745098039218" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="removeDoseButton:" destination="-1" eventType="touchUpInside" id="mwz-A3-Fue"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFa-Ou-ZQi">
                     <rect key="frame" x="264" y="373" width="72" height="30"/>
                     <constraints>
@@ -94,24 +110,34 @@
             <constraints>
                 <constraint firstItem="8c4-YG-ROj" firstAttribute="trailing" secondItem="Fus-iC-9U1" secondAttribute="trailing" id="3ED-Bj-AuV"/>
                 <constraint firstItem="Fus-iC-9U1" firstAttribute="leading" secondItem="SnJ-q7-G3D" secondAttribute="leading" id="3cb-ty-l9o"/>
+                <constraint firstItem="Fus-iC-9U1" firstAttribute="leading" secondItem="wFa-Ou-ZQi" secondAttribute="leading" id="4bk-Ld-4U8"/>
                 <constraint firstItem="Fus-iC-9U1" firstAttribute="top" secondItem="SnJ-q7-G3D" secondAttribute="bottom" constant="8" id="5O8-KH-Osh"/>
                 <constraint firstItem="Fus-iC-9U1" firstAttribute="trailing" secondItem="SnJ-q7-G3D" secondAttribute="trailing" id="5vG-9c-W5B"/>
                 <constraint firstItem="0aT-VZ-BEB" firstAttribute="top" secondItem="UMs-cQ-GJi" secondAttribute="top" constant="20" id="96n-ng-vCj"/>
                 <constraint firstItem="wFa-Ou-ZQi" firstAttribute="top" secondItem="8c4-YG-ROj" secondAttribute="top" id="ElH-kf-yhy"/>
                 <constraint firstItem="0aT-VZ-BEB" firstAttribute="trailing" secondItem="SnJ-q7-G3D" secondAttribute="trailing" id="OXN-71-avD"/>
+                <constraint firstItem="Fus-iC-9U1" firstAttribute="centerX" secondItem="0LF-gu-oOz" secondAttribute="centerX" id="Oco-VW-i97"/>
                 <constraint firstItem="SnJ-q7-G3D" firstAttribute="leading" secondItem="UMs-cQ-GJi" secondAttribute="leading" constant="35" id="Uq7-Yg-Nvk"/>
+                <constraint firstItem="Fus-iC-9U1" firstAttribute="centerX" secondItem="wFa-Ou-ZQi" secondAttribute="centerX" id="W9I-Rc-zA8"/>
                 <constraint firstAttribute="centerY" secondItem="SnJ-q7-G3D" secondAttribute="centerY" id="XTP-YW-Ggb"/>
                 <constraint firstAttribute="centerX" secondItem="wFa-Ou-ZQi" secondAttribute="centerX" id="bPu-T0-WSG"/>
+                <constraint firstItem="Fus-iC-9U1" firstAttribute="leading" secondItem="0LF-gu-oOz" secondAttribute="leading" id="byu-97-BD1"/>
                 <constraint firstItem="SnJ-q7-G3D" firstAttribute="top" secondItem="0aT-VZ-BEB" secondAttribute="bottom" constant="20" id="dAF-ql-g6b"/>
                 <constraint firstAttribute="trailing" secondItem="SnJ-q7-G3D" secondAttribute="trailing" constant="35" id="m8z-4w-Ns1"/>
                 <constraint firstItem="SnJ-q7-G3D" firstAttribute="top" secondItem="Fus-iC-9U1" secondAttribute="bottom" constant="5" id="qDT-Dg-nai"/>
                 <constraint firstItem="wFa-Ou-ZQi" firstAttribute="top" secondItem="Fus-iC-9U1" secondAttribute="bottom" constant="20" id="qYa-Hd-wjY"/>
                 <constraint firstItem="0aT-VZ-BEB" firstAttribute="leading" secondItem="SnJ-q7-G3D" secondAttribute="leading" id="rtH-u3-Eia"/>
+                <constraint firstItem="0LF-gu-oOz" firstAttribute="bottom" secondItem="wFa-Ou-ZQi" secondAttribute="bottom" id="tBW-t6-Sce"/>
+                <constraint firstItem="0LF-gu-oOz" firstAttribute="top" secondItem="wFa-Ou-ZQi" secondAttribute="top" id="tz3-Rp-VRW"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="96n-ng-vCj"/>
                     <exclude reference="qDT-Dg-nai"/>
+                    <exclude reference="4bk-Ld-4U8"/>
+                    <exclude reference="Oco-VW-i97"/>
+                    <exclude reference="tBW-t6-Sce"/>
+                    <exclude reference="bPu-T0-WSG"/>
                 </mask>
             </variation>
         </view>
