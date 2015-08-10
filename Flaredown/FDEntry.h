@@ -22,6 +22,8 @@
 @property NSMutableArray *treatments;
 @property NSArray *scores;
 @property NSMutableArray *tags;
+@property NSDate *createdAt;
+@property NSDate *updatedAt;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)dictionaryCopy;

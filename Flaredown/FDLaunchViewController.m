@@ -62,29 +62,20 @@
     
     FDUser *user = [[FDModelManager sharedManager] userObject];
     
-    if([[FDModelManager sharedManager] entry]) {
-        _entryLoaded = YES;
-        _entryPreloaded = YES;
-        [self performSegueWithIdentifier:@"start" sender:nil];
-        return;
-    } else {
-        NSLog(@"New entry");
-        _entryLoaded = NO;
-        _entryPreloaded = NO;
-        
-        NSDate *now = [NSDate date];
-        NSString *dateString = [FDStyle dateStringForDate:now];
-        
-        [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(success) {
-                NSLog(@"Success!");
+    [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(success) {
+            NSLog(@"Success!");
+            
+            FDEntry *entry = [[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]];
+            if(![[FDModelManager sharedManager] entry] || [[entry updatedAt] compare:[[[FDModelManager sharedManager] entry] updatedAt]] == NSOrderedDescending) {
                 
-                FDEntry *entry;
-                [[FDModelManager sharedManager] setEntry:[[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]] forDate:now];
-                entry = [[FDModelManager sharedManager] entry];
+                NSLog(@"New entry");
+                _entryLoaded = NO;
+                _entryPreloaded = NO;
+                
+                [[FDModelManager sharedManager] setEntry:entry forDate:now];
                 [[FDModelManager sharedManager] setSelectedDate:now];
-                entry = [[FDModelManager sharedManager] entry];
                 
                 for (NSDictionary *input in [responseObject objectForKey:@"inputs"]) {
                     [[FDModelManager sharedManager] addInput:[[FDInput alloc] initWithDictionary:input]];
@@ -92,29 +83,32 @@
                 
                 if(_segueReady)
                     [self performSegueWithIdentifier:@"start" sender:nil];
-            }
-            else {
-                NSLog(@"Failure!");
-                
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving entry", nil)
-                                            message:NSLocalizedString(@"Looks like there was a problem retreiving your entry, please try again.", nil)
-                                           delegate:nil
-                                  cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
-                                  otherButtonTitles:nil] show];
-            }
-            _entryLoaded = YES;
-        }];
-        
-        [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
-            if(success) {
-                NSLog(@"Success!");
-                
-                [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
             } else {
-                NSLog(@"Failure!");
+                _entryLoaded = YES;
+                _entryPreloaded = YES;
+                [self performSegueWithIdentifier:@"start" sender:nil];
             }
-        }];
-    }
+        } else {
+            NSLog(@"Failure!");
+            
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving entry", nil)
+                                        message:NSLocalizedString(@"Looks like there was a problem retreiving your entry, please try again.", nil)
+                                       delegate:nil
+                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+                              otherButtonTitles:nil] show];
+        }
+        _entryLoaded = YES;
+    }];
+        
+    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
+        if(success) {
+            NSLog(@"Success!");
+            
+            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
+        } else {
+            NSLog(@"Failure!");
+        }
+    }];
 }
 
 - (IBAction)checkinButton:(id)sender

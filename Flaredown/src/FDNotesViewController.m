@@ -8,6 +8,8 @@
 
 #import "FDNotesViewController.h"
 #import "FDModelManager.h"
+#import "FDNetworkManager.h"
+#import "FDStyle.h"
 
 #import "FDHashtagTextView.h"
 
@@ -73,6 +75,13 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
+    
+    NSString *dateString = [FDStyle dateStringForDate:[[FDModelManager sharedManager] selectedDate]];
+    NSDictionary *entryDictionary = [[[FDModelManager sharedManager] entry] dictionaryCopy];
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    [[FDNetworkManager sharedManager] putEntry:entryDictionary date:dateString email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+        
+    }];
     [_mainViewDelegate refreshSummary];
 }
 

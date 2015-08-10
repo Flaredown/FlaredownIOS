@@ -15,6 +15,7 @@
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
 #import "FDSummaryCollectionViewController.h"
+#import "FDEntry.h"
 
 #define CARD_BUMP_OFFSET 60
 #define CARD_INSET 10
@@ -333,27 +334,33 @@
 - (void)getEntryForDate:(NSDate *)date
 {
     FDModelManager *modelManager = [FDModelManager sharedManager];
-    if(![[modelManager entries] objectForKey:[FDStyle dateStringForDate:date]]) {
-        FDUser *user = [modelManager userObject];
-        NSString *dateString = [FDStyle dateStringForDate:date];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(success) {
-                NSDictionary *entryDictionary = [responseObject objectForKey:@"entry"];
-                [modelManager setEntry:[[FDEntry alloc] initWithDictionary:entryDictionary] forDate:date];
-                [self setDateTitle:date];
-                [modelManager setSelectedDate:date];
-                [self refreshSummary];
-            } else {
-                //show error
+    
+    FDUser *user = [modelManager userObject];
+    NSString *dateString = [FDStyle dateStringForDate:date];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(success) {
+            FDEntry *entry = [[modelManager entries] objectForKey:[FDStyle dateStringForDate:date]];
+            FDEntry *newEntry = [[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]];
+            if(!entry || [[entry updatedAt] compare:[newEntry updatedAt]] == NSOrderedAscending) {
+                [modelManager setEntry:newEntry forDate:date];
             }
-        }];
-    } else {
-        [self setDateTitle:date];
-        [modelManager setSelectedDate:date];
-        [self refreshSummary];
-    }
+            [modelManager setSelectedDate:date];
+            [self setDateTitle:date];
+            [self refreshSummary];
+        } else {
+            NSLog(@"Failure!");
+            
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving entry", nil)
+                                        message:NSLocalizedString(@"Looks like there was a problem retreiving your entry, please try again.", nil)
+                                       delegate:nil
+                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+                              otherButtonTitles:nil] show];
+
+        }
+    }];
 }
 
 - (void)showInitialPage
@@ -378,31 +385,32 @@
 
 - (void)submitEntry
 {
-    FDEntry *entry = [[FDModelManager sharedManager] entry];
-    FDUser *user = [[FDModelManager sharedManager] userObject];
+//    FDEntry *entry = [[FDModelManager sharedManager] entry];
+//    FDUser *user = [[FDModelManager sharedManager] userObject];
     
     [self refreshSummary];
+    [self showSummary];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[FDNetworkManager sharedManager] putEntry:[entry responseDictionaryCopy] date:[entry date] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if(success) {
-            NSLog(@"Success!");
-            
-            [self showSummary];
-//            [self performSegueWithIdentifier:@"finish" sender:self];
-        }
-        else {
-            NSLog(@"Failure!");
-            
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
-                                        message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
-                                       delegate:nil
-                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
-                              otherButtonTitles:nil] show];
-        }
-    }];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [[FDNetworkManager sharedManager] putEntry:[entry responseDictionaryCopy] date:[entry date] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+//        
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        if(success) {
+//            NSLog(@"Success!");
+//            
+//            [self showSummary];
+////            [self performSegueWithIdentifier:@"finish" sender:self];
+//        }
+//        else {
+//            NSLog(@"Failure!");
+//            
+//            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
+//                                        message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
+//                                       delegate:nil
+//                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+//                              otherButtonTitles:nil] show];
+//        }
+//    }];
 }
 
 - (void)openSearch:(NSString *)type

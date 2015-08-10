@@ -74,6 +74,11 @@
         
         _scores = [dictionary objectForKey:@"scores"] ? [dictionary objectForKey:@"scores"] : [[NSMutableArray alloc] init];
         _tags = [dictionary objectForKey:@"tags"] ? [[dictionary objectForKey:@"tags"] mutableCopy] : [[NSMutableArray alloc] init];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        _createdAt = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
+        _updatedAt = [dateFormatter dateFromString:[dictionary objectForKey:@"updated_at"]];
     }
     return self;
 }

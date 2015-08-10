@@ -10,6 +10,7 @@
 #import "FDLocalizationManager.h"
 #import "FDStyle.h"
 #import "FDModelManager.h"
+#import "FDNetworkManager.h"
 
 #import "FDTreatmentCollectionViewController.h"
 #import "FDNotesViewController.h"
@@ -78,6 +79,23 @@ static NSString * const NotesIdentifier = @"notes";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    FDModelManager *modelManager = [FDModelManager sharedManager];
+    FDEntry *entry = [modelManager entry];
+    NSDate *date = [modelManager selectedDate];
+    FDUser *user = [modelManager userObject];
+    [[FDNetworkManager sharedManager] putEntry:[entry dictionaryCopy] date:[FDStyle dateStringForDate:date] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+        if(success) {
+            NSLog(@"Success!");
+        } else {
+            NSLog(@"Failure!");
+            
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
+                                        message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
+                                       delegate:nil
+                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+                              otherButtonTitles:nil] show];
+        }
+    }];
 //    [self refresh];
 }
 

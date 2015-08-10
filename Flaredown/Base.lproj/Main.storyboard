@@ -77,6 +77,8 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -1812,6 +1814,9 @@
                                                 <color key="titleColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="0so-4o-uNX" kind="presentation" id="eW4-OH-PeW"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRe-X4-KXk">
                                             <rect key="frame" x="230" y="68" width="108" height="30"/>
@@ -1903,6 +1908,109 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmJ-1E-u15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="805" y="2604"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="IUI-mI-mdN">
+            <objects>
+                <viewController id="0so-4o-uNX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="inF-DC-ciU"/>
+                        <viewControllerLayoutGuide type="bottom" id="ung-vE-kKv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ufO-rX-8ZZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="el7-1T-8qV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-VS-UHO">
+                                        <rect key="frame" x="527" y="21" width="43" height="18"/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                        <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNt-R5-KMz">
+                                        <rect key="frame" x="512" y="6" width="73" height="48"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneButton:" destination="Uur-gf-zav" eventType="touchUpInside" id="Crh-Rm-3Vz"/>
+                                            <action selector="doneButton:" destination="nys-hB-PtI" eventType="touchUpInside" id="snC-j5-5Af"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agreement" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fi-hi-pau">
+                                        <rect key="frame" x="256" y="21" width="88.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                        <color key="textColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="5fi-hi-pau" secondAttribute="centerY" id="1X1-S8-hyo"/>
+                                    <constraint firstItem="fRo-VS-UHO" firstAttribute="bottom" secondItem="5fi-hi-pau" secondAttribute="bottom" id="616-RB-gIF"/>
+                                    <constraint firstAttribute="trailing" secondItem="fRo-VS-UHO" secondAttribute="trailing" constant="30" id="DNa-II-YTZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="mNt-R5-KMz" secondAttribute="trailing" constant="15" id="G2u-MJ-MmE"/>
+                                    <constraint firstItem="mNt-R5-KMz" firstAttribute="centerX" secondItem="fRo-VS-UHO" secondAttribute="centerX" id="K8B-Y7-UsU"/>
+                                    <constraint firstItem="fRo-VS-UHO" firstAttribute="top" secondItem="5fi-hi-pau" secondAttribute="top" id="R7R-F1-rm1"/>
+                                    <constraint firstAttribute="height" constant="60" id="YPP-3i-pW1"/>
+                                    <constraint firstItem="mNt-R5-KMz" firstAttribute="leading" secondItem="fRo-VS-UHO" secondAttribute="leading" constant="-15" id="aCu-9t-Tjs"/>
+                                    <constraint firstItem="mNt-R5-KMz" firstAttribute="leading" secondItem="fRo-VS-UHO" secondAttribute="trailing" constant="15" id="b6R-6R-c0P"/>
+                                    <constraint firstAttribute="centerX" secondItem="5fi-hi-pau" secondAttribute="centerX" id="lVC-5s-c04"/>
+                                    <constraint firstItem="mNt-R5-KMz" firstAttribute="top" secondItem="fRo-VS-UHO" secondAttribute="bottom" constant="15" id="n1P-Zy-Wyn"/>
+                                    <constraint firstItem="mNt-R5-KMz" firstAttribute="centerY" secondItem="fRo-VS-UHO" secondAttribute="centerY" id="qqn-xl-XxG"/>
+                                    <constraint firstItem="mNt-R5-KMz" firstAttribute="top" secondItem="fRo-VS-UHO" secondAttribute="top" constant="-15" id="sCU-5A-rdY"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="G2u-MJ-MmE"/>
+                                        <exclude reference="b6R-6R-c0P"/>
+                                        <exclude reference="n1P-Zy-Wyn"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="deI-AX-B5g">
+                                <rect key="frame" x="16" y="60" width="568" height="525"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras libero ligula, sagittis et rutrum sit amet, rhoncus sed nunc. Curabitur sollicitudin felis vitae nibh pulvinar, ornare pretium diam euismod. Quisque ac libero lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam lobortis in arcu in auctor. Nam massa erat, aliquam molestie neque nec, viverra ullamcorper sapien. Nam id dui blandit, bibendum tellus ut, blandit diam. Nunc quis aliquam mauris. Integer commodo leo eu leo varius fermentum. Integer pulvinar tellus sapien, eget lobortis ipsum dapibus mattis. Proin semper eleifend orci et semper.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec bibendum ante leo, consectetur pulvinar ante iaculis a. Cras mi lacus, consectetur id velit sit amet, vehicula faucibus est. Aenean id consectetur magna. Nunc in neque vel lectus gravida placerat fringilla vel tortor. Fusce fringilla placerat tempor. Aliquam sodales urna eu dictum laoreet. Suspendisse consequat lorem ac nunc convallis, a pulvinar sem consequat. In in rutrum metus. Praesent placerat nunc non mauris tempus, quis hendrerit magna gravida. Sed ligula nisl, fermentum a ullamcorper ac, consectetur a tortor. Nulla mattis erat in venenatis finibus. Praesent viverra nunc ultrices enim aliquam, sed molestie risus hendrerit.
+
+Sed ultricies iaculis sapien at accumsan. Phasellus tincidunt dolor ac vehicula ornare. Aenean ullamcorper risus vitae dictum porta. Praesent in auctor sapien. In blandit eget ipsum aliquam dapibus. Quisque imperdiet erat et magna blandit cursus. Nam et ante lorem.
+
+Mauris vel sem sed lacus posuere ultrices. Aliquam ex nibh, bibendum sit amet nisl nec, volutpat dictum leo. Aliquam aliquet bibendum arcu, vel tincidunt ipsum. Aliquam id quam at lacus efficitur tristique. Vestibulum interdum laoreet sollicitudin. Phasellus lacinia sem in vehicula vehicula. Suspendisse quis convallis urna. Pellentesque consequat consequat faucibus.
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam vulputate quam lacus, eu maximus nunc vulputate eget. Nullam ultrices, purus sit amet scelerisque posuere, felis ante pretium enim, eget blandit risus mauris ut nisl. Phasellus egestas est a pellentesque sagittis. Curabitur tincidunt, leo id mollis semper, lectus massa molestie augue, ac tristique erat libero id lacus. Aliquam aliquam tincidunt venenatis. Nullam iaculis ac elit nec dignissim. Donec tortor mi, pulvinar accumsan nibh vel, porta tincidunt turpis. Donec ornare tellus a interdum bibendum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="deI-AX-B5g" firstAttribute="leading" secondItem="ufO-rX-8ZZ" secondAttribute="leadingMargin" id="3Y0-Wb-dbb"/>
+                            <constraint firstItem="inF-DC-ciU" firstAttribute="top" secondItem="el7-1T-8qV" secondAttribute="bottom" constant="16" id="7lD-9s-sTu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="deI-AX-B5g" secondAttribute="trailing" id="8dl-XY-YK5"/>
+                            <constraint firstItem="el7-1T-8qV" firstAttribute="top" secondItem="inF-DC-ciU" secondAttribute="bottom" constant="-20" id="CYr-mk-dXa"/>
+                            <constraint firstItem="deI-AX-B5g" firstAttribute="top" secondItem="el7-1T-8qV" secondAttribute="bottom" id="YgI-O4-G30"/>
+                            <constraint firstItem="el7-1T-8qV" firstAttribute="leading" secondItem="ufO-rX-8ZZ" secondAttribute="leadingMargin" constant="-16" id="ad5-z8-0X4"/>
+                            <constraint firstItem="ung-vE-kKv" firstAttribute="top" secondItem="deI-AX-B5g" secondAttribute="bottom" constant="15" id="d95-zW-D83"/>
+                            <constraint firstItem="inF-DC-ciU" firstAttribute="top" secondItem="el7-1T-8qV" secondAttribute="bottom" id="rVC-3d-eqz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="el7-1T-8qV" secondAttribute="trailing" constant="-16" id="smy-x8-t9Q"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7lD-9s-sTu"/>
+                                <exclude reference="rVC-3d-eqz"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iLP-lv-0By" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1429" y="2604"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="LBT-po-LPy">
