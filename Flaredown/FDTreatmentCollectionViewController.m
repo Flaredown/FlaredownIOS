@@ -13,6 +13,8 @@
 #import "FDModelManager.h"
 #import "FDLocalizationManager.h"
 
+#import "HTAutocompleteManager.h"
+
 #define CONTENT_INSET 20
 
 @interface FDTreatmentCollectionViewController ()
@@ -61,6 +63,8 @@ static NSString * const DoseID = @"dose";
     [_addDoseQuantityTextField setPlaceholder:FDLocalizedString(@"edit_treatment_dose_placeholder")];
     _addDoseUnitTextField.delegate = self;
     [_addDoseUnitTextField setPlaceholder:FDLocalizedString(@"edit_treatment_unit_placeholder")];
+    _addDoseUnitTextField.autocompleteDataSource = [HTAutocompleteManager sharedManager];
+    _addDoseUnitTextField.autocompleteType = HTAutocompleteTypeTreatmentUnits;
     [_addDoseCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
     [_addDoseDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
     
@@ -102,6 +106,8 @@ static NSString * const DoseID = @"dose";
     _editDoseUnitTextField.delegate = self;
     [_editDoseUnitTextField setPlaceholder:FDLocalizedString(@"edit_treatment_unit_placeholder")];
     [_editDoseUnitTextField setText:[dose unit]];
+    _editDoseUnitTextField.autocompleteDataSource = [HTAutocompleteManager sharedManager];
+    _editDoseUnitTextField.autocompleteType = HTAutocompleteTypeTreatmentUnits;
     [_editDoseCancelButton setTitle:FDLocalizedString(@"nav/cancel") forState:UIControlStateNormal];
     [_editDoseDoneButton setTitle:FDLocalizedString(@"nav/done") forState:UIControlStateNormal];
     

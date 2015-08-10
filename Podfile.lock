@@ -26,6 +26,7 @@ PODS:
     - Expecta (~> 0.3)
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
+  - HTAutocompleteTextField (1.3.2)
   - KTCenterFlowLayout (0.0.2)
   - MBProgressHUD (0.9.1)
   - MJPopupViewController (0.4)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - Expecta (~> 0.3)
   - Expecta+Snapshots (~> 1.3)
   - FBSnapshotTestCase (~> 1.5)
+  - HTAutocompleteTextField
   - KTCenterFlowLayout
   - MBProgressHUD (~> 0.9)
   - MJPopupViewController (~> 0.4)
@@ -52,6 +54,7 @@ SPEC CHECKSUMS:
   Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
+  HTAutocompleteTextField: ce809f04875e843e20f214ab973bb496ba7a93b1
   KTCenterFlowLayout: add70553644c401a6e4c51acf4fdbd5a91a1bae0
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605

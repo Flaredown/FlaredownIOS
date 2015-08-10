@@ -30,8 +30,41 @@
 
 - (NSString *)localizedStringForPath:(NSString *)path
 {
+    id obj = [self localizationForPath:path];
+    if(!obj)
+        return @"";
+    NSString *str = (NSString *)obj;
+    return [self regexedLocalizationString:str];
+}
+
+- (NSArray *)localizedArrayForPath:(NSString *)path
+{
+    id obj = [self localizationForPath:path];
+    if(!obj)
+        return nil;
+    NSArray *array = (NSArray *)obj;
+    
+    NSMutableArray *localizedStrings = [[NSMutableArray alloc] init];
+    for(NSString *str in array) {
+        [localizedStrings addObject:[self regexedLocalizationString:str]];
+    }
+    return [localizedStrings copy];
+}
+
+- (NSString *)regexedLocalizationString:(NSString *)str
+{
+    //regex to replace "{{field}}" or {{field}} with %@
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"\\{\\{.*\\}\\}\"|\\{\\{.*\\}\\}" options:NSRegularExpressionCaseInsensitive error:nil];
+    str = [regex stringByReplacingMatchesInString:str options:0 range:NSMakeRange(0, str.length) withTemplate:@"%@"];
+    
+    return str;
+}
+
+- (id)localizationForPath:(NSString *)path
+{
     NSString *locale = [self currentLocale];
     NSString *localePath = [NSString stringWithFormat:@"%@/%@", locale, path];
+    
     int rangeStart = 0;
     NSDictionary *currentDictionary = [self localizationDictionaryForCurrentLocale];
     for(int i = 0; i < localePath.length; i++) {
@@ -42,18 +75,13 @@
             currentDictionary = [currentDictionary objectForKey:substring];
         }
     }
-    NSString *str = [currentDictionary objectForKey:[localePath substringFromIndex:rangeStart]];
+    id obj = [currentDictionary objectForKey:[localePath substringFromIndex:rangeStart]];
     
-    if(!str) {
-        NSLog(@"Localization string: %@ not found", localePath);
-        return @"";
+    if(!obj) {
+        NSLog(@"Localization object: %@ not found", localePath);
+        return nil;
     }
-    
-    //regex to replace "{{field}}" or {{field}} with %@
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"\\{\\{.*\\}\\}\"|\\{\\{.*\\}\\}" options:NSRegularExpressionCaseInsensitive error:nil];
-    str = [regex stringByReplacingMatchesInString:str options:0 range:NSMakeRange(0, str.length) withTemplate:@"%@"];
-    
-    return str;
+    return obj;
 }
 
 - (NSString *)currentLocale

@@ -59,6 +59,7 @@
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
 		EDDC72541A08886E0059815A /* FDEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72531A08886E0059815A /* FDEntry.m */; };
+		EDDF596D1B7944B000464456 /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDF596C1B7944B000464456 /* HTAutocompleteManager.m */; };
 		EDE45C801B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */; };
 		EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */; };
 		EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */; };
@@ -178,6 +179,8 @@
 		EDDC72501A08441E0059815A /* FDModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModelManager.m; sourceTree = "<group>"; };
 		EDDC72521A08886E0059815A /* FDEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEntry.h; sourceTree = "<group>"; };
 		EDDC72531A08886E0059815A /* FDEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEntry.m; sourceTree = "<group>"; };
+		EDDF596B1B7944B000464456 /* HTAutocompleteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTAutocompleteManager.h; sourceTree = "<group>"; };
+		EDDF596C1B7944B000464456 /* HTAutocompleteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTAutocompleteManager.m; sourceTree = "<group>"; };
 		EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TreatmentReminderPopup.storyboard; sourceTree = "<group>"; };
 		EDE45C811B41DE9500C3A31F /* FDTreatmentReminderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatmentReminderTableViewController.h; sourceTree = "<group>"; };
 		EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatmentReminderTableViewController.m; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				101393EF19D2290E00BBB266 /* src */,
+				EDDF596A1B79424500464456 /* HTAutoCompleteTextField */,
 				101393CA19D216D700BBB266 /* AppDelegate.h */,
 				101393CB19D216D700BBB266 /* AppDelegate.m */,
 				101393D019D216D700BBB266 /* Main.storyboard */,
@@ -513,6 +517,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		EDDF596A1B79424500464456 /* HTAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				EDDF596B1B7944B000464456 /* HTAutocompleteManager.h */,
+				EDDF596C1B7944B000464456 /* HTAutocompleteManager.m */,
+			);
+			name = HTAutoCompleteTextField;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -734,6 +747,7 @@
 				EDB519971B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m in Sources */,
 				ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
+				EDDF596D1B7944B000464456 /* HTAutocompleteManager.m in Sources */,
 				EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */,
 				ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,

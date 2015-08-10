@@ -10,17 +10,19 @@
 
 #import "FDTreatment.h"
 
+#import <HTAutocompleteTextField.h>
+
 @interface FDTreatmentCollectionViewController : UICollectionViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *addDoseTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *addDoseQuantityTextField;
-@property (weak, nonatomic) IBOutlet UITextField *addDoseUnitTextField;
+@property (weak, nonatomic) IBOutlet HTAutocompleteTextField *addDoseUnitTextField;
 @property (weak, nonatomic) IBOutlet UIButton *addDoseCancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *addDoseDoneButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *editDoseTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *editDoseQuantityTextField;
-@property (weak, nonatomic) IBOutlet UITextField *editDoseUnitTextField;
+@property (weak, nonatomic) IBOutlet HTAutocompleteTextField *editDoseUnitTextField;
 @property (weak, nonatomic) IBOutlet UIButton *editDoseCancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *editDoseDoneButton;
 
