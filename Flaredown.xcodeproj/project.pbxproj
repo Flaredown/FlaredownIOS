@@ -32,6 +32,7 @@
 		85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A141A5215250053D6CC /* ProximaNova-Regular.otf */; };
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
 		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
+		ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03ED651B827EAC00AAD1E5 /* AccountView.xib */; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */; };
@@ -46,6 +47,7 @@
 		ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */; };
 		ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51E1AC09FEE009B74EE /* FDPopup.m */; };
 		ED58E5221AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */; };
+		ED65F16F1B7E7D8300CC0DAB /* FDTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65F16E1B7E7D8300CC0DAB /* FDTextViewController.m */; };
 		ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
@@ -55,6 +57,7 @@
 		EDC7CD161B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */; };
 		EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */; };
 		EDD172C21AC47F4300820C4C /* FDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD172C11AC47F4300820C4C /* FDCondition.m */; };
+		EDD1D5601B87A0E40054D0BC /* EditAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
 		EDDC724E1A083ABF0059815A /* FDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC724D1A083ABF0059815A /* FDUser.m */; };
 		EDDC72511A08441E0059815A /* FDModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDC72501A08441E0059815A /* FDModelManager.m */; };
@@ -131,6 +134,7 @@
 		8BBCCD7F27791C54FC4B47CF /* Pods-Flaredown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flaredown.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flaredown/Pods-Flaredown.release.xcconfig"; sourceTree = "<group>"; };
 		9383875D12CC5B17F0A2D83F /* Pods-FlaredownTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlaredownTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests.release.xcconfig"; sourceTree = "<group>"; };
 		C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlaredownTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED03ED651B827EAC00AAD1E5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		ED58E51E1AC09FEE009B74EE /* FDPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPopup.m; sourceTree = "<group>"; };
 		ED58E5201AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEmbeddedSelectListViewController.h; sourceTree = "<group>"; };
 		ED58E5211AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEmbeddedSelectListViewController.m; sourceTree = "<group>"; };
+		ED65F16D1B7E7D8300CC0DAB /* FDTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTextViewController.h; sourceTree = "<group>"; };
+		ED65F16E1B7E7D8300CC0DAB /* FDTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTextViewController.m; sourceTree = "<group>"; };
 		ED7A171A1AC9F60C009B8D05 /* FDMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeterViewController.h; sourceTree = "<group>"; };
 		ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeterViewController.m; sourceTree = "<group>"; };
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 		EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLocalizationManager.m; sourceTree = "<group>"; };
 		EDD172C01AC47F4300820C4C /* FDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCondition.h; sourceTree = "<group>"; };
 		EDD172C11AC47F4300820C4C /* FDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCondition.m; sourceTree = "<group>"; };
+		EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAccountView.xib; sourceTree = "<group>"; };
 		EDD802A31A804CB900464D24 /* AddTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTreatmentView.xib; sourceTree = "<group>"; };
 		EDDC724C1A083ABF0059815A /* FDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDUser.h; path = src/FDUser.h; sourceTree = "<group>"; };
 		EDDC724D1A083ABF0059815A /* FDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDUser.m; path = src/FDUser.m; sourceTree = "<group>"; };
@@ -400,6 +407,8 @@
 				ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */,
 				EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */,
 				ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */,
+				ED03ED651B827EAC00AAD1E5 /* AccountView.xib */,
+				EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -463,6 +472,8 @@
 				EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */,
 				EDE8B3031B6AEDB500B2DEDD /* FDSettingsCollectionViewController.h */,
 				EDE8B3041B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m */,
+				ED65F16D1B7E7D8300CC0DAB /* FDTextViewController.h */,
+				ED65F16E1B7E7D8300CC0DAB /* FDTextViewController.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -612,11 +623,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */,
 				85378A161A5215250053D6CC /* ProximaNova-Bold.otf in Resources */,
 				ED4BDEB61B191511008DAEA4 /* AddDoseView.xib in Resources */,
 				EDE45C801B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard in Resources */,
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */,
+				EDD1D5601B87A0E40054D0BC /* EditAccountView.xib in Resources */,
 				EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
@@ -746,6 +759,7 @@
 				ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */,
 				EDB519971B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m in Sources */,
 				ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */,
+				ED65F16F1B7E7D8300CC0DAB /* FDTextViewController.m in Sources */,
 				101393C919D216D700BBB266 /* main.m in Sources */,
 				EDDF596D1B7944B000464456 /* HTAutocompleteManager.m in Sources */,
 				EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */,

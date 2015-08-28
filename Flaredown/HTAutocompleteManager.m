@@ -293,6 +293,46 @@ static HTAutocompleteManager *sharedManager;
             
         }
     }
+    else if(textField.autocompleteType == HTAutocompleteTypeCountry)
+    {
+        static dispatch_once_t countryOnceToken;
+        static NSArray *countryAutocompleteArray;
+        dispatch_once(&countryOnceToken, ^
+                      {
+                          countryAutocompleteArray = [[FDLocalizationManager sharedManager] localizedDictionaryValuesForPath:@"location_options"];
+                      });
+        
+        NSString *stringToLookFor;
+        NSArray *componentsString = [prefix componentsSeparatedByString:@","];
+        NSString *prefixLastComponent = [componentsString.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (ignoreCase)
+        {
+            stringToLookFor = [prefixLastComponent lowercaseString];
+        }
+        else
+        {
+            stringToLookFor = prefixLastComponent;
+        }
+        
+        for (NSString *stringFromReference in countryAutocompleteArray)
+        {
+            NSString *stringToCompare;
+            if (ignoreCase)
+            {
+                stringToCompare = [stringFromReference lowercaseString];
+            }
+            else
+            {
+                stringToCompare = stringFromReference;
+            }
+            
+            if ([stringToCompare hasPrefix:stringToLookFor])
+            {
+                return [stringFromReference stringByReplacingCharactersInRange:[stringToCompare rangeOfString:stringToLookFor] withString:@""];
+            }
+            
+        }
+    }
     
     return @"";
 }

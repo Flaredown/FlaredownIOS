@@ -9,6 +9,7 @@ target 'Flaredown' do
   pod 'KTCenterFlowLayout'
   pod 'UICollectionViewLeftAlignedLayout'
   pod 'HTAutocompleteTextField'
+  pod 'M13Checkbox'
 end
 
 target 'FlaredownTests' do

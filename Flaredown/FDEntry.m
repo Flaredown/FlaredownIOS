@@ -35,7 +35,7 @@
         }
         
         for (NSString *catalog in _catalogs) {
-            if(![catalog isEqualToString:@"conditions"]) {
+            if(![catalog isEqualToString:@"conditions"] && [catalog isEqualToString:@"symptoms"]) {
                 NSArray *catalogDefinition = [[dictionary objectForKey:@"catalog_definitions"] objectForKey:catalog];
                 for(int i = 0; i < catalogDefinition.count; i++) {
                     for (NSDictionary *questionDefinition in catalogDefinition[i]) {

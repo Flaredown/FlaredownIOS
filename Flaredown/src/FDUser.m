@@ -22,6 +22,24 @@
         _email = [userDictionary objectForKey:@"email"];
         _authenticationToken = [userDictionary objectForKey:@"authentication_token"];
         
+        NSDictionary *settingsDictionary = [dictionary objectForKey:@"settings"];
+        _birthDateDay = [[settingsDictionary objectForKey:@"dobDay"] integerValue];
+        _birthDateMonth = [[settingsDictionary objectForKey:@"dobMonth"] integerValue];
+        _birthDateYear = [[settingsDictionary objectForKey:@"dobYear"] integerValue];
+        _location = [settingsDictionary objectForKey:@"location"];
+        NSString *sex = [settingsDictionary objectForKey:@"sex"];
+        if([sex isEqualToString:@"Male"]) {
+            _sex = SexMale;
+        } else if([sex isEqualToString:@"Female"]) {
+            _sex = SexFemale;
+        } else if([sex isEqualToString:@"Other"]) {
+            _sex = SexOther;
+        } else if([sex isEqualToString:@"Prefer not to disclose"]) {
+            _sex = SexUndisclosed;
+        } else {
+            _sex = SexNone;
+        }
+        
         _treatments = [[NSMutableArray alloc] init];
         NSArray *treatmentsMaster = [dictionary objectForKey:@"treatments"];
         NSArray *treatmentIds = [userDictionary objectForKey:@"treatment_ids"];
@@ -59,6 +77,18 @@
 
 - (NSDictionary *)dictionaryCopy
 {
+    NSString *sex;
+    if(_sex == SexMale) {
+        sex = @"Male";
+    } else if(_sex == SexFemale) {
+        sex = @"Female";
+    } else if(_sex == SexOther) {
+        sex = @"Other";
+    } else if(_sex == SexUndisclosed) {
+        sex = @"Prefer not to say";
+    } else {
+        sex = @"";
+    }
     NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
     for (FDTreatment *treatment in _treatments) {
         [mutableTreatments addObject:[treatment dictionaryCopy]];
@@ -79,7 +109,14 @@
                      },
              @"treatments":mutableTreatments,
              @"symptoms":mutableSymptoms,
-             @"conditions":mutableConditions
+             @"conditions":mutableConditions,
+             @"settings":@{
+                         @"location":_location,
+                         @"sex":sex,
+                         @"dobDay":[NSNumber numberWithInteger:_birthDateDay],
+                         @"dobMonth":[NSNumber numberWithInteger:_birthDateMonth],
+                         @"dobYear":[NSNumber numberWithInteger:_birthDateYear]
+                         }
              };
 }
 

@@ -28,9 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(keyboardOnScreen:) name:UIKeyboardWillShowNotification object:nil];
-    
     [_emailTextField setDelegate:self];
     [_passwordTextField setDelegate:self];
     
@@ -58,6 +55,16 @@
     self.emailTextField.text = @"test@flaredown.com";
     self.passwordTextField.text = @"testing123";
 #endif
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardOnScreen:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)keyboardOnScreen:(NSNotification *)notification

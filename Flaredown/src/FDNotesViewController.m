@@ -50,6 +50,15 @@
     self.textView.returnKeyType = UIReturnKeyDone;
     self.textView.delegate = self;
 
+    self.textView.text = [[[FDModelManager sharedManager] entry] notes];
+
+#if 0
+    self.textView.text = @"#Lorem ipsum dolor #sit er elit #la!met, consec#tetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+#endif
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     //Set up keyboard listeners
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -59,11 +68,13 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    self.textView.text = [[[FDModelManager sharedManager] entry] notes];
+}
 
-#if 0
-    self.textView.text = @"#Lorem ipsum dolor #sit er elit #la!met, consec#tetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
-#endif
+- (void)viewWillDisappear:(BOOL)animated
+{
+    //Set up keyboard listeners
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 - (IBAction)cancelButton:(id)sender

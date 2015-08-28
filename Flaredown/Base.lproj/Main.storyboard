@@ -1731,6 +1731,9 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="editAccountButton:" destination="nys-hB-PtI" eventType="touchUpInside" id="9XW-WC-NLG"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuF-Jt-Bha">
                                                     <rect key="frame" x="35" y="128" width="498" height="30"/>
@@ -1807,6 +1810,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="568" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRe-X4-KXk">
+                                            <rect key="frame" x="230" y="68" width="108" height="30"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
+                                            <state key="normal" title="Privacy Policy">
+                                                <color key="titleColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="0so-4o-uNX" kind="presentation" identifier="privacyPolicy" id="GOm-9p-EYG"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3R-dg-5Hb">
                                             <rect key="frame" x="198" y="23" width="172" height="30"/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
@@ -1815,16 +1829,8 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="0so-4o-uNX" kind="presentation" id="eW4-OH-PeW"/>
+                                                <segue destination="0so-4o-uNX" kind="presentation" identifier="termsAndConditions" id="5YX-60-cjN"/>
                                             </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRe-X4-KXk">
-                                            <rect key="frame" x="230" y="68" width="108" height="30"/>
-                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                                            <state key="normal" title="Privacy Policy">
-                                                <color key="titleColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1909,10 +1915,10 @@
             </objects>
             <point key="canvasLocation" x="805" y="2604"/>
         </scene>
-        <!--View Controller-->
+        <!--Text View Controller-->
         <scene sceneID="IUI-mI-mdN">
             <objects>
-                <viewController id="0so-4o-uNX" sceneMemberID="viewController">
+                <viewController id="0so-4o-uNX" customClass="FDTextViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="inF-DC-ciU"/>
                         <viewControllerLayoutGuide type="bottom" id="ung-vE-kKv"/>
@@ -1925,31 +1931,32 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-VS-UHO">
-                                        <rect key="frame" x="527" y="21" width="43" height="18"/>
+                                        <rect key="frame" x="527" y="26" width="43" height="18"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                         <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNt-R5-KMz">
-                                        <rect key="frame" x="512" y="6" width="73" height="48"/>
+                                        <rect key="frame" x="512" y="11" width="73" height="48"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="doneButton:" destination="0so-4o-uNX" eventType="touchUpInside" id="AeI-Dg-GI6"/>
                                             <action selector="doneButton:" destination="Uur-gf-zav" eventType="touchUpInside" id="Crh-Rm-3Vz"/>
                                             <action selector="doneButton:" destination="nys-hB-PtI" eventType="touchUpInside" id="snC-j5-5Af"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agreement" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fi-hi-pau">
-                                        <rect key="frame" x="256" y="21" width="88.5" height="18"/>
+                                        <rect key="frame" x="256" y="26" width="88.5" height="18"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                         <color key="textColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.93333333330000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="5fi-hi-pau" secondAttribute="centerY" id="1X1-S8-hyo"/>
+                                    <constraint firstAttribute="centerY" secondItem="5fi-hi-pau" secondAttribute="centerY" constant="-5" id="1X1-S8-hyo"/>
                                     <constraint firstItem="fRo-VS-UHO" firstAttribute="bottom" secondItem="5fi-hi-pau" secondAttribute="bottom" id="616-RB-gIF"/>
                                     <constraint firstAttribute="trailing" secondItem="fRo-VS-UHO" secondAttribute="trailing" constant="30" id="DNa-II-YTZ"/>
                                     <constraint firstAttribute="trailing" secondItem="mNt-R5-KMz" secondAttribute="trailing" constant="15" id="G2u-MJ-MmE"/>
@@ -2007,6 +2014,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="deI-AX-B5g" id="ni5-F5-pTU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLP-lv-0By" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3081,7 +3091,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twy-Pq-aft" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1429" y="1228"/>
+            <point key="canvasLocation" x="1429" y="1215"/>
         </scene>
         <!--Treatment Collection View Controller-->
         <scene sceneID="irP-x4-rdh">
@@ -3660,8 +3670,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j9h-cQ-iZY"/>
         <segue reference="1ic-5n-SwM"/>
+        <segue reference="8wA-Kt-Eo6"/>
         <segue reference="u8n-9I-Erz"/>
+        <segue reference="GOm-9p-EYG"/>
     </inferredMetricsTieBreakers>
 </document>

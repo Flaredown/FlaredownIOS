@@ -12,6 +12,7 @@
 typedef enum {
     HTAutocompleteTypeEmail, // Default
     HTAutocompleteTypeTreatmentUnits,
+    HTAutocompleteTypeCountry
 } HTAutocompleteType;
 
 @interface HTAutocompleteManager : NSObject <HTAutocompleteDataSource>

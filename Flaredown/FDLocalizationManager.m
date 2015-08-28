@@ -51,6 +51,20 @@
     return [localizedStrings copy];
 }
 
+- (NSArray *)localizedDictionaryValuesForPath:(NSString *)path
+{
+    id obj = [self localizationForPath:path];
+    if(!obj)
+        return nil;
+    NSDictionary *dict = (NSDictionary *)obj;
+    
+    NSMutableArray *localizedStrings = [[NSMutableArray alloc] init];
+    for(NSString *str in [dict allValues]) {
+        [localizedStrings addObject:[self regexedLocalizationString:str]];
+    }
+    return [localizedStrings copy];
+}
+
 - (NSString *)regexedLocalizationString:(NSString *)str
 {
     //regex to replace "{{field}}" or {{field}} with %@

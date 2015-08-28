@@ -28,6 +28,7 @@ PODS:
   - FBSnapshotTestCase (1.6)
   - HTAutocompleteTextField (1.3.2)
   - KTCenterFlowLayout (0.0.2)
+  - M13Checkbox (1.1.2)
   - MBProgressHUD (0.9.1)
   - MJPopupViewController (0.4)
   - OCMock (2.2.4)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - FBSnapshotTestCase (~> 1.5)
   - HTAutocompleteTextField
   - KTCenterFlowLayout
+  - M13Checkbox
   - MBProgressHUD (~> 0.9)
   - MJPopupViewController (~> 0.4)
   - OCMock (~> 2.2)
@@ -56,6 +58,7 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   HTAutocompleteTextField: ce809f04875e843e20f214ab973bb496ba7a93b1
   KTCenterFlowLayout: add70553644c401a6e4c51acf4fdbd5a91a1bae0
+  M13Checkbox: 0c0bb08dcd144c4ea33f883b68270f3f56908ea2
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
   OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2

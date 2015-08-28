@@ -18,6 +18,7 @@
 
 - (NSString *)localizedStringForPath:(NSString *)path;
 - (NSArray *)localizedArrayForPath:(NSString *)path;
+- (NSArray *)localizedDictionaryValuesForPath:(NSString *)path;
 - (void)setLocalizationDictionaryForCurrentLocale:(NSDictionary *)content;
 - (void)clearLocalizationDictionaryForCurrentLocale:(NSDictionary *)content;
 

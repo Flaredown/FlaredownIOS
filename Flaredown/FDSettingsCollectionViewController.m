@@ -10,15 +10,21 @@
 
 #import "FDTreatmentReminderTableViewController.h"
 #import "FDViewController.h"
+#import "FDTextViewController.h"
 
 #import "FDPopupManager.h"
 #import "FDModelManager.h"
+#import "FDNetworkManager.h"
 #import "FDNotificationManager.h"
 #import "FDLocalizationManager.h"
 #import "FDStyle.h"
 
+#import "HTAutocompleteManager.h"
+
 #define CARD_HEIGHT 180
 #define CARD_WIDTH (self.collectionView.frame.size.width - 20)
+
+#define AGREEMENTS_HEIGHT 90
 
 #define TREATMENT_REMINDER_HEIGHT 30
 
@@ -30,6 +36,10 @@
 
 #define TREATMENT_POPUP_WIDTH 0.9
 #define TREATMENT_POPUP_HEIGHT 0.9
+
+#define ACCOUNT_POPUP_WIDTH 0.9
+#define ACCOUNT_POPUP_HEIGHT 0.8
+
 
 @interface FDSettingsCollectionViewController ()
 
@@ -44,6 +54,9 @@ static NSString * const AccountCellIdentifier = @"account";
 static NSString * const AgreementsCellIdentifier = @"agreements";
 
 static NSString * const NavigationHeaderIdentifier = @"navigation";
+
+static NSString * const TermsAndConditionsSegueIdentifier = @"termsAndConditions";
+static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -132,6 +145,147 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
     [popupView addSubview:viewController.view];
     viewController.view.frame = CGRectMake(0, 0, popupView.frame.size.width, popupView.frame.size.height);
     [[FDPopupManager sharedManager] addPopupView:popupView withViewController:viewController];
+}
+
+- (IBAction)accountButton:(id)sender
+{
+    UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"AccountView" owner:self options:nil] objectAtIndex:0];
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT/2, self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH, self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT)];
+    popupView.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:popupView];
+    [[FDPopupManager sharedManager] addPopupView:popupView withViewController:self];
+}
+
+- (IBAction)editAccountButton:(id)sender
+{
+    UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"EditAccountView" owner:self options:nil] objectAtIndex:0];
+    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT/2, self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH, self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT)];
+    popupView.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:popupView];
+    
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    
+    //Setup views
+    [_accountCountryTextField setText:[user location]];
+    _accountCountryTextField.autocompleteDataSource = [HTAutocompleteManager sharedManager];
+    _accountCountryTextField.autocompleteType = HTAutocompleteTypeCountry;
+    
+    [_accountBirthDayTextField setText:[NSString stringWithFormat:@"%i", [user birthDateDay]]];
+    [_accountBirthMonthTextField setText:[NSString stringWithFormat:@"%i", [user birthDateMonth]]];
+    [_accountBirthYearTextField setText:[NSString stringWithFormat:@"%i", [user birthDateYear]]];
+    
+    UIToolbar *numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneNumberPad)];
+    [doneButtonItem setTintColor:[FDStyle blueColor]];
+    numberToolbar.items = @[[[UIBarButtonItem alloc]initWithBarButtonSystemItem:
+                             UIBarButtonSystemItemFlexibleSpace target:nil action:nil], doneButtonItem];
+    [numberToolbar sizeToFit];
+    _accountBirthDayTextField.inputAccessoryView = numberToolbar;
+    _accountBirthMonthTextField.inputAccessoryView = numberToolbar;
+    _accountBirthYearTextField.inputAccessoryView = numberToolbar;
+    
+    [self setupCheckboxAppearance:_accountMaleCheckbox withText:@"Male"];
+    [self setupCheckboxAppearance:_accountFemaleCheckbox withText:@"Female"];
+    [self setupCheckboxAppearance:_accountOtherCheckbox withText:@"Other"];
+    [self setupCheckboxAppearance:_accountUndisclosedCheckbox withText:@"Prefer not to say"];
+    if([user sex] == SexMale) {
+        [_accountMaleCheckbox setCheckState:M13CheckboxStateChecked];
+    } else if([user sex] == SexFemale) {
+        [_accountFemaleCheckbox setCheckState:M13CheckboxStateChecked];
+    } else if([user sex] == SexOther) {
+        [_accountOtherCheckbox setCheckState:M13CheckboxStateChecked];
+    } else if([user sex] == SexUndisclosed) {
+        [_accountUndisclosedCheckbox setCheckState:M13CheckboxStateChecked];
+    }
+    
+    [[FDPopupManager sharedManager] addPopupView:popupView withViewController:self];
+}
+
+- (void)doneNumberPad
+{
+    [_accountBirthDayTextField resignFirstResponder];
+    [_accountBirthMonthTextField resignFirstResponder];
+    [_accountBirthYearTextField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)maleGenderCheckbox:(M13Checkbox *)sender
+{
+    if(sender.checkState == M13CheckboxStateChecked) {
+        [_accountFemaleCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountOtherCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountUndisclosedCheckbox setCheckState:M13CheckboxStateUnchecked];
+    }
+}
+
+- (IBAction)femaleGenderCheckbox:(M13Checkbox *)sender
+{
+    if(sender.checkState == M13CheckboxStateChecked) {
+        [_accountMaleCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountOtherCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountUndisclosedCheckbox setCheckState:M13CheckboxStateUnchecked];
+    }
+}
+
+- (IBAction)otherGenderCheckbox:(M13Checkbox *)sender
+{
+    if(sender.checkState == M13CheckboxStateChecked) {
+        [_accountMaleCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountFemaleCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountUndisclosedCheckbox setCheckState:M13CheckboxStateUnchecked];
+    }
+}
+
+- (IBAction)undisclosedGenderCheckbox:(M13Checkbox *)sender
+{
+    if(sender.checkState == M13CheckboxStateChecked) {
+        [_accountFemaleCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountOtherCheckbox setCheckState:M13CheckboxStateUnchecked];
+        [_accountMaleCheckbox setCheckState:M13CheckboxStateUnchecked];
+    }
+}
+
+- (IBAction)saveAccountSettings:(id)sender
+{
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    [user setLocation:[_accountCountryTextField text]];
+    [user setBirthDateDay:[[_accountBirthDayTextField text] integerValue]];
+    [user setBirthDateMonth:[[_accountBirthMonthTextField text] integerValue]];
+    [user setBirthDateYear:[[_accountBirthYearTextField text] integerValue]];
+    if(_accountMaleCheckbox.checkState == M13CheckboxStateChecked) {
+        [user setSex:SexMale];
+    } else if(_accountFemaleCheckbox.checkState == M13CheckboxStateChecked) {
+        [user setSex:SexFemale];
+    } else if(_accountOtherCheckbox.checkState == M13CheckboxStateChecked) {
+        [user setSex:SexOther];
+    } else if(_accountUndisclosedCheckbox.checkState == M13CheckboxStateChecked) {
+        [user setSex:SexUndisclosed];
+    } else {
+        [user setSex:SexNone];
+    }
+    [[FDNetworkManager sharedManager] updateUserWithEmail:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+//        if(success) {
+//            
+//        }
+    }];
+    [[FDPopupManager sharedManager] removeTopPopup];
+}
+
+- (void)setupCheckboxAppearance:(M13Checkbox *)checkbox withText:(NSString *)text
+{
+    UIFont *checkboxFont = [UIFont fontWithName:@"Proxima Nova" size:16.0f];
+    
+    [checkbox setCheckAlignment:M13CheckboxAlignmentLeft];
+    [checkbox setCheckColor:[FDStyle blueColor]];
+    [checkbox setStrokeColor:[FDStyle blackColor]];
+    [checkbox setStrokeWidth:0.3];
+    [checkbox.titleLabel setFont:checkboxFont];
+    [checkbox.titleLabel setText:text];
 }
 
 - (IBAction)logoutButton:(id)sender
@@ -253,6 +407,8 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
         return CGSizeMake(CARD_WIDTH, CARD_HEIGHT);
     } else if(section == 1) {
         return CGSizeMake(CARD_WIDTH, TREATMENT_REMINDER_HEIGHT);
+    } else if(section == 3) {
+        return CGSizeMake(CARD_WIDTH, AGREEMENTS_HEIGHT);
     }
     
     return CGSizeZero;
@@ -270,6 +426,17 @@ static NSString * const NavigationHeaderIdentifier = @"navigation";
         }
     }
     return nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:TermsAndConditionsSegueIdentifier]) {
+        FDTextViewController *dvc = (FDTextViewController *)segue.destinationViewController;
+        [dvc setText:FDLocalizedString(@"terms_of_service")];
+    } else if([segue.identifier isEqualToString:PrivacyPolicySegueIdentifier]) {
+        FDTextViewController *dvc = (FDTextViewController *)segue.destinationViewController;
+        [dvc setText:FDLocalizedString(@"privacy_policy")];
+    }
 }
 
 @end
