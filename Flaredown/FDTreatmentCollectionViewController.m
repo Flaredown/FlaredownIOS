@@ -12,6 +12,7 @@
 #import "FDPopupManager.h"
 #import "FDModelManager.h"
 #import "FDLocalizationManager.h"
+#import "FDPreviousDoseDecorationViewCell.h"
 
 #import "HTAutocompleteManager.h"
 
@@ -28,6 +29,8 @@ static NSString * const AddDoseID = @"addDose";
 static NSString * const DoseID = @"dose";
 static NSString * const LatestDoseID = @"latestDose";
 
+static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -35,6 +38,7 @@ static NSString * const LatestDoseID = @"latestDose";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Do any additional setup after loading the view.
+    [self.collectionViewLayout registerClass:[FDPreviousDoseDecorationViewCell class] forDecorationViewOfKind:PreviousDoseDecorationID];
     
     self.collectionView.contentInset = UIEdgeInsetsMake(0, CONTENT_INSET, 0, CONTENT_INSET);
 }
@@ -215,6 +219,10 @@ static NSString * const LatestDoseID = @"latestDose";
         
         if(row < doseStartRow) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:LatestDoseID forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
         } else if(row < lastRow) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:DoseID forIndexPath:indexPath];
             
@@ -298,6 +306,21 @@ static NSString * const LatestDoseID = @"latestDose";
     
     return CGSizeZero;
 }
+
+//- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+//{
+//    NSMutableArray *allAttributes = [[NSMutableArray alloc] initWithCapacity:4];
+//    
+//    [allAttributes addObject:[self layoutAttributesForDecorationViewOfKind:@"FloorPlan" atIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]];
+//    
+//    for (NSInteger i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++)
+//    {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+//        UICollectionViewLayoutAttributes *layoutAttributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+//        [allAttributes addObject:layoutAttributes];
+//    }
+//    return allAttributes;
+//}
 
 - (UICollectionViewCell *)parentCellForView:(id)theView
 {
