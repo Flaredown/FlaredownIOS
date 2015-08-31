@@ -32,6 +32,7 @@ typedef enum : NSUInteger {
 @property Sex sex;
 
 @property NSMutableArray *treatments;
+@property NSMutableDictionary *previousDoses;
 @property NSMutableArray *symptoms;
 @property NSMutableArray *conditions;
 

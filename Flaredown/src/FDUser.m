@@ -22,7 +22,7 @@
         _email = [userDictionary objectForKey:@"email"];
         _authenticationToken = [userDictionary objectForKey:@"authentication_token"];
         
-        NSDictionary *settingsDictionary = [dictionary objectForKey:@"settings"];
+        NSDictionary *settingsDictionary = [userDictionary objectForKey:@"settings"];
         _birthDateDay = [[settingsDictionary objectForKey:@"dobDay"] integerValue];
         _birthDateMonth = [[settingsDictionary objectForKey:@"dobMonth"] integerValue];
         _birthDateYear = [[settingsDictionary objectForKey:@"dobYear"] integerValue];
@@ -38,6 +38,27 @@
             _sex = SexUndisclosed;
         } else {
             _sex = SexNone;
+        }
+        
+        _previousDoses = [[NSMutableDictionary alloc] init];
+        NSArray *settingsKeys = [settingsDictionary allKeys];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF BEGINSWITH %@)",@"treatment_"];
+        NSArray *treatmentKeys = [settingsKeys filteredArrayUsingPredicate:predicate];
+        for(NSString *key in treatmentKeys) {
+            NSString *treatmentPair = [key stringByReplacingOccurrencesOfString:@"treatment_" withString:@""];
+            NSArray *components = [treatmentPair componentsSeparatedByString:@"_"];
+            if([components[1] isEqualToString:@"unit"]) {//prevent duplicate doses
+                NSString *treatmentName = components[0];
+                NSString *treatmentUnit = [settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_unit", treatmentName]];
+                float quantity = [[settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_quantity", treatmentName]] floatValue];
+                FDDose *dose = [[FDDose alloc] init];
+                [dose setQuantity:quantity];
+                [dose setUnit:treatmentUnit];
+                if(![_previousDoses objectForKey:treatmentName]) {
+                    [_previousDoses setObject:[[NSMutableArray alloc] init] forKey:treatmentName];
+                }
+                [[_previousDoses objectForKey:treatmentName] addObject:dose];
+            }
         }
         
         _treatments = [[NSMutableArray alloc] init];
@@ -101,22 +122,32 @@
     for (FDCondition *condition in _conditions) {
         [mutableConditions addObject:[condition dictionaryCopy]];
     }
+    NSMutableDictionary *settingsDictionary = [@{
+                                                @"location":_location,
+                                                @"sex":sex,
+                                                @"dobDay":[NSNumber numberWithInteger:_birthDateDay],
+                                                @"dobMonth":[NSNumber numberWithInteger:_birthDateMonth],
+                                                @"dobYear":[NSNumber numberWithInteger:_birthDateYear]
+                                                } mutableCopy];
+    for(NSString *treatmentName in _previousDoses) {
+        for(FDDose *dose in [_previousDoses objectForKey:treatmentName]) {
+            NSString *treatmentUnitKey = [NSString stringWithFormat:@"treatment_%@_unit", treatmentName];
+            NSString *treatmentQuantityKey = [NSString stringWithFormat:@"treatment_%@_quantity", treatmentName];
+            [settingsDictionary setObject:[dose unit] forKey:treatmentUnitKey];
+            [settingsDictionary setObject:@([dose quantity]) forKey:treatmentQuantityKey];
+        }
+    }
+
     return @{
              @"user":@{
                      @"id":[NSNumber numberWithInteger:_userId],
                      @"email":_email,
-                     @"authentication_token":_authenticationToken
+                     @"authentication_token":_authenticationToken,
+                     @"settings":settingsDictionary
                      },
              @"treatments":mutableTreatments,
              @"symptoms":mutableSymptoms,
-             @"conditions":mutableConditions,
-             @"settings":@{
-                         @"location":_location,
-                         @"sex":sex,
-                         @"dobDay":[NSNumber numberWithInteger:_birthDateDay],
-                         @"dobMonth":[NSNumber numberWithInteger:_birthDateMonth],
-                         @"dobYear":[NSNumber numberWithInteger:_birthDateYear]
-                         }
+             @"conditions":mutableConditions
              };
 }
 
