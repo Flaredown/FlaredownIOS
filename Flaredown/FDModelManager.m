@@ -9,6 +9,7 @@
 #import "FDModelManager.h"
 
 #import "FDStyle.h"
+#import "FDAnalyticsManager.h"
 
 @implementation FDModelManager
 
@@ -42,12 +43,12 @@ static NSString *treatmentReminderDaysLocation = @"treatmentReminderDays";
 
 - (void)setEntry:(FDEntry *)entry forDate:(NSDate *)date
 {
-    [_entries setObject:entry forKey:[FDStyle dateStringForDate:date]];
+    [_entries setObject:entry forKey:[FDStyle dateStringForDate:date detailed:NO]];
 }
 
 - (void)setSelectedDate:(NSDate *)date
 {
-    _entry = [_entries objectForKey:[FDStyle dateStringForDate:date]];
+    _entry = [_entries objectForKey:[FDStyle dateStringForDate:date detailed:NO]];
     _selectedDate = date;
 }
 
@@ -249,6 +250,7 @@ static NSString *treatmentReminderDaysLocation = @"treatmentReminderDays";
     _entry = nil;
     _userObject = nil;
     
+    [[FDAnalyticsManager sharedManager] clearUser];
     [self clearSession];
 }
 

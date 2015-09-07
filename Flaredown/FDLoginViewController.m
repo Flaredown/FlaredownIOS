@@ -125,6 +125,7 @@
             
             if(success) {
                 [[FDModelManager sharedManager] setUserObject:[[FDUser alloc] initWithDictionary:(NSDictionary *)responseObject]];
+                
                 NSLog(@"Success!");
                 
                 [self dismissViewControllerAnimated:YES completion:nil];

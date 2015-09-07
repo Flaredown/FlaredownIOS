@@ -11,6 +11,8 @@
 #import "FDResponse.h"
 #import "FDTreatment.h"
 
+#import "FDStyle.h"
+
 @implementation FDEntry
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
@@ -77,8 +79,8 @@
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-        _createdAt = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
-        _updatedAt = [dateFormatter dateFromString:[dictionary objectForKey:@"updated_at"]];
+        _createdAt = [FDStyle dateFromString:[dictionary objectForKey:@"created_at"] detailed:YES];
+        _updatedAt = [FDStyle dateFromString:[dictionary objectForKey:@"updated_at"] detailed:YES];
     }
     return self;
 }

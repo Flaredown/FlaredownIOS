@@ -127,14 +127,23 @@
     return formatter;
 }
 
-+ (NSString *)dateStringForDate:(NSDate *)date
++ (NSDateFormatter *)detailedDateFormatter
 {
-    return [[self dateFormatter] stringFromDate:date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    return dateFormatter;
 }
 
-+ (NSDate *)dateFromString:(NSString *)date
++ (NSString *)dateStringForDate:(NSDate *)date detailed:(BOOL)detailed
 {
-    return [[self dateFormatter] dateFromString:date];
+    NSDateFormatter *formatter = detailed ? [self detailedDateFormatter] : [self dateFormatter];
+    return [formatter stringFromDate:date];
+}
+
++ (NSDate *)dateFromString:(NSString *)date detailed:(BOOL)detailed
+{
+    NSDateFormatter *formatter = detailed ? [self detailedDateFormatter] : [self dateFormatter];
+    return [formatter dateFromString:date];
 }
 
 @end

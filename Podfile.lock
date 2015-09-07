@@ -27,6 +27,7 @@ PODS:
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
   - HTAutocompleteTextField (1.3.2)
+  - Intercom (2.3.3)
   - KTCenterFlowLayout (0.0.2)
   - M13Checkbox (1.1.2)
   - MBProgressHUD (0.9.1)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Expecta+Snapshots (~> 1.3)
   - FBSnapshotTestCase (~> 1.5)
   - HTAutocompleteTextField
+  - Intercom
   - KTCenterFlowLayout
   - M13Checkbox
   - MBProgressHUD (~> 0.9)
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   HTAutocompleteTextField: ce809f04875e843e20f214ab973bb496ba7a93b1
+  Intercom: cca76c492f181a8f8261bc0ec98d03ae3102270d
   KTCenterFlowLayout: add70553644c401a6e4c51acf4fdbd5a91a1bae0
   M13Checkbox: 0c0bb08dcd144c4ea33f883b68270f3f56908ea2
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad

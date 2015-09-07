@@ -87,7 +87,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [[[FDModelManager sharedManager] entry] setNotes:self.textView.text];
     
-    NSString *dateString = [FDStyle dateStringForDate:[[FDModelManager sharedManager] selectedDate]];
+    NSString *dateString = [FDStyle dateStringForDate:[[FDModelManager sharedManager] selectedDate] detailed:NO];
     NSDictionary *entryDictionary = [[[FDModelManager sharedManager] entry] dictionaryCopy];
     FDUser *user = [[FDModelManager sharedManager] userObject];
     [[FDNetworkManager sharedManager] putEntry:entryDictionary date:dateString email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {

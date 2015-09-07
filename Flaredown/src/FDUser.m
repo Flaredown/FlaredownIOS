@@ -7,9 +7,13 @@
 //
 
 #import "FDUser.h"
+
 #import "FDTreatment.h"
 #import "FDSymptom.h"
 #import "FDCondition.h"
+
+#import "FDAnalyticsManager.h"
+#import "FDStyle.h"
 
 @implementation FDUser
 
@@ -39,6 +43,9 @@
         } else {
             _sex = SexNone;
         }
+        
+        _onboarded = [[settingsDictionary objectForKey:@"onboarded"] boolValue];
+        _createdAt = [FDStyle dateFromString:[userDictionary objectForKey:@"created_at"] detailed:YES];
         
         _previousDoses = [[NSMutableDictionary alloc] init];
         NSArray *settingsKeys = [settingsDictionary allKeys];
@@ -92,11 +99,12 @@
                     [_conditions addObject:[[FDCondition alloc] initWithDictionary:condition]];
             }
         }
+        [[FDAnalyticsManager sharedManager] registerUser:self];
     }
     return self;
 }
 
-- (NSDictionary *)dictionaryCopy
+- (NSString *)sexString
 {
     NSString *sex;
     if(_sex == SexMale) {
@@ -110,6 +118,22 @@
     } else {
         sex = @"";
     }
+    return sex;
+}
+
+- (NSDate *)birthdayDate
+{
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setDay:_birthDateDay];
+    [components setMonth:_birthDateMonth];
+    [components setYear:_birthDateYear];
+    NSDate *date = [components date];
+    return date;
+}
+
+- (NSDictionary *)dictionaryCopy
+{
+    NSString *sex = [self sexString];
     NSMutableArray *mutableTreatments = [[NSMutableArray alloc] init];
     for (FDTreatment *treatment in _treatments) {
         [mutableTreatments addObject:[treatment dictionaryCopy]];
@@ -127,7 +151,8 @@
                                                 @"sex":sex,
                                                 @"dobDay":[NSNumber numberWithInteger:_birthDateDay],
                                                 @"dobMonth":[NSNumber numberWithInteger:_birthDateMonth],
-                                                @"dobYear":[NSNumber numberWithInteger:_birthDateYear]
+                                                @"dobYear":[NSNumber numberWithInteger:_birthDateYear],
+                                                @"onboarded":@(_onboarded)
                                                 } mutableCopy];
     for(NSString *treatmentName in _previousDoses) {
         for(FDDose *dose in [_previousDoses objectForKey:treatmentName]) {
@@ -143,6 +168,7 @@
                      @"id":[NSNumber numberWithInteger:_userId],
                      @"email":_email,
                      @"authentication_token":_authenticationToken,
+                     @"created_at":[FDStyle dateStringForDate:_createdAt detailed:YES],
                      @"settings":settingsDictionary
                      },
              @"treatments":mutableTreatments,

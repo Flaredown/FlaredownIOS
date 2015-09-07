@@ -67,6 +67,7 @@
 		EDDF596D1B7944B000464456 /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDF596C1B7944B000464456 /* HTAutocompleteManager.m */; };
 		EDE45C801B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */; };
 		EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */; };
+		EDE52E0E1B9A4894002FE812 /* FDAnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE52E0D1B9A4894002FE812 /* FDAnalyticsManager.m */; };
 		EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */; };
 		EDE8B3051B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE8B3041B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m */; };
 		EDE98DEC1A9273ED0074F189 /* FDSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE98DEB1A9273ED0074F189 /* FDSearchTableViewController.m */; };
@@ -197,6 +198,8 @@
 		EDE45C7F1B41DA8F00C3A31F /* TreatmentReminderPopup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TreatmentReminderPopup.storyboard; sourceTree = "<group>"; };
 		EDE45C811B41DE9500C3A31F /* FDTreatmentReminderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatmentReminderTableViewController.h; sourceTree = "<group>"; };
 		EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatmentReminderTableViewController.m; sourceTree = "<group>"; };
+		EDE52E0C1B9A4894002FE812 /* FDAnalyticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAnalyticsManager.h; sourceTree = "<group>"; };
+		EDE52E0D1B9A4894002FE812 /* FDAnalyticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAnalyticsManager.m; sourceTree = "<group>"; };
 		EDE5B2681B2EC18100F12905 /* FDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSettingsViewController.h; sourceTree = "<group>"; };
 		EDE5B2691B2EC18100F12905 /* FDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSettingsViewController.m; sourceTree = "<group>"; };
 		EDE8B3031B6AEDB500B2DEDD /* FDSettingsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSettingsCollectionViewController.h; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */,
 				ED4F91A31B4AFFA90013D3AB /* FDNotificationManager.h */,
 				ED4F91A41B4AFFA90013D3AB /* FDNotificationManager.m */,
+				EDE52E0C1B9A4894002FE812 /* FDAnalyticsManager.h */,
+				EDE52E0D1B9A4894002FE812 /* FDAnalyticsManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -759,6 +764,7 @@
 				ED4BDEB11B168013008DAEA4 /* FDTreatmentCollectionViewController.m in Sources */,
 				ED4F91A51B4AFFA90013D3AB /* FDNotificationManager.m in Sources */,
 				42F309361AB4694F0046E900 /* FDHashtagHighlightTextStorage.m in Sources */,
+				EDE52E0E1B9A4894002FE812 /* FDAnalyticsManager.m in Sources */,
 				EDE45C831B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m in Sources */,
 				101CA09719DE3D6A00173AAF /* FDNotesViewController.m in Sources */,
 				ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */,

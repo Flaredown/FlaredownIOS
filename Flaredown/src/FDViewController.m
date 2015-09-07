@@ -336,13 +336,13 @@
     FDModelManager *modelManager = [FDModelManager sharedManager];
     
     FDUser *user = [modelManager userObject];
-    NSString *dateString = [FDStyle dateStringForDate:date];
+    NSString *dateString = [FDStyle dateStringForDate:date detailed:NO];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if(success) {
-            FDEntry *entry = [[modelManager entries] objectForKey:[FDStyle dateStringForDate:date]];
+            FDEntry *entry = [[modelManager entries] objectForKey:[FDStyle dateStringForDate:date detailed:NO]];
             FDEntry *newEntry = [[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]];
             if(!entry || [[entry updatedAt] compare:[newEntry updatedAt]] == NSOrderedAscending) {
                 [modelManager setEntry:newEntry forDate:date];

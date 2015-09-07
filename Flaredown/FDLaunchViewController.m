@@ -48,7 +48,7 @@
     
     if([[FDModelManager sharedManager] entry]) {
         // Convert string to date object
-        NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date]];
+        NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date] detailed:NO];
         NSDate *now = [NSDate date];
         if([now compare:date] == NSOrderedDescending) {
             [[FDModelManager sharedManager] entry];

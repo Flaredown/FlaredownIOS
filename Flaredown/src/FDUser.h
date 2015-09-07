@@ -31,12 +31,17 @@ typedef enum : NSUInteger {
 @property NSString *location;
 @property Sex sex;
 
+@property BOOL onboarded;
+@property NSDate *createdAt;
+
 @property NSMutableArray *treatments;
 @property NSMutableDictionary *previousDoses;
 @property NSMutableArray *symptoms;
 @property NSMutableArray *conditions;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)sexString;
+- (NSDate *)birthdayDate;
 - (NSDictionary *)dictionaryCopy;
 
 @end
