@@ -16,6 +16,7 @@
 
 + (id)sharedManager;
 - (void)loginUserWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(bool success, id response))completionBlock;
+- (void)getUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
 //- (void)updateUserWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(bool success, id response))completionBlock;
 - (void)updateUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken settings:(NSDictionary *)userSettings completion:(void (^)(bool success, id response))completionBlock;
 //- (void)getEntryFromDate:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;

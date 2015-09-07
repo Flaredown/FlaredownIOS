@@ -52,6 +52,23 @@ static NSString *api = @"/v1";
     }];
 }
 
+- (void)getUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/me", self.baseUrl];
+    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
+    
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completionBlock(true, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        completionBlock(false, nil);
+    }];
+
+}
+
 - (void)updateUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken settings:(NSDictionary *)userSettings completion:(void (^)(bool success, id response))completionBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

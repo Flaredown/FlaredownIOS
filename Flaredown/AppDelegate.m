@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+
 #import "FDModelManager.h"
+#import "FDAnalyticsManager.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +27,8 @@
 //    pageControl.backgroundColor = [UIColor whiteColor];
     
     [[FDModelManager sharedManager] restoreSession];
+    
+    [[FDAnalyticsManager sharedManager] initAnalytics];
     
     return YES;
 }

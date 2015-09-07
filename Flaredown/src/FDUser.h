@@ -33,6 +33,7 @@ typedef enum : NSUInteger {
 
 @property BOOL onboarded;
 @property NSDate *createdAt;
+@property NSDate *updatedAt;
 
 @property NSMutableArray *treatments;
 @property NSMutableDictionary *previousDoses;

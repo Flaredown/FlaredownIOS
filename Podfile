@@ -11,6 +11,7 @@ target 'Flaredown' do
   pod 'HTAutocompleteTextField'
   pod 'M13Checkbox'
   pod 'Intercom'
+  pod 'KeenClient'
 end
 
 target 'FlaredownTests' do

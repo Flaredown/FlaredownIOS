@@ -22,6 +22,8 @@
     self = [super init];
     if(self) {
         NSDictionary *userDictionary = [dictionary objectForKey:@"user"];
+        if(!userDictionary)
+            userDictionary = [dictionary objectForKey:@"current_user"];
         _userId = [[userDictionary objectForKey:@"id"] integerValue];
         _email = [userDictionary objectForKey:@"email"];
         _authenticationToken = [userDictionary objectForKey:@"authentication_token"];
@@ -46,6 +48,7 @@
         
         _onboarded = [[settingsDictionary objectForKey:@"onboarded"] boolValue];
         _createdAt = [FDStyle dateFromString:[userDictionary objectForKey:@"created_at"] detailed:YES];
+//        _updatedAt = [FDStyle dateFromString:[dictionary objectForKey:@"updated_at"] detailed:YES];
         
         _previousDoses = [[NSMutableDictionary alloc] init];
         NSArray *settingsKeys = [settingsDictionary allKeys];

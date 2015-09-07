@@ -13,6 +13,7 @@
 @interface FDAnalyticsManager : NSObject
 
 + (id)sharedManager;
+- (void)initAnalytics;
 
 - (void)registerUser:(FDUser *)user;
 - (void)updateUser:(FDUser *)user;

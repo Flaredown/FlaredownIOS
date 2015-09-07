@@ -46,12 +46,15 @@
     NSString *dateString = [dateFormatter stringFromDate:now];
     [_dateLabel setText:dateString];
     
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    
     if([[FDModelManager sharedManager] entry]) {
         // Convert string to date object
         NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date] detailed:NO];
         NSDate *now = [NSDate date];
         if([now compare:date] == NSOrderedDescending) {
-            [[FDModelManager sharedManager] entry];
+            [[FDModelManager sharedManager] setEntry:nil];
+            //            [[FDModelManager sharedManager] entry];
         }
     }
     
@@ -60,7 +63,42 @@
         return;
     }
     
-    FDUser *user = [[FDModelManager sharedManager] userObject];
+    [self loadEntry];
+    
+    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
+        if(success) {
+            NSLog(@"Success!");
+            
+            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
+        } else {
+            NSLog(@"Failure!");
+        }
+    }];
+}
+
+- (void)loadEntry
+{
+    FDUser __block *user = [[FDModelManager sharedManager] userObject];
+    
+    [[FDNetworkManager sharedManager] getUserWithEmail:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+        if(success) {
+            NSLog(@"Success!");
+            
+            FDUser *newUser = [[FDUser alloc] initWithDictionary:responseObject];
+            if([[user updatedAt] compare:[user updatedAt]] == NSOrderedDescending) {
+                NSLog(@"Updated user");
+                [[FDModelManager sharedManager] setUserObject:newUser];
+                user = newUser;
+            }
+            
+        } else {
+            NSLog(@"Failure!");
+            NSLog(@"Error retreiving latest user from server");
+        }
+    }];
+    
+    NSDate *now = [NSDate date];
+    NSString *dateString = [FDStyle dateStringForDate:now detailed:NO];
     
     [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -99,23 +137,17 @@
         }
         _entryLoaded = YES;
     }];
-        
-    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
-        if(success) {
-            NSLog(@"Success!");
-            
-            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
-        } else {
-            NSLog(@"Failure!");
-        }
-    }];
 }
 
 - (IBAction)checkinButton:(id)sender
 {
-    if(!_entryLoaded) {
-        _segueReady = YES;
+    if(!_entryLoaded || ![[FDModelManager sharedManager] entry]) {
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        if(![[FDModelManager sharedManager] entry]) {
+            [self loadEntry];
+        } else {
+            _segueReady = YES;
+        }
         return;
     }
     [self performSegueWithIdentifier:@"start" sender:sender];
