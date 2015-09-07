@@ -54,10 +54,20 @@
         for(NSString *key in treatmentKeys) {
             NSString *treatmentPair = [key stringByReplacingOccurrencesOfString:@"treatment_" withString:@""];
             NSArray *components = [treatmentPair componentsSeparatedByString:@"_"];
-            if([components[1] isEqualToString:@"unit"]) {//prevent duplicate doses
-                NSString *treatmentName = components[0];
-                NSString *treatmentUnit = [settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_unit", treatmentName]];
-                float quantity = [[settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_quantity", treatmentName]] floatValue];
+            NSString *treatmentName = components[0];
+            NSString *treatmentUnit, *doseKey;
+            float quantity;
+            if([components count] == 2) {
+                doseKey = components[1];
+                treatmentUnit = [settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_unit", treatmentName]];
+                quantity = [[settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_quantity", treatmentName]] floatValue];
+            } else {//prevent duplicate doses
+                doseKey = components[2];
+                NSInteger index = [components[1] integerValue];
+                treatmentUnit = [settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_%i_unit", treatmentName, index]];
+                quantity = [[settingsDictionary objectForKey:[NSString stringWithFormat:@"treatment_%@_%i_quantity", treatmentName, index]] floatValue];
+            }
+            if([doseKey isEqualToString:@"unit"]) {
                 FDDose *dose = [[FDDose alloc] init];
                 [dose setQuantity:quantity];
                 [dose setUnit:treatmentUnit];
