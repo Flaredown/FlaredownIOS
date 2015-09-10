@@ -41,6 +41,7 @@ static float const FDBorderWidth = 1;
 + (UIColor *)mediumGreyColor;
 + (UIColor *)blackColor;
 + (UIColor *)redColor;
++ (UIColor *)orangeColor;
 
 + (NSString *)trimmedDecimal:(float)number;
 + (NSString *)dateStringForDate:(NSDate *)date detailed:(BOOL)detailed;

@@ -81,6 +81,8 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -748,7 +750,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="10" id="olh-db-IyE" customClass="UICollectionViewLeftAlignedLayout">
                             <size key="itemSize" width="172" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="85"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -1257,6 +1259,68 @@
                                 </variation>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="submitInfo" id="0mh-UX-PRc">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="85"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check-in not saved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbJ-VZ-eam">
+                                    <rect key="frame" x="8" y="8" width="584" height="34"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UAo-ka-mgs">
+                                    <rect key="frame" x="8" y="42" width="584" height="1"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="QAn-cM-IC5"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your connection and retry" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvF-8p-daB">
+                                    <rect key="frame" x="8" y="43" width="584" height="34"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quj-14-DrY">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="85"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="submitButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="f8n-hX-Eyj"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottomMargin" secondItem="quj-14-DrY" secondAttribute="bottom" constant="-8" id="07h-4Y-0th"/>
+                                <constraint firstItem="quj-14-DrY" firstAttribute="leading" secondItem="0mh-UX-PRc" secondAttribute="leadingMargin" constant="-8" id="0ZT-BC-fDb"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="rvF-8p-daB" secondAttribute="bottom" id="0fL-vz-G50"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="rvF-8p-daB" secondAttribute="trailing" id="9Cl-W3-gpL"/>
+                                <constraint firstItem="rvF-8p-daB" firstAttribute="leading" secondItem="0mh-UX-PRc" secondAttribute="leadingMargin" id="Hy7-oN-UGX"/>
+                                <constraint firstItem="rvF-8p-daB" firstAttribute="top" secondItem="JbJ-VZ-eam" secondAttribute="bottom" id="Qew-5u-Zw7"/>
+                                <constraint firstItem="rvF-8p-daB" firstAttribute="top" secondItem="UAo-ka-mgs" secondAttribute="bottom" id="V4b-J1-Lib"/>
+                                <constraint firstAttribute="centerX" secondItem="UAo-ka-mgs" secondAttribute="centerX" id="acZ-WM-tbA"/>
+                                <constraint firstItem="JbJ-VZ-eam" firstAttribute="top" secondItem="UAo-ka-mgs" secondAttribute="bottom" id="frh-oX-5z2"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="UAo-ka-mgs" secondAttribute="trailing" id="gU4-o2-yda"/>
+                                <constraint firstItem="UAo-ka-mgs" firstAttribute="top" secondItem="JbJ-VZ-eam" secondAttribute="bottom" id="ihl-CC-ole"/>
+                                <constraint firstItem="rvF-8p-daB" firstAttribute="top" secondItem="UAo-ka-mgs" secondAttribute="bottom" id="ipW-nJ-OLm"/>
+                                <constraint firstItem="UAo-ka-mgs" firstAttribute="leading" secondItem="0mh-UX-PRc" secondAttribute="leadingMargin" id="jpF-eI-Ed7"/>
+                                <constraint firstAttribute="centerY" secondItem="UAo-ka-mgs" secondAttribute="centerY" id="lc0-ba-0tm"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="JbJ-VZ-eam" secondAttribute="trailing" id="lhK-Ag-w5e"/>
+                                <constraint firstItem="JbJ-VZ-eam" firstAttribute="leading" secondItem="0mh-UX-PRc" secondAttribute="leadingMargin" id="mrh-oK-yVw"/>
+                                <constraint firstItem="JbJ-VZ-eam" firstAttribute="top" secondItem="0mh-UX-PRc" secondAttribute="topMargin" id="pWt-tk-D5J"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="quj-14-DrY" secondAttribute="trailing" constant="-8" id="pe1-X6-kgG"/>
+                                <constraint firstItem="quj-14-DrY" firstAttribute="top" secondItem="0mh-UX-PRc" secondAttribute="topMargin" constant="-8" id="uGT-rY-Msa"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="frh-oX-5z2"/>
+                                    <exclude reference="Qew-5u-Zw7"/>
+                                    <exclude reference="ipW-nJ-OLm"/>
+                                </mask>
+                            </variation>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="GyN-yX-fIx" id="Pf0-X4-TIG"/>
                             <outlet property="delegate" destination="GyN-yX-fIx" id="hcX-lG-clb"/>

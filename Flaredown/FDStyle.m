@@ -110,6 +110,11 @@
     return [UIColor colorWithRed:228.0/255.0 green:94.0/255.0 blue:110.0/255.0 alpha:1.0];
 }
 
++ (UIColor *)orangeColor
+{
+    return [UIColor colorWithRed:245.0/255.0 green:166.0/255.0 blue:35.0/255.0 alpha:1.0];
+}
+
 + (NSString *)trimmedDecimal:(float)number
 {
     int maximumFractionDigits = 2;

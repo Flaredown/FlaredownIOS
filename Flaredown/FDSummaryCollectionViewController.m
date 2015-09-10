@@ -47,6 +47,8 @@
 #define NOTES_LABEL_PADDING 8
 #define COLLECTION_CONTENT_INSET 10
 
+#define SUBMIT_INFO_HEIGHT 70
+
 @interface FDSummaryCollectionViewController ()
 
 @end
@@ -65,6 +67,8 @@ static NSString * const AddNoteIdentifier = @"addNote";
 static NSString * const DoseIdentifier = @"dose";
 static NSString * const NotesIdentifier = @"notes";
 
+static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -79,6 +83,11 @@ static NSString * const NotesIdentifier = @"notes";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self submitEntry];
+}
+
+- (void)submitEntry
+{
     FDModelManager *modelManager = [FDModelManager sharedManager];
     FDEntry *entry = [modelManager entry];
     NSDate *date = [modelManager selectedDate];
@@ -86,17 +95,20 @@ static NSString * const NotesIdentifier = @"notes";
     [[FDNetworkManager sharedManager] putEntry:[entry dictionaryCopy] date:[FDStyle dateStringForDate:date detailed:NO] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         if(success) {
             NSLog(@"Success!");
+            _failedToSubmit = NO;
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
         } else {
             NSLog(@"Failure!");
+            _failedToSubmit = YES;
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
             
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
-                                        message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
-                                       delegate:nil
-                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
-                              otherButtonTitles:nil] show];
+            //            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error submitting entry", nil)
+            //                                        message:NSLocalizedString(@"Looks like there was a problem submitting your entry, please try again.", nil)
+            //                                       delegate:nil
+            //                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+            //                              otherButtonTitles:nil] show];
         }
     }];
-//    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,6 +167,11 @@ static NSString * const NotesIdentifier = @"notes";
         //notes
         [self performSegueWithIdentifier:@"notes" sender:nil];
     }
+}
+
+- (IBAction)submitButton:(id)sender
+{
+    [self submitEntry];
 }
 
 - (UICollectionViewCell *)parentCellForView:(id)theView
@@ -418,6 +435,12 @@ static NSString * const NotesIdentifier = @"notes";
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *submitInfoHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SubmitInfoHeaderIdentifier forIndexPath:indexPath];
+    return submitInfoHeaderView;
+}
+
 #pragma mark <UICollectionViewDelegateFlowLayout>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -512,6 +535,15 @@ static NSString * const NotesIdentifier = @"notes";
         }
     }
     return CGSizeZero;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if(section == 0 && _failedToSubmit) {
+        return CGSizeMake(self.collectionView.bounds.size.width, SUBMIT_INFO_HEIGHT);
+    } else {
+        return CGSizeZero;
+    }
 }
 
 #pragma mark - Navigation

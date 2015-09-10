@@ -17,6 +17,8 @@
 
 @property FDEntry *entry;
 
+@property BOOL failedToSubmit;
+
 - (void)refresh;
 
 @end
