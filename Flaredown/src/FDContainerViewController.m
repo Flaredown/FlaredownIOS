@@ -30,17 +30,17 @@
     
     if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
         //Add conditions
-        self.currentSegueIdentifier = SegueIdentifierSelectListView;
+        self.currentStoryboardIdentifier = StoryboardIdentifierSelectListView;
     } else if(offsetIndex >= numSections) {
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
-            self.currentSegueIdentifier = SegueIdentifierSelectListView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierSelectListView;
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
-            self.currentSegueIdentifier = SegueIdentifierTreatmentsCollectionView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierTreatmentsCollectionView;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Tags
-            self.currentSegueIdentifier = SegueIdentifierTagsView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierTagsView;
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
@@ -51,23 +51,23 @@
         }
         
         if([pageType isEqualToString:@"select"]) {
-//            self.currentSegueIdentifier = SegueIdentifierSelectCollectionView;
-            self.currentSegueIdentifier = SegueIdentifierSelectQuestionTableView;
+//            self.currentStoryboardIdentifier = SegueIdentifierSelectCollectionView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierSelectQuestionTableView;
         } else if([pageType isEqualToString:@"checkbox"]) {
-            self.currentSegueIdentifier = SegueIdentifierSelectListView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierSelectListView;
         } else if([pageType isEqualToString:@"number"]) {
-            self.currentSegueIdentifier = SegueIdentifierNumberView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierNumberView;
         } else if([pageType isEqualToString:@"meter"]) {
-            self.currentSegueIdentifier = SegueIdentifierMeterView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierMeterView;
         } else if([pageType isEqualToString:@"tags"]) {
-            self.currentSegueIdentifier = SegueIdentifierTagsView;
+            self.currentStoryboardIdentifier = StoryboardIdentifierTagsView;
         } else {
             NSLog(@"Invalid page kind");
             return;
         }
     }
     
-    [self performSegueWithIdentifier:self.currentSegueIdentifier sender:nil];
+    [self showEmbeddedViewControllerWithStoryboardIdentifier:self.currentStoryboardIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,21 +75,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)showEmbeddedViewControllerWithStoryboardIdentifier:(NSString *)identifier
 {
     NSString *pageType;
-    UIViewController *dvc = segue.destinationViewController;
+    UIViewController *embeddedViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
     
     if(self.childViewControllers.count > 0) {
-        [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:segue.destinationViewController];
+        [self swapFromViewController:[self.childViewControllers objectAtIndex:0] toViewController:embeddedViewController];
     } else {
-        [self addChildViewController:segue.destinationViewController];
-        ((UIViewController *)segue.destinationViewController).view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        [self.view addSubview:((UIViewController *)segue.destinationViewController).view];
-        [segue.destinationViewController didMoveToParentViewController:self];
+        [self addChildViewController:embeddedViewController];
+        embeddedViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [self.view addSubview:embeddedViewController.view];
+        [embeddedViewController didMoveToParentViewController:self];
     }
     
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
@@ -98,7 +95,7 @@
     if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
         //Add conditions
         pageType = @"checkbox";
-        FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+        FDSelectListViewController *listVC = (FDSelectListViewController *)embeddedViewController;
         //send empty array so you only get the add button
         [listVC initWithQuestions:[@[] mutableCopy]];
         listVC.mainViewDelegate = _mainViewDelegate;
@@ -107,21 +104,21 @@
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             pageType = @"checkbox";
-            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+            FDSelectListViewController *listVC = (FDSelectListViewController *)embeddedViewController;
             //send empty array so you only get the add button
             [listVC initWithQuestions:[@[] mutableCopy]];
             listVC.mainViewDelegate = _mainViewDelegate;
             listVC.listType = ListTypeSymptoms;
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0)) {
             //Treatments
-//            pageType = @"checkbox";
-//            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
-//            [listVC initWithTreatments];
-//            listVC.mainViewDelegate = _mainViewDelegate;
+            //            pageType = @"checkbox";
+            //            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+            //            [listVC initWithTreatments];
+            //            listVC.mainViewDelegate = _mainViewDelegate;
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Tags
             pageType = @"tags";
-            FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)dvc;
+            FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)embeddedViewController;
             tagsVC.mainViewDelegate = _mainViewDelegate;
         }
     } else {
@@ -132,26 +129,26 @@
         }
         
         if([pageType isEqualToString:@"checkbox"]) {
-            FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+            FDSelectListViewController *listVC = (FDSelectListViewController *)embeddedViewController;
             [listVC initWithQuestions:questions];
             listVC.mainViewDelegate = _mainViewDelegate;
         } else if([pageType isEqualToString:@"number"]) {
-            [((FDNumberViewController *)dvc) initWithQuestion:questions[0]];
+            [((FDNumberViewController *)embeddedViewController) initWithQuestion:questions[0]];
         } else if([pageType isEqualToString:@"select"]) {
-            FDSelectQuestionTableViewController *tableVC = (FDSelectQuestionTableViewController *)dvc;
+            FDSelectQuestionTableViewController *tableVC = (FDSelectQuestionTableViewController *)embeddedViewController;
             [tableVC initWithQuestion:questions[0]];
             tableVC.mainViewDelegate = _mainViewDelegate;
-//            FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
-//            [selectVC initWithQuestions:questions];
+            //            FDSelectCollectionViewController *selectVC = (FDSelectCollectionViewController *)dvc;
+            //            [selectVC initWithQuestions:questions];
         } else if([pageType isEqualToString:@"meter"]) {
-            FDMeterViewController *meterVC = (FDMeterViewController *)dvc;
+            FDMeterViewController *meterVC = (FDMeterViewController *)embeddedViewController;
             [meterVC initWithQuestion:questions[0]];
             meterVC.mainViewDelegate = _mainViewDelegate;
         }
     }
     
     if([pageType isEqualToString:@"checkbox"]) {
-        FDSelectListViewController *listVC = (FDSelectListViewController *)dvc;
+        FDSelectListViewController *listVC = (FDSelectListViewController *)embeddedViewController;
         listVC.contentViewDelegate = _contentViewDelegate;
     }
 }
@@ -167,5 +164,7 @@
         [toViewController didMoveToParentViewController:self];
     }];
 }
+
+#pragma mark - Navigation
 
 @end

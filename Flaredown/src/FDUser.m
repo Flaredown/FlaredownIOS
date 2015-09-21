@@ -48,7 +48,10 @@
         
         _onboarded = [[settingsDictionary objectForKey:@"onboarded"] boolValue];
         _createdAt = [FDStyle dateFromString:[userDictionary objectForKey:@"created_at"] detailed:YES];
-//        _updatedAt = [FDStyle dateFromString:[dictionary objectForKey:@"updated_at"] detailed:YES];
+        if([dictionary objectForKey:@"updated_at"])
+            _updatedAt = [FDStyle dateFromString:[dictionary objectForKey:@"updated_at"] detailed:YES];
+        else
+            _updatedAt = [NSDate date];
         
         _previousDoses = [[NSMutableDictionary alloc] init];
         NSArray *settingsKeys = [settingsDictionary allKeys];
@@ -182,6 +185,7 @@
                      @"email":_email,
                      @"authentication_token":_authenticationToken,
                      @"created_at":[FDStyle dateStringForDate:_createdAt detailed:YES],
+                     @"updated_at":[FDStyle dateStringForDate:_updatedAt detailed:YES],
                      @"settings":settingsDictionary
                      },
              @"treatments":mutableTreatments,

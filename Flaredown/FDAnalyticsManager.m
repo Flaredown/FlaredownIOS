@@ -8,7 +8,7 @@
 
 #import "FDAnalyticsManager.h"
 
-#import "intercom.h"
+#import <Intercom/Intercom.h>
 #import "KeenClient.h"
 
 @implementation FDAnalyticsManager

@@ -22,7 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - DLAlertView (1.2.5)
   - Expecta (0.4.2)
-  - Expecta+Snapshots (1.3.2):
+  - Expecta+Snapshots (1.3.3):
     - Expecta (~> 0.3)
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
@@ -36,15 +36,15 @@ PODS:
   - MBProgressHUD (0.9.1)
   - MJPopupViewController (0.4)
   - OCMock (2.2.4)
-  - Specta (0.5.0)
+  - Specta (1.0.3)
   - UICollectionViewLeftAlignedLayout (0.0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - DLAlertView (~> 1.2)
-  - Expecta (~> 0.3)
-  - Expecta+Snapshots (~> 1.3)
-  - FBSnapshotTestCase (~> 1.5)
+  - Expecta
+  - Expecta+Snapshots
+  - FBSnapshotTestCase
   - HTAutocompleteTextField
   - Intercom
   - KeenClient
@@ -52,15 +52,15 @@ DEPENDENCIES:
   - M13Checkbox
   - MBProgressHUD (~> 0.9)
   - MJPopupViewController (~> 0.4)
-  - OCMock (~> 2.2)
-  - Specta (~> 0.3)
+  - OCMock
+  - Specta
   - UICollectionViewLeftAlignedLayout
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   DLAlertView: 774c1242cc854177fdc07634ed3f8c250a38864d
   Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
-  Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
+  Expecta+Snapshots: dcf32672f1bbc23e86e7eeb7f30aa6884894e2ec
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   HTAutocompleteTextField: ce809f04875e843e20f214ab973bb496ba7a93b1
   Intercom: cca76c492f181a8f8261bc0ec98d03ae3102270d
@@ -70,7 +70,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
   OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
-  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
+  Specta: cf3e4188cf35375c3ee2cd03f8db8f1f4ef98234
   UICollectionViewLeftAlignedLayout: 46396e7c45573544981b9a04a2e25ecacba18774
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.39.0.beta.4

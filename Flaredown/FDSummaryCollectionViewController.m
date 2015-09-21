@@ -92,6 +92,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     FDEntry *entry = [modelManager entry];
     NSDate *date = [modelManager selectedDate];
     FDUser *user = [modelManager userObject];
+    [entry setUpdatedAt:[NSDate date]];
     [[FDNetworkManager sharedManager] putEntry:[entry dictionaryCopy] date:[FDStyle dateStringForDate:date detailed:NO] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         if(success) {
             NSLog(@"Success!");

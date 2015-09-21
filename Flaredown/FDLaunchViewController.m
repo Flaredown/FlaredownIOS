@@ -90,7 +90,6 @@
                 [[FDModelManager sharedManager] setUserObject:newUser];
                 user = newUser;
             }
-            
         } else {
             NSLog(@"Failure!");
             NSLog(@"Error retreiving latest user from server");

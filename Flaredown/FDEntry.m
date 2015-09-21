@@ -94,12 +94,15 @@
 
     int lastSection = -1;
     for (FDQuestion *question in _questions) {
-        NSMutableArray *catalogDefinition = [catalogDefinitions objectForKey:[question catalog]];
-        if([question section] != lastSection) {
-            [catalogDefinition addObject:[[NSMutableArray alloc] init]];
-            lastSection = [question section];
+        //temporarily disable submitting symptoms
+        if(![[question catalog] isEqualToString:@"symptoms"]) {
+            NSMutableArray *catalogDefinition = [catalogDefinitions objectForKey:[question catalog]];
+            if([question section] != lastSection) {
+                [catalogDefinition addObject:[[NSMutableArray alloc] init]];
+                lastSection = [question section];
+            }
+            [[catalogDefinition lastObject] addObject:[question dictionaryCopy]];
         }
-        [[catalogDefinition lastObject] addObject:[question dictionaryCopy]];
     }
     
     NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
@@ -126,7 +129,9 @@
              @"responses":mutableResponses,
              @"treatments":mutableTreatments,
              @"scores":_scores ?: [[NSArray alloc] init],
-             @"tags":_tags
+             @"tags":_tags,
+             @"created_at":[FDStyle dateStringForDate:_createdAt detailed:YES],
+             @"updated_at":[FDStyle dateStringForDate:_updatedAt detailed:YES]
              };
 }
 
