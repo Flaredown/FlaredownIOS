@@ -8,12 +8,14 @@
 
 #import "FDStyle.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation FDStyle
 
 + (void)addRoundedCornersToView:(UIView *)view
 {
-//    view.layer.cornerRadius = FDCornerRadius;
-    [self roundCornersWithRadius:FDCornerRadius topLeft:YES topRight:YES bottomLeft:YES bottomRight:YES forView:view];
+    view.layer.cornerRadius = FDCornerRadius;
+//    [self roundCornersWithRadius:FDCornerRadius topLeft:YES topRight:YES bottomLeft:YES bottomRight:YES forView:view];
 }
 
 + (void)addSmallRoundedCornersToView:(UIView *)view

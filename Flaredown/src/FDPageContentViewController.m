@@ -32,9 +32,9 @@
     [super viewDidLoad];
     
     //Style
-//    [FDStyle addRoundedCornersToView:self.contentView];
-//    [FDStyle addShadowToView:self.contentView];
-//    self.contentView.center = CGPointMake(self.contentView.frame.size.width / 2, self.contentView.frame.size.height / 2);
+    [FDStyle addRoundedCornersToView:self.contentView];
+    [FDStyle addShadowToView:self.contentView];
+    self.contentView.center = CGPointMake(self.contentView.frame.size.width / 2, self.contentView.frame.size.height / 2);
 
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
 
@@ -104,7 +104,7 @@
                     self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
             }
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
-        }else {
+        } else {
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
                 NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];

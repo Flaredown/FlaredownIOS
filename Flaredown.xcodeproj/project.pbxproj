@@ -33,6 +33,7 @@
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
 		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
 		ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03ED651B827EAC00AAD1E5 /* AccountView.xib */; };
+		ED20FBD51BB0867D001679FA /* FDSummaryCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */; settings = {ASSET_TAGS = (); }; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */; };
@@ -55,6 +56,7 @@
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
 		EDB519971B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB519961B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m */; };
 		EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB63F4B1AE1F30C006CA1B9 /* en.json */; };
+		EDB7ED281BB0952600BEF994 /* CardBackground.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB7ED271BB0952600BEF994 /* CardBackground.xib */; settings = {ASSET_TAGS = (); }; };
 		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
 		EDC7CD161B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */; };
 		EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */; };
@@ -138,6 +140,8 @@
 		9383875D12CC5B17F0A2D83F /* Pods-FlaredownTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlaredownTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests.release.xcconfig"; sourceTree = "<group>"; };
 		C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlaredownTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED03ED651B827EAC00AAD1E5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		ED20FBD31BB0867D001679FA /* FDSummaryCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCollectionViewLayout.h; sourceTree = "<group>"; };
+		ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCollectionViewLayout.m; sourceTree = "<group>"; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 		EDB519951B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSelectQuestionTableViewController.h; sourceTree = "<group>"; };
 		EDB519961B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSelectQuestionTableViewController.m; sourceTree = "<group>"; };
 		EDB63F4B1AE1F30C006CA1B9 /* en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en.json; sourceTree = "<group>"; };
+		EDB7ED271BB0952600BEF994 /* CardBackground.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardBackground.xib; sourceTree = "<group>"; };
 		EDBA0E221ABC95B5001F165F /* FDStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStyle.h; sourceTree = "<group>"; };
 		EDBA0E231ABC95B5001F165F /* FDStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStyle.m; sourceTree = "<group>"; };
 		EDC7CD141B02C9DE00C2CE43 /* FDSummaryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCollectionViewController.h; sourceTree = "<group>"; };
@@ -420,6 +425,7 @@
 				ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */,
 				ED03ED651B827EAC00AAD1E5 /* AccountView.xib */,
 				EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */,
+				EDB7ED271BB0952600BEF994 /* CardBackground.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -504,6 +510,8 @@
 				10EED0B019E35FF5000464DD /* FDContainerViewController.m */,
 				EDC7CD141B02C9DE00C2CE43 /* FDSummaryCollectionViewController.h */,
 				EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */,
+				ED20FBD31BB0867D001679FA /* FDSummaryCollectionViewLayout.h */,
+				ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */,
 			);
 			name = "Page Containers";
 			sourceTree = "<group>";
@@ -653,6 +661,7 @@
 				ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */,
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
 				ED4F91A21B4AEB220013D3AB /* ReminderTimePickerView.xib in Resources */,
+				EDB7ED281BB0952600BEF994 /* CardBackground.xib in Resources */,
 				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
 				ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */,
@@ -757,6 +766,7 @@
 				EDE98DEF1A9545400074F189 /* FDTrackableResult.m in Sources */,
 				ED58E5221AC0B0C2009B74EE /* FDEmbeddedSelectListViewController.m in Sources */,
 				EDC7CD161B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m in Sources */,
+				ED20FBD51BB0867D001679FA /* FDSummaryCollectionViewLayout.m in Sources */,
 				10EED0B119E35FF5000464DD /* FDContainerViewController.m in Sources */,
 				EDDC72511A08441E0059815A /* FDModelManager.m in Sources */,
 				101393CC19D216D700BBB266 /* AppDelegate.m in Sources */,

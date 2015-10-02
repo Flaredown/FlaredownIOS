@@ -72,6 +72,9 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     //Style
 //    [FDStyle addRoundedCornersToView:self.view];
 //    [FDStyle addShadowToView:self.view];
@@ -266,6 +269,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"conditions")];
         
+        [FDStyle addRoundedCornersToTopOfView:cell];
+        
     } else if(section < CONDITION_END) {
         if(NO_CONDITIONS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
@@ -299,12 +304,19 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             }
         }
         
+        if(section == CONDITION_END - 1 && (row != 0 || NO_CONDITIONS)) {
+            [FDStyle addRoundedCornersToBottomOfView:cell];
+            [FDStyle addShadowToView:cell];
+        }
+        
     } else if(section == SYMPTOM_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Button
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"symptoms")];
+        
+        [FDStyle addRoundedCornersToTopOfView:cell];
         
     } else if(section < SYMPTOM_END) {
         if(NO_SYMPTOMS) {
@@ -338,12 +350,18 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
             }
         }
+        if(section == SYMPTOM_END - 1 && (row != 0 || NO_SYMPTOMS)) {
+            [FDStyle addRoundedCornersToBottomOfView:cell];
+            [FDStyle addShadowToView:cell];
+        }
     } else if(section == TREATMENT_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Button
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"treatments")];
+        
+        [FDStyle addRoundedCornersToTopOfView:cell];
         
     } else if(section < TREATMENT_END) {
         if(NO_TREATMENTS) {
@@ -383,12 +401,18 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentNoValueIdentifier forIndexPath:indexPath];
             }
         }
+        if(section == TREATMENT_END - 1 && (row != 0 || NO_TREATMENTS)) {
+            [FDStyle addRoundedCornersToBottomOfView:cell];
+            [FDStyle addShadowToView:cell];
+        }
     } else if(section == TAG_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:@"Tags"]; //TODO:Localized
+        
+        [FDStyle addRoundedCornersToTopOfView:cell];
     } else if(section < TAG_END) {
         if(NO_TAGS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
@@ -432,6 +456,10 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 
             [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
         }
+        if(section == NOTE_END - 1) {
+            [FDStyle addRoundedCornersToBottomOfView:cell];
+            [FDStyle addShadowToView:cell];
+        }
     }
     return cell;
 }
@@ -465,7 +493,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             else if(response && [response value] > 0)
                 return CGSizeMake(54, 15);
             else
-                return CGSizeMake(115, 35);
+                return CGSizeMake(maxWidth, 35);
         }
     } else if(section == SYMPTOM_TITLE) {
         return CGSizeMake(maxWidth, 40);
@@ -481,7 +509,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             else if(response && [response value] > 0)
                 return CGSizeMake(54, 15);
             else
-                return CGSizeMake(115, 35);
+                return CGSizeMake(maxWidth, 35);
             }
     } else if(section == TREATMENT_TITLE) {
         return CGSizeMake(maxWidth, 40);
@@ -504,7 +532,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                                                       context:nil];
                     return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, doseSize.height);
                 } else
-                    return CGSizeMake(115, 35);
+                    return CGSizeMake(maxWidth, 35);
             }
         }
     } else if(section == TAG_TITLE) {

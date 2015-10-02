@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b9W-3p-fbP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b9W-3p-fbP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -748,8 +748,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="eD3-Hg-D4k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="10" id="olh-db-IyE" customClass="UICollectionViewLeftAlignedLayout">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="10" id="olh-db-IyE" customClass="FDSummaryCollectionViewLayout">
                             <size key="itemSize" width="172" height="50"/>
                             <size key="headerReferenceSize" width="50" height="85"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -772,6 +771,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="NnL-8S-qYa" firstAttribute="trailing" secondItem="zlR-gB-5sB" secondAttribute="trailingMargin" id="6v3-bN-rb2"/>
                                     <constraint firstItem="NnL-8S-qYa" firstAttribute="top" secondItem="zlR-gB-5sB" secondAttribute="topMargin" constant="8" id="Dhu-wk-lKV"/>
@@ -819,6 +819,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="a9N-lP-Gqs" firstAttribute="leading" secondItem="QU8-oj-9kS" secondAttribute="leadingMargin" id="0nE-OZ-5Kv"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="a9N-lP-Gqs" secondAttribute="bottom" constant="-8" id="558-w5-cb6"/>
@@ -862,6 +863,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="uGH-12-cED" firstAttribute="top" secondItem="hiG-ZO-4cG" secondAttribute="topMargin" constant="-8" id="Dtw-vc-GN7"/>
                                     <constraint firstItem="uGH-12-cED" firstAttribute="leading" secondItem="hiG-ZO-4cG" secondAttribute="leadingMargin" constant="-8" id="Klq-wh-ytY"/>
@@ -910,6 +912,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ewk-TY-lJc" firstAttribute="top" secondItem="TfB-Qn-j47" secondAttribute="topMargin" id="1Yw-5A-Gtm"/>
                                     <constraint firstAttribute="centerY" secondItem="iFI-gV-4Ab" secondAttribute="centerY" id="DWj-Jk-yxE"/>
@@ -960,6 +963,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="28q-aR-A37" secondAttribute="bottom" id="AkI-wl-ftm"/>
                                     <constraint firstAttribute="centerY" secondItem="28q-aR-A37" secondAttribute="centerY" id="DPt-uf-rt2"/>
@@ -1007,6 +1011,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="9mr-uG-bFC" secondAttribute="centerY" id="EUx-9a-2gV"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="9mr-uG-bFC" secondAttribute="bottom" id="GCf-6b-MLR"/>
@@ -1054,6 +1059,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="x6j-tz-iEv" secondAttribute="centerX" constant="-0.5" id="4zB-Rg-mzE"/>
                                     <constraint firstAttribute="centerY" secondItem="x6j-tz-iEv" secondAttribute="centerY" id="HGu-tC-sad"/>
@@ -1104,6 +1110,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="iYc-k7-7pY" firstAttribute="leading" secondItem="Q6Z-U8-Wv5" secondAttribute="leadingMargin" constant="-8" id="CNq-vc-SYf"/>
                                     <constraint firstAttribute="centerX" secondItem="iYc-k7-7pY" secondAttribute="centerX" id="EP8-YT-XXa"/>
@@ -1151,6 +1158,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="Uiy-R0-CJB" secondAttribute="trailing" id="Mvb-Da-uCF"/>
                                     <constraint firstItem="Uiy-R0-CJB" firstAttribute="top" secondItem="8sA-BP-XnY" secondAttribute="topMargin" id="PjN-lJ-N3x"/>
@@ -1183,6 +1191,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="WOv-F8-fJt" firstAttribute="leading" secondItem="Nek-OQ-BYc" secondAttribute="leadingMargin" constant="-8" id="0K7-cu-VNu"/>
                                     <constraint firstAttribute="centerX" secondItem="WOv-F8-fJt" secondAttribute="centerX" id="5P4-Xy-3cJ"/>
@@ -1228,6 +1237,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="HFE-hu-ysT" secondAttribute="bottom" id="3y8-K8-vU9"/>
                                     <constraint firstItem="HFE-hu-ysT" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="5ZB-xq-AaB"/>
@@ -2715,7 +2725,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" rowHeight="63" id="NPS-3F-nES">
-                                <rect key="frame" x="0.0" y="66" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPS-3F-nES" id="Byj-ol-1l8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2739,7 +2749,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="result" rowHeight="63" id="PWh-1B-Opp">
-                                <rect key="frame" x="0.0" y="129" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="149" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWh-1B-Opp" id="a5E-bl-sMb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2770,7 +2780,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
-                                <rect key="frame" x="0.0" y="192" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="212" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmB-sC-Idy" id="yBt-Zs-ifi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -3793,9 +3803,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S95-oh-nxf"/>
-        <segue reference="D2w-TA-5ZL"/>
-        <segue reference="8wA-Kt-Eo6"/>
+        <segue reference="1ic-5n-SwM"/>
+        <segue reference="pti-0c-EDU"/>
         <segue reference="GOm-9p-EYG"/>
+        <segue reference="u8n-9I-Erz"/>
     </inferredMetricsTieBreakers>
 </document>
