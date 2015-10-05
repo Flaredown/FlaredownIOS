@@ -226,6 +226,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             return 1;
         FDQuestion *question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
         return [self numberOfItemsForQuestion:question];
+    } else if(section == CONDITION_END) {
+        return 1;
     } else if(section == SYMPTOM_TITLE) {
         return 1;
     } else if(section < SYMPTOM_END) {
