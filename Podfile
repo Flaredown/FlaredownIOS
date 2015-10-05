@@ -18,6 +18,9 @@ target 'FlaredownTests' do
   pod 'FBSnapshotTestCase'
   pod 'Expecta+Snapshots'
   pod 'OCMock'
-  pod 'Specta'
+  pod 'Specta',
+	#temporary to fix compilation issue
+	:git => "https://github.com/rad3ks/specta.git",
+	:commit => "213c6e673b78d3452aa9b22d784fef272b4e7312"
 end
 

@@ -15,13 +15,19 @@
 #import "FDTreatmentCollectionViewController.h"
 #import "FDNotesViewController.h"
 
+#define CONDITION_SECTION 0
+#define SYMPTOM_SECTION 1
+#define TREATMENT_SECTION 2
+#define TAGS_SECTION 3
+#define NOTES_SECTION 4
+
 #define CONDITION_TITLE 0
 #define CONDITION_BASE (CONDITION_TITLE+1)
 #define CONDITION_COUNT [[_entry questionsForCatalog:@"conditions"] count]
 #define NO_CONDITIONS (CONDITION_COUNT == 0)
 #define CONDITION_END (CONDITION_BASE + (NO_CONDITIONS ? 1 : CONDITION_COUNT))
 
-#define SYMPTOM_TITLE (CONDITION_END)
+#define SYMPTOM_TITLE (CONDITION_END+1)
 #define SYMPTOM_BASE (SYMPTOM_TITLE+1)
 #define SYMPTOM_COUNT [[_entry questionsForCatalog:@"symptoms"] count]
 #define NO_SYMPTOMS (SYMPTOM_COUNT == 0)
@@ -41,6 +47,7 @@
 
 #define NOTE_TITLE (TAG_END)
 #define NOTE_BASE (NOTE_TITLE+1)
+#define NO_NOTES ([[_entry notes] length] == 0)
 #define NOTE_END (NOTE_BASE + 1)
 
 #define NOTES_FONT_SIZE 16
@@ -66,6 +73,7 @@ static NSString * const TagIdentifier = @"tag";
 static NSString * const AddNoteIdentifier = @"addNote";
 static NSString * const DoseIdentifier = @"dose";
 static NSString * const NotesIdentifier = @"notes";
+static NSString * const EmptyIdentifier = @"empty";
 
 static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 
@@ -173,6 +181,11 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     }
 }
 
+- (BOOL)cardBackgroundForSection:(NSInteger)section
+{
+    return section == CONDITION_END;
+}
+
 - (IBAction)submitButton:(id)sender
 {
     [self submitEntry];
@@ -196,7 +209,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    NSUInteger conditions = CONDITION_END - CONDITION_BASE + 1;
+    NSUInteger conditions = CONDITION_END - CONDITION_BASE + 1 + 1;
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1;
     NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1;
     NSUInteger tags = 2;
@@ -204,7 +217,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     
     return conditions+symptoms+treatments+tags+notes;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if(section == CONDITION_TITLE) {
@@ -262,10 +274,76 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     
     UICollectionViewCell *cell;
     
+//    if(section == CONDITION_SECTION) {
+//        if(row == 0) {
+//        } else {
+//            NSInteger questionCount = 0;
+//            NSInteger valueCount = -1;
+//            
+//            NSArray *questions = [_entry questionsForCatalog:@"conditions"];
+//            
+//            for(int i = 0; i < row; i++) {
+//                if(valueCount == -1) {
+//                    //return question
+//                    valueCount++;
+//                } else {
+//                    FDResponse *response = [_entry responses][questionCount];
+//                    if([response value] <= 0) {
+//                        //no data
+//                        valueCount = -1;
+//                    } else {
+//                        //value
+//                        valueCount++;
+//                        if(valueCount == [response value]) {
+//                            valueCount = -1;
+//                            questionCount++;
+//                        }
+//                    }
+//                }
+//            }
+//            if(valueCount == -1) {
+//                FDQuestion *question = questions[questionCount];
+//                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNameIdentifier forIndexPath:indexPath];
+//                
+//                //1 Label
+//                UILabel *label = (UILabel *)[cell viewWithTag:1];
+//                [label setText:[question name]];
+//            } else
+//                ;
+//        }
+//    } else if(section == SYMPTOM_SECTION) {
+//        if(row == 0) {
+//            
+//        } else if(NO_SYMPTOMS) {
+//            
+//        } else {
+//            
+//        }
+//    } else if(section == TREATMENT_SECTION) {
+//        if(NO_TREATMENTS) {
+//            
+//        } else {
+//            
+//        }
+//    } else if(section == TAGS_SECTION) {
+//        if(NO_TAGS) {
+//            
+//        } else {
+//            
+//        }
+//    } else if(section == NOTES_SECTION) {
+//        if(NO_NOTES) {
+//            
+//        } else {
+//            
+//        }
+//    }
+    
+//    return cell;
     if(section == CONDITION_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
-        //1 Button
+        //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"conditions")];
         
@@ -282,6 +360,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             //2 Label
             UILabel *label = (UILabel *)[cell viewWithTag:2];
             [label setText:@"No conditions"];//TODO:Localized
+
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
@@ -302,17 +381,17 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
             }
+            if(section == CONDITION_END - 1 && (row != 0 || NO_CONDITIONS)) {
+                [FDStyle addRoundedCornersToBottomOfView:cell];
+                [FDStyle addShadowToView:cell];
+            }
         }
-        
-        if(section == CONDITION_END - 1 && (row != 0 || NO_CONDITIONS)) {
-            [FDStyle addRoundedCornersToBottomOfView:cell];
-            [FDStyle addShadowToView:cell];
-        }
-        
+    } else if(section == CONDITION_END) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
     } else if(section == SYMPTOM_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
-        //1 Button
+        //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"symptoms")];
         
@@ -495,6 +574,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             else
                 return CGSizeMake(maxWidth, 35);
         }
+    } else if(section == CONDITION_END) {
+        return CGSizeMake(maxWidth, 40);
     } else if(section == SYMPTOM_TITLE) {
         return CGSizeMake(maxWidth, 40);
     } else if(section < SYMPTOM_END) {

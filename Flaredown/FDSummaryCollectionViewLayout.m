@@ -20,7 +20,7 @@
     self.itemAttributes = [NSMutableArray new];
     
     NSInteger numberOfSection = self.collectionView.numberOfSections;
-    for (int section=0; section<numberOfSection; section++)
+    for (int section = 0; section < numberOfSection; section++)
     {
         NSString *decorationViewOfKind = CARD_BACKGROUND;
         if ([decorationViewOfKind isKindOfClass:[NSNull class]])

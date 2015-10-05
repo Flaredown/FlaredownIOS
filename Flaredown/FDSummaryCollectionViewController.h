@@ -20,5 +20,6 @@
 @property BOOL failedToSubmit;
 
 - (void)refresh;
+- (BOOL)cardBackgroundForSection:(NSInteger)section;
 
 @end

@@ -53,8 +53,18 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9)
   - MJPopupViewController (~> 0.4)
   - OCMock
-  - Specta
+  - Specta (from `https://github.com/rad3ks/specta.git`, commit `213c6e673b78d3452aa9b22d784fef272b4e7312`)
   - UICollectionViewLeftAlignedLayout
+
+EXTERNAL SOURCES:
+  Specta:
+    :commit: 213c6e673b78d3452aa9b22d784fef272b4e7312
+    :git: https://github.com/rad3ks/specta.git
+
+CHECKOUT OPTIONS:
+  Specta:
+    :commit: 213c6e673b78d3452aa9b22d784fef272b4e7312
+    :git: https://github.com/rad3ks/specta.git
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
@@ -70,7 +80,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
   OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
-  Specta: cf3e4188cf35375c3ee2cd03f8db8f1f4ef98234
+  Specta: 0e04d914a2f0161046a01a52bf81cb2dcee77a35
   UICollectionViewLeftAlignedLayout: 46396e7c45573544981b9a04a2e25ecacba18774
 
-COCOAPODS: 0.39.0.beta.4
+COCOAPODS: 0.39.0.beta.5
