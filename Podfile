@@ -9,7 +9,7 @@ target 'Flaredown' do
   pod 'UICollectionViewLeftAlignedLayout'
   pod 'HTAutocompleteTextField'
   pod 'M13Checkbox'
-  pod 'Intercom'
+  pod 'Intercom', '~> 2.3.4'
   pod 'KeenClient'
 end
 

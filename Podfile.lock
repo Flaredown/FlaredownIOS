@@ -27,7 +27,7 @@ PODS:
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
   - HTAutocompleteTextField (1.3.2)
-  - Intercom (2.3.3)
+  - Intercom (2.3.11)
   - KeenClient (3.4.3):
     - KeenClient/keen_sqlite (= 3.4.3)
   - KeenClient/keen_sqlite (3.4.3)
@@ -46,7 +46,7 @@ DEPENDENCIES:
   - Expecta+Snapshots
   - FBSnapshotTestCase
   - HTAutocompleteTextField
-  - Intercom
+  - Intercom (~> 2.3.4)
   - KeenClient
   - KTCenterFlowLayout
   - M13Checkbox
@@ -73,7 +73,7 @@ SPEC CHECKSUMS:
   Expecta+Snapshots: dcf32672f1bbc23e86e7eeb7f30aa6884894e2ec
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   HTAutocompleteTextField: ce809f04875e843e20f214ab973bb496ba7a93b1
-  Intercom: cca76c492f181a8f8261bc0ec98d03ae3102270d
+  Intercom: 255c9c1d85106b567fbc73c13eff6c54182dd220
   KeenClient: a0a629e2fac145cc4a035248547afcf7d11c788b
   KTCenterFlowLayout: add70553644c401a6e4c51acf4fdbd5a91a1bae0
   M13Checkbox: 0c0bb08dcd144c4ea33f883b68270f3f56908ea2
@@ -83,4 +83,4 @@ SPEC CHECKSUMS:
   Specta: 0e04d914a2f0161046a01a52bf81cb2dcee77a35
   UICollectionViewLeftAlignedLayout: 46396e7c45573544981b9a04a2e25ecacba18774
 
-COCOAPODS: 0.39.0.beta.5
+COCOAPODS: 0.39.0

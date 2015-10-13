@@ -572,6 +572,7 @@
 				101393C019D216D700BBB266 /* Frameworks */,
 				101393C119D216D700BBB266 /* Resources */,
 				CE977F9861ABECB9873FAAB9 /* Copy Pods Resources */,
+				68814E2E37D5E3199C8D5FAB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -591,6 +592,7 @@
 				101393D919D216D700BBB266 /* Frameworks */,
 				101393DA19D216D700BBB266 /* Resources */,
 				18977BA2F1A1E8412DAA5E47 /* Copy Pods Resources */,
+				C83DFE98C223589B734F689A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -691,6 +693,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68814E2E37D5E3199C8D5FAB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flaredown/Pods-Flaredown-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C83DFE98C223589B734F689A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CE977F9861ABECB9873FAAB9 /* Copy Pods Resources */ = {
