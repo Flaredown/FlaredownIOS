@@ -615,7 +615,7 @@
 				TargetAttributes = {
 					101393C219D216D700BBB266 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = TLZ6GSDS7C;
+						DevelopmentTeam = 59CY3S72A7;
 					};
 					101393DB19D216D700BBB266 = {
 						CreatedOnToolsVersion = 6.0;
@@ -967,9 +967,9 @@
 				INFOPLIST_FILE = Flaredown/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flaredown.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flaredown.flaredown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7b617fc1-e86d-48ed-8ec2-9d3f9d6a85d7";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -985,9 +985,9 @@
 				INFOPLIST_FILE = Flaredown/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flaredown.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flaredown.flaredown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7b617fc1-e86d-48ed-8ec2-9d3f9d6a85d7";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
