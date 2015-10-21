@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b9W-3p-fbP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4rV-QE-nqY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -8,9 +8,6 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="ProximaNova-Bold.otf">
-            <string>ProximaNova-Bold</string>
-        </mutableArray>
         <mutableArray key="ProximaNova-Regular.otf">
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
@@ -350,7 +347,7 @@
         <!--Launch View Controller-->
         <scene sceneID="H65-tD-bpz">
             <objects>
-                <viewController id="b9W-3p-fbP" customClass="FDLaunchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="launch" id="b9W-3p-fbP" customClass="FDLaunchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LLM-1O-Gb3"/>
                         <viewControllerLayoutGuide type="bottom" id="UUH-rg-uqk"/>
@@ -359,37 +356,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="September 28, 2014" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuD-SB-lW5">
-                                <rect key="frame" x="16" y="93" width="568" height="74.5"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="217" id="R9K-fg-w00"/>
-                                    <constraint firstAttribute="height" constant="74.5" id="V6r-HP-xk6"/>
-                                    <constraint firstAttribute="width" constant="190" id="oBC-dU-HSY"/>
-                                    <constraint firstAttribute="height" constant="94" id="tjT-lI-jZF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="39"/>
-                                <color key="textColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="R9K-fg-w00"/>
-                                        <exclude reference="oBC-dU-HSY"/>
-                                        <exclude reference="tjT-lI-jZF"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="325" y="103" width="150" height="75"/>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6n-5A-WG7">
-                                <rect key="frame" x="184" y="209" width="232" height="182"/>
+                                <rect key="frame" x="35" y="270" width="530" height="60"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="232" id="26a-Se-j1L"/>
                                     <constraint firstAttribute="height" constant="182" id="5v9-sM-iWd"/>
                                     <constraint firstAttribute="width" constant="232" id="7DP-KP-vOJ"/>
+                                    <constraint firstAttribute="height" constant="60" id="UQa-d0-YK0"/>
                                 </constraints>
-                                <state key="normal" image="fd_startBtn"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
+                                <state key="normal" title="Check in"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="26a-Se-j1L"/>
+                                        <exclude reference="5v9-sM-iWd"/>
+                                        <exclude reference="7DP-KP-vOJ"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="284" y="266" width="232" height="182"/>
                                 </variation>
@@ -397,19 +382,22 @@
                                     <action selector="checkinButton:" destination="b9W-3p-fbP" eventType="touchUpInside" id="9Zc-DK-LLP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't checked-in yet today." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd0-VI-xc6">
-                                <rect key="frame" x="201" y="406" width="199" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't checked-in yet today." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd0-VI-xc6">
+                                <rect key="frame" x="35" y="195" width="530" height="60"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="61" id="hcS-ka-QKM"/>
+                                    <constraint firstAttribute="width" constant="300" id="PCw-2b-MOg"/>
+                                    <constraint firstAttribute="height" constant="60" id="hcS-ka-QKM"/>
                                     <constraint firstAttribute="width" constant="199" id="nWe-0x-AJH"/>
                                     <constraint firstAttribute="width" constant="177" id="tel-2M-lXb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                                <color key="textColor" red="0.76470588240000004" green="0.70196078429999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="26"/>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="PCw-2b-MOg"/>
+                                        <exclude reference="nWe-0x-AJH"/>
                                         <exclude reference="tel-2M-lXb"/>
                                     </mask>
                                 </variation>
@@ -420,48 +408,30 @@
                                     <rect key="frame" x="312" y="579" width="177" height="61"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check In!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u28-vX-PJ5">
-                                <rect key="frame" x="225" y="282" width="150" height="36"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="4b8-Eo-wsC"/>
-                                    <constraint firstAttribute="height" constant="36" id="fLH-nD-8Gc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="30"/>
-                                <color key="textColor" red="0.94901960784313721" green="0.93333333333333335" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.94901960780000005" green="0.93333333330000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="TuD-SB-lW5" firstAttribute="trailing" secondItem="cAf-0N-mph" secondAttribute="trailingMargin" id="2dM-8M-cNr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c6n-5A-WG7" secondAttribute="trailing" constant="15" id="6G3-kS-GNt"/>
                             <constraint firstAttribute="centerX" secondItem="c6n-5A-WG7" secondAttribute="centerX" id="HVk-8V-f7u"/>
-                            <constraint firstAttribute="centerX" secondItem="TuD-SB-lW5" secondAttribute="centerX" id="Jzb-LZ-sSX"/>
-                            <constraint firstItem="c6n-5A-WG7" firstAttribute="centerY" secondItem="u28-vX-PJ5" secondAttribute="centerY" constant="0.5" id="L51-EO-3et"/>
-                            <constraint firstItem="c6n-5A-WG7" firstAttribute="top" secondItem="TuD-SB-lW5" secondAttribute="bottom" constant="41.5" id="MdE-qJ-sgb"/>
                             <constraint firstItem="UUH-rg-uqk" firstAttribute="top" secondItem="sd0-VI-xc6" secondAttribute="bottom" constant="133" id="QdN-hc-lWh"/>
+                            <constraint firstItem="sd0-VI-xc6" firstAttribute="leading" secondItem="c6n-5A-WG7" secondAttribute="leading" id="QnE-OQ-aeR"/>
+                            <constraint firstItem="c6n-5A-WG7" firstAttribute="top" secondItem="sd0-VI-xc6" secondAttribute="bottom" constant="15" id="Wlk-4l-0cq"/>
                             <constraint firstAttribute="centerY" secondItem="c6n-5A-WG7" secondAttribute="centerY" id="Zb2-Ug-m3R"/>
-                            <constraint firstItem="c6n-5A-WG7" firstAttribute="top" secondItem="TuD-SB-lW5" secondAttribute="bottom" constant="32" id="iEl-bj-zTI"/>
-                            <constraint firstItem="TuD-SB-lW5" firstAttribute="leading" secondItem="cAf-0N-mph" secondAttribute="leadingMargin" id="m54-qa-tuf"/>
-                            <constraint firstItem="c6n-5A-WG7" firstAttribute="centerX" secondItem="u28-vX-PJ5" secondAttribute="centerX" id="p6M-DB-IBz"/>
-                            <constraint firstAttribute="centerX" secondItem="sd0-VI-xc6" secondAttribute="centerX" constant="-0.5" id="rbZ-sK-Avq"/>
+                            <constraint firstAttribute="centerX" secondItem="sd0-VI-xc6" secondAttribute="centerX" id="rbZ-sK-Avq"/>
                             <constraint firstItem="sd0-VI-xc6" firstAttribute="top" secondItem="c6n-5A-WG7" secondAttribute="bottom" constant="15" id="ylw-ss-Bq7"/>
+                            <constraint firstItem="c6n-5A-WG7" firstAttribute="leading" secondItem="cAf-0N-mph" secondAttribute="leadingMargin" constant="15" id="zIz-Ox-Xe9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="iEl-bj-zTI"/>
+                                <exclude reference="ylw-ss-Bq7"/>
+                                <exclude reference="6G3-kS-GNt"/>
                                 <exclude reference="QdN-hc-lWh"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="checkedInLabel" destination="sd0-VI-xc6" id="nMF-NE-PqV"/>
-                        <outlet property="checkinButtonLabel" destination="u28-vX-PJ5" id="bmM-ZC-7Gv"/>
-                        <outlet property="dateLabel" destination="TuD-SB-lW5" id="DQm-AR-HqL"/>
                         <outlet property="startButton" destination="c6n-5A-WG7" id="k47-6h-E5W"/>
-                        <segue destination="Ffa-p7-jyZ" kind="presentation" identifier="login" id="Mz9-qs-Zid"/>
-                        <segue destination="4rV-QE-nqY" kind="presentation" identifier="start" id="uEe-sO-BWj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-Ap-VO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4045,12 +4015,11 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_doneGraphic" width="177" height="177"/>
         <image name="fd_logo" width="280" height="38"/>
         <image name="fd_remindericon" width="36" height="39"/>
-        <image name="fd_startBtn" width="177" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1ic-5n-SwM"/>
-        <segue reference="pti-0c-EDU"/>
-        <segue reference="GOm-9p-EYG"/>
         <segue reference="u8n-9I-Erz"/>
+        <segue reference="j9h-cQ-iZY"/>
+        <segue reference="GOm-9p-EYG"/>
+        <segue reference="1ic-5n-SwM"/>
     </inferredMetricsTieBreakers>
 </document>
