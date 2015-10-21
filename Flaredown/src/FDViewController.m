@@ -14,8 +14,10 @@
 #import "FDSearchTableViewController.h"
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
+#import "FDLaunchViewController.h"
 #import "FDSummaryCollectionViewController.h"
 #import "FDEntry.h"
+#import "FDNetworkManager.h"
 
 #define CARD_BUMP_OFFSET 60
 #define CARD_INSET 10
@@ -28,6 +30,7 @@
 
 #define SUMMARY_RECT (CGRectMake(CARD_INSET, 0, CONTENT_RECT.size.width-CARD_INSET*2, CONTENT_RECT.size.height + _continueBtn.frame.size.height))
 #define PAGE_RECT (CGRectMake(0, 0, CONTENT_RECT.size.width, CONTENT_RECT.size.height))
+#define LAUNCH_RECT (CGRectMake(CARD_INSET, 0, CONTENT_RECT.size.width-CARD_INSET*2, CONTENT_RECT.size.height))
 
 @interface FDViewController ()
 
@@ -54,6 +57,7 @@
     [self.view addSubview:_continueBtn];
     
     [_continueBtn setTitle:FDLocalizedString(@"onboarding/continue") forState:UIControlStateNormal];
+    [_continueBtn setHidden:YES];
     
     if([self selectedDateIsToday])
         [_nextDayButton setHidden:YES];
@@ -66,25 +70,123 @@
     _contentView = [[UIView alloc] initWithFrame:CONTENT_RECT];
     [self.view addSubview:_contentView];
     
+    self.launchViewController = (FDLaunchViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"launch"];
+    self.launchViewController.view.frame = CGRectMake(LAUNCH_RECT.origin.x, self.view.frame.size.height, LAUNCH_RECT.size.width, LAUNCH_RECT.size.height);
+    [self.launchViewController setMainViewDelegate:self];
+    
     //Create page view controller
     self.pageIndex = 0;
     self.pageViewController = [[UIPageViewController alloc]
                                initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                options:@{UIPageViewControllerOptionInterPageSpacingKey:@10}];
+    self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     [self refreshPages];
     
     //Create summary view controller
     self.summaryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"summary"];
+    self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
     [self.summaryViewController setMainViewDelegate:self];
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
     
-    if(_loadSummary)
-        [self showSummary];
-    else
-        [self showPages];
+    FDUser *user = [[FDModelManager sharedManager] userObject];
+    
+    if([[FDModelManager sharedManager] entry]) {
+        // Convert string to date object
+        NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date] detailed:NO];
+        NSDate *now = [NSDate date];
+        if([now compare:date] == NSOrderedDescending) {
+            [[FDModelManager sharedManager] setEntry:nil];
+            //            [[FDModelManager sharedManager] entry];
+        }
+    }
+    
+    if(![[FDModelManager sharedManager] userObject]) {
+        [self performSegueWithIdentifier:@"login" sender:self];
+        return;
+    }
+    
+    [self loadEntry];
+    
+    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
+        if(success) {
+            NSLog(@"Success!");
+            
+            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
+        } else {
+            NSLog(@"Failure!");
+        }
+    }];
+}
+
+- (void)loadEntry
+{
+    FDUser __block *user = [[FDModelManager sharedManager] userObject];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[FDNetworkManager sharedManager] getUserWithEmail:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+        if(success) {
+            NSLog(@"Success!");
+            
+            FDUser *newUser = [[FDUser alloc] initWithDictionary:responseObject];
+            if([[user updatedAt] compare:[user updatedAt]] == NSOrderedDescending) {
+                NSLog(@"Updated user");
+                [[FDModelManager sharedManager] setUserObject:newUser];
+                user = newUser;
+            }
+        } else {
+            NSLog(@"Failure!");
+            NSLog(@"Error retreiving latest user from server");
+        }
+    }];
+    
+    NSDate *now = [NSDate date];
+    NSString *dateString = [FDStyle dateStringForDate:now detailed:NO];
+    
+    [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(success) {
+            NSLog(@"Success!");
+            
+            FDEntry *entry = [[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]];
+            if(![[FDModelManager sharedManager] entry] || [[entry updatedAt] compare:[[[FDModelManager sharedManager] entry] updatedAt]] == NSOrderedDescending) {
+                
+                NSLog(@"New entry");
+                _entryLoaded = NO;
+                _entryPreloaded = NO;
+                
+                [[FDModelManager sharedManager] setEntry:entry forDate:now];
+                [[FDModelManager sharedManager] setSelectedDate:now];
+                
+                for (NSDictionary *input in [responseObject objectForKey:@"inputs"]) {
+                    [[FDModelManager sharedManager] addInput:[[FDInput alloc] initWithDictionary:input]];
+                }
+                
+                if(_segueReady)
+                    [self performSegueWithIdentifier:@"start" sender:nil];
+            } else {
+                _entryLoaded = YES;
+                _entryPreloaded = YES;
+                [self performSegueWithIdentifier:@"start" sender:nil];
+            }
+        } else {
+            NSLog(@"Failure!");
+            
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error retreiving entry", nil)
+                                        message:NSLocalizedString(@"Looks like there was a problem retreiving your entry, please try again.", nil)
+                                       delegate:nil
+                              cancelButtonTitle:FDLocalizedString(@"nav/ok_caps")
+                              otherButtonTitles:nil] show];
+        }
+        _entryLoaded = YES;
+        
+        if(_entryPreloaded)
+            [self showSummary];
+        else
+            [self showLaunch];
+    }];
 }
 
 - (void)setDateTitle:(NSDate *)date
@@ -97,62 +199,60 @@
     [_dateButton setTitle:dateString forState:UIControlStateNormal];
 }
 
-- (void)showPages
+- (void)showLaunch
 {
-    [self hideSummary];
-    [self addViewController:self.pageViewController];
+    [self hideActiveViewController];
     
-    if([self.summaryViewController parentViewController]) {
+    [self transitionToViewController:self.launchViewController withFrame:LAUNCH_RECT continueButton:NO];
     
-        self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
-        [self transitionFromViewController:self.summaryViewController toViewController:self.pageViewController duration:ANIMATION_DURATION options:0 animations:^{
-            self.pageViewController.view.frame = PAGE_RECT;
-            self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
-        } completion:^(BOOL finished) {
-            [self removeViewController:self.summaryViewController];
-            [self.pageViewController didMoveToParentViewController:self];
-        }];
-    } else {
-        self.pageViewController.view.frame = PAGE_RECT;
-        self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
-    }
-    
-    [[FDModelManager sharedManager] saveSession];
-
-    //TODO: Animate continue button coming on screen as well
-    [_continueBtn setHidden:NO];
+    [_continueBtn setHidden:YES];
 }
 
-- (void)hidePages
+- (void)hideActiveViewController
 {
-    if([self.pageViewController parentViewController])
-        [self.pageViewController willMoveToParentViewController:nil];
+    if([self.activeViewController parentViewController])
+        [self.activeViewController willMoveToParentViewController:nil];
+}
+
+- (void)showPages
+{
+    [self hideActiveViewController];
+
+    [self transitionToViewController:self.pageViewController withFrame:PAGE_RECT continueButton:YES];
+    
+    [[FDModelManager sharedManager] saveSession];
 }
 
 - (void)showSummary
 {
-    [self hidePages];
-    [self addViewController:self.summaryViewController];
+    [self hideActiveViewController];
     
     self.summaryViewController.entry = [[FDModelManager sharedManager] entry];
     
-    if([self.pageViewController parentViewController]) {
-        
-        self.summaryViewController.view.frame = CGRectMake(SUMMARY_RECT.origin.x, self.view.frame.size.height, SUMMARY_RECT.size.width, SUMMARY_RECT.size.height);
-        [self transitionFromViewController:self.pageViewController toViewController:self.summaryViewController duration:ANIMATION_DURATION options:0 animations:^{
-            self.summaryViewController.view.frame = SUMMARY_RECT;
-            self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
+    [self transitionToViewController:self.summaryViewController withFrame:SUMMARY_RECT continueButton:NO];
+}
+
+- (void)transitionToViewController:(UIViewController *)viewController withFrame:(CGRect)frame continueButton:(BOOL)continueButtonOn
+{
+    [self addViewController:viewController];
+    
+    CGRect offscreenRect = CGRectMake(self.activeViewController.view.frame.origin.x, self.view.frame.size.height, self.activeViewController.view.frame.size.width, self.view.frame.size.height);
+    if(self.activeViewController && [self.activeViewController parentViewController]) {
+        [self transitionFromViewController:self.activeViewController toViewController:viewController duration:ANIMATION_DURATION options:0 animations:^{
+            viewController.view.frame = frame;
+            self.activeViewController.view.frame = offscreenRect;
         } completion:^(BOOL finished) {
-            [self removeViewController:self.pageViewController];
-            [self.summaryViewController didMoveToParentViewController:self];
+            [self removeViewController:self.activeViewController];
+            [viewController didMoveToParentViewController:self];
+            self.activeViewController = viewController;
+            [_continueBtn setHidden:!continueButtonOn];
         }];
     } else {
-        self.summaryViewController.view.frame = SUMMARY_RECT;
-        self.pageViewController.view.frame = CGRectMake(PAGE_RECT.origin.x, self.view.frame.size.height, PAGE_RECT.size.width, PAGE_RECT.size.height);
+        viewController.view.frame = frame;
+        self.activeViewController.view.frame = offscreenRect;
+        self.activeViewController = viewController;
+        [_continueBtn setHidden:!continueButtonOn];
     }
-//    [FDStyle addRoundedCornersToView:self.summaryViewController.view];
-//    [FDStyle addShadowToView:self.summaryViewController.view];
-    [_continueBtn setHidden:YES];
 }
 
 - (void)hideSummary
@@ -181,6 +281,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)launch
+{
+    [self refreshPages];
+    [self showPages];
 }
 
 //Refresh pages in case new ones were added when page appears

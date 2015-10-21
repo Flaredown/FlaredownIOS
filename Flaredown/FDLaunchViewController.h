@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FDViewController.h"
+
 @interface FDLaunchViewController : UIViewController
 
-@property BOOL entryLoaded;
-@property BOOL segueReady;
-@property BOOL entryPreloaded;
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIButton *alarmButton;
 
 @property UIView *backgroundView;
 

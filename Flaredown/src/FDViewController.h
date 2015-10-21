@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class FDLaunchViewController;
 @class FDSummaryCollectionViewController;
 
 @protocol FDViewControllerDelegate <NSObject>
 
+- (void)launch;
 - (void)refreshPages;
 - (void)refreshSummary;
 - (id)instance;
@@ -27,9 +29,15 @@
 
 @property BOOL loadSummary;
 
+@property BOOL entryLoaded;
+@property BOOL segueReady;
+@property BOOL entryPreloaded;
+
 @property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) FDSummaryCollectionViewController *summaryViewController;
+@property (strong, nonatomic) FDLaunchViewController *launchViewController;
+@property (strong, nonatomic) UIViewController *activeViewController;
 @property int numPages;
 @property int pageIndex;
 
