@@ -128,7 +128,9 @@
                 
                 NSLog(@"Success!");
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [_mainViewDelegate loadEntry];
+                }];
             }
             else {
                 NSLog(@"Failure!");

@@ -19,6 +19,8 @@
 #import "FDEntry.h"
 #import "FDNetworkManager.h"
 
+#import "FDLoginViewController.h"
+
 #define CARD_BUMP_OFFSET 60
 #define CARD_INSET 10
 #define CARD_OFFSET_Y 80
@@ -104,7 +106,7 @@
     }
     
     if(![[FDModelManager sharedManager] userObject]) {
-        [self performSegueWithIdentifier:@"login" sender:self];
+        _loginNeeded = YES;
         return;
     }
     
@@ -163,13 +165,9 @@
                 for (NSDictionary *input in [responseObject objectForKey:@"inputs"]) {
                     [[FDModelManager sharedManager] addInput:[[FDInput alloc] initWithDictionary:input]];
                 }
-                
-                if(_segueReady)
-                    [self performSegueWithIdentifier:@"start" sender:nil];
             } else {
                 _entryLoaded = YES;
                 _entryPreloaded = YES;
-                [self performSegueWithIdentifier:@"start" sender:nil];
             }
         } else {
             NSLog(@"Failure!");
@@ -187,6 +185,14 @@
         else
             [self showLaunch];
     }];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(_loginNeeded) {
+        _loginNeeded = NO;
+        [self performSegueWithIdentifier:@"login" sender:self];
+    }
 }
 
 - (void)setDateTitle:(NSDate *)date
@@ -538,6 +544,9 @@
             searchViewController.searchType = SearchTreatments;
         else if([_searchType isEqualToString:@"conditions"])
             searchViewController.searchType = SearchConditions;
+    } else if([segue.identifier isEqualToString:@"login"]) {
+        FDLoginViewController *loginViewController = (FDLoginViewController *)segue.destinationViewController;
+        [loginViewController setMainViewDelegate:self];
     }
 }
 

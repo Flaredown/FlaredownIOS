@@ -589,6 +589,7 @@
                         <outlet property="previousDayButton" destination="cuz-b9-Tbw" id="PVJ-MS-2qz"/>
                         <segue destination="Zvz-CY-M8D" kind="show" identifier="finish" id="RRC-oB-iPK"/>
                         <segue destination="t1N-rz-86q" kind="show" identifier="search" id="j9h-cQ-iZY"/>
+                        <segue destination="Ffa-p7-jyZ" kind="presentation" identifier="login" id="gKC-Qh-p5V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dF7-37-Hbp" userLabel="First Responder" sceneMemberID="firstResponder"/>

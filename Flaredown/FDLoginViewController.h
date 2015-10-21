@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FDViewController.h"
+
 @interface FDLoginViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;

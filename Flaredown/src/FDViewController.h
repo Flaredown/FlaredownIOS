@@ -22,12 +22,14 @@
 - (void)toggleCardBumped;
 - (void)openPage:(int)pageIndex;
 - (void)nextQuestion;
+- (void)loadEntry;
 
 @end
 
 @interface FDViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, FDViewControllerDelegate>
 
 @property BOOL loadSummary;
+@property BOOL loginNeeded;
 
 @property BOOL entryLoaded;
 @property BOOL segueReady;
