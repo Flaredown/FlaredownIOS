@@ -8,34 +8,83 @@
 
 #import "FDTreatmentCollectionViewLayout.h"
 
+#import "FDModelManager.h"
+
 @implementation FDTreatmentCollectionViewLayout
 
-static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
+static NSString * const PreviousDoseDecorationID = @"PreviousDoseBackground";
 
-//- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind atIndexPath:(NSIndexPath *)indexPath
+- (void)refresh
+{
+    for(UIView *view in self.collectionView.subviews) {
+        if([view isKindOfClass:[UICollectionReusableView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    [super prepareLayout];
+}
+
+//- (void)prepareLayout
 //{
-////    UICollectionViewLayoutAttributes *headerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
-////    UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
-////    
-////    UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewKind withIndexPath:indexPath];
-////    layoutAttributes.frame = CGRectMake(headerAttributes.frame.origin.x, headerAttributes.frame.origin.y, footerAttributes.frame.origin.x, footerAttributes.frame.origin.y);
-////    layoutAttributes.zIndex = -1;
-////    return layoutAttributes;
+//    [super prepareLayout];
+//    self.itemAttributes = [NSMutableArray new];
+//    
+//    NSInteger numberOfSection = self.collectionView.numberOfSections;
+//    for (int section = 0; section < numberOfSection; section++)
+//    {
+//        FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
+//        NSArray *previousDoses = [[[[FDModelManager sharedManager] userObject] previousDoses] objectForKey:[treatment name]];
+//        if([previousDoses count] == 0 || [[treatment doses] count] > 0)
+//            continue;
+//        
+//        NSString *decorationViewOfKind = PreviousDoseDecorationID;
+//        if ([decorationViewOfKind isKindOfClass:[NSNull class]])
+//            continue;
+//        
+//        NSInteger lastIndex = [self.collectionView numberOfItemsInSection:section] - 1 - 1;
+//        if (lastIndex < 0)
+//            continue;
+//        
+//        UICollectionViewLayoutAttributes *firstItem = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
+//        UICollectionViewLayoutAttributes *lastItem = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:lastIndex inSection:section]];
+//        
+//        CGRect frame = CGRectUnion(firstItem.frame, lastItem.frame);
+//        frame.origin.x -= self.sectionInset.left + 10;
+//        //        frame.origin.y -= self.sectionInset.top;
+//        
+//        if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal)
+//        {
+//            //            frame.size.width += self.sectionInset.left + self.sectionInset.right;
+//            frame.size.height = self.collectionView.frame.size.height;
+//        }
+//        else
+//        {
+//            frame.size.width = self.collectionView.frame.size.width + 20;
+//            //            frame.size.height += self.sectionInset.top + self.sectionInset.bottom;
+//        }
+//        
+//        
+//        UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewOfKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+//        
+//        attributes.zIndex = -1;
+//        attributes.frame = frame;
+//        [self.itemAttributes addObject:attributes];
+//        [self registerNib:[UINib nibWithNibName:decorationViewOfKind bundle:[NSBundle mainBundle]] forDecorationViewOfKind:decorationViewOfKind];
+//    }
 //}
 //
 //- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 //{
-//    NSMutableArray *allAttributes = [[NSMutableArray alloc] initWithCapacity:4];
-//    
-//    [allAttributes addObject:[self layoutAttributesForDecorationViewOfKind:PreviousDoseDecorationID atIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]];
-//    
-//    for (NSInteger i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++)
+//    NSMutableArray *attributes = [NSMutableArray arrayWithArray:[super layoutAttributesForElementsInRect:rect]];
+//    for (UICollectionViewLayoutAttributes *attribute in self.itemAttributes)
 //    {
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-//        UICollectionViewLayoutAttributes *layoutAttributes = [self layoutAttributesForItemAtIndexPath:indexPath];
-//        [allAttributes addObject:layoutAttributes];
+//        if (!CGRectIntersectsRect(rect, attribute.frame))
+//            continue;
+//        
+//        [attributes addObject:attribute];
 //    }
-//    return allAttributes;
+//    
+//    return attributes;
 //}
 
 @end

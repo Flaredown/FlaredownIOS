@@ -10,4 +10,9 @@
 
 @interface FDTreatmentCollectionViewLayout : UICollectionViewLeftAlignedLayout
 
+@property NSArray *indexPaths;
+@property (strong, nonatomic) NSMutableArray *itemAttributes;
+
+- (void)refresh;
+
 @end

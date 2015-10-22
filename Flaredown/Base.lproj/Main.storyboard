@@ -2870,7 +2870,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" rowHeight="63" id="NPS-3F-nES">
-                                <rect key="frame" x="0.0" y="86" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="66" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPS-3F-nES" id="Byj-ol-1l8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2898,7 +2898,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="result" rowHeight="63" id="PWh-1B-Opp">
-                                <rect key="frame" x="0.0" y="149" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="129" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWh-1B-Opp" id="a5E-bl-sMb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2934,7 +2934,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
-                                <rect key="frame" x="0.0" y="212" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="192" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmB-sC-Idy" id="yBt-Zs-ifi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -3428,7 +3428,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlR-vK-aOL">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add dose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlR-vK-aOL">
                                             <rect key="frame" x="8" y="4" width="64" height="15.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
@@ -3552,9 +3552,10 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akh-0p-8fR">
                                             <rect key="frame" x="0.0" y="0.0" width="108" height="34"/>
                                             <animations/>
+                                            <color key="backgroundColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
-                                            <state key="normal" title="Use latest:">
-                                                <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Used ........">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -4018,9 +4019,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_remindericon" width="36" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u8n-9I-Erz"/>
-        <segue reference="j9h-cQ-iZY"/>
         <segue reference="GOm-9p-EYG"/>
+        <segue reference="u8n-9I-Erz"/>
         <segue reference="1ic-5n-SwM"/>
+        <segue reference="8wA-Kt-Eo6"/>
     </inferredMetricsTieBreakers>
 </document>

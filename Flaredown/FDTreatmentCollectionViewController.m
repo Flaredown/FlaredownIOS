@@ -14,6 +14,8 @@
 #import "FDLocalizationManager.h"
 #import "FDPreviousDoseDecorationViewCell.h"
 
+#import "FDTreatmentCollectionViewLayout.h"
+
 #import "HTAutocompleteManager.h"
 
 #define CONTENT_INSET 20
@@ -136,6 +138,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     
     [self usePreviousDosesForTreatment:treatment];
     [self.collectionView reloadData];
+    [(FDTreatmentCollectionViewLayout *)self.collectionViewLayout refresh];
 }
 
 - (void)usePreviousDosesForTreatment:(FDTreatment *)treatment
@@ -172,14 +175,13 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     return [[[[FDModelManager sharedManager] entry] treatments] count];
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
     NSArray *previousDoses = [[[[FDModelManager sharedManager] userObject] previousDoses] objectForKey:[treatment name]];
     if([[treatment doses] count] > 0)
         return 2 + [[treatment doses] count];
     else if(previousDoses && [previousDoses count] > 0)
-        return 3 + [previousDoses count];
+        return 3;
     return 2;
 }
 
@@ -192,6 +194,12 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     
     UICollectionViewCell *cell;
     
+    NSArray *previousDoses = [[[[FDModelManager sharedManager] userObject] previousDoses] objectForKey:[treatment name]];
+    
+    BOOL usePreviousDoses = [[treatment doses] count] == 0 && [previousDoses count] > 0;
+    NSInteger doseStartRow = 1;
+    NSInteger lastRow = previousDoses ? doseStartRow + 1 : doseStartRow + [[treatment doses] count];
+    
     if(row == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentID forIndexPath:indexPath];
         
@@ -199,52 +207,52 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
         UILabel *label = (UILabel *)[cell viewWithTag:2];
         [label setText:[treatment name]];
         [label setTextColor:[FDStyle blackColor]];
-    } else {
-        NSArray *previousDoses = [[[[FDModelManager sharedManager] userObject] previousDoses] objectForKey:[treatment name]];
-        
-        BOOL usePreviousDoses = NO;
-        NSInteger doseStartRow, lastRow, numDoses;
-        if([[treatment doses] count] > 0) {
-            doseStartRow = 1;
-            numDoses = [[treatment doses] count];
-        } else if([previousDoses count] > 0) {
-            usePreviousDoses = YES;
-            doseStartRow = 2;
-            numDoses = [previousDoses count];
-        } else {
-            doseStartRow = 1;
-            numDoses = 0;
-        }
-        lastRow = doseStartRow + numDoses;
-        
-        if(row < doseStartRow) {
+    } else if(row < lastRow) {
+        if(usePreviousDoses) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:LatestDoseID forIndexPath:indexPath];
             
             //1 Button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
-            [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
-        } else if(row < lastRow) {
+            NSString *titleString = @"Used ";
+            for(FDDose *dose in previousDoses) {
+                titleString = [titleString stringByAppendingString:[NSString stringWithFormat:@"%@%@ + ", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]]];
+            }
+            titleString = [titleString substringToIndex:[titleString length]-3];
+            [button setTitle:titleString forState:UIControlStateNormal];
+            [FDStyle addSmallRoundedCornersToView:button];
+        } else {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:DoseID forIndexPath:indexPath];
             
             //1 Button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             
             FDDose *dose;
-            if(usePreviousDoses) {
-                dose = previousDoses[row-doseStartRow];
-                [button addTarget:self action:@selector(previousDoses:) forControlEvents:UIControlEventTouchUpInside];
-            } else {
-                dose = [treatment doses][row-doseStartRow];
-                [button addTarget:self action:@selector(editDose:) forControlEvents:UIControlEventTouchUpInside];
-            }
+            dose = [treatment doses][row-doseStartRow];
+            [button addTarget:self action:@selector(editDose:) forControlEvents:UIControlEventTouchUpInside];
             
             NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
             [button setTitle:title forState:UIControlStateNormal];
-            [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
-//            [FDStyle addRoundedCornersToView:button];
-        } else if(row == lastRow) {
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddDoseID forIndexPath:indexPath];
+            if(usePreviousDoses) {
+                [button setTitleColor:[FDStyle whiteColor] forState:UIControlStateNormal];
+                button.layer.borderWidth = 0.0;
+            } else {
+                [button setTitleColor:[FDStyle blueColor] forState:UIControlStateNormal];
+                [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
+            }
         }
+    } else if(row == lastRow) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddDoseID forIndexPath:indexPath];
+        
+        //2 Label
+        UILabel *label = (UILabel *)[cell viewWithTag:2];
+        if(usePreviousDoses) {
+            //TODO: Localized
+            [label setText:@"Used a different dose..."];
+        } else {
+            //TODO: Localized
+            [label setText:@"Add dose"];
+        }
+        [label setTextColor:[FDStyle blueColor]];
     }
     
     return cell;
@@ -260,38 +268,23 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     CGSize treatmentSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
     CGSize addDoseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
     CGSize doseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 32);
-    CGSize useLatestSize = CGSizeMake(80, 30);
+    CGSize useLatestSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 50);
     
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
     
+    NSArray *previousDoses = [[[[FDModelManager sharedManager] userObject] previousDoses] objectForKey:[treatment name]];
+    
+    BOOL usePreviousDoses = [[treatment doses] count] == 0 && [previousDoses count] > 0;
+    NSInteger doseStartRow = 1;
+    NSInteger lastRow = previousDoses ? doseStartRow + 1 : doseStartRow + [[treatment doses] count];
+    
     if(row == 0) {
         return treatmentSize;
-    } else {
-        NSArray *previousDoses = [[[[FDModelManager sharedManager] userObject] previousDoses] objectForKey:[treatment name]];
-        
-        BOOL usePreviousDoses = NO;
-        NSInteger doseStartRow, lastRow, numDoses;
-        if([[treatment doses] count] > 0) {
-            doseStartRow = 1;
-            numDoses = [[treatment doses] count];
-        } else if([previousDoses count] > 0) {
-            usePreviousDoses = YES;
-            doseStartRow = 2;
-            numDoses = [previousDoses count];
-        } else {
-            doseStartRow = 1;
-            numDoses = 0;
-        }
-        lastRow = doseStartRow + numDoses;
-        
-        if(row < doseStartRow) {
+    } else if(row < lastRow) {
+        if(usePreviousDoses) {
             return useLatestSize;
-        } else if(row < lastRow) {
-            FDDose *dose;
-            if(usePreviousDoses)
-                dose = previousDoses[row-doseStartRow];
-            else
-                dose = [treatment doses][row-doseStartRow];
+        } else {
+            FDDose *dose = [treatment doses][row-doseStartRow];
             NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
             UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:DOSE_FONT_SIZE];
             CGRect rect = [title boundingRectWithSize:doseSize
@@ -299,9 +292,9 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
                                            attributes:@{NSFontAttributeName:font}
                                               context:nil];
             return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, doseSize.height);
-        } else if(row == lastRow) {
-            return addDoseSize;
         }
+    } else if(row == lastRow) {
+        return addDoseSize;
     }
     
     return CGSizeZero;

@@ -34,6 +34,7 @@
 		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
 		ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03ED651B827EAC00AAD1E5 /* AccountView.xib */; };
 		ED20FBD51BB0867D001679FA /* FDSummaryCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */; settings = {ASSET_TAGS = (); }; };
+		ED23ECBF1BD9447200C84EF2 /* PreviousDoseBackground.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED23ECBE1BD9447200C84EF2 /* PreviousDoseBackground.xib */; settings = {ASSET_TAGS = (); }; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */; };
@@ -142,6 +143,7 @@
 		ED03ED651B827EAC00AAD1E5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 		ED20FBD31BB0867D001679FA /* FDSummaryCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCollectionViewLayout.h; sourceTree = "<group>"; };
 		ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCollectionViewLayout.m; sourceTree = "<group>"; };
+		ED23ECBE1BD9447200C84EF2 /* PreviousDoseBackground.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviousDoseBackground.xib; sourceTree = "<group>"; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				ED03ED651B827EAC00AAD1E5 /* AccountView.xib */,
 				EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */,
 				EDB7ED271BB0952600BEF994 /* CardBackground.xib */,
+				ED23ECBE1BD9447200C84EF2 /* PreviousDoseBackground.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */,
 				ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */,
 				EDD1D5601B87A0E40054D0BC /* EditAccountView.xib in Resources */,
+				ED23ECBF1BD9447200C84EF2 /* PreviousDoseBackground.xib in Resources */,
 				EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */,
 				85378A171A5215250053D6CC /* ProximaNova-Light.otf in Resources */,
 				85378A181A5215250053D6CC /* ProximaNova-Regular.otf in Resources */,
