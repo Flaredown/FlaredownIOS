@@ -14,8 +14,6 @@
 #import "FDLocalizationManager.h"
 #import "FDPreviousDoseDecorationViewCell.h"
 
-#import "FDTreatmentCollectionViewLayout.h"
-
 #import "HTAutocompleteManager.h"
 
 #define CONTENT_INSET 20
@@ -138,7 +136,6 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     
     [self usePreviousDosesForTreatment:treatment];
     [self.collectionView reloadData];
-    [(FDTreatmentCollectionViewLayout *)self.collectionViewLayout refresh];
 }
 
 - (void)usePreviousDosesForTreatment:(FDTreatment *)treatment
