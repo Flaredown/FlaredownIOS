@@ -8,7 +8,11 @@
 
 #import <UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h>
 
+#import "FDSummaryCollectionViewController.h"
+
 @interface FDSummaryCollectionViewLayout : UICollectionViewLeftAlignedLayout
+
+@property (nonatomic, weak) id <FDSummaryCollectionViewControllerDelegate> summaryCollectionViewDelegate;
 
 @property NSArray *indexPaths;
 @property (strong, nonatomic) NSMutableArray *itemAttributes;

@@ -12,7 +12,6 @@
 #import "FDPopupManager.h"
 #import "FDModelManager.h"
 #import "FDLocalizationManager.h"
-#import "FDPreviousDoseDecorationViewCell.h"
 
 #import "HTAutocompleteManager.h"
 
@@ -33,12 +32,6 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Do any additional setup after loading the view.
-    [self.collectionViewLayout registerClass:[FDPreviousDoseDecorationViewCell class] forDecorationViewOfKind:PreviousDoseDecorationID];
     
     self.collectionView.contentInset = UIEdgeInsetsMake(0, CONTENT_INSET, 0, CONTENT_INSET);
 }

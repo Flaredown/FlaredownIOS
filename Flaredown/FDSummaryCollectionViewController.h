@@ -11,12 +11,18 @@
 #import "FDModelManager.h"
 #import "FDViewController.h"
 
-@interface FDSummaryCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+@protocol FDSummaryCollectionViewControllerDelegate <NSObject>
+
+- (BOOL)sectionIsCardEnd:(NSInteger)section;
+- (BOOL)sectionIsCardTop:(NSInteger)section;
+- (BOOL)sectionIsCardBottom:(NSInteger)section;
+
+@end
+
+@interface FDSummaryCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, FDSummaryCollectionViewControllerDelegate>
 
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
-
 @property FDEntry *entry;
-
 @property BOOL failedToSubmit;
 
 - (void)refresh;

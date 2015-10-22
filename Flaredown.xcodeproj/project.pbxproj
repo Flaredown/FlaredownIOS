@@ -34,10 +34,11 @@
 		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
 		ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03ED651B827EAC00AAD1E5 /* AccountView.xib */; };
 		ED20FBD51BB0867D001679FA /* FDSummaryCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */; settings = {ASSET_TAGS = (); }; };
+		ED23ECC21BD96DCC00C84EF2 /* FDSummaryCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */; settings = {ASSET_TAGS = (); }; };
+		ED23ECC61BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23ECC51BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.m */; settings = {ASSET_TAGS = (); }; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */; };
-		ED484ADC1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED484ADB1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.m */; };
 		ED4BDEB11B168013008DAEA4 /* FDTreatmentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */; };
 		ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4BDEB31B168C54008DAEA4 /* FDDose.m */; };
 		ED4BDEB61B191511008DAEA4 /* AddDoseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4BDEB51B191511008DAEA4 /* AddDoseView.xib */; };
@@ -141,13 +142,15 @@
 		ED03ED651B827EAC00AAD1E5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 		ED20FBD31BB0867D001679FA /* FDSummaryCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCollectionViewLayout.h; sourceTree = "<group>"; };
 		ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCollectionViewLayout.m; sourceTree = "<group>"; };
+		ED23ECC01BD96DCC00C84EF2 /* FDSummaryCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCardView.h; sourceTree = "<group>"; };
+		ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCardView.m; sourceTree = "<group>"; };
+		ED23ECC41BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCardViewLayoutAttributes.h; sourceTree = "<group>"; };
+		ED23ECC51BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCardViewLayoutAttributes.m; sourceTree = "<group>"; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
 		ED432AFB1B02A46A00FFAA51 /* FDTagsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTagsCollectionViewController.h; sourceTree = "<group>"; };
 		ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTagsCollectionViewController.m; sourceTree = "<group>"; };
-		ED484ADA1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPreviousDoseDecorationViewCell.h; sourceTree = "<group>"; };
-		ED484ADB1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPreviousDoseDecorationViewCell.m; sourceTree = "<group>"; };
 		ED4BDEAF1B168013008DAEA4 /* FDTreatmentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTreatmentCollectionViewController.h; sourceTree = "<group>"; };
 		ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTreatmentCollectionViewController.m; sourceTree = "<group>"; };
 		ED4BDEB21B168C54008DAEA4 /* FDDose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDose.h; sourceTree = "<group>"; };
@@ -367,8 +370,10 @@
 				ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */,
 				ED58E51D1AC09FEE009B74EE /* FDPopup.h */,
 				ED58E51E1AC09FEE009B74EE /* FDPopup.m */,
-				ED484ADA1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.h */,
-				ED484ADB1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.m */,
+				ED23ECC01BD96DCC00C84EF2 /* FDSummaryCardView.h */,
+				ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */,
+				ED23ECC41BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.h */,
+				ED23ECC51BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -772,9 +777,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED484ADC1B94F35D0076C5D0 /* FDPreviousDoseDecorationViewCell.m in Sources */,
 				EDEA826C1A115A2A00A80416 /* FDResponse.m in Sources */,
 				EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */,
+				ED23ECC61BD96F9400C84EF2 /* FDSummaryCardViewLayoutAttributes.m in Sources */,
 				10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */,
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
@@ -820,6 +825,7 @@
 				ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
 				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,
+				ED23ECC21BD96DCC00C84EF2 /* FDSummaryCardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -748,7 +748,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="10" id="olh-db-IyE" customClass="FDSummaryCollectionViewLayout">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="olh-db-IyE" customClass="FDSummaryCollectionViewLayout">
                             <size key="itemSize" width="172" height="50"/>
                             <size key="headerReferenceSize" width="50" height="85"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -763,7 +763,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnL-8S-qYa">
-                                            <rect key="frame" x="8" y="16" width="156" height="34"/>
+                                            <rect key="frame" x="65.5" y="14" width="41.5" height="22"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="22"/>
                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -774,12 +774,10 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="NnL-8S-qYa" firstAttribute="trailing" secondItem="zlR-gB-5sB" secondAttribute="trailingMargin" id="6v3-bN-rb2"/>
-                                    <constraint firstItem="NnL-8S-qYa" firstAttribute="top" secondItem="zlR-gB-5sB" secondAttribute="topMargin" constant="8" id="Dhu-wk-lKV"/>
-                                    <constraint firstItem="NnL-8S-qYa" firstAttribute="bottom" secondItem="zlR-gB-5sB" secondAttribute="bottomMargin" constant="8" id="Ewh-Mk-YIw"/>
-                                    <constraint firstItem="NnL-8S-qYa" firstAttribute="leading" secondItem="zlR-gB-5sB" secondAttribute="leadingMargin" id="TXg-eZ-IXE"/>
+                                    <constraint firstItem="NnL-8S-qYa" firstAttribute="centerY" secondItem="zlR-gB-5sB" secondAttribute="centerY" id="I2k-kG-TLJ"/>
+                                    <constraint firstItem="NnL-8S-qYa" firstAttribute="centerX" secondItem="zlR-gB-5sB" secondAttribute="centerX" id="kyk-ze-GVq"/>
                                 </constraints>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemName" id="QU8-oj-9kS">
@@ -789,30 +787,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9N-lP-Gqs">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9N-lP-Gqs">
                                             <rect key="frame" x="8" y="20" width="156" height="20"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="28" id="SBF-y6-SnG"/>
                                                 <constraint firstAttribute="height" constant="20" id="kgg-Z9-apD"/>
-                                                <constraint firstAttribute="height" constant="23" id="vQ5-SP-jUV"/>
-                                                <constraint firstAttribute="height" constant="22" id="xI9-8P-3WQ"/>
-                                                <constraint firstAttribute="height" constant="32" id="xJl-Fn-mCJ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="SBF-y6-SnG"/>
-                                                    <exclude reference="vQ5-SP-jUV"/>
-                                                    <exclude reference="xI9-8P-3WQ"/>
-                                                    <exclude reference="xJl-Fn-mCJ"/>
-                                                </mask>
-                                            </variation>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYF-Vv-ahV">
-                                            <rect key="frame" x="8" y="0.0" width="156" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="172" height="40"/>
                                             <animations/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -826,29 +812,16 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="a9N-lP-Gqs" firstAttribute="leading" secondItem="QU8-oj-9kS" secondAttribute="leadingMargin" id="0nE-OZ-5Kv"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="a9N-lP-Gqs" secondAttribute="bottom" constant="-8" id="558-w5-cb6"/>
-                                    <constraint firstItem="oYF-Vv-ahV" firstAttribute="leading" secondItem="QU8-oj-9kS" secondAttribute="leadingMargin" id="FP7-Yn-At3"/>
-                                    <constraint firstItem="a9N-lP-Gqs" firstAttribute="top" secondItem="oYF-Vv-ahV" secondAttribute="bottom" constant="-15" id="Szb-FL-xYK"/>
+                                    <constraint firstItem="oYF-Vv-ahV" firstAttribute="leading" secondItem="QU8-oj-9kS" secondAttribute="leadingMargin" constant="-8" id="FP7-Yn-At3"/>
                                     <constraint firstItem="oYF-Vv-ahV" firstAttribute="top" secondItem="QU8-oj-9kS" secondAttribute="topMargin" constant="-8" id="Va2-tZ-ibs"/>
-                                    <constraint firstItem="oYF-Vv-ahV" firstAttribute="bottom" secondItem="QU8-oj-9kS" secondAttribute="bottomMargin" id="a4G-ba-0Qi"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="a9N-lP-Gqs" secondAttribute="bottom" id="alP-cQ-8IV"/>
-                                    <constraint firstItem="a9N-lP-Gqs" firstAttribute="top" secondItem="QU8-oj-9kS" secondAttribute="topMargin" constant="9" id="g7N-6K-fTo"/>
-                                    <constraint firstItem="a9N-lP-Gqs" firstAttribute="top" secondItem="QU8-oj-9kS" secondAttribute="topMargin" constant="3" id="gNC-J6-6a1"/>
-                                    <constraint firstItem="a9N-lP-Gqs" firstAttribute="trailing" secondItem="QU8-oj-9kS" secondAttribute="trailingMargin" id="lQx-C0-h0h"/>
-                                    <constraint firstItem="oYF-Vv-ahV" firstAttribute="trailing" secondItem="QU8-oj-9kS" secondAttribute="trailingMargin" id="t1h-IN-5TB"/>
+                                    <constraint firstItem="oYF-Vv-ahV" firstAttribute="bottom" secondItem="QU8-oj-9kS" secondAttribute="bottomMargin" constant="8" id="a4G-ba-0Qi"/>
+                                    <constraint firstItem="oYF-Vv-ahV" firstAttribute="trailing" secondItem="QU8-oj-9kS" secondAttribute="trailingMargin" constant="8" id="t1h-IN-5TB"/>
                                 </constraints>
                                 <size key="customSize" width="172" height="40"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Szb-FL-xYK"/>
-                                        <exclude reference="alP-cQ-8IV"/>
-                                        <exclude reference="g7N-6K-fTo"/>
-                                        <exclude reference="gNC-J6-6a1"/>
-                                    </mask>
-                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="itemValue" id="hiG-ZO-4cG">
                                 <rect key="frame" x="376" y="106" width="75" height="30"/>
@@ -890,29 +863,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFI-gV-4Ab">
-                                            <rect key="frame" x="8" y="34" width="117" height="30"/>
+                                            <rect key="frame" x="8" y="29" width="117" height="35"/>
                                             <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="117" id="r2f-Yf-sxb"/>
-                                                <constraint firstAttribute="height" constant="32" id="ybT-eS-I2d"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <state key="normal" title="+ Add symptoms">
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="r2f-Yf-sxb"/>
-                                                    <exclude reference="ybT-eS-I2d"/>
-                                                </mask>
-                                            </variation>
                                             <connections>
                                                 <action selector="noItemsButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="8vK-jf-MKT"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not tracking any symptoms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewk-TY-lJc">
-                                            <rect key="frame" x="8" y="8" width="117" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="117" height="16"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="ac5-EL-Pue"/>
@@ -920,57 +883,44 @@
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <color key="textColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="ac5-EL-Pue"/>
+                                                </mask>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ewk-TY-lJc" firstAttribute="top" secondItem="TfB-Qn-j47" secondAttribute="topMargin" id="1Yw-5A-Gtm"/>
-                                    <constraint firstAttribute="centerY" secondItem="iFI-gV-4Ab" secondAttribute="centerY" id="DWj-Jk-yxE"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="ewk-TY-lJc" secondAttribute="leading" id="67h-oC-CcT"/>
                                     <constraint firstItem="iFI-gV-4Ab" firstAttribute="trailing" secondItem="TfB-Qn-j47" secondAttribute="trailingMargin" id="SUS-uX-BP1"/>
                                     <constraint firstItem="iFI-gV-4Ab" firstAttribute="leading" secondItem="TfB-Qn-j47" secondAttribute="leadingMargin" id="XGT-wB-bRa"/>
-                                    <constraint firstAttribute="centerX" secondItem="iFI-gV-4Ab" secondAttribute="centerX" constant="-0.5" id="ZBo-gZ-i72"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="iFI-gV-4Ab" secondAttribute="bottom" id="gBL-4W-GM6"/>
                                     <constraint firstItem="iFI-gV-4Ab" firstAttribute="top" secondItem="ewk-TY-lJc" secondAttribute="bottom" constant="5" id="pgd-mL-5i4"/>
-                                    <constraint firstItem="ewk-TY-lJc" firstAttribute="trailing" secondItem="TfB-Qn-j47" secondAttribute="trailingMargin" id="uc1-WA-yrN"/>
-                                    <constraint firstItem="ewk-TY-lJc" firstAttribute="leading" secondItem="TfB-Qn-j47" secondAttribute="leadingMargin" id="yeZ-aR-lkX"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="ewk-TY-lJc" secondAttribute="trailing" id="pzm-zk-5dx"/>
                                 </constraints>
                                 <size key="customSize" width="133" height="72"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="DWj-Jk-yxE"/>
-                                        <exclude reference="ZBo-gZ-i72"/>
-                                    </mask>
-                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemNoValue" id="llZ-p6-VNx">
-                                <rect key="frame" x="0.0" y="162.5" width="133" height="35"/>
+                                <rect key="frame" x="0.0" y="157.5" width="133" height="35"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28q-aR-A37">
-                                            <rect key="frame" x="8" y="0.0" width="117" height="27"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
                                             <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="38Q-xc-dOO"/>
-                                                <constraint firstAttribute="width" constant="117" id="rup-mr-cwi"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <state key="normal" title="No rating">
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="38Q-xc-dOO"/>
-                                                    <exclude reference="rup-mr-cwi"/>
-                                                </mask>
-                                            </variation>
                                             <connections>
                                                 <action selector="questionButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="ATe-Wa-tmQ"/>
                                             </connections>
@@ -980,48 +930,30 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="28q-aR-A37" secondAttribute="bottom" id="AkI-wl-ftm"/>
-                                    <constraint firstAttribute="centerY" secondItem="28q-aR-A37" secondAttribute="centerY" id="DPt-uf-rt2"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="28q-aR-A37" secondAttribute="bottom" constant="-8" id="AkI-wl-ftm"/>
                                     <constraint firstItem="28q-aR-A37" firstAttribute="top" secondItem="llZ-p6-VNx" secondAttribute="topMargin" constant="-8" id="Gvy-07-ang"/>
-                                    <constraint firstItem="28q-aR-A37" firstAttribute="leading" secondItem="llZ-p6-VNx" secondAttribute="leadingMargin" id="Nfm-bW-hGN"/>
-                                    <constraint firstAttribute="centerX" secondItem="28q-aR-A37" secondAttribute="centerX" constant="-0.5" id="Vcl-C8-9L8"/>
-                                    <constraint firstItem="28q-aR-A37" firstAttribute="trailing" secondItem="llZ-p6-VNx" secondAttribute="trailingMargin" id="gRs-mg-2eG"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="28q-aR-A37" secondAttribute="trailing" constant="-8" id="LtY-ip-0rD"/>
+                                    <constraint firstItem="28q-aR-A37" firstAttribute="leading" secondItem="llZ-p6-VNx" secondAttribute="leadingMargin" constant="-8" id="Nfm-bW-hGN"/>
                                 </constraints>
                                 <size key="customSize" width="133" height="35"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="DPt-uf-rt2"/>
-                                        <exclude reference="Vcl-C8-9L8"/>
-                                    </mask>
-                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentNoValue" id="Nwm-om-Nk9">
-                                <rect key="frame" x="176.5" y="162.5" width="133" height="35"/>
+                                <rect key="frame" x="176.5" y="157.5" width="133" height="35"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mr-uG-bFC">
-                                            <rect key="frame" x="8" y="0.0" width="117" height="27"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
                                             <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="117" id="5Sz-Rf-b8w"/>
-                                                <constraint firstAttribute="height" constant="32" id="sR1-Bf-tlO"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <state key="normal" title="No dose">
                                                 <color key="titleColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="5Sz-Rf-b8w"/>
-                                                    <exclude reference="sR1-Bf-tlO"/>
-                                                </mask>
-                                            </variation>
                                             <connections>
                                                 <action selector="questionButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="tDn-kB-aNb"/>
                                             </connections>
@@ -1031,25 +963,17 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="9mr-uG-bFC" secondAttribute="centerY" id="EUx-9a-2gV"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="9mr-uG-bFC" secondAttribute="bottom" id="GCf-6b-MLR"/>
-                                    <constraint firstItem="9mr-uG-bFC" firstAttribute="trailing" secondItem="Nwm-om-Nk9" secondAttribute="trailingMargin" id="Hyv-IU-ikl"/>
-                                    <constraint firstItem="9mr-uG-bFC" firstAttribute="leading" secondItem="Nwm-om-Nk9" secondAttribute="leadingMargin" id="Si5-6B-axr"/>
-                                    <constraint firstAttribute="centerX" secondItem="9mr-uG-bFC" secondAttribute="centerX" constant="-0.5" id="VnT-DK-dUr"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="9mr-uG-bFC" secondAttribute="bottom" constant="-8" id="GCf-6b-MLR"/>
+                                    <constraint firstItem="9mr-uG-bFC" firstAttribute="leading" secondItem="Nwm-om-Nk9" secondAttribute="leadingMargin" constant="-8" id="Si5-6B-axr"/>
                                     <constraint firstItem="9mr-uG-bFC" firstAttribute="top" secondItem="Nwm-om-Nk9" secondAttribute="topMargin" constant="-8" id="W98-6x-yK3"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="9mr-uG-bFC" secondAttribute="trailing" constant="-8" id="e8R-n8-Yzq"/>
                                 </constraints>
                                 <size key="customSize" width="133" height="35"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="EUx-9a-2gV"/>
-                                        <exclude reference="VnT-DK-dUr"/>
-                                    </mask>
-                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentTaken" id="ZQ5-Qn-R2v">
-                                <rect key="frame" x="352.5" y="162.5" width="133" height="35"/>
+                                <rect key="frame" x="352.5" y="157.5" width="133" height="35"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="133" height="35"/>
@@ -1082,7 +1006,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="x6j-tz-iEv" secondAttribute="centerX" constant="-0.5" id="4zB-Rg-mzE"/>
                                     <constraint firstAttribute="centerY" secondItem="x6j-tz-iEv" secondAttribute="centerY" id="HGu-tC-sad"/>
@@ -1100,7 +1024,7 @@
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tag" id="Q6Z-U8-Wv5">
-                                <rect key="frame" x="529" y="162" width="71" height="36"/>
+                                <rect key="frame" x="529" y="157" width="71" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="71" height="36"/>
@@ -1154,7 +1078,7 @@
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addNote" id="8sA-BP-XnY">
-                                <rect key="frame" x="0.0" y="208.5" width="138" height="39"/>
+                                <rect key="frame" x="0.0" y="198.5" width="138" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="138" height="39"/>
@@ -1187,7 +1111,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="Uiy-R0-CJB" secondAttribute="trailing" id="Mvb-Da-uCF"/>
                                     <constraint firstItem="Uiy-R0-CJB" firstAttribute="top" secondItem="8sA-BP-XnY" secondAttribute="topMargin" id="PjN-lJ-N3x"/>
@@ -1197,7 +1121,7 @@
                                 <size key="customSize" width="138" height="39"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dose" id="Nek-OQ-BYc">
-                                <rect key="frame" x="148" y="211" width="77" height="34"/>
+                                <rect key="frame" x="148" y="201" width="77" height="34"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="77" height="34"/>
@@ -1223,7 +1147,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="WOv-F8-fJt" firstAttribute="leading" secondItem="Nek-OQ-BYc" secondAttribute="leadingMargin" constant="-8" id="0K7-cu-VNu"/>
                                     <constraint firstAttribute="centerX" secondItem="WOv-F8-fJt" secondAttribute="centerX" id="5P4-Xy-3cJ"/>
@@ -1245,7 +1169,7 @@
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="notes" id="G9n-j4-S3h">
-                                <rect key="frame" x="235" y="203" width="172" height="50"/>
+                                <rect key="frame" x="235" y="193" width="172" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
@@ -1273,7 +1197,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="HFE-hu-ysT" secondAttribute="bottom" id="3y8-K8-vU9"/>
                                     <constraint firstItem="HFE-hu-ysT" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="5ZB-xq-AaB"/>
@@ -1306,7 +1230,7 @@
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="empty" id="jec-aB-pE4">
-                                <rect key="frame" x="417" y="203" width="172" height="50"/>
+                                <rect key="frame" x="417" y="193" width="172" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
@@ -1315,7 +1239,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="submitInfo" id="0mh-UX-PRc">

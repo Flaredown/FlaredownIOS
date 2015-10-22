@@ -15,6 +15,8 @@
 #import "FDTreatmentCollectionViewController.h"
 #import "FDNotesViewController.h"
 
+#import "FDSummaryCollectionViewLayout.h"
+
 #define CONDITION_SECTION 0
 #define SYMPTOM_SECTION 1
 #define TREATMENT_SECTION 2
@@ -33,19 +35,19 @@
 #define NO_SYMPTOMS (SYMPTOM_COUNT == 0)
 #define SYMPTOM_END (SYMPTOM_BASE + (NO_SYMPTOMS ? 1 : SYMPTOM_COUNT))
 
-#define TREATMENT_TITLE (SYMPTOM_END)
+#define TREATMENT_TITLE (SYMPTOM_END+1)
 #define TREATMENT_BASE (TREATMENT_TITLE+1)
 #define TREATMENT_COUNT [[_entry treatments] count]
 #define NO_TREATMENTS (TREATMENT_COUNT == 0)
 #define TREATMENT_END (TREATMENT_BASE + (NO_TREATMENTS ? 1 : TREATMENT_COUNT))
 
-#define TAG_TITLE (TREATMENT_END)
+#define TAG_TITLE (TREATMENT_END+1)
 #define TAG_BASE (TAG_TITLE+1)
 #define TAG_COUNT [[_entry tags] count]
 #define NO_TAGS (TAG_COUNT == 0)
 #define TAG_END (TAG_BASE + 1)
 
-#define NOTE_TITLE (TAG_END)
+#define NOTE_TITLE (TAG_END+1)
 #define NOTE_BASE (NOTE_TITLE+1)
 #define NO_NOTES ([[_entry notes] length] == 0)
 #define NOTE_END (NOTE_BASE + 1)
@@ -83,6 +85,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     self.view.backgroundColor = [UIColor clearColor];
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    FDSummaryCollectionViewLayout *layout = (FDSummaryCollectionViewLayout *)self.collectionViewLayout;
+    layout.summaryCollectionViewDelegate = self;
     //Style
 //    [FDStyle addRoundedCornersToView:self.view];
 //    [FDStyle addShadowToView:self.view];
@@ -207,12 +211,14 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 
 #pragma mark <UICollectionViewDataSource>
 
+//TODO: Sort everything into rows instead of sections. Should be conditions, symptoms, treatments, tags, notes as sections; everything else as rows
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     NSUInteger conditions = CONDITION_END - CONDITION_BASE + 1 + 1;
-    NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1;
-    NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1;
-    NSUInteger tags = 2;
+    NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1 + 1;
+    NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1 + 1;
+    NSUInteger tags = 3;
     NSUInteger notes = 2;
     
     return conditions+symptoms+treatments+tags+notes;
@@ -235,6 +241,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             return 1;
         FDQuestion *question = [_entry questionsForCatalog:@"symptoms"][section-SYMPTOM_BASE];
         return [self numberOfItemsForQuestion:question];
+    } else if(section == SYMPTOM_END) {
+        return 1;
     } else if(section == TREATMENT_TITLE) {
         return 1;
     } else if(section < TREATMENT_END) {
@@ -242,12 +250,16 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             return 1;
         FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
         return [self numberOfItemsForTreatment:treatment];
+    } else if(section == TREATMENT_END) {
+        return 1;
     } else if(section == TAG_TITLE) {
         return 1;
     } else if (section < TAG_END) {
         if(NO_TAGS)
             return 1;
         return [[[[FDModelManager sharedManager] entry] tags] count];
+    } else if(section == TAG_END) {
+        return 1;
     } else if(section == NOTE_TITLE) {
         return 1;
     } else if(section < NOTE_END) {
@@ -276,81 +288,12 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     
     UICollectionViewCell *cell;
     
-//    if(section == CONDITION_SECTION) {
-//        if(row == 0) {
-//        } else {
-//            NSInteger questionCount = 0;
-//            NSInteger valueCount = -1;
-//            
-//            NSArray *questions = [_entry questionsForCatalog:@"conditions"];
-//            
-//            for(int i = 0; i < row; i++) {
-//                if(valueCount == -1) {
-//                    //return question
-//                    valueCount++;
-//                } else {
-//                    FDResponse *response = [_entry responses][questionCount];
-//                    if([response value] <= 0) {
-//                        //no data
-//                        valueCount = -1;
-//                    } else {
-//                        //value
-//                        valueCount++;
-//                        if(valueCount == [response value]) {
-//                            valueCount = -1;
-//                            questionCount++;
-//                        }
-//                    }
-//                }
-//            }
-//            if(valueCount == -1) {
-//                FDQuestion *question = questions[questionCount];
-//                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNameIdentifier forIndexPath:indexPath];
-//                
-//                //1 Label
-//                UILabel *label = (UILabel *)[cell viewWithTag:1];
-//                [label setText:[question name]];
-//            } else
-//                ;
-//        }
-//    } else if(section == SYMPTOM_SECTION) {
-//        if(row == 0) {
-//            
-//        } else if(NO_SYMPTOMS) {
-//            
-//        } else {
-//            
-//        }
-//    } else if(section == TREATMENT_SECTION) {
-//        if(NO_TREATMENTS) {
-//            
-//        } else {
-//            
-//        }
-//    } else if(section == TAGS_SECTION) {
-//        if(NO_TAGS) {
-//            
-//        } else {
-//            
-//        }
-//    } else if(section == NOTES_SECTION) {
-//        if(NO_NOTES) {
-//            
-//        } else {
-//            
-//        }
-//    }
-    
-//    return cell;
     if(section == CONDITION_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"conditions")];
-        
-        [FDStyle addRoundedCornersToTopOfView:cell];
-        
     } else if(section < CONDITION_END) {
         if(NO_CONDITIONS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
@@ -362,7 +305,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             //2 Label
             UILabel *label = (UILabel *)[cell viewWithTag:2];
             [label setText:@"No conditions"];//TODO:Localized
-
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
@@ -373,19 +315,13 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 //1 Label
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[question name]];
-                
             } else if(response && [response value] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
                 
                 //1 Button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
-                [FDStyle addSmallRoundedCornersToView:button];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
-            }
-            if(section == CONDITION_END - 1 && (row != 0 || NO_CONDITIONS)) {
-                [FDStyle addRoundedCornersToBottomOfView:cell];
-                [FDStyle addShadowToView:cell];
             }
         }
     } else if(section == CONDITION_END) {
@@ -396,9 +332,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"symptoms")];
-        
-        [FDStyle addRoundedCornersToTopOfView:cell];
-        
     } else if(section < SYMPTOM_END) {
         if(NO_SYMPTOMS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
@@ -420,30 +353,23 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 //1 Label
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[question name]];
-                
             } else if(response && [response value] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
                 
                 //1 Button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
-                [FDStyle addSmallRoundedCornersToView:button];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
             }
         }
-        if(section == SYMPTOM_END - 1 && (row != 0 || NO_SYMPTOMS)) {
-            [FDStyle addRoundedCornersToBottomOfView:cell];
-            [FDStyle addShadowToView:cell];
-        }
+    } else if(section == SYMPTOM_END) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
     } else if(section == TREATMENT_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Button
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:FDLocalizedString(@"treatments")];
-        
-        [FDStyle addRoundedCornersToTopOfView:cell];
-        
     } else if(section < TREATMENT_END) {
         if(NO_TREATMENTS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
@@ -464,7 +390,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 //1 Label
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[treatment name]];
-                
             } else if([[treatment doses] count] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:DoseIdentifier forIndexPath:indexPath];
                 
@@ -476,24 +401,18 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 FDDose *dose = [treatment doses][doseRow];
                 NSString *title = [NSString stringWithFormat:@"%@ %@", [FDStyle trimmedDecimal:[dose quantity]], [dose unit]];
                 [button setTitle:title forState:UIControlStateNormal];
-//                [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
-                [FDStyle addRoundedCornersToView:button];
             } else {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentNoValueIdentifier forIndexPath:indexPath];
             }
         }
-        if(section == TREATMENT_END - 1 && (row != 0 || NO_TREATMENTS)) {
-            [FDStyle addRoundedCornersToBottomOfView:cell];
-            [FDStyle addShadowToView:cell];
-        }
+    } else if(section == TREATMENT_END) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
     } else if(section == TAG_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:@"Tags"]; //TODO:Localized
-        
-        [FDStyle addRoundedCornersToTopOfView:cell];
     } else if(section < TAG_END) {
         if(NO_TAGS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
@@ -513,15 +432,15 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             [button setTitle:tag forState:UIControlStateNormal];
             [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
-            [FDStyle addRoundedCornersToView:button];
         }
+    } else if(section == TAG_END) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
     } else if(section == NOTE_TITLE) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TitleIdentifier forIndexPath:indexPath];
         
         //1 Label
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:@"Notes"]; //TODO:Localized
-
     } else if(section < NOTE_END) {
         if([[_entry notes] length] > 0) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:NotesIdentifier forIndexPath:indexPath];
@@ -536,10 +455,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             UIButton *button = (UIButton *)[cell viewWithTag:1];
                 
             [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
-        }
-        if(section == NOTE_END - 1) {
-            [FDStyle addRoundedCornersToBottomOfView:cell];
-            [FDStyle addShadowToView:cell];
         }
     }
     return cell;
@@ -559,6 +474,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     NSUInteger row = [indexPath row];
     
     float maxWidth = self.collectionView.frame.size.width-COLLECTION_CONTENT_INSET*2;
+    float placeholderHeight = 20;
     
     if(section == CONDITION_TITLE) {
         return CGSizeMake(maxWidth, 40);
@@ -577,7 +493,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 return CGSizeMake(maxWidth, 35);
         }
     } else if(section == CONDITION_END) {
-        return CGSizeMake(maxWidth, 40);
+        return CGSizeMake(maxWidth, placeholderHeight);
     } else if(section == SYMPTOM_TITLE) {
         return CGSizeMake(maxWidth, 40);
     } else if(section < SYMPTOM_END) {
@@ -594,6 +510,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             else
                 return CGSizeMake(maxWidth, 35);
             }
+    } else if(section == SYMPTOM_END) {
+        return CGSizeMake(maxWidth, placeholderHeight);
     } else if(section == TREATMENT_TITLE) {
         return CGSizeMake(maxWidth, 40);
     } else if(section < TREATMENT_END) {
@@ -618,6 +536,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                     return CGSizeMake(maxWidth, 35);
             }
         }
+    } else if (section == TREATMENT_END) {
+        return CGSizeMake(maxWidth, placeholderHeight);
     } else if(section == TAG_TITLE) {
         return CGSizeMake(maxWidth, 40);
     } else if(section < TAG_END) {
@@ -630,6 +550,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             CGRect rect = [tag boundingRectWithSize:tagSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
             return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, tagSize.height);
         }
+    } else if(section == TAG_END) {
+        return CGSizeMake(maxWidth, placeholderHeight);
     } else if(section == NOTE_TITLE) {
         return CGSizeMake(maxWidth, 40);
     } else if(section < NOTE_END) {
@@ -668,40 +590,19 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     }
 }
 
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-//{
-//    return 0;
-//}
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (BOOL)sectionIsCardEnd:(NSInteger)section
+{
+    return section == CONDITION_END || section == SYMPTOM_END || section == TREATMENT_END || section == TAG_END;
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (BOOL)sectionIsCardTop:(NSInteger)section
+{
+    return section == CONDITION_TITLE || section == SYMPTOM_TITLE || section == TREATMENT_TITLE || section == TAG_TITLE || section == NOTE_TITLE;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+- (BOOL)sectionIsCardBottom:(NSInteger)section
+{
+    return section == CONDITION_END - 1 || section == SYMPTOM_END - 1 || section == TREATMENT_END - 1 || section == TAG_END - 1 || section == NOTE_END;
 }
-*/
 
 @end
