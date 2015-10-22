@@ -101,6 +101,8 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 
 - (IBAction)alarmButton:(id)sender
 {
+    if(![[FDModelManager sharedManager] reminder])
+        return;
     UIView *alarmView = [[[NSBundle mainBundle] loadNibNamed:@"AlarmView" owner:self options:nil] objectAtIndex:0];
     [alarmView setFrame:CGRectMake(self.view.frame.size.width/2-self.view.frame.size.width*ALARM_WIDTH/2, self.view.frame.size.height/2-self.view.frame.size.height*ALARM_HEIGHT/2, self.view.frame.size.width*ALARM_WIDTH, self.view.frame.size.height*ALARM_HEIGHT)];
     
@@ -328,7 +330,6 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
         // Title Label
         UILabel *reminderTitleLabel = (UILabel *)[cell viewWithTag:1];
         
-        
         //2 Switch
         UISwitch *reminderSwitch = (UISwitch *)[cell viewWithTag:2];
         [reminderSwitch setOn:[[FDModelManager sharedManager] reminder]];
@@ -345,10 +346,9 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
         title = [dateFormatter stringFromDate:[[FDModelManager sharedManager] reminderTime]];
         [reminderTimeLabel setText:title];
         if([[FDModelManager sharedManager] reminder])
-            [reminderTimeLabel setAlpha:1.0f];
+            [reminderTimeLabel setTextColor:[FDStyle blueColor]];
         else
-            [reminderTimeLabel setAlpha:0.4f];
-        
+            [reminderTimeLabel setTextColor:[FDStyle lightGreyColor]];
         [FDStyle addRoundedCornersToView:cell];
         [FDStyle addShadowToView:cell];
         
