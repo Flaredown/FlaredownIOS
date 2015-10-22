@@ -240,16 +240,23 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     } else if(row == lastRow) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:AddDoseID forIndexPath:indexPath];
         
-        //2 Label
-        UILabel *label = (UILabel *)[cell viewWithTag:2];
+        //1 Label
+        UIButton *button = (UIButton *)[cell viewWithTag:1];
         if(usePreviousDoses) {
             //TODO: Localized
-            [label setText:@"Used a different dose..."];
+            [button setTitle:@"Used a different dose..." forState:UIControlStateNormal];
+            [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
+            [FDStyle addSmallRoundedCornersToView:button];
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         } else {
             //TODO: Localized
-            [label setText:@"Add dose"];
+            [button setTitle:@"Add dose" forState:UIControlStateNormal];
+            button.layer.borderWidth = 0.0;
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
         }
-        [label setTextColor:[FDStyle blueColor]];
+        [button setTitleColor:[FDStyle blueColor] forState:UIControlStateNormal];
     }
     
     return cell;
@@ -265,7 +272,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     CGSize treatmentSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
     CGSize addDoseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
     CGSize doseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 32);
-    CGSize useLatestSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 50);
+    CGSize useLatestSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 40);
     
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
     
@@ -291,7 +298,10 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
             return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, doseSize.height);
         }
     } else if(row == lastRow) {
-        return addDoseSize;
+        if(previousDoses)
+            return useLatestSize;
+        else
+            return addDoseSize;
     }
     
     return CGSizeZero;
