@@ -23,8 +23,7 @@
     self.itemAttributes = [NSMutableArray new];
     
     NSInteger numberOfSection = self.collectionView.numberOfSections;
-    for (int section = 0; section < numberOfSection; section++)
-    {
+    for (int section = 0; section < numberOfSection; section++) {
         if([_summaryCollectionViewDelegate sectionIsCardEnd:section])
             continue;
         
@@ -36,32 +35,24 @@
         if (lastIndex < 0)
             continue;
         
-        FDSummaryCardViewLayoutAttributes *firstItem = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
-        [firstItem setRoundTop:YES];
-        FDSummaryCardViewLayoutAttributes *lastItem = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:lastIndex inSection:section]];
-        [lastItem setRoundBottom:YES];
-        
+        UICollectionViewLayoutAttributes *firstItem = [super layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        UICollectionViewLayoutAttributes *lastItem = [super layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:lastIndex inSection:section]];
         CGRect frame = CGRectUnion(firstItem.frame, lastItem.frame);
-//        frame.origin.x -= self.sectionInset.left;
-//        frame.origin.y -= self.sectionInset.top;
         
-//        if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal)
-//        {
-//            frame.size.width += self.sectionInset.left + self.sectionInset.right;
-////            frame.size.height = self.collectionView.frame.size.height;
-//        }
-//        else
-//        {
-////            frame.size.width = self.collectionView.frame.size.width;
-//            frame.size.height += self.sectionInset.top + self.sectionInset.bottom;
-//        }
-
-        UICollectionViewLayoutAttributes *attributes = [[[self class] layoutAttributesClass] layoutAttributesForDecorationViewOfKind:decorationViewOfKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
-
-        attributes.zIndex = -1;
-        attributes.frame = frame;
-        [self.itemAttributes addObject:attributes];
-        [self registerNib:[UINib nibWithNibName:decorationViewOfKind bundle:[NSBundle mainBundle]] forDecorationViewOfKind:decorationViewOfKind];
+        NSInteger numberOfRow = [self.collectionView numberOfItemsInSection:section];
+        for(int row = 0; row < numberOfRow; row++) {
+            FDSummaryCardViewLayoutAttributes *attributes = [FDSummaryCardViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewOfKind withIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+            
+            if([_summaryCollectionViewDelegate sectionIsCardTop:section])
+                attributes.roundTop = YES;
+            if([_summaryCollectionViewDelegate sectionIsCardBottom:section])
+                attributes.roundBottom = YES;
+            
+            attributes.zIndex = -1;
+            [attributes setFrame:frame];
+            [self.itemAttributes addObject:attributes];
+            [self registerNib:[UINib nibWithNibName:decorationViewOfKind bundle:[NSBundle mainBundle]] forDecorationViewOfKind:decorationViewOfKind];
+        }
     }
 }
 
@@ -77,16 +68,6 @@
     }
     
     return attributes;
-}
-
-- (FDSummaryCardViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [FDSummaryCardViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-}
-
-+ (Class)layoutAttributesClass
-{
-    return [FDSummaryCardViewLayoutAttributes class];
 }
 
 @end

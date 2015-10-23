@@ -31,6 +31,7 @@ static float const FDBorderWidth = 1;
 
 + (void)addRoundedCornersToTopOfView:(UIView *)view;
 + (void)addRoundedCornersToBottomOfView:(UIView *)view;
++ (void)removeCornersForView:(UIView *)view;
 
 + (UIColor *)indianKhakiColor;
 + (UIColor *)greyColor;

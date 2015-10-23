@@ -67,6 +67,15 @@
     view.layer.mask = maskLayer;
 }
 
++ (void)removeCornersForView:(UIView *)view
+{
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:0 cornerRadii:CGSizeZero];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    view.layer.mask = maskLayer;
+}
+
 + (UIColor *)indianKhakiColor
 {
     return [UIColor colorWithRed:195.0/255.0 green:179.0/255.0 blue:153.0/255.0 alpha:1.0];

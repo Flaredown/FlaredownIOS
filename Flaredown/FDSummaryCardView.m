@@ -30,4 +30,12 @@
     }
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    [FDStyle removeCornersForView:self];
+    self.layer.shadowColor = [UIColor clearColor].CGColor;
+}
+
 @end
