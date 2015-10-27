@@ -461,6 +461,10 @@
             }
             [modelManager setSelectedDate:date];
             [self setDateTitle:date];
+            if([self selectedDateIsToday])
+                [_nextDayButton setHidden:YES];
+            else
+                [_nextDayButton setHidden:NO];
             [self refreshSummary];
         } else {
             NSLog(@"Failure!");
