@@ -18,6 +18,7 @@
 #import "FDNotificationManager.h"
 #import "FDLocalizationManager.h"
 #import "FDStyle.h"
+#import "FDAnalyticsManager.h"
 
 #import "HTAutocompleteManager.h"
 
@@ -62,6 +63,11 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     [super viewDidLoad];
     
     _treatments = [[[FDModelManager sharedManager] entry] treatments];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Settings"];
 }
 
 - (IBAction)doneButton:(id)sender

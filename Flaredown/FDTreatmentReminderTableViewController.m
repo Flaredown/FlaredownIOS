@@ -14,6 +14,7 @@
 #import "FDModelManager.h"
 #import "FDPopupManager.h"
 #import "FDStyle.h"
+#import "FDAnalyticsManager.h"
 
 #define TITLE (0)
 #define DAYS_START (TITLE + 1)
@@ -47,6 +48,11 @@ static NSArray *daysOfTheWeek;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Treatment Reminders"];
 }
 
 - (void)didReceiveMemoryWarning {

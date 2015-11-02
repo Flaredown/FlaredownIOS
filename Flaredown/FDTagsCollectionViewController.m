@@ -14,6 +14,7 @@
 
 #import "FDNetworkManager.h"
 #import "FDStyle.h"
+#import "FDAnalyticsManager.h"
 
 @interface FDTagsCollectionViewController ()
 
@@ -56,6 +57,11 @@ static NSString * const PopularTagIdentifier = @"popularTag";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Tags"];
 }
 
 - (void)didReceiveMemoryWarning {

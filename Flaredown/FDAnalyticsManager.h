@@ -19,4 +19,6 @@
 - (void)updateUser:(FDUser *)user;
 - (void)clearUser;
 
+- (void)trackPageView:(NSString *)page;
+
 @end

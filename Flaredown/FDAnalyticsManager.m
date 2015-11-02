@@ -71,4 +71,13 @@ static NSString * const KeenWriteKey = @"c6222280f213adef6860fff3e431e3d933ed331
     [Intercom reset];
 }
 
+- (void)trackPageView:(NSString *)page
+{
+    NSDictionary *event = @{
+                            @"view_name":page,
+                            @"action":@"view"
+                            };
+    [[KeenClient sharedClient] addEvent:event toEventCollection:@"tab_views" error:nil];
+}
+
 @end

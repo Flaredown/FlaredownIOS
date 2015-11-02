@@ -11,6 +11,7 @@
 #import "FDModelManager.h"
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
+#import "FDAnalyticsManager.h"
 
 #define CARD_BUMP_OFFSET 100
 
@@ -59,6 +60,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Login"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardOnScreen:) name:UIKeyboardWillShowNotification object:nil];
 }
 

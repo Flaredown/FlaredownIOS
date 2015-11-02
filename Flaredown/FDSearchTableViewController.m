@@ -11,6 +11,7 @@
 #import "FDModelManager.h"
 #import "FDPopupManager.h"
 #import "FDTrackableResult.h"
+#import "FDAnalyticsManager.h"
 
 #import "FDLocalizationManager.h"
 
@@ -46,6 +47,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Search"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

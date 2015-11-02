@@ -11,6 +11,7 @@
 #import "FDStyle.h"
 #import "FDModelManager.h"
 #import "FDNetworkManager.h"
+#import "FDAnalyticsManager.h"
 
 #import "FDTreatmentCollectionViewController.h"
 #import "FDNotesViewController.h"
@@ -94,6 +95,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Summary"];
     [self submitEntry];
 }
 
