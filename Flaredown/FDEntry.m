@@ -94,15 +94,12 @@
 
     int lastSection = -1;
     for (FDQuestion *question in _questions) {
-        //temporarily disable submitting symptoms
-        if(![[question catalog] isEqualToString:@"symptoms"]) {
-            NSMutableArray *catalogDefinition = [catalogDefinitions objectForKey:[question catalog]];
-            if([question section] != lastSection) {
-                [catalogDefinition addObject:[[NSMutableArray alloc] init]];
-                lastSection = [question section];
-            }
-            [[catalogDefinition lastObject] addObject:[question dictionaryCopy]];
+        NSMutableArray *catalogDefinition = [catalogDefinitions objectForKey:[question catalog]];
+        if([question section] != lastSection) {
+            [catalogDefinition addObject:[[NSMutableArray alloc] init]];
+            lastSection = [question section];
         }
+        [[catalogDefinition lastObject] addObject:[question dictionaryCopy]];
     }
     
     NSMutableArray *mutableResponses = [[NSMutableArray alloc] init];
@@ -201,14 +198,14 @@
     
     //Remove response
     FDResponse *responseToRemove = [[FDResponse alloc] init];
-    [responseToRemove setResponseIdWithEntryId:_entryId name:[question name]];
+    [responseToRemove setResponseIdWithCatalog:[question catalog] entryId:_entryId name:[question name]];
     [_responses removeObject:[self responseForId:[responseToRemove responseId]]];
 }
 
 - (FDResponse *)responseForQuestion:(FDQuestion *)question
 {
     FDResponse *response = [[FDResponse alloc] init];
-    [response setResponseIdWithEntryId:[self entryId] name:[question name]];
+    [response setResponseIdWithCatalog:[question catalog] entryId:[self entryId] name:[question name]];
     return [self responseForId:[response responseId]];
 }
 

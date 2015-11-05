@@ -66,7 +66,7 @@
     for (FDQuestion *question in self.questions) {
         
         FDResponse *response = [[FDResponse alloc] init];
-        [response setResponseIdWithEntryId:[entry entryId] name:[question name]];
+        [response setResponseIdWithCatalog:[question catalog] entryId:[entry entryId] name:[question name]];
         if([entry responseForId:[response responseId]]) {
             response = [entry responseForId:[response responseId]];
             if([response value] == 1)
@@ -448,7 +448,7 @@
         
         FDQuestion *question = self.questions[self.removeIndex];
         FDResponse *response = [[FDResponse alloc] init];
-        [response setResponseIdWithEntryId:[entry entryId] name:[question name]];
+        [response setResponseIdWithCatalog:[question catalog] entryId:[entry entryId] name:[question name]];
         
         [entry removeQuestion:question];
         [self.questions removeObject:question];

@@ -23,7 +23,7 @@
         _name = [dictionary objectForKey:@"name"];
         _value = [dictionary objectForKey:@"value"] == [NSNull null] ? -1 : [[dictionary objectForKey:@"value"] intValue];
         _catalog = [dictionary objectForKey:@"catalog"];
-        _responded = NO;
+        _responded = [dictionary objectForKey:@"value"] == [NSNull null] || [[dictionary objectForKey:@"value"] intValue] == -1 ? NO : YES;
     }
     return self;
 }
@@ -32,7 +32,7 @@
 {
     self = [super init];
     if(self) {
-        [self setResponseIdWithEntryId:[entry entryId] name:[question name]];
+        [self setResponseIdWithCatalog:[question catalog] entryId:[entry entryId] name:[question name]];
         _name = [question name];
         _value = -1;
         _catalog = [question catalog];
@@ -63,9 +63,9 @@
     _value = value;
 }
 
-- (void)setResponseIdWithEntryId:(NSString *)entryId name:(NSString *)name
+- (void)setResponseIdWithCatalog:(NSString *)catalog entryId:(NSString *)entryId name:(NSString *)name
 {
-    _responseId = [NSString stringWithFormat:@"%@_%@", name, entryId];
+    _responseId = [NSString stringWithFormat:@"%@_%@_%@", catalog, name, entryId];
 }
 
 @end

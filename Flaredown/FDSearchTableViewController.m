@@ -373,7 +373,7 @@
             }
         }
         
-        //Check the new symptom against the API for validation
+        //Check the new condition against the API for validation
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         FDUser *user = [[FDModelManager sharedManager] userObject];

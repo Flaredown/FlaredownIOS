@@ -96,7 +96,10 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 - (void)viewDidAppear:(BOOL)animated
 {
     [[FDAnalyticsManager sharedManager] trackPageView:@"Summary"];
-    [self submitEntry];
+    if(!_preloaded) {
+        [self submitEntry];
+    } else
+        _preloaded = NO;
 }
 
 - (void)submitEntry
@@ -105,7 +108,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     FDEntry *entry = [modelManager entry];
     NSDate *date = [modelManager selectedDate];
     FDUser *user = [modelManager userObject];
-    [entry setUpdatedAt:[NSDate date]];
     [[FDNetworkManager sharedManager] putEntry:[entry dictionaryCopy] date:[FDStyle dateStringForDate:date detailed:NO] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         if(success) {
             NSLog(@"Success!");

@@ -21,6 +21,6 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithEntry:(FDEntry *)entry question:(FDQuestion *)question;
 - (NSDictionary *)dictionaryCopy;
-- (void)setResponseIdWithEntryId:(NSString *)entryId name:(NSString *)name;
+- (void)setResponseIdWithCatalog:(NSString *)catalog entryId:(NSString *)entryId name:(NSString *)name;
 
 @end
