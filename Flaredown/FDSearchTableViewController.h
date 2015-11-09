@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FDPageContentViewController.h"
+#import "FDSettingsCollectionViewController.h"
 
 #define SEARCH_DELAY 0.5
 
@@ -15,13 +16,15 @@
 
 @property (nonatomic, strong) id <FDViewControllerDelegate> mainViewDelegate;
 @property (nonatomic, strong) id <FDPageContentViewControllerDelegate> contentViewDelegate;
+@property (nonatomic, strong) id <FDSettingsViewControllerDelegate> settingsViewDelegate;
 
 @property enum SearchType
 {
     SearchSymptoms,
     SearchTreatments,
     SearchConditions,
-    SearchTags
+    SearchTags,
+    SearchCountries
 };
 @property enum SearchType searchType;
 

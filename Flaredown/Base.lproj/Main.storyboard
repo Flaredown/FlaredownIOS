@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4rV-QE-nqY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4rV-QE-nqY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -2089,6 +2089,9 @@
                             <outlet property="delegate" destination="nys-hB-PtI" id="W40-kd-zf4"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="t1N-rz-86q" kind="show" identifier="search" id="1aI-Ga-gh1"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmJ-1E-u15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2869,7 +2872,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" rowHeight="63" id="NPS-3F-nES">
-                                <rect key="frame" x="0.0" y="66" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPS-3F-nES" id="Byj-ol-1l8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2897,7 +2900,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="result" rowHeight="63" id="PWh-1B-Opp">
-                                <rect key="frame" x="0.0" y="129" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="149" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWh-1B-Opp" id="a5E-bl-sMb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2933,7 +2936,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
-                                <rect key="frame" x="0.0" y="192" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="212" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmB-sC-Idy" id="yBt-Zs-ifi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -4000,9 +4003,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_remindericon" width="36" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GOm-9p-EYG"/>
         <segue reference="u8n-9I-Erz"/>
+        <segue reference="1aI-Ga-gh1"/>
+        <segue reference="GOm-9p-EYG"/>
         <segue reference="1ic-5n-SwM"/>
-        <segue reference="8wA-Kt-Eo6"/>
     </inferredMetricsTieBreakers>
 </document>
