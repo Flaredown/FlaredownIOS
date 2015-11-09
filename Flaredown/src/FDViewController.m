@@ -188,7 +188,7 @@
                 _entryLoaded = YES;
             }
             
-            if(![[FDModelManager sharedManager] entry] || [self day:[entry updatedAt] newerThan:[oldEntry updatedAt]])
+            if(!oldEntry || [self day:[entry updatedAt] newerThan:[oldEntry updatedAt]])
                 _entryPreloaded = NO;
             else
                 _entryPreloaded = YES;
