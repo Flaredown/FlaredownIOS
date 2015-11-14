@@ -17,6 +17,7 @@
     [super applyLayoutAttributes:layoutAttributes];
     self.backgroundColor = [FDStyle whiteColor];
     [FDStyle addRoundedCornersToView:self];
+    [FDStyle addShadowToView:self];
 }
 
 @end

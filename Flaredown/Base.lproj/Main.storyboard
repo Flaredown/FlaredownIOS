@@ -1175,16 +1175,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFE-hu-ysT">
-                                            <rect key="frame" x="8" y="8" width="156" height="34"/>
-                                            <animations/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="noItemsButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="IAe-aT-Yfj"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes start here and go like this..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyD-hf-hdM">
                                             <rect key="frame" x="8" y="8" width="156" height="34"/>
                                             <animations/>
@@ -1192,6 +1182,13 @@
                                             <color key="textColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgj-0l-rWP">
+                                            <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
+                                            <animations/>
+                                            <connections>
+                                                <action selector="notesButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="skS-U3-TSt"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1199,25 +1196,33 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="HFE-hu-ysT" secondAttribute="bottom" id="3y8-K8-vU9"/>
-                                    <constraint firstItem="HFE-hu-ysT" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="5ZB-xq-AaB"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" id="7cL-Mt-VUM"/>
-                                    <constraint firstItem="HFE-hu-ysT" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" id="9Dx-dg-Taw"/>
+                                    <constraint firstItem="hgj-0l-rWP" firstAttribute="width" secondItem="G9n-j4-S3h" secondAttribute="width" id="7h0-93-nQZ"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="iyD-hf-hdM" secondAttribute="trailing" id="BfV-b6-a72"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="HUc-5T-hWf"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="hgj-0l-rWP" secondAttribute="trailing" constant="-8" id="Imd-Hb-M00"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="trailing" secondItem="G9n-j4-S3h" secondAttribute="trailingMargin" constant="8" id="Jfs-t4-cIr"/>
+                                    <constraint firstItem="hgj-0l-rWP" firstAttribute="height" secondItem="G9n-j4-S3h" secondAttribute="height" id="K3E-ts-laj"/>
+                                    <constraint firstItem="hgj-0l-rWP" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" constant="-8" id="NZ8-7v-cWu"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="iyD-hf-hdM" secondAttribute="bottom" id="Owi-hI-iS5"/>
+                                    <constraint firstItem="hgj-0l-rWP" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" constant="-8" id="TIb-Bv-ieV"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="bottom" secondItem="G9n-j4-S3h" secondAttribute="bottomMargin" constant="-8" id="bpJ-7f-zsy"/>
+                                    <constraint firstItem="hgj-0l-rWP" firstAttribute="centerY" secondItem="G9n-j4-S3h" secondAttribute="centerY" id="bw1-Ns-hY8"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="bottom" secondItem="G9n-j4-S3h" secondAttribute="bottomMargin" constant="8" id="gFx-SY-nQa"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="HFE-hu-ysT" secondAttribute="trailing" id="ivd-lM-Nra"/>
+                                    <constraint firstItem="hgj-0l-rWP" firstAttribute="centerX" secondItem="G9n-j4-S3h" secondAttribute="centerX" id="hkF-3i-KJi"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="iyD-hf-hdM" secondAttribute="bottom" id="nNl-sM-0OQ"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="top" secondItem="G9n-j4-S3h" secondAttribute="topMargin" id="p2G-QO-U62"/>
                                     <constraint firstAttribute="centerX" secondItem="iyD-hf-hdM" secondAttribute="centerX" id="qKa-9Q-JZ7"/>
                                     <constraint firstAttribute="centerY" secondItem="iyD-hf-hdM" secondAttribute="centerY" id="tpe-Ct-jU3"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="hgj-0l-rWP" secondAttribute="bottom" constant="-8" id="ukM-Wi-6bX"/>
                                     <constraint firstItem="iyD-hf-hdM" firstAttribute="leading" secondItem="G9n-j4-S3h" secondAttribute="leadingMargin" id="wkE-ag-t7X"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="7h0-93-nQZ"/>
+                                        <exclude reference="K3E-ts-laj"/>
+                                        <exclude reference="bw1-Ns-hY8"/>
+                                        <exclude reference="hkF-3i-KJi"/>
                                         <exclude reference="7cL-Mt-VUM"/>
                                         <exclude reference="HUc-5T-hWf"/>
                                         <exclude reference="Jfs-t4-cIr"/>

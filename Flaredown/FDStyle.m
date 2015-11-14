@@ -28,6 +28,11 @@
     view.layer.cornerRadius = FDLargeCornerRadius;
 }
 
++ (void)addTinyRoundedCornersToView:(UIView *)view
+{
+    view.layer.cornerRadius = FDTinyCornerRadius;
+}
+
 + (void)addShadowToView:(UIView *)view
 {
     view.layer.shadowColor = [[UIColor blackColor] CGColor];

@@ -39,7 +39,7 @@
         
         NSString *decorationViewOfKind = CARD_BACKGROUND;
         
-        UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewOfKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:cardStartSection]];
+        UICollectionViewLayoutAttributes *attributes = [[UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewOfKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:cardStartSection]] copy];
         
         attributes.zIndex = -1;
         [attributes setFrame:frame];

@@ -51,7 +51,7 @@
 #define NOTE_TITLE (TAG_END+1)
 #define NOTE_BASE (NOTE_TITLE+1)
 #define NO_NOTES ([[_entry notes] length] == 0)
-#define NOTE_END (NOTE_BASE + 1)
+#define NOTE_END (NOTE_BASE+1)
 
 #define NOTES_FONT_SIZE 16
 #define NOTES_LABEL_PADDING 8
@@ -186,6 +186,11 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     }
 }
 
+- (IBAction)notesButton:(id)sender
+{
+    [self performSegueWithIdentifier:@"notes" sender:nil];
+}
+
 - (BOOL)cardBackgroundForSection:(NSInteger)section
 {
     return section == CONDITION_END;
@@ -220,7 +225,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1 + 1;
     NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1 + 1;
     NSUInteger tags = 4;
-    NSUInteger notes = 2;
+    NSUInteger notes = 3;
     
     return conditions+symptoms+treatments+tags+notes;
 }
@@ -264,6 +269,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     } else if(section == NOTE_TITLE) {
         return 1;
     } else if(section < NOTE_END) {
+        return 1;
+    } else if(section == NOTE_END) {
         return 1;
     }
     return 0;
@@ -318,6 +325,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 [label setText:[question name]];
             } else if(response && [response value] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
+                [FDStyle addTinyRoundedCornersToView:cell];
                 
                 //1 Button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
@@ -356,6 +364,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 [label setText:[question name]];
             } else if(response && [response value] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
+                [FDStyle addTinyRoundedCornersToView:cell];
                 
                 //1 Button
                 UIButton *button = (UIButton *)[cell viewWithTag:1];
@@ -393,6 +402,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 [label setText:[treatment name]];
             } else if([[treatment doses] count] > 0) {
                 cell = [collectionView dequeueReusableCellWithReuseIdentifier:DoseIdentifier forIndexPath:indexPath];
+                [FDStyle addTinyRoundedCornersToView:cell];
+                [FDStyle addBorderToView:cell withColor:[FDStyle blueColor]];
                 
                 NSInteger doseRow = row - 1;
                 
@@ -434,7 +445,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             //1  Button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             [button setTitle:tag forState:UIControlStateNormal];
-            [FDStyle addBorderToView:button withColor:[FDStyle blueColor]];
+            [FDStyle addTinyRoundedCornersToView:button];
         }
     } else if(section == TAG_END) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
@@ -459,6 +470,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 
             [button setTitle:@"+ Add a note" forState:UIControlStateNormal]; //TODO:Localized
         }
+    } else if(section == NOTE_END) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
     }
     return cell;
 }
@@ -568,10 +581,12 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:@{NSFontAttributeName:font}
                                               context:nil];
-            return CGSizeMake(maxWidth, rect.size.height + NOTES_LABEL_PADDING*2);
+            return CGSizeMake(maxWidth, rect.size.height + 30);
         } else {
             return CGSizeMake(maxWidth, 72);
         }
+    } else if(section == NOTE_END) {
+        return CGSizeMake(maxWidth, 15);
     }
     return CGSizeZero;
 }

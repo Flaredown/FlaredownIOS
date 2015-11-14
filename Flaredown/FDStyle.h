@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+static float const FDTinyCornerRadius = 3;
 static float const FDSmallCornerRadius = 7;
 static float const FDCornerRadius = 11;
 static float const FDLargeCornerRadius = 22;
@@ -26,6 +27,7 @@ static float const FDBorderWidth = 1;
 + (void)addRoundedCornersToView:(UIView *)view;
 + (void)addSmallRoundedCornersToView:(UIView *)view;
 + (void)addLargeRoundedCornersToView:(UIView *)view;
++ (void)addTinyRoundedCornersToView:(UIView *)view;
 + (void)addShadowToView:(UIView *)view;
 + (void)addBorderToView:(UIView *)view withColor:(UIColor *)color;
 
