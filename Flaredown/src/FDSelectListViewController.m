@@ -265,6 +265,7 @@
 - (IBAction)openTreatmentSearch:(id)sender
 {
     [[FDPopupManager sharedManager] removeTopPopup];
+    [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"treatments"];
 }

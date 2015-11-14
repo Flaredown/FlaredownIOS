@@ -311,12 +311,9 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 - (IBAction)logoutButton:(id)sender
 {
     FDViewController *viewController = (FDViewController *)self.presentingViewController;
-    UIViewController *launchViewController = viewController.presentingViewController;
     [[FDModelManager sharedManager] logout];
     [self dismissViewControllerAnimated:YES completion:^{
-        [viewController dismissViewControllerAnimated:NO completion:^{
-            //            [launchViewController performSegueWithIdentifier:@"login" sender:nil];
-        }];
+        [viewController performSegueWithIdentifier:@"login" sender:nil];
     }];
 }
 

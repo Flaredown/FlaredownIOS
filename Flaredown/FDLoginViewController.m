@@ -165,6 +165,8 @@
     } else {
         // Not found, so remove keyboard.
         [textField resignFirstResponder];
+        if(_cardBumped)
+            [self toggleCardBumped];
     }
     
     return NO;
@@ -179,12 +181,6 @@
 {
     [self dismissKeyboard];
     return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if(_cardBumped)
-        [self toggleCardBumped];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

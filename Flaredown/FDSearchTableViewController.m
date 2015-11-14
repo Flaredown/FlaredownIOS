@@ -19,7 +19,7 @@
 
 @end
 
-@implementation FDSearchTableViewController
+@implementation FDSearchTableViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,8 +38,10 @@
     
     _results = [[NSMutableArray alloc] init];
     
-    _editing = YES;
-    [_contentViewDelegate closeEditList];
+    if(_contentViewDelegate) {
+        _editing = YES;
+        [_contentViewDelegate closeEditList];
+    }
     
 //    [self.navigationController.view setBackgroundColor:[UIColor blackColor]];
     
