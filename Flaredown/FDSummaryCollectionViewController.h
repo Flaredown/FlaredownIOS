@@ -17,6 +17,9 @@
 - (BOOL)sectionIsCardTop:(NSInteger)section;
 - (BOOL)sectionIsCardBottom:(NSInteger)section;
 
+- (NSArray *)cardStartSections;
+- (NSArray *)cardEndSections;
+
 @end
 
 @interface FDSummaryCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, FDSummaryCollectionViewControllerDelegate>

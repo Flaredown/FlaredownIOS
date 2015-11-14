@@ -46,7 +46,7 @@
 #define TAG_BASE (TAG_TITLE+1)
 #define TAG_COUNT [[_entry tags] count]
 #define NO_TAGS (TAG_COUNT == 0)
-#define TAG_END (TAG_BASE + 1)
+#define TAG_END (TAG_BASE + 2)
 
 #define NOTE_TITLE (TAG_END+1)
 #define NOTE_BASE (NOTE_TITLE+1)
@@ -219,7 +219,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     NSUInteger conditions = CONDITION_END - CONDITION_BASE + 1 + 1;
     NSUInteger symptoms = SYMPTOM_END - SYMPTOM_BASE + 1 + 1;
     NSUInteger treatments = TREATMENT_END - TREATMENT_BASE + 1 + 1;
-    NSUInteger tags = 3;
+    NSUInteger tags = 4;
     NSUInteger notes = 2;
     
     return conditions+symptoms+treatments+tags+notes;
@@ -256,7 +256,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     } else if(section == TAG_TITLE) {
         return 1;
     } else if (section < TAG_END) {
-        if(NO_TAGS)
+        if(NO_TAGS || section == TAG_END - 1)
             return 1;
         return [[[[FDModelManager sharedManager] entry] tags] count];
     } else if(section == TAG_END) {
@@ -425,6 +425,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             //2 Label
             UILabel *label = (UILabel *)[cell viewWithTag:2];
             [label setText:@"No tags"];//TODO:Localized
+        } else if(section == TAG_END - 1) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
         } else {
             NSString *tag = [_entry tags][row];
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TagIdentifier forIndexPath:indexPath];
@@ -544,6 +546,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     } else if(section < TAG_END) {
         if(NO_TAGS) {
             return CGSizeMake(maxWidth, 72);
+        } else if(section == TAG_END - 1) {
+            return CGSizeMake(maxWidth, 15);
         } else {
             NSString *tag = [[[FDModelManager sharedManager] entry] tags][row];
             CGSize tagSize = CGSizeMake(maxWidth, 32);
@@ -589,6 +593,16 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         FDNotesViewController *dvc = segue.destinationViewController;
         [dvc setMainViewDelegate:_mainViewDelegate];
     }
+}
+
+- (NSArray *)cardStartSections
+{
+    return @[@CONDITION_TITLE,@SYMPTOM_TITLE,@TREATMENT_TITLE,@TAG_TITLE,@NOTE_TITLE];
+}
+
+- (NSArray *)cardEndSections
+{
+    return @[@(CONDITION_END-1),@(SYMPTOM_END-1),@(TREATMENT_END-1),@(TAG_END-1),@(NOTE_END-1)];
 }
 
 - (BOOL)sectionIsCardEnd:(NSInteger)section

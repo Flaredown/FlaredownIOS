@@ -10,32 +10,13 @@
 
 #import "FDStyle.h"
 
-#import "FDSummaryCardViewLayoutAttributes.h"
-
 @implementation FDSummaryCardView
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {
     [super applyLayoutAttributes:layoutAttributes];
     self.backgroundColor = [FDStyle whiteColor];
-    
-    FDSummaryCardViewLayoutAttributes *attributes = (FDSummaryCardViewLayoutAttributes *)layoutAttributes;
-    
-    if(attributes.roundTop) {
-        [FDStyle addRoundedCornersToTopOfView:self];
-    }
-    if(attributes.roundBottom) {
-        [FDStyle addRoundedCornersToBottomOfView:self];
-        [FDStyle addShadowToView:self];
-    }
-}
-
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-    
-    [FDStyle removeCornersForView:self];
-    self.layer.shadowColor = [UIColor clearColor].CGColor;
+    [FDStyle addRoundedCornersToView:self];
 }
 
 @end
