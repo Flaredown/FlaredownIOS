@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,6 +33,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit daily dosage of Treatment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-8m-7p9">
                             <rect key="frame" x="35" y="49" width="230" height="70"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="153" id="FPI-5Z-VKa"/>
                                 <constraint firstAttribute="height" constant="70" id="UwO-cB-Hao"/>
@@ -50,15 +52,17 @@
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Daily dose (i.e. '30')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-E6-R3i">
                                     <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                    <animations/>
                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="cD4-Mi-if4"/>
                                     </connections>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Units (i.e. 'Milligrams')" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orr-dx-6DT">
                                     <rect key="frame" x="0.0" y="38" width="230" height="30"/>
+                                    <animations/>
                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -67,6 +71,7 @@
                                     </connections>
                                 </textField>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="orr-dx-6DT" firstAttribute="trailing" secondItem="w8U-E6-R3i" secondAttribute="trailing" id="Dab-nn-lRE"/>
@@ -86,6 +91,7 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-LU-keq">
                             <rect key="frame" x="110" y="208" width="80" height="30"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="49" id="Bbu-2N-ita"/>
                                 <constraint firstAttribute="width" constant="80" id="LNh-Ed-pNw"/>
@@ -107,6 +113,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLM-gl-Mfd">
                             <rect key="frame" x="185" y="208" width="80" height="30"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Ipy-qq-Zv3"/>
                                 <constraint firstAttribute="width" constant="49" id="bOd-uT-1ME"/>
@@ -127,6 +134,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="jIc-oa-8U0" firstAttribute="leading" secondItem="mEj-Lb-8jO" secondAttribute="leading" constant="35" id="0WV-yz-R0g"/>
@@ -157,6 +165,7 @@
                     </variation>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="mEj-Lb-8jO" firstAttribute="top" secondItem="eq3-08-YSO" secondAttribute="top" id="48d-9B-6Ze"/>

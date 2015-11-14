@@ -27,9 +27,18 @@
 @property (weak, nonatomic) IBOutlet M13Checkbox *accountOtherCheckbox;
 @property (weak, nonatomic) IBOutlet M13Checkbox *accountUndisclosedCheckbox;
 
+@property NSString *updatedLocation;
+
 @property UIView *alarmView;
 @property NSDate *reminderTime;
 
 @property NSArray *treatments;
+
+@end
+
+@protocol FDSettingsViewControllerDelegate <NSObject>
+
+- (void)openAccountModal;
+- (void)setUpdatedLocation:(NSString *)location;
 
 @end

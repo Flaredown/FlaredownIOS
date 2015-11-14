@@ -29,7 +29,7 @@
     FDEntry *entry = [[FDModelManager sharedManager] entry];
 
     self.response = [[FDResponse alloc] init];
-    [self.response setResponseIdWithEntryId:[entry entryId] name:[self.question name]];
+    [self.response setResponseIdWithCatalog:[self.question catalog] entryId:[entry entryId] name:[self.question name]];
     
     if([entry responseForId:[self.response responseId]]) {
         self.response = [entry responseForId:[self.response responseId]];

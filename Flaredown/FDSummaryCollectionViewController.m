@@ -11,6 +11,7 @@
 #import "FDStyle.h"
 #import "FDModelManager.h"
 #import "FDNetworkManager.h"
+#import "FDAnalyticsManager.h"
 
 #import "FDTreatmentCollectionViewController.h"
 #import "FDNotesViewController.h"
@@ -95,7 +96,11 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self submitEntry];
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Summary"];
+    if(!_preloaded) {
+        [self submitEntry];
+    } else
+        _preloaded = NO;
 }
 
 - (void)submitEntry
@@ -104,7 +109,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     FDEntry *entry = [modelManager entry];
     NSDate *date = [modelManager selectedDate];
     FDUser *user = [modelManager userObject];
-    [entry setUpdatedAt:[NSDate date]];
     [[FDNetworkManager sharedManager] putEntry:[entry dictionaryCopy] date:[FDStyle dateStringForDate:date detailed:NO] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
         if(success) {
             NSLog(@"Success!");

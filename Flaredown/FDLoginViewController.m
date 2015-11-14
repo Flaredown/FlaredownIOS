@@ -11,6 +11,7 @@
 #import "FDModelManager.h"
 #import "FDStyle.h"
 #import "FDLocalizationManager.h"
+#import "FDAnalyticsManager.h"
 
 #define CARD_BUMP_OFFSET 100
 
@@ -59,6 +60,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Login"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardOnScreen:) name:UIKeyboardWillShowNotification object:nil];
 }
 
@@ -163,6 +165,8 @@
     } else {
         // Not found, so remove keyboard.
         [textField resignFirstResponder];
+        if(_cardBumped)
+            [self toggleCardBumped];
     }
     
     return NO;
@@ -177,12 +181,6 @@
 {
     [self dismissKeyboard];
     return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if(_cardBumped)
-        [self toggleCardBumped];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

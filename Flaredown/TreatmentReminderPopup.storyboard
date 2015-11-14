@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4YD-p2-qOv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4YD-p2-qOv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -22,20 +23,25 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" id="eTm-YI-atj">
                         <rect key="frame" x="0.0" y="0.0" width="297" height="621"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="100" id="XbK-VP-O7S">
+                                <rect key="frame" x="0.0" y="22" width="297" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XbK-VP-O7S" id="VIv-JM-iXt">
+                                    <rect key="frame" x="0.0" y="0.0" width="297" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Treatment reminder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MN9-ii-Hnm">
                                             <rect key="frame" x="23" y="22" width="251" height="60"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="30"/>
                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="MN9-ii-Hnm" secondAttribute="centerY" id="EwV-KT-zhV"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="MN9-ii-Hnm" secondAttribute="trailing" constant="15" id="XHL-jB-GTW"/>
@@ -43,26 +49,32 @@
                                         <constraint firstAttribute="centerX" secondItem="MN9-ii-Hnm" secondAttribute="centerX" id="esk-D9-2mv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dayCell" id="ok4-uv-mE6">
+                                <rect key="frame" x="0.0" y="122" width="297" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ok4-uv-mE6" id="Lb8-7t-LuJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="297" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDM-Qo-ORK">
                                             <rect key="frame" x="87" y="12" width="187" height="20"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7MA-cM-xjn">
                                             <rect key="frame" x="23" y="6" width="51" height="31"/>
+                                            <animations/>
                                             <color key="onTintColor" red="0.45098039220000002" green="0.75686274509999996" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="toggleDay:" destination="4YD-p2-qOv" eventType="valueChanged" id="Rdu-JO-Fw7"/>
                                             </connections>
                                         </switch>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="iDM-Qo-ORK" firstAttribute="leading" secondItem="7MA-cM-xjn" secondAttribute="trailing" constant="15" id="82Z-CP-xTp"/>
                                         <constraint firstItem="iDM-Qo-ORK" firstAttribute="centerY" secondItem="7MA-cM-xjn" secondAttribute="centerY" id="Hve-Qa-233"/>
@@ -71,32 +83,41 @@
                                         <constraint firstAttribute="centerY" secondItem="7MA-cM-xjn" secondAttribute="centerY" constant="0.25" id="y66-SW-GMY"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeTitleCell" rowHeight="65" id="JA4-gr-1Z6">
+                                <rect key="frame" x="0.0" y="167" width="297" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JA4-gr-1Z6" id="ONh-nW-bpR">
+                                    <rect key="frame" x="0.0" y="0.0" width="297" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me at..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tz5-6h-EKL">
                                             <rect key="frame" x="95" y="25" width="107.5" height="16"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="tz5-6h-EKL" secondAttribute="centerX" id="R7I-Lm-cuN"/>
                                         <constraint firstAttribute="centerY" secondItem="tz5-6h-EKL" secondAttribute="centerY" id="xJr-61-OdQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeCell" id="zgi-Ll-luj">
+                                <rect key="frame" x="0.0" y="232" width="297" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zgi-Ll-luj" id="Fhb-cy-m3p">
+                                    <rect key="frame" x="0.0" y="0.0" width="297" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCI-Rd-IXN">
                                             <rect key="frame" x="231" y="-2" width="43" height="43"/>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dCI-Rd-IXN" secondAttribute="height" multiplier="1:1" id="M8W-Ke-9QI"/>
                                             </constraints>
@@ -111,11 +132,13 @@
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4j-He-hNA">
                                             <rect key="frame" x="38" y="12" width="79.5" height="20"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="R4j-He-hNA" firstAttribute="leading" secondItem="Fhb-cy-m3p" secondAttribute="leadingMargin" constant="30" id="GLZ-eb-mZ6"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="dCI-Rd-IXN" secondAttribute="trailing" constant="15" id="Q9l-b2-twe"/>
@@ -129,14 +152,18 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addTimeCell" rowHeight="65" id="8G9-T0-KpL">
+                                <rect key="frame" x="0.0" y="277" width="297" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8G9-T0-KpL" id="WjV-Qs-l50">
+                                    <rect key="frame" x="0.0" y="0.0" width="297" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dY-Ki-dzQ">
                                             <rect key="frame" x="84" y="18" width="128" height="30"/>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="PBx-C2-OzD"/>
                                                 <constraint firstAttribute="width" constant="128" id="RPG-Pd-MIQ"/>
@@ -151,11 +178,13 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="6dY-Ki-dzQ" secondAttribute="centerX" id="LVW-pU-OX9"/>
                                         <constraint firstAttribute="centerY" secondItem="6dY-Ki-dzQ" secondAttribute="centerY" id="OLM-3C-h3H"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -31,6 +32,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiq-kd-szY">
                             <rect key="frame" x="105" y="30" width="88" height="20"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="ePC-EH-67n"/>
                                 <constraint firstAttribute="width" constant="88" id="ghV-9r-cOL"/>
@@ -41,6 +43,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Sa-Az-yT9">
                             <rect key="frame" x="215" y="241" width="67" height="43"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="67" id="R1M-cg-9Mi"/>
                                 <constraint firstAttribute="height" constant="43" id="bBz-rS-clR"/>
@@ -56,6 +59,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pi-rB-tRY">
                             <rect key="frame" x="116" y="241" width="67" height="43"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="43" id="1Xp-F0-ICp"/>
                                 <constraint firstAttribute="width" constant="67" id="yZz-z4-VCq"/>
@@ -71,6 +75,7 @@
                         </button>
                         <datePicker tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-aG-L3H">
                             <rect key="frame" x="30" y="72" width="238" height="162"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="lKM-aG-L3H" secondAttribute="height" multiplier="119:50" id="72r-0E-tPO"/>
                                 <constraint firstAttribute="height" constant="162" id="u1y-wA-xLm"/>
@@ -88,6 +93,7 @@
                             </connections>
                         </datePicker>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="5pi-rB-tRY" secondAttribute="centerX" id="07L-32-CgJ"/>
@@ -134,6 +140,7 @@
                     </variation>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Fvx-AL-ua3" secondAttribute="bottom" id="27y-mN-Ws2"/>

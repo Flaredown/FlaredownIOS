@@ -49,6 +49,25 @@
     return self;
 }
 
+- (BOOL)day:(NSDate *)dateA newerThan:(NSDate *)dateB
+{
+    unsigned int flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *components = [calendar components:flags fromDate:dateB];
+    NSDate *dateBDay = [calendar dateFromComponents:components];
+    
+    components = [calendar components:flags fromDate:dateA];
+    NSDate *dateADay = [calendar dateFromComponents:components];
+    
+    return [dateBDay compare:dateADay] == NSOrderedAscending;
+}
+
+- (BOOL)dateOlderThanToday:(NSDate *)date
+{
+    return ![self day:date newerThan:[NSDate date]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -97,12 +116,12 @@
     
     if([[FDModelManager sharedManager] entry]) {
         // Convert string to date object
-        NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date] detailed:NO];
-        NSDate *now = [NSDate date];
-        if([now compare:date] == NSOrderedDescending) {
-            [[FDModelManager sharedManager] setEntry:nil];
-            //            [[FDModelManager sharedManager] entry];
-        }
+        
+//        NSDate *date = [FDStyle dateFromString:[[[FDModelManager sharedManager] entry] date] detailed:NO];
+//        if([self dateOlderThanToday:date]) {
+//            [[FDModelManager sharedManager] setEntry:nil];
+//            //            [[FDModelManager sharedManager] entry];
+//        }
     }
     
     if(![[FDModelManager sharedManager] userObject]) {
@@ -152,12 +171,12 @@
         if(success) {
             NSLog(@"Success!");
             
+            FDEntry *oldEntry = [[FDModelManager sharedManager] entry];
             FDEntry *entry = [[FDEntry alloc] initWithDictionary:[responseObject objectForKey:@"entry"]];
-            if(![[FDModelManager sharedManager] entry] || [[entry updatedAt] compare:[[[FDModelManager sharedManager] entry] updatedAt]] == NSOrderedDescending) {
+            if(!oldEntry || [[entry updatedAt] compare:[oldEntry updatedAt]] == NSOrderedDescending) {
                 
                 NSLog(@"New entry");
                 _entryLoaded = NO;
-                _entryPreloaded = NO;
                 
                 [[FDModelManager sharedManager] setEntry:entry forDate:now];
                 [[FDModelManager sharedManager] setSelectedDate:now];
@@ -167,8 +186,13 @@
                 }
             } else {
                 _entryLoaded = YES;
-                _entryPreloaded = YES;
             }
+            
+            if(!oldEntry || [self day:[entry updatedAt] newerThan:[oldEntry updatedAt]])
+                _entryPreloaded = NO;
+            else
+                _entryPreloaded = YES;
+            
         } else {
             NSLog(@"Failure!");
             
@@ -180,9 +204,10 @@
         }
         _entryLoaded = YES;
         
-        if(_entryPreloaded)
+        if(_entryPreloaded) {
+            [_summaryViewController setPreloaded:YES];
             [self showSummary];
-        else
+        } else
             [self showLaunch];
     }];
 }
@@ -461,6 +486,10 @@
             }
             [modelManager setSelectedDate:date];
             [self setDateTitle:date];
+            if([self selectedDateIsToday])
+                [_nextDayButton setHidden:YES];
+            else
+                [_nextDayButton setHidden:NO];
             [self refreshSummary];
         } else {
             NSLog(@"Failure!");

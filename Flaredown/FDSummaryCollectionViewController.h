@@ -24,6 +24,7 @@
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
 @property FDEntry *entry;
 @property BOOL failedToSubmit;
+@property BOOL preloaded;
 
 - (void)refresh;
 - (BOOL)cardBackgroundForSection:(NSInteger)section;

@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *editDoseCancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *editDoseDoneButton;
 
+@property BOOL editing;
+
 @property FDTreatment *selectedTreatment;
 @property FDDose *selectedDose;
 

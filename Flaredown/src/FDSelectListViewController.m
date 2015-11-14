@@ -42,6 +42,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+//    if(_editing) {
+//        [_contentViewDelegate editList];
+//        _editing = NO;
+//    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
                                                  name:UIKeyboardWillShowNotification
@@ -61,7 +66,7 @@
     for (FDQuestion *question in self.questions) {
         
         FDResponse *response = [[FDResponse alloc] init];
-        [response setResponseIdWithEntryId:[entry entryId] name:[question name]];
+        [response setResponseIdWithCatalog:[question catalog] entryId:[entry entryId] name:[question name]];
         if([entry responseForId:[response responseId]]) {
             response = [entry responseForId:[response responseId]];
             if([response value] == 1)
@@ -245,20 +250,22 @@
 
 - (IBAction)openSymptomSearch:(id)sender
 {
-    [_contentViewDelegate editList];
+    [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"symptoms"];
 }
 
 - (IBAction)openConditionSearch:(id)sender
 {
-    [_contentViewDelegate editList];
+    [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"conditions"];
 }
 
 - (IBAction)openTreatmentSearch:(id)sender
 {
+    [[FDPopupManager sharedManager] removeTopPopup];
+    [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"treatments"];
 }
@@ -442,7 +449,7 @@
         
         FDQuestion *question = self.questions[self.removeIndex];
         FDResponse *response = [[FDResponse alloc] init];
-        [response setResponseIdWithEntryId:[entry entryId] name:[question name]];
+        [response setResponseIdWithCatalog:[question catalog] entryId:[entry entryId] name:[question name]];
         
         [entry removeQuestion:question];
         [self.questions removeObject:question];

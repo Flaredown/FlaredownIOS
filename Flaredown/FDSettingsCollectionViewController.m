@@ -11,6 +11,7 @@
 #import "FDTreatmentReminderTableViewController.h"
 #import "FDViewController.h"
 #import "FDTextViewController.h"
+#import "FDSearchTableViewController.h"
 
 #import "FDPopupManager.h"
 #import "FDModelManager.h"
@@ -18,6 +19,7 @@
 #import "FDNotificationManager.h"
 #import "FDLocalizationManager.h"
 #import "FDStyle.h"
+#import "FDAnalyticsManager.h"
 
 #import "HTAutocompleteManager.h"
 
@@ -62,6 +64,11 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     [super viewDidLoad];
     
     _treatments = [[[FDModelManager sharedManager] entry] treatments];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[FDAnalyticsManager sharedManager] trackPageView:@"Settings"];
 }
 
 - (IBAction)doneButton:(id)sender
@@ -149,16 +156,12 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     [[FDPopupManager sharedManager] addPopupView:popupView withViewController:viewController];
 }
 
-- (IBAction)accountButton:(id)sender
+- (IBAction)editAccountButton:(id)sender
 {
-    UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"AccountView" owner:self options:nil] objectAtIndex:0];
-    [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT/2, self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH, self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT)];
-    popupView.layer.masksToBounds = YES;
-    [FDStyle addRoundedCornersToView:popupView];
-    [[FDPopupManager sharedManager] addPopupView:popupView withViewController:self];
+    [self openAccountModal];
 }
 
-- (IBAction)editAccountButton:(id)sender
+- (void)openAccountModal
 {
     UIView *popupView = [[[NSBundle mainBundle] loadNibNamed:@"EditAccountView" owner:self options:nil] objectAtIndex:0];
     [popupView setFrame:CGRectMake(self.view.window.frame.size.width/2-self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH/2, self.view.window.frame.size.height/2-self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT/2, self.view.window.frame.size.width*ACCOUNT_POPUP_WIDTH, self.view.window.frame.size.height*ACCOUNT_POPUP_HEIGHT)];
@@ -168,7 +171,11 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     FDUser *user = [[FDModelManager sharedManager] userObject];
     
     //Setup views
-    [_accountCountryTextField setText:[user location]];
+    if(_updatedLocation) {
+        [_accountCountryTextField setText:_updatedLocation];
+        _updatedLocation = nil;
+    } else
+        [_accountCountryTextField setText:[user location]];
     _accountCountryTextField.autocompleteDataSource = [HTAutocompleteManager sharedManager];
     _accountCountryTextField.autocompleteType = HTAutocompleteTypeCountry;
     
@@ -208,6 +215,17 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     [_accountBirthDayTextField resignFirstResponder];
     [_accountBirthMonthTextField resignFirstResponder];
     [_accountBirthYearTextField resignFirstResponder];
+}
+
+- (IBAction)countryButton:(id)sender
+{
+    [[FDPopupManager sharedManager] removeTopPopup];
+    [self performSegueWithIdentifier:@"search" sender:self];
+}
+
+- (void)setUpdatedLocation:(NSString *)location
+{
+    _updatedLocation = location;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -270,8 +288,7 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     } else {
         [user setSex:SexNone];
     }
-    [user setUpdatedAt:[NSDate date]];
-    [[FDNetworkManager sharedManager] updateUserWithEmail:[user email] authenticationToken:[user authenticationToken] settings:[[user dictionaryCopy] objectForKey:@"settings"] completion:^(bool success, id responseObject) {
+    [[FDNetworkManager sharedManager] updateUserWithEmail:[user email] authenticationToken:[user authenticationToken] settings:[[[user dictionaryCopy] objectForKey:@"user"] objectForKey:@"settings"] completion:^(bool success, id responseObject) {
 //        if(success) {
 //            
 //        }
@@ -294,12 +311,9 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 - (IBAction)logoutButton:(id)sender
 {
     FDViewController *viewController = (FDViewController *)self.presentingViewController;
-    UIViewController *launchViewController = viewController.presentingViewController;
     [[FDModelManager sharedManager] logout];
     [self dismissViewControllerAnimated:YES completion:^{
-        [viewController dismissViewControllerAnimated:NO completion:^{
-            //            [launchViewController performSegueWithIdentifier:@"login" sender:nil];
-        }];
+        [viewController performSegueWithIdentifier:@"login" sender:nil];
     }];
 }
 
@@ -437,6 +451,11 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     } else if([segue.identifier isEqualToString:PrivacyPolicySegueIdentifier]) {
         FDTextViewController *dvc = (FDTextViewController *)segue.destinationViewController;
         [dvc setText:FDLocalizedString(@"privacy_policy")];
+    } else if([segue.identifier isEqualToString:SearchSegueIdentifier]) {
+        UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
+        FDSearchTableViewController *searchViewController = (FDSearchTableViewController *)dvc.topViewController;
+        searchViewController.settingsViewDelegate = self;
+        searchViewController.searchType = SearchCountries;
     }
 }
 

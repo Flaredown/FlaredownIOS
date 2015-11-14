@@ -27,6 +27,8 @@
                                                    }
                               documentAttributes:nil error:nil];
     _textView.attributedText = attributedString;
+    _textView.editable = NO;
+    [_textView scrollRangeToVisible:NSMakeRange(0, 0)];
     
 //    [_textView setText:_text];
 }
