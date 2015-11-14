@@ -52,21 +52,11 @@ static NSString * const PopularTagIdentifier = @"popularTag";
         }
             
     }];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [[FDAnalyticsManager sharedManager] trackPageView:@"Tags"];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)addTagButton:(id)sender
@@ -76,7 +66,11 @@ static NSString * const PopularTagIdentifier = @"popularTag";
 
 - (IBAction)tagButton:(id)sender
 {
-    
+    UICollectionViewCell *cell = [self parentCellForView:sender];
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    FDTrackableResult *tag = _tags[[indexPath row]];
+    [_tags removeObject:tag];
+    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
 }
 
 - (IBAction)popularTagButton:(id)sender
