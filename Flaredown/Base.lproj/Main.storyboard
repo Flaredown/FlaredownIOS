@@ -1709,17 +1709,17 @@
                                 <size key="customSize" width="568" height="180"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentReminderTitle" id="0j7-6R-d8X">
-                                <rect key="frame" x="16" y="245" width="568" height="50"/>
+                                <rect key="frame" x="16" y="245" width="568" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MdA-Wa-HKb">
-                                            <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="70"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Treatment reminders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAD-xn-EFT">
-                                                    <rect key="frame" x="202" y="16" width="164" height="18"/>
+                                                    <rect key="frame" x="202" y="35" width="164" height="18"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="18"/>
                                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1729,9 +1729,19 @@
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="TAD-xn-EFT" secondAttribute="bottom" constant="16" id="2tq-gu-1MH"/>
                                                 <constraint firstAttribute="centerY" secondItem="TAD-xn-EFT" secondAttribute="centerY" id="6C6-39-nfS"/>
                                                 <constraint firstAttribute="centerX" secondItem="TAD-xn-EFT" secondAttribute="centerX" id="PhF-Bw-cDl"/>
+                                                <constraint firstItem="TAD-xn-EFT" firstAttribute="top" secondItem="MdA-Wa-HKb" secondAttribute="top" constant="35" id="nTq-MB-QDz"/>
+                                                <constraint firstAttribute="width" constant="568" id="xTv-ZD-5ah"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="xTv-ZD-5ah"/>
+                                                    <exclude reference="2tq-gu-1MH"/>
+                                                    <exclude reference="6C6-39-nfS"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                     </subviews>
                                     <animations/>
@@ -1742,12 +1752,24 @@
                                     <constraint firstItem="MdA-Wa-HKb" firstAttribute="leading" secondItem="0j7-6R-d8X" secondAttribute="leadingMargin" constant="-8" id="0Q3-Vf-uuf"/>
                                     <constraint firstItem="MdA-Wa-HKb" firstAttribute="top" secondItem="0j7-6R-d8X" secondAttribute="topMargin" constant="-8" id="1NR-mx-46H"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="MdA-Wa-HKb" secondAttribute="trailing" constant="-8" id="7Bc-Y6-yFX"/>
+                                    <constraint firstItem="MdA-Wa-HKb" firstAttribute="height" secondItem="0j7-6R-d8X" secondAttribute="height" id="YWa-tY-xJl"/>
+                                    <constraint firstItem="MdA-Wa-HKb" firstAttribute="centerY" secondItem="0j7-6R-d8X" secondAttribute="centerY" id="c1m-JJ-c0J"/>
+                                    <constraint firstItem="MdA-Wa-HKb" firstAttribute="centerX" secondItem="0j7-6R-d8X" secondAttribute="centerX" id="cJx-H4-TaQ"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="MdA-Wa-HKb" secondAttribute="bottom" constant="-8" id="fzI-TR-sxq"/>
+                                    <constraint firstItem="MdA-Wa-HKb" firstAttribute="width" secondItem="0j7-6R-d8X" secondAttribute="width" id="lS9-Vn-pTd"/>
                                 </constraints>
-                                <size key="customSize" width="568" height="50"/>
+                                <size key="customSize" width="568" height="70"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0Q3-Vf-uuf"/>
+                                        <exclude reference="1NR-mx-46H"/>
+                                        <exclude reference="7Bc-Y6-yFX"/>
+                                        <exclude reference="fzI-TR-sxq"/>
+                                    </mask>
+                                </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="treatmentReminder" id="dAZ-Ex-5UX">
-                                <rect key="frame" x="16" y="295" width="568" height="50"/>
+                                <rect key="frame" x="16" y="315" width="568" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
@@ -1776,9 +1798,13 @@
                                                 <constraint firstItem="BJH-RD-RuO" firstAttribute="leading" secondItem="eGK-Ge-fVQ" secondAttribute="leading" constant="150" id="JSL-Xb-3Uj"/>
                                                 <constraint firstAttribute="centerX" secondItem="BJH-RD-RuO" secondAttribute="centerX" id="UdN-TC-tom"/>
                                                 <constraint firstAttribute="centerY" secondItem="BJH-RD-RuO" secondAttribute="centerY" id="c6t-u8-NPf"/>
+                                                <constraint firstAttribute="height" constant="50" id="crr-Pk-vgy"/>
+                                                <constraint firstAttribute="width" constant="568" id="enU-un-Ngx"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="crr-Pk-vgy"/>
+                                                    <exclude reference="enU-un-Ngx"/>
                                                     <exclude reference="JSL-Xb-3Uj"/>
                                                 </mask>
                                             </variation>
@@ -1791,19 +1817,76 @@
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="eGK-Ge-fVQ" secondAttribute="bottom" constant="-8" id="DKg-XB-jsX"/>
                                     <constraint firstItem="eGK-Ge-fVQ" firstAttribute="bottom" secondItem="dAZ-Ex-5UX" secondAttribute="bottomMargin" constant="-8" id="DVM-LP-DDm"/>
+                                    <constraint firstItem="eGK-Ge-fVQ" firstAttribute="height" secondItem="dAZ-Ex-5UX" secondAttribute="height" id="Jxl-Pw-xcz"/>
+                                    <constraint firstItem="eGK-Ge-fVQ" firstAttribute="width" secondItem="dAZ-Ex-5UX" secondAttribute="width" id="Mvf-m7-35T"/>
+                                    <constraint firstItem="eGK-Ge-fVQ" firstAttribute="centerY" secondItem="dAZ-Ex-5UX" secondAttribute="centerY" id="Ugp-tL-4a9"/>
                                     <constraint firstItem="eGK-Ge-fVQ" firstAttribute="leading" secondItem="dAZ-Ex-5UX" secondAttribute="leadingMargin" constant="-8" id="VL6-PT-Jwh"/>
                                     <constraint firstItem="eGK-Ge-fVQ" firstAttribute="top" secondItem="dAZ-Ex-5UX" secondAttribute="topMargin" constant="-8" id="Yye-se-FCz"/>
+                                    <constraint firstItem="eGK-Ge-fVQ" firstAttribute="centerX" secondItem="dAZ-Ex-5UX" secondAttribute="centerX" id="ehc-jV-u5T"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="eGK-Ge-fVQ" secondAttribute="trailing" constant="-8" id="mP3-Pm-PBQ"/>
                                 </constraints>
                                 <size key="customSize" width="568" height="50"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="DKg-XB-jsX"/>
                                         <exclude reference="DVM-LP-DDm"/>
+                                        <exclude reference="VL6-PT-Jwh"/>
+                                        <exclude reference="Yye-se-FCz"/>
+                                        <exclude reference="mP3-Pm-PBQ"/>
+                                    </mask>
+                                </variation>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeholder" id="KdY-aF-GBM" userLabel="placeholder">
+                                <rect key="frame" x="16" y="365" width="568" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Mx-2q-XZK">
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="568" id="Eaj-gw-bym"/>
+                                                <constraint firstAttribute="height" constant="50" id="owX-xO-iqw"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Eaj-gw-bym"/>
+                                                    <exclude reference="owX-xO-iqw"/>
+                                                </mask>
+                                            </variation>
+                                        </view>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="5Mx-2q-XZK" secondAttribute="trailing" constant="-8" id="1hT-AV-MGU"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="top" secondItem="KdY-aF-GBM" secondAttribute="topMargin" constant="-8" id="NCD-Ea-XQG"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="centerX" secondItem="KdY-aF-GBM" secondAttribute="centerX" id="U4B-GD-Uu7"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="height" secondItem="KdY-aF-GBM" secondAttribute="height" id="UAF-ch-hk5"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="bottom" secondItem="KdY-aF-GBM" secondAttribute="bottomMargin" constant="-8" id="dKA-c3-y1F"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="leading" secondItem="KdY-aF-GBM" secondAttribute="leadingMargin" constant="-8" id="hIh-fu-wyu"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="width" secondItem="KdY-aF-GBM" secondAttribute="width" id="ic7-C5-cLf"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="5Mx-2q-XZK" secondAttribute="bottom" constant="-8" id="qEJ-Nk-NOI"/>
+                                    <constraint firstItem="5Mx-2q-XZK" firstAttribute="centerY" secondItem="KdY-aF-GBM" secondAttribute="centerY" id="y5Q-ol-0bD"/>
+                                </constraints>
+                                <size key="customSize" width="568" height="50"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1hT-AV-MGU"/>
+                                        <exclude reference="NCD-Ea-XQG"/>
+                                        <exclude reference="dKA-c3-y1F"/>
+                                        <exclude reference="hIh-fu-wyu"/>
+                                        <exclude reference="qEJ-Nk-NOI"/>
                                     </mask>
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="account" id="aB9-qW-s3s">
-                                <rect key="frame" x="16" y="345" width="568" height="180"/>
+                                <rect key="frame" x="16" y="415" width="568" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="568" height="180"/>
@@ -1904,7 +1987,7 @@
                                 <size key="customSize" width="568" height="180"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="agreements" id="Tlo-9D-X3A">
-                                <rect key="frame" x="16" y="525" width="568" height="120"/>
+                                <rect key="frame" x="16" y="595" width="568" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="568" height="120"/>

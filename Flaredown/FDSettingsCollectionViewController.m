@@ -29,6 +29,8 @@
 #define AGREEMENTS_HEIGHT 90
 
 #define TREATMENT_REMINDER_HEIGHT 30
+#define TREATMENT_TITLE_HEIGHT 60
+#define TREATMENT_END_HEIGHT 20
 
 #define NAVIGATION_SIZE CGSizeMake([UIScreen mainScreen].bounds.size.width, 50)
 
@@ -54,6 +56,7 @@ static NSString * const TreatmentReminderTitleCellIdentifier = @"treatmentRemind
 static NSString * const TreatmentReminderCellIdentifier = @"treatmentReminder";
 static NSString * const AccountCellIdentifier = @"account";
 static NSString * const AgreementsCellIdentifier = @"agreements";
+static NSString * const PlaceholderCellIdentifier = @"placeholder";
 
 static NSString * const NavigationHeaderIdentifier = @"navigation";
 
@@ -80,7 +83,7 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 - (IBAction)reminderSwitchToggle:(id)sender
 {
     [[FDModelManager sharedManager] setReminder:![[FDModelManager sharedManager] reminder]];
-    [self.collectionView reloadData];
+    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     if([[FDModelManager sharedManager] reminder])
         [[FDNotificationManager sharedManager] setCheckinReminder:[[FDModelManager sharedManager] reminderTime]];
     else
@@ -90,7 +93,7 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 - (IBAction)closeAlarmView:(UIButton *)sender
 {
     [[FDModelManager sharedManager] setReminderTime:_reminderTime];
-    [self.collectionView reloadData];
+    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     if([[FDModelManager sharedManager] reminder])
         [[FDNotificationManager sharedManager] setCheckinReminder:[[FDModelManager sharedManager] reminderTime]];
     [self hideAlarmView];
@@ -327,7 +330,7 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     if(section == 0 || section == 2 || section == 3)
         return 1;
     else if(section == 1)
-        return 1 + _treatments.count;
+        return 1 + _treatments.count + 1;
     return 0;
 }
 
@@ -371,18 +374,17 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentReminderTitleCellIdentifier forIndexPath:indexPath];
             [FDStyle addRoundedCornersToTopOfView:cell];
             [FDStyle addShadowToView:cell];
-        } else {
+        } else if(row < [_treatments count] + 1) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentReminderCellIdentifier forIndexPath:indexPath];
             
             //1 Button
             UIButton *button = (UIButton *)[cell viewWithTag:1];
             FDTreatment *treatment = _treatments[row-1];
             [button setTitle:[treatment name] forState:UIControlStateNormal];
-            
-            if(row == [self.collectionView numberOfItemsInSection:section] - 1) {
-                [FDStyle addRoundedCornersToBottomOfView:cell];
-                [FDStyle addShadowToView:cell];
-            }
+        } else {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:PlaceholderCellIdentifier forIndexPath:indexPath];
+            [FDStyle addRoundedCornersToBottomOfView:cell];
+            [FDStyle addShadowToView:cell];
         }
     } else if(section == 2) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:AccountCellIdentifier forIndexPath:indexPath];
@@ -417,11 +419,17 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     if(section == 0 || section == 2) {
         return CGSizeMake(CARD_WIDTH, CARD_HEIGHT);
     } else if(section == 1) {
-        return CGSizeMake(CARD_WIDTH, TREATMENT_REMINDER_HEIGHT);
+        if(row == 0)
+            return CGSizeMake(CARD_WIDTH, TREATMENT_TITLE_HEIGHT);
+        else if(row < [_treatments count] + 1)
+            return CGSizeMake(CARD_WIDTH, TREATMENT_REMINDER_HEIGHT);
+        else
+            return CGSizeMake(CARD_WIDTH, TREATMENT_END_HEIGHT);
     } else if(section == 3) {
         return CGSizeMake(CARD_WIDTH, AGREEMENTS_HEIGHT);
     }
