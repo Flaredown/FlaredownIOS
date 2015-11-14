@@ -477,7 +477,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         return CGSizeMake(maxWidth, 40);
     } else if(section < CONDITION_END) {
         if(NO_CONDITIONS) {
-            return CGSizeMake(maxWidth, 50);
+            return CGSizeMake(maxWidth, 72);
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
@@ -495,7 +495,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         return CGSizeMake(maxWidth, 40);
     } else if(section < SYMPTOM_END) {
         if(NO_SYMPTOMS) {
-            return CGSizeMake(maxWidth, 50);
+            return CGSizeMake(maxWidth, 72);
         } else {
             FDQuestion *question = [_entry questionsForCatalog:@"symptoms"][section-SYMPTOM_BASE];
             FDResponse *response = [_entry responseForQuestion:question];
@@ -513,7 +513,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         return CGSizeMake(maxWidth, 40);
     } else if(section < TREATMENT_END) {
         if(NO_TREATMENTS) {
-            return CGSizeMake(maxWidth, 50);
+            return CGSizeMake(maxWidth, 72);
         } else {
             FDTreatment *treatment = [_entry treatments][section-TREATMENT_BASE];
             if(row == 0)
@@ -539,7 +539,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         return CGSizeMake(maxWidth, 40);
     } else if(section < TAG_END) {
         if(NO_TAGS) {
-            return CGSizeMake(maxWidth, 50);
+            return CGSizeMake(maxWidth, 72);
         } else {
             NSString *tag = [[[FDModelManager sharedManager] entry] tags][row];
             CGSize tagSize = CGSizeMake(maxWidth, 32);
@@ -562,7 +562,7 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                                               context:nil];
             return CGSizeMake(maxWidth, rect.size.height + NOTES_LABEL_PADDING*2);
         } else {
-            return CGSizeMake(maxWidth, 50);
+            return CGSizeMake(maxWidth, 72);
         }
     }
     return CGSizeZero;
