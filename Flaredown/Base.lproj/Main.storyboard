@@ -2884,7 +2884,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" rowHeight="63" id="NPS-3F-nES">
-                                <rect key="frame" x="0.0" y="86" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="66" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPS-3F-nES" id="Byj-ol-1l8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2912,7 +2912,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="result" rowHeight="63" id="PWh-1B-Opp">
-                                <rect key="frame" x="0.0" y="149" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="129" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWh-1B-Opp" id="a5E-bl-sMb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2948,7 +2948,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
-                                <rect key="frame" x="0.0" y="212" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="192" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmB-sC-Idy" id="yBt-Zs-ifi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -3188,7 +3188,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VPx-Bh-eBb" customClass="KTCenterFlowLayout">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="2" id="VPx-Bh-eBb" customClass="KTCenterFlowLayout">
                             <size key="itemSize" width="175" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -3231,7 +3231,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <size key="customSize" width="175" height="50"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popular" id="Q3y-E6-a90">
-                                <rect key="frame" x="195" y="0.0" width="175" height="50"/>
+                                <rect key="frame" x="187" y="0.0" width="175" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="175" height="50"/>
@@ -3272,7 +3272,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tag" id="Mm6-BK-u5Z">
-                                <rect key="frame" x="380" y="7" width="71" height="36"/>
+                                <rect key="frame" x="364" y="7" width="71" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="71" height="36"/>
@@ -3324,7 +3324,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 </variation>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popularTag" id="wli-ss-3YB">
-                                <rect key="frame" x="461" y="7" width="71" height="36"/>
+                                <rect key="frame" x="437" y="7" width="71" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="71" height="36"/>
@@ -3371,6 +3371,33 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                         <exclude reference="ehF-ZR-92m"/>
                                     </mask>
                                 </variation>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="divider" id="PhF-43-qcX">
+                                <rect key="frame" x="510" y="7" width="71" height="36"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="71" height="36"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SQ-qZ-uks">
+                                            <rect key="frame" x="33" y="15.5" width="5" height="5"/>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.45098039215686275" green="0.75686274509803919" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="5" id="Xs7-vh-Ghi"/>
+                                                <constraint firstAttribute="height" constant="5" id="wlW-yn-SKj"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="1SQ-qZ-uks" firstAttribute="centerX" secondItem="PhF-43-qcX" secondAttribute="centerX" id="8Jm-Qu-CsK"/>
+                                    <constraint firstItem="1SQ-qZ-uks" firstAttribute="centerY" secondItem="PhF-43-qcX" secondAttribute="centerY" id="PW5-gq-MQt"/>
+                                </constraints>
+                                <size key="customSize" width="71" height="36"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -4015,9 +4042,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_remindericon" width="36" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u8n-9I-Erz"/>
-        <segue reference="1aI-Ga-gh1"/>
         <segue reference="GOm-9p-EYG"/>
+        <segue reference="u8n-9I-Erz"/>
         <segue reference="1ic-5n-SwM"/>
+        <segue reference="8wA-Kt-Eo6"/>
     </inferredMetricsTieBreakers>
 </document>

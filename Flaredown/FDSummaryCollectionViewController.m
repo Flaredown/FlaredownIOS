@@ -426,7 +426,9 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         [label setText:@"Tags"]; //TODO:Localized
     } else if(section < TAG_END) {
-        if(NO_TAGS) {
+        if(section == TAG_END - 1) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
+        } else if(NO_TAGS) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoneIdentifier forIndexPath:indexPath];
             
             //1 Button
@@ -436,8 +438,6 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             //2 Label
             UILabel *label = (UILabel *)[cell viewWithTag:2];
             [label setText:@"No tags"];//TODO:Localized
-        } else if(section == TAG_END - 1) {
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
         } else {
             NSString *tag = [_entry tags][row];
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:TagIdentifier forIndexPath:indexPath];
@@ -557,10 +557,10 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     } else if(section == TAG_TITLE) {
         return CGSizeMake(maxWidth, 40);
     } else if(section < TAG_END) {
-        if(NO_TAGS) {
-            return CGSizeMake(maxWidth, 72);
-        } else if(section == TAG_END - 1) {
+        if(section == TAG_END - 1) {
             return CGSizeMake(maxWidth, 15);
+        } else if(NO_TAGS) {
+            return CGSizeMake(maxWidth, 72);
         } else {
             NSString *tag = [[[FDModelManager sharedManager] entry] tags][row];
             CGSize tagSize = CGSizeMake(maxWidth, 32);

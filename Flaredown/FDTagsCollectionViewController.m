@@ -26,6 +26,7 @@ static NSString * const AddTagIdentifier = @"addTag";
 static NSString * const TagIdentifier = @"tag";
 static NSString * const PopularIdentifier = @"popular";
 static NSString * const PopularTagIdentifier = @"popularTag";
+static NSString * const DividerIdentifier = @"divider";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +49,8 @@ static NSString * const PopularTagIdentifier = @"popularTag";
                 if(!found)
                     [_popularTags addObject:result];
             }
-            [self.collectionView reloadSections:[[NSIndexSet alloc] initWithIndex:3]];
+            [self.collectionView reloadData];
+//            [self.collectionView reloadSections:[[NSIndexSet alloc] initWithIndex:3]];
         }
             
     }];
@@ -77,7 +79,7 @@ static NSString * const PopularTagIdentifier = @"popularTag";
 {
     UICollectionViewCell *cell = [self parentCellForView:sender];
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-    FDTrackableResult *tag = _popularTags[[indexPath row]];
+    FDTrackableResult *tag = _popularTags[[indexPath row]/2];
     if([_tags containsObject:[tag name]])
         return;
     [_tags addObject:[tag name]];
@@ -118,7 +120,7 @@ static NSString * const PopularTagIdentifier = @"popularTag";
     } else if(section == 2) {
         return 1;
     } else if(section == 3) {
-        return _popularTags.count;
+        return _popularTags.count*2-1;
     }
     return 0;
 }
@@ -145,12 +147,16 @@ static NSString * const PopularTagIdentifier = @"popularTag";
     } else if(section == 2) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:PopularIdentifier forIndexPath:indexPath];
     } else if(section == 3) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:PopularTagIdentifier forIndexPath:indexPath];
-        
-        //1 Button
-        UIButton *button = (UIButton *)[cell viewWithTag:1];
-        FDTrackableResult *tag = _popularTags[row];
-        [button setTitle:[tag name] forState:UIControlStateNormal];
+        if(row % 2 == 0) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:PopularTagIdentifier forIndexPath:indexPath];
+            
+            //1 Button
+            UIButton *button = (UIButton *)[cell viewWithTag:1];
+            FDTrackableResult *tag = _popularTags[row/2];
+            [button setTitle:[tag name] forState:UIControlStateNormal];
+        } else {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:DividerIdentifier forIndexPath:indexPath];
+        }
     }
     
     // Configure the cell
@@ -172,9 +178,13 @@ static NSString * const PopularTagIdentifier = @"popularTag";
         CGRect rect = [tag boundingRectWithSize:tagSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
         return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, tagSize.height);
     } else if(section == 3) {
-        FDTrackableResult *tag = _popularTags[row];
-        CGRect buttonRect = [[tag name] boundingRectWithSize:CGSizeMake(collectionView.frame.size.width, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
-        return buttonRect.size;
+        if(row % 2 == 0) {
+            FDTrackableResult *tag = _popularTags[row/2];
+            CGRect buttonRect = [[tag name] boundingRectWithSize:CGSizeMake(collectionView.frame.size.width, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
+            return buttonRect.size;
+        } else {
+            return CGSizeMake(10, TAG_HEIGHT);
+        }
     }
     return CGSizeMake(175, 50);
 }
