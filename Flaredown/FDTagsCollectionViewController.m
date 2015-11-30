@@ -7,6 +7,7 @@
 //
 
 #import "FDTagsCollectionViewController.h"
+
 #import "FDModelManager.h"
 
 #import "FDTrackableResult.h"
@@ -30,6 +31,7 @@ static NSString * const DividerIdentifier = @"divider";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _tags = [[[FDModelManager sharedManager] entry] tags];
     _popularTags = [[NSMutableArray alloc] init];
     
@@ -50,9 +52,7 @@ static NSString * const DividerIdentifier = @"divider";
                     [_popularTags addObject:result];
             }
             [self.collectionView reloadData];
-//            [self.collectionView reloadSections:[[NSIndexSet alloc] initWithIndex:3]];
         }
-            
     }];
 }
 
@@ -120,7 +120,8 @@ static NSString * const DividerIdentifier = @"divider";
     } else if(section == 2) {
         return 1;
     } else if(section == 3) {
-        return _popularTags.count*2-1;
+        NSInteger count = _popularTags.count*2-1;
+        return count>0 ? count : 0;
     }
     return 0;
 }
@@ -159,8 +160,6 @@ static NSString * const DividerIdentifier = @"divider";
         }
     }
     
-    // Configure the cell
-    
     return cell;
 }
 
@@ -188,37 +187,6 @@ static NSString * const DividerIdentifier = @"divider";
     }
     return CGSizeMake(175, 50);
 }
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 #pragma mark navigation
 

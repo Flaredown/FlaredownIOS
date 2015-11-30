@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4rV-QE-nqY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4rV-QE-nqY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1052,7 +1052,6 @@
                                             </variation>
                                             <connections>
                                                 <action selector="questionButton:" destination="GyN-yX-fIx" eventType="touchUpInside" id="iEn-km-gs9"/>
-                                                <action selector="tagButton:" destination="bO9-g1-uWJ" eventType="touchUpInside" id="4IE-ki-Pfp"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -3405,6 +3404,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                             <outlet property="delegate" destination="bO9-g1-uWJ" id="1KF-ZA-Xi3"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <outlet property="collectionView" destination="Ddw-Zu-mZX" id="jj8-6v-7ae"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twy-Pq-aft" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
