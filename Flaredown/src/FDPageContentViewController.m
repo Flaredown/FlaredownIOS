@@ -189,16 +189,6 @@
     [[FDPopupManager sharedManager] addPopupView:containerController.view withViewController:containerController];
 }
 
-- (void)refreshEditList
-{
-    FDSelectListViewController *listController = (FDSelectListViewController *)_popupController;
-    if(listController.listType == ListTypeSymptoms)
-        [listController initWithSymptoms];
-    else if(listController.listType == ListTypeConditions)
-        [listController initWithConditions];
-    [listController.tableView reloadData];
-}
-
 - (void)closeEditList
 {
     [[_mainViewDelegate instance] dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
@@ -213,7 +203,6 @@
 {
     [_mainViewDelegate openSearch:type];
 }
-
 
 #pragma mark - Navigation
 

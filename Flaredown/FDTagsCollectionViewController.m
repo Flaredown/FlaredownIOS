@@ -63,7 +63,8 @@ static NSString * const DividerIdentifier = @"divider";
 
 - (IBAction)addTagButton:(id)sender
 {
-    [self performSegueWithIdentifier:@"search" sender:nil];
+    [_mainViewDelegate openSearch:@"tags"];
+//    [self performSegueWithIdentifier:@"search" sender:nil];
 }
 
 - (IBAction)tagButton:(id)sender

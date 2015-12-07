@@ -19,6 +19,8 @@
 #import "FDEntry.h"
 #import "FDNetworkManager.h"
 
+#import "FDPopupManager.h"
+
 #import "FDLoginViewController.h"
 
 #define CARD_BUMP_OFFSET 60
@@ -557,23 +559,36 @@
 - (void)openSearch:(NSString *)type
 {
     _searchType = type;
-    [self performSegueWithIdentifier:@"search" sender:self];
+    FDSearchTableViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FDSearchTableViewController"];
+    searchViewController.mainViewDelegate = self;
+    searchViewController.contentViewDelegate = self.pageViewController.viewControllers[0];
+    if([_searchType isEqualToString:@"symptoms"])
+        searchViewController.searchType = SearchSymptoms;
+    else if([_searchType isEqualToString:@"treatments"])
+        searchViewController.searchType = SearchTreatments;
+    else if([_searchType isEqualToString:@"conditions"])
+        searchViewController.searchType = SearchConditions;
+    else if([_searchType isEqualToString:@"tags"])
+        searchViewController.searchType = SearchTags;
+    
+    //Popup
+    float popupWidth = self.view.window.frame.size.width*3/4;
+    float popupX = self.view.window.frame.size.width/2-popupWidth/2;
+    float popupHeight = self.view.window.frame.size.height*3/4;
+    float popupY = self.view.window.frame.size.height/2-popupHeight/2;
+    
+    [searchViewController.view setFrame:CGRectMake(popupX, popupY, popupWidth, popupHeight)];
+    searchViewController.view.layer.masksToBounds = YES;
+    [FDStyle addRoundedCornersToView:searchViewController.view];
+    
+    [searchViewController updateViewConstraints];
+
+    [[FDPopupManager sharedManager] addPopupView:searchViewController.view withViewController:searchViewController];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"search"]) {
-        UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
-        FDSearchTableViewController *searchViewController = (FDSearchTableViewController *)dvc.topViewController;
-        searchViewController.mainViewDelegate = self;
-        searchViewController.contentViewDelegate = self.pageViewController.viewControllers[0];
-        if([_searchType isEqualToString:@"symptoms"])
-            searchViewController.searchType = SearchSymptoms;
-        else if([_searchType isEqualToString:@"treatments"])
-            searchViewController.searchType = SearchTreatments;
-        else if([_searchType isEqualToString:@"conditions"])
-            searchViewController.searchType = SearchConditions;
-    } else if([segue.identifier isEqualToString:@"login"]) {
+    if([segue.identifier isEqualToString:@"login"]) {
         FDLoginViewController *loginViewController = (FDLoginViewController *)segue.destinationViewController;
         [loginViewController setMainViewDelegate:self];
     }

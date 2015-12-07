@@ -42,10 +42,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    if(_editing) {
-//        [_contentViewDelegate editList];
-//        _editing = NO;
-//    }
+    if(_editing) {
+        [_contentViewDelegate editList];
+        _editing = NO;
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -250,21 +250,18 @@
 
 - (IBAction)openSymptomSearch:(id)sender
 {
-    [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"symptoms"];
 }
 
 - (IBAction)openConditionSearch:(id)sender
 {
-    [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"conditions"];
 }
 
 - (IBAction)openTreatmentSearch:(id)sender
 {
-    [[FDPopupManager sharedManager] removeTopPopup];
     [[FDPopupManager sharedManager] removeTopPopup];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_mainViewDelegate openSearch:@"treatments"];

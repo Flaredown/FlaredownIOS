@@ -587,7 +587,6 @@
                         <outlet property="nextDayButton" destination="YlH-aL-N3T" id="PgI-2C-dnh"/>
                         <outlet property="previousDayButton" destination="cuz-b9-Tbw" id="PVJ-MS-2qz"/>
                         <segue destination="Zvz-CY-M8D" kind="show" identifier="finish" id="RRC-oB-iPK"/>
-                        <segue destination="t1N-rz-86q" kind="show" identifier="search" id="j9h-cQ-iZY"/>
                         <segue destination="Ffa-p7-jyZ" kind="presentation" identifier="login" id="gKC-Qh-p5V"/>
                     </connections>
                 </viewController>
@@ -2100,9 +2099,6 @@
                             <outlet property="delegate" destination="nys-hB-PtI" id="W40-kd-zf4"/>
                         </connections>
                     </collectionView>
-                    <connections>
-                        <segue destination="t1N-rz-86q" kind="show" identifier="search" id="1aI-Ga-gh1"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmJ-1E-u15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2370,7 +2366,6 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <outlet property="secondaryTitleButton" destination="9yA-zo-cNj" id="cnU-XR-p2C"/>
                         <outlet property="titleLabel" destination="hot-Re-0zM" id="OpK-Qi-RKe"/>
                         <segue destination="XTt-dF-ZiA" kind="presentation" identifier="editList" id="1ic-5n-SwM"/>
-                        <segue destination="t1N-rz-86q" kind="show" identifier="search" id="pti-0c-EDU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iiu-pu-qV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2855,23 +2850,6 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
             </objects>
             <point key="canvasLocation" x="2255" y="-292"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Nbe-Rr-cPm">
-            <objects>
-                <navigationController id="t1N-rz-86q" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1iq-32-1qz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="pCN-HU-EjD" kind="relationship" relationship="rootViewController" id="dxt-Vc-Rao"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sUf-zQ-iPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1760" y="-973"/>
-        </scene>
         <!--Add Condition-->
         <scene sceneID="xYm-cx-y6C">
             <objects>
@@ -2883,7 +2861,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" rowHeight="63" id="NPS-3F-nES">
-                                <rect key="frame" x="0.0" y="66" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPS-3F-nES" id="Byj-ol-1l8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2911,7 +2889,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="result" rowHeight="63" id="PWh-1B-Opp">
-                                <rect key="frame" x="0.0" y="129" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="149" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PWh-1B-Opp" id="a5E-bl-sMb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -2947,7 +2925,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                 <animations/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
-                                <rect key="frame" x="0.0" y="192" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="212" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmB-sC-Idy" id="yBt-Zs-ifi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -3215,7 +3193,6 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                             </state>
                                             <connections>
                                                 <action selector="addTagButton:" destination="bO9-g1-uWJ" eventType="touchUpInside" id="UnX-VZ-68s"/>
-                                                <segue destination="t1N-rz-86q" kind="show" identifier="search" id="8wA-Kt-Eo6"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -4044,9 +4021,8 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_remindericon" width="36" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1ic-5n-SwM"/>
         <segue reference="GOm-9p-EYG"/>
         <segue reference="u8n-9I-Erz"/>
-        <segue reference="1ic-5n-SwM"/>
-        <segue reference="8wA-Kt-Eo6"/>
     </inferredMetricsTieBreakers>
 </document>

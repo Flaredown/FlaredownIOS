@@ -37,19 +37,6 @@
     }
     
     _results = [[NSMutableArray alloc] init];
-    
-    if(_contentViewDelegate) {
-        _editing = YES;
-        [_contentViewDelegate closeEditList];
-    }
-    
-//    [self.navigationController.view setBackgroundColor:[UIColor blackColor]];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -223,7 +210,7 @@
             
             if([result count] != -1) {
                 [title setText:[result name]];
-                [subtext setText:[NSString stringWithFormat:@"%i %@", [result count], FDLocalizedString(@"add_trackable_users")]];
+                [subtext setText:[NSString stringWithFormat:@"%li %@", (long)[result count], FDLocalizedString(@"add_trackable_users")]];
             } else {
                 if(_searchType == SearchConditions)
                     [subtext setText:FDLocalizedString(@"onboarding/add_new_condition")];
@@ -345,14 +332,14 @@
             
             for (FDTreatment *treatment in [entry treatments]) {
                 if([[treatment name] isEqualToString:title]) {
-                    [self closeSearchWithTreatment:treatment];
+                    [self closeSearch:nil];
                     return;
                 }
             }
             
             for (FDTreatment *userTreatment in [user treatments]) {
                 if([[userTreatment name] isEqualToString:title]) {
-                    [self closeSearchWithTreatment:userTreatment];
+                    [self closeSearch:nil];
                     return;
                 }
             }
@@ -371,7 +358,7 @@
                     FDTreatment *selectedTreatment = [[FDTreatment alloc] init];
                     [selectedTreatment setName:title];
                     
-                    [self closeSearchWithTreatment:selectedTreatment];
+                    [self closeSearch:nil];
                 }
                 else {
                     NSLog(@"Failure!");
@@ -487,25 +474,13 @@
         [self closeCountrySearch];
     else {
         [_mainViewDelegate refreshPages];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            [_contentViewDelegate refreshEditList];
-        }];
-    }
-}
-
-- (void)closeSearchWithTreatment:(FDTreatment *)treatment
-{
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
         [[FDPopupManager sharedManager] removeTopPopup];
-        [_contentViewDelegate addTreatmentPopupWithTreatment:treatment];
-    }];
+    }
 }
 
 - (void)closeCountrySearch
 {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        [_settingsViewDelegate openAccountModal];
-    }];
+    [[FDPopupManager sharedManager] removeTopPopup];
 }
 
 - (UITableViewCell *)parentCellForView:(id)theView

@@ -24,7 +24,6 @@ typedef enum : NSUInteger {
 
 - (void)openSearch:(NSString *)type;
 - (void)editList;
-- (void)refreshEditList;
 - (void)closeEditList;
 - (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment;
 
@@ -41,7 +40,6 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *secondaryTitleButton;
 
 @property (retain, nonatomic) UIViewController *popupController;
-@property BOOL openEditList;
 
 @property int pageIndex;
 @property EditSegueType editSegueType;

@@ -182,9 +182,9 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     _accountCountryTextField.autocompleteDataSource = [HTAutocompleteManager sharedManager];
     _accountCountryTextField.autocompleteType = HTAutocompleteTypeCountry;
     
-    [_accountBirthDayTextField setText:[NSString stringWithFormat:@"%i", [user birthDateDay]]];
-    [_accountBirthMonthTextField setText:[NSString stringWithFormat:@"%i", [user birthDateMonth]]];
-    [_accountBirthYearTextField setText:[NSString stringWithFormat:@"%i", [user birthDateYear]]];
+    [_accountBirthDayTextField setText:[NSString stringWithFormat:@"%li", (long)[user birthDateDay]]];
+    [_accountBirthMonthTextField setText:[NSString stringWithFormat:@"%li", (long)[user birthDateMonth]]];
+    [_accountBirthYearTextField setText:[NSString stringWithFormat:@"%li", (long)[user birthDateYear]]];
     
     UIToolbar *numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneNumberPad)];
