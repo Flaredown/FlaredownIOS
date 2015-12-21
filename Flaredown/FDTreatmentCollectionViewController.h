@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "FDTreatment.h"
+#import "FDPageContentViewController.h"
 
 #import <HTAutocompleteTextField.h>
 
@@ -27,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *editDoseDoneButton;
 
 @property BOOL editing;
+
+@property id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
 @property FDTreatment *selectedTreatment;
 @property FDDose *selectedDose;

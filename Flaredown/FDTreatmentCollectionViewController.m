@@ -34,11 +34,12 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     [super viewDidLoad];
     
     self.collectionView.contentInset = UIEdgeInsetsMake(0, CONTENT_INSET, 0, CONTENT_INSET);
+    [self.collectionView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionOld context:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary  *)change context:(void *)context
+{
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.collectionView.collectionViewLayout.collectionViewContentSize.height);
 }
 
 - (IBAction)addDose:(id)sender
@@ -262,10 +263,12 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     NSInteger row = [indexPath row];
     NSInteger section = [indexPath section];
     
-    CGSize treatmentSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
-    CGSize addDoseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 30);
-    CGSize doseSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 32);
-    CGSize useLatestSize = CGSizeMake(collectionView.frame.size.width-CONTENT_INSET*2, 40);
+    float maxWidth = collectionView.frame.size.width-collectionView.contentInset.left-collectionView.contentInset.right;
+    
+    CGSize treatmentSize = CGSizeMake(maxWidth, 30);
+    CGSize addDoseSize = CGSizeMake(maxWidth, 30);
+    CGSize doseSize = CGSizeMake(maxWidth, 32);
+    CGSize useLatestSize = CGSizeMake(maxWidth, 40);
     
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
     

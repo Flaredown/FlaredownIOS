@@ -7,16 +7,26 @@
 //
 
 #import "FDPageContentViewController.h"
+
+#import <MJPopupViewController/UIViewController+MJPopupViewController.h>
+#import <QuartzCore/QuartzCore.h>
+
 #import "FDContainerViewController.h"
 #import "FDSelectListViewController.h"
 #import "FDSearchTableViewController.h"
 #import "FDModelManager.h"
-#import <MJPopupViewController/UIViewController+MJPopupViewController.h>
-#import <QuartzCore/QuartzCore.h>
 #import "FDStyle.h"
 #import "FDEmbeddedSelectListViewController.h"
 #import "FDPopupManager.h"
 #import "FDLocalizationManager.h"
+#import "FDSelectListViewController.h"
+#import "FDNumberViewController.h"
+#import "FDSelectCollectionViewController.h"
+#import "FDSelectQuestionTableViewController.h"
+#import "FDMeterViewController.h"
+#import "FDNotesViewController.h"
+#import "FDTagsCollectionViewController.h"
+#import "FDTreatmentCollectionViewController.h"
 
 //Ratio of popup : window
 #define POPUP_SIZE_WIDTH .9
@@ -31,122 +41,233 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Style
-    [FDStyle addRoundedCornersToView:self.contentView];
-    [FDStyle addShadowToView:self.contentView];
-    self.contentView.center = CGPointMake(self.contentView.frame.size.width / 2, self.contentView.frame.size.height / 2);
-
     NSInteger numSections = [[FDModelManager sharedManager] numberOfQuestionSections];
-
+    
     int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
     
     if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
         //Add conditions
-        self.titleLabel.text = FDLocalizedString(@"oops_no_conditions_being_tracked");
-        [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
-        [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-
+        [self setTitle:FDLocalizedString(@"oops_no_conditions_being_tracked") secondaryTitle:FDLocalizedString(@"onboarding/edit_conditions_caps") editAction:@selector(editList)];
+        
         _editSegueType = EditSegueConditions;
+        [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierSelectListView];
+        
+        FDSelectListViewController *listVC = (FDSelectListViewController *)_currentViewController;
+        //send empty array so you only get the add button
+        [listVC initWithQuestions:[@[] mutableCopy]];
+        listVC.mainViewDelegate = _mainViewDelegate;
+        listVC.contentViewDelegate = self;
+        listVC.listType = ListTypeConditions;
     } else if(offsetIndex >= numSections) {
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
-            self.titleLabel.text = FDLocalizedString(@"oops_no_symptoms_being_tracked");
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
-            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            [self setTitle:FDLocalizedString(@"oops_no_symptoms_being_tracked") secondaryTitle:FDLocalizedString(@"onboarding/edit_symptoms_caps") editAction:@selector(editList)];
             
             _editSegueType = EditSegueSymptoms;
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierSelectListView];
+            
+            FDSelectListViewController *listVC = (FDSelectListViewController *)_currentViewController;
+            //send empty array so you only get the add button
+            [listVC initWithQuestions:[@[] mutableCopy]];
+            listVC.mainViewDelegate = _mainViewDelegate;
+            listVC.contentViewDelegate = self;
+            listVC.listType = ListTypeSymptoms;
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
             //Treatments
+            NSString *title;
             if([[[FDModelManager sharedManager] entry] treatments].count == 0)
-                self.titleLabel.text = FDLocalizedString(@"oops_no_treatments_being_tracked");
+                title = FDLocalizedString(@"oops_no_treatments_being_tracked");
             else
-                self.titleLabel.text = FDLocalizedString(@"which_treatments_taken_today");
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"edit_treatments_caps") color:[FDStyle blueColor]];
-            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+                title = FDLocalizedString(@"which_treatments_taken_today");
+            [self setTitle:title secondaryTitle:FDLocalizedString(@"edit_treatments_caps")  editAction:@selector(editList)];
             
             _editSegueType = EditSegueTreatments;
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTreatmentsCollectionView];
+            
+            FDTreatmentCollectionViewController *treatmentVC = (FDTreatmentCollectionViewController *)_currentViewController;
+            [treatmentVC.view setFrame:CGRectMake(treatmentVC.view.frame.origin.x, treatmentVC.view.frame.origin.y, treatmentVC.view.frame.size.width, treatmentVC.collectionView.contentSize.height)];
+            
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
-            //Notes
-            [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
-            self.titleLabel.text = FDLocalizedString(@"tag_your_day");
-//            self.titleLabel.text = FDLocalizedString(@"leave_a_note");
+            //Tags
+            [self setTitle:FDLocalizedString(@"tag_your_day") secondaryTitle:@"" editAction:nil];
+            
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTagsView];
+            
+            FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)_currentViewController;
+            tagsVC.mainViewDelegate = _mainViewDelegate;
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
         
         if([[question catalog] isEqualToString:@"symptoms"]) {
+            NSString *title = @"";
             if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"symptom_question_prompt"), [question name]];
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
-            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+                title = FDLocalizedString(@"symptom_question_prompt");
+            [self setTitle:title secondaryTitle:FDLocalizedString(@"onboarding/edit_symptoms_caps") editAction:@selector(editList)];
+            
             _editSegueType = EditSegueSymptoms;
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierMeterView];
+            
+            FDMeterViewController *meterVC = (FDMeterViewController *)_currentViewController;
+            [meterVC initWithQuestion:question];
+            meterVC.mainViewDelegate = _mainViewDelegate;
         } else if([[question catalog] isEqualToString:@"conditions"]) {
+            NSString *title = @"";
             if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"condition_question_prompt"), [question name]];
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
-            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+                title = [NSString stringWithFormat:FDLocalizedString(@"condition_question_prompt"), [question name]];
+            [self setTitle:title secondaryTitle:FDLocalizedString(@"onboarding/edit_conditions_caps") editAction:@selector(editList)];
+            
             _editSegueType = EditSegueConditions;
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierMeterView];
+            
+            FDMeterViewController *meterVC = (FDMeterViewController *)_currentViewController;
+            [meterVC initWithQuestion:question];
+            meterVC.mainViewDelegate = _mainViewDelegate;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
+            NSString *title;
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
-                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
-                self.titleLabel.text = FDLocalizedString(path);
-                if(self.titleLabel.text.length == 0)
-                    self.titleLabel.text = FDLocalizedString(@"complications_question_prompt");
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%li_prompt", [question catalog], (long)catalogSection];
+                title = FDLocalizedString(path);
+                if(title.length == 0)
+                    title = FDLocalizedString(@"complications_question_prompt");
             }
-            [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
+            [self setTitle:title secondaryTitle:@"" editAction:nil];
+            
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierMeterView];
+            
+            FDMeterViewController *meterVC = (FDMeterViewController *)_currentViewController;
+            [meterVC initWithQuestion:question];
+            meterVC.mainViewDelegate = _mainViewDelegate;
         } else if([[question kind] isEqualToString:@"number"]) {
+            NSString *title;
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
-                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
-                self.titleLabel.text = FDLocalizedString(path);
-                if(self.titleLabel.text.length == 0)
-                    self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%li_prompt", [question catalog], (long)catalogSection];
+                title = FDLocalizedString(path);
+                if(title.length == 0)
+                    title = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
             }
-            [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
+            [self setTitle:title secondaryTitle:@"" editAction:nil];
+            
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierNumberView];
+            
+            FDNumberViewController *numberVC = (FDNumberViewController *)_currentViewController;
+            [numberVC initWithQuestion:question];
         } else {
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
-                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%li_prompt", [question catalog], (long)catalogSection];
                 self.titleLabel.text = FDLocalizedString(path);
                 if(self.titleLabel.text.length == 0)
                     self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"catalog_question_prompt"), [question name]];
             }
             [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"research_questions_caps") color:[FDStyle greyColor]];
+            
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierSelectQuestionTableView];
+            
+            FDSelectQuestionTableViewController *questionVC = (FDSelectQuestionTableViewController *)_currentViewController;
+            questionVC.mainViewDelegate = _mainViewDelegate;
+            [questionVC initWithQuestion:question];
         }
     }
     
     if([[self.secondaryTitleButton titleForState:UIControlStateNormal] isEqualToString:@""]) {
         [self.titleLabel setFrame:CGRectMake(self.titleLabel.frame.origin.x, (self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + self.secondaryTitleButton.frame.origin.y) / 2,
-                                           self.titleLabel.frame.size.width, self.titleLabel.frame.size.height)];
+                                             self.titleLabel.frame.size.width, self.titleLabel.frame.size.height)];
+    }
+}
+
+- (void)setTitle:(NSString *)title secondaryTitle:(NSString *)secondaryTitle editAction:(SEL)editAction
+{
+    self.titleLabel.text = title;
+    [self underlineButton:self.secondaryTitleButton withText:secondaryTitle color:[FDStyle blueColor]];
+    [self.secondaryTitleButton addTarget:self action:editAction forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)showEmbeddedViewControllerWithStoryboardIdentifier:(NSString *)identifier
+{
+    UIViewController *embeddedViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+    [self addChildViewController:embeddedViewController];
+    
+    if([embeddedViewController respondsToSelector:@selector(contentViewDelegate)]) {
+        [embeddedViewController setValue:self forKey:@"contentViewDelegate"];
     }
     
-//    if(![[NSNull null] isEqual:[question group]]) {
-//        
-//        NSString *title = [question group];
-//        /* create a locale where diacritic marks are not considered important, e.g. US English */
-//        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en-US"];
-//        
-//        /* get first char */
-//        NSString *firstChar = [title substringToIndex:1];
-//        
-//        /* remove any diacritic mark */
-//        NSString *folded = [firstChar stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:locale];
-//        
-//        /* create the new string */x
-//        self.titleLabel.text = [[folded uppercaseString] stringByAppendingString:[title substringFromIndex:1]];
-//
+//    UIView *view = embeddedViewController.view;
+//    view.backgroundColor = [UIColor clearColor];
+//    float height = _scrollView.frame.size.height - _contentView.frame.size.height;
+//    
+//    [_embedView addSubview:view];
+//    _embedView.frame = CGRectMake(_embedView.frame.origin.x, _embedView.frame.origin.y, _embedView.frame.size.width, height);
+//    view.frame = CGRectMake(0, 0, _embedView.frame.size.width, height);
+//    
+//    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
+//    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
+//    
+//    _embedViewHeightConstraint.constant = height;
+//    [_embedView setNeedsLayout];
+//    [_embedView layoutIfNeeded];
+//    [_contentView setNeedsLayout];
+//    [_contentView layoutIfNeeded];
+//    
+//    if([embeddedViewController isKindOfClass:[UICollectionViewController class]]) {
+//        UICollectionView *collectionView = ((UICollectionViewController *)embeddedViewController).collectionView;
+//        collectionView.content
+//    } else if([embeddedViewController isKindOfClass:[UITableViewController class]]) {
+//        UITableViewController *tableView = ((UITableViewController *)embeddedViewController).tableView;
+//    }
+//    
+//    _scrollView.contentSize = _contentView.frame.size;
+    
+    UIView *view = embeddedViewController.view;
+    view.backgroundColor = [UIColor clearColor];
+    
+    [_embedView addSubview:view];
+    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
+    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
+    
+    [FDStyle addRoundedCornersToView:_contentView];
+    [FDStyle addShadowToView:_contentView];
+
+    if(_currentViewController) {
+        [_currentViewController.view removeFromSuperview];
+        [_currentViewController willMoveToParentViewController:nil];
+        [self transitionFromViewController:_currentViewController toViewController:embeddedViewController duration:1.0 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
+            [_currentViewController removeFromParentViewController];
+            [embeddedViewController didMoveToParentViewController:self];
+        }];
+    } else {
+        [embeddedViewController didMoveToParentViewController:self];
+    }
+    
+    _currentViewController = embeddedViewController;
+    
+    [self sizeToFitContent];
+}
+
+- (void)sizeToFitContent
+{
+    UIView *view = _currentViewController.view;
+    
+    float height = _scrollView.frame.size.height - _contentView.frame.size.height;
+    
+    _embedView.frame = CGRectMake(_embedView.frame.origin.x, _embedView.frame.origin.y, _embedView.frame.size.width, height);
+    view.frame = CGRectMake(0, 0, _embedView.frame.size.width, height);
+    
+    _embedViewHeightConstraint.constant = height;
+    [_embedView setNeedsLayout];
+    [_embedView layoutIfNeeded];
+    [_contentView setNeedsLayout];
+    [_contentView layoutIfNeeded];
+    
+    _scrollView.contentSize = _contentView.frame.size;
 }
 
 - (void)underlineButton:(UIButton *)button withText:(NSString *)text color:(UIColor *)color
 {
     NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSForegroundColorAttributeName:color};
     [button setAttributedTitle:[[NSAttributedString alloc] initWithString:text attributes:underlineAttribute] forState:UIControlStateNormal];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)editList
@@ -204,34 +325,14 @@
     [_mainViewDelegate openSearch:type];
 }
 
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)resizeScrollView
 {
-    if([segue.identifier isEqualToString:ContainerEmbedSegueIdentifier]) {
-        FDContainerViewController *containerViewController = (FDContainerViewController *)segue.destinationViewController;
-        containerViewController.pageIndex = self.pageIndex;
-        containerViewController.mainViewDelegate = _mainViewDelegate;
-        containerViewController.contentViewDelegate = self;
-    } else if([segue.identifier isEqualToString:EditListSegueIdentifier]) {
-        FDSelectListViewController *dvc = (FDSelectListViewController *)segue.destinationViewController;
-        dvc.mainViewDelegate = _mainViewDelegate;
-        dvc.contentViewDelegate = self;
-        [dvc setModalPresentationStyle:UIModalPresentationPopover];
-        dvc.dynamic = YES;
-        if(_editSegueType == EditSegueTreatments) {
-            [dvc initWithTreatments];
-        } else if(_editSegueType == EditSegueSymptoms) {
-            [dvc initWithSymptoms];
-        } else if(_editSegueType == EditSegueConditions) {
-            [dvc initWithConditions];
-        }
-    } else if([segue.identifier isEqualToString:SearchSegueIdentifier]) {
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        FDSearchTableViewController *dvc = (FDSearchTableViewController *)navController.topViewController;
-        dvc.contentViewDelegate = self;
-    }
+    [_contentView sizeToFit];
+    
+    float contentSize = 0;
+    UIView *lastView = [_scrollView.subviews lastObject];
+    contentSize += lastView.frame.origin.y + lastView.frame.size.height;
+    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width, contentSize);
 }
-
 
 @end

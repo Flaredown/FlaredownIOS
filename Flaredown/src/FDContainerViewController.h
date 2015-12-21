@@ -9,15 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FDSelectListViewController.h"
 
-//#define SegueIdentifierSelectListView @"embedSelectListView"
-//#define SegueIdentifierSelectCollectionView @"embedSelectCollectionView"
-//#define SegueIdentifierSelectQuestionTableView @"embedSelectQuestionTableView"
-//#define SegueIdentifierNumberView @"embedNumberView"
-//#define SegueIdentifierMeterView @"embedMeterView"
-//#define SegueIdentifierNotesView @"embedNotesView"
-//#define SegueIdentifierTagsView @"embedTagsView"
-//#define SegueIdentifierTreatmentsCollectionView @"embedTreatmentsCollectionView"
-
 #define StoryboardIdentifierSelectListView @"FDSelectListViewController"
 #define StoryboardIdentifierSelectCollectionView @"FDSelectCollectionViewController"
 #define StoryboardIdentifierSelectQuestionTableView @"FDSelectQuestionTableViewController"
