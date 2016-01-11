@@ -326,13 +326,15 @@
 - (void)refreshPages
 {
     //Number of questions + Treatments + Notes
-    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
-    if([[FDModelManager sharedManager] symptoms].count == 0) { //Add symptom page
-        self.numPages++;
-    }
-    if([[FDModelManager sharedManager] conditions].count == 0) { //Add condition page
-        self.numPages++;
-    }
+//    self.numPages = [[FDModelManager sharedManager] numberOfQuestionSections] + 2;
+//    if([[FDModelManager sharedManager] symptoms].count == 0) { //Add symptom page
+//        self.numPages++;
+//    }
+//    if([[FDModelManager sharedManager] conditions].count == 0) { //Add condition page
+//        self.numPages++;
+//    }
+    //Conditions + symptoms + treatments + notes
+    self.numPages = 4;
     
     FDPageContentViewController *startingViewController = [self viewControllerAtIndex:self.pageIndex];
     [FDStyle addRoundedCornersToView:startingViewController.view];

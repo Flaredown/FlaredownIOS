@@ -40,31 +40,48 @@
 
     int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
     
-    if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
-        //Add conditions
-        self.titleLabel.text = FDLocalizedString(@"oops_no_conditions_being_tracked");
-        [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
-        [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-
-        _editSegueType = EditSegueConditions;
-    } else if(offsetIndex >= numSections) {
-        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+    
+    if(_pageIndex == 0) {
+        if([[FDModelManager sharedManager] conditions].count == 0) {
+            //Add conditions
+            self.titleLabel.text = FDLocalizedString(@"oops_no_conditions_being_tracked");
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            
+            _editSegueType = EditSegueConditions;
+        } else {
+            self.titleLabel.text = FDLocalizedString(@"how_active_were_your_conditions");
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            _editSegueType = EditSegueConditions;
+        }
+    } else if(_pageIndex == 1) {
+        if([[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             self.titleLabel.text = FDLocalizedString(@"oops_no_symptoms_being_tracked");
             [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             
             _editSegueType = EditSegueSymptoms;
-        } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
-            //Treatments
-            if([[[FDModelManager sharedManager] entry] treatments].count == 0)
-                self.titleLabel.text = FDLocalizedString(@"oops_no_treatments_being_tracked");
-            else
-                self.titleLabel.text = FDLocalizedString(@"which_treatments_taken_today");
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"edit_treatments_caps") color:[FDStyle blueColor]];
+        } else {
+                self.titleLabel.text = FDLocalizedString(@"how_active_were_your_symptoms");
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-            
-            _editSegueType = EditSegueTreatments;
+            _editSegueType = EditSegueSymptoms;
+        }
+    } else if(_pageIndex == 2) {
+        //Treatments
+        if([[[FDModelManager sharedManager] entry] treatments].count == 0)
+            self.titleLabel.text = FDLocalizedString(@"oops_no_treatments_being_tracked");
+        else
+            self.titleLabel.text = FDLocalizedString(@"which_treatments_taken_today");
+        [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"edit_treatments_caps") color:[FDStyle blueColor]];
+        [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+        
+        _editSegueType = EditSegueTreatments;
+    } else if(offsetIndex >= numSections) {
+        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+        } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
@@ -75,21 +92,11 @@
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
         
         if([[question catalog] isEqualToString:@"symptoms"]) {
-            if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"symptom_question_prompt"), [question name]];
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
-            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-            _editSegueType = EditSegueSymptoms;
         } else if([[question catalog] isEqualToString:@"conditions"]) {
-            if(![[NSNull null] isEqual:[question name]])
-                self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"condition_question_prompt"), [question name]];
-            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
-            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
-            _editSegueType = EditSegueConditions;
         } else if([[question kind] isEqualToString:@"checkbox"]) {
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
-                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%li_prompt", [question catalog], catalogSection];
                 self.titleLabel.text = FDLocalizedString(path);
                 if(self.titleLabel.text.length == 0)
                     self.titleLabel.text = FDLocalizedString(@"complications_question_prompt");
@@ -98,7 +105,7 @@
         } else if([[question kind] isEqualToString:@"number"]) {
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
-                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%li_prompt", [question catalog], catalogSection];
                 self.titleLabel.text = FDLocalizedString(path);
                 if(self.titleLabel.text.length == 0)
                     self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"number_question_prompt"), [question name]];
@@ -107,7 +114,7 @@
         } else {
             if(![[NSNull null] isEqual:[question name]]) {
                 NSInteger catalogSection = [[[[FDModelManager sharedManager] entry] questionsForCatalog:[question catalog]] indexOfObject:question]+1;
-                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%i_prompt", [question catalog], catalogSection];
+                NSString *path = [NSString stringWithFormat:@"catalogs/%@/section_%li_prompt", [question catalog], catalogSection];
                 self.titleLabel.text = FDLocalizedString(path);
                 if(self.titleLabel.text.length == 0)
                     self.titleLabel.text = [NSString stringWithFormat:FDLocalizedString(@"catalog_question_prompt"), [question name]];
