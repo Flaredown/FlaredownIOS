@@ -188,7 +188,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     
     BOOL usePreviousDoses = [[treatment doses] count] == 0 && [previousDoses count] > 0;
     NSInteger doseStartRow = 1;
-    NSInteger lastRow = previousDoses ? doseStartRow + 1 : doseStartRow + [[treatment doses] count];
+    NSInteger lastRow = usePreviousDoses ? doseStartRow + 1 : doseStartRow + [[treatment doses] count];
     
     if(row == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:TreatmentID forIndexPath:indexPath];
@@ -273,7 +273,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     
     BOOL usePreviousDoses = [[treatment doses] count] == 0 && [previousDoses count] > 0;
     NSInteger doseStartRow = 1;
-    NSInteger lastRow = previousDoses ? doseStartRow + 1 : doseStartRow + [[treatment doses] count];
+    NSInteger lastRow = usePreviousDoses ? doseStartRow + 1 : doseStartRow + [[treatment doses] count];
     
     if(row == 0) {
         return treatmentSize;
@@ -291,7 +291,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
             return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, doseSize.height);
         }
     } else if(row == lastRow) {
-        if(previousDoses)
+        if(usePreviousDoses)
             return useLatestSize;
         else
             return addDoseSize;
