@@ -35,6 +35,8 @@ static UIColor *DeselectedColor;
 
 - (void)initWithQuestion:(FDQuestion *)question response:(FDResponse *)response
 {
+    [self clearSelection];
+    
     NSArray *buttons = @[_firstButton, _secondButton, _thirdButton, _fourthButton, _fifthButton];
     
     NSString *title = [question name];
@@ -42,12 +44,16 @@ static UIColor *DeselectedColor;
     
     NSString *description = @"";
     NSInteger value = [response value];
-    if(value > 0 && value < 5) {
+    if(value >= 0 && value < 5) {
         NSString *descriptionPath = [NSString stringWithFormat:@"helpers/basic_%li", value];
         description = FDLocalizedString(descriptionPath);
-        [self setSelectedColor:buttons[value]];
-    } else {
-        [self clearSelection];
+        if(value == 0) {
+            [self setSelectedColor:buttons[0]];
+        } else {
+            for(int i = 1; i <= value; i++) {
+                [self setSelectedColor:buttons[i]];
+            }
+        }
     }
     [_descriptionLabel setText:description];
 }
