@@ -232,8 +232,17 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"search"];
     
+    //TODO: Localization
+    
     //1 - TextField
     UITextField *textField = (UITextField *)[cell viewWithTag:1];
+    if(_searchType == SearchConditions)
+        [textField setPlaceholder:@"Search for conditions..."];
+    else if(_searchType == SearchTags)
+        [textField setPlaceholder:@"Search for tags..."];
+    else if(_searchType == SearchTreatments)
+        [textField setPlaceholder:@"Search for treatments..."];
+    
     textField.text = _searchText;
     textField.delegate = self;
     if(_editing)

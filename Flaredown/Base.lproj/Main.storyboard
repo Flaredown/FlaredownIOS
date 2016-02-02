@@ -2619,7 +2619,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6O-Jp-U29">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jK-0S-Asf">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for conditions..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jK-0S-Asf">
                                                     <rect key="frame" x="21" y="0.0" width="295" height="62"/>
                                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2640,7 +2640,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylq-S6-wAZ">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylq-S6-wAZ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2649,19 +2649,47 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                                 <action selector="selectItem:" destination="pCN-HU-EjD" eventType="touchUpInside" id="80f-R5-Hx2"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U86-wh-6TT">
-                                            <rect key="frame" x="19" y="11" width="229" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U86-wh-6TT">
+                                            <rect key="frame" x="19" y="10.5" width="38" height="20"/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="20"/>
                                             <color key="textColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtext" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvs-G7-GO6">
-                                            <rect key="frame" x="19" y="34" width="229" height="14"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDw-UY-udl">
+                                            <rect key="frame" x="0.0" y="31.5" width="600" height="0.0"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" id="WbQ-RW-Jyk"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtext" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvs-G7-GO6">
+                                            <rect key="frame" x="19" y="32.5" width="40.5" height="12"/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="12"/>
                                             <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="height" secondItem="a5E-bl-sMb" secondAttribute="height" id="5fv-Ry-Yma"/>
+                                        <constraint firstItem="qvs-G7-GO6" firstAttribute="leading" secondItem="U86-wh-6TT" secondAttribute="leading" id="6l9-3Y-pJb"/>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="centerY" secondItem="a5E-bl-sMb" secondAttribute="centerY" id="91k-sp-PJy"/>
+                                        <constraint firstItem="U86-wh-6TT" firstAttribute="top" secondItem="XDw-UY-udl" secondAttribute="bottom" id="CyY-x9-kp1"/>
+                                        <constraint firstItem="U86-wh-6TT" firstAttribute="leading" secondItem="a5E-bl-sMb" secondAttribute="leadingMargin" constant="11" id="Giq-JG-Ioc"/>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="centerX" secondItem="a5E-bl-sMb" secondAttribute="centerX" id="IDt-8B-M4N"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="top" secondItem="U86-wh-6TT" secondAttribute="bottom" constant="1" id="MJa-Hz-4q4"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="top" secondItem="qvs-G7-GO6" secondAttribute="bottom" constant="19.5" id="Sqh-lr-iQL"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="width" secondItem="a5E-bl-sMb" secondAttribute="width" id="V0n-Hv-07f"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="centerX" secondItem="a5E-bl-sMb" secondAttribute="centerX" id="X9O-Ch-eSy"/>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="width" secondItem="a5E-bl-sMb" secondAttribute="width" id="gzn-qd-o42"/>
+                                        <constraint firstItem="qvs-G7-GO6" firstAttribute="top" secondItem="XDw-UY-udl" secondAttribute="bottom" constant="1" id="vna-t5-hVW"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="centerY" secondItem="a5E-bl-sMb" secondAttribute="centerY" id="wn7-28-Po7"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="CyY-x9-kp1"/>
+                                            <exclude reference="Sqh-lr-iQL"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
@@ -3502,11 +3530,11 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="1XG-i2-hjU"/>
                                                     <exclude reference="5MD-XH-wOr"/>
                                                     <exclude reference="9bc-Xn-Im5"/>
-                                                    <exclude reference="1XG-i2-hjU"/>
-                                                    <exclude reference="xX4-2w-8Ob"/>
                                                     <exclude reference="Lqm-W9-9ij"/>
+                                                    <exclude reference="xX4-2w-8Ob"/>
                                                 </mask>
                                             </variation>
                                         </imageView>
