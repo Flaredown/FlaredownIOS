@@ -2742,6 +2742,27 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="height" secondItem="a5E-bl-sMb" secondAttribute="height" id="5fv-Ry-Yma"/>
+                                        <constraint firstItem="qvs-G7-GO6" firstAttribute="leading" secondItem="U86-wh-6TT" secondAttribute="leading" id="6l9-3Y-pJb"/>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="centerY" secondItem="a5E-bl-sMb" secondAttribute="centerY" id="91k-sp-PJy"/>
+                                        <constraint firstItem="U86-wh-6TT" firstAttribute="top" secondItem="XDw-UY-udl" secondAttribute="bottom" id="CyY-x9-kp1"/>
+                                        <constraint firstItem="U86-wh-6TT" firstAttribute="leading" secondItem="a5E-bl-sMb" secondAttribute="leadingMargin" constant="11" id="Giq-JG-Ioc"/>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="centerX" secondItem="a5E-bl-sMb" secondAttribute="centerX" id="IDt-8B-M4N"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="top" secondItem="U86-wh-6TT" secondAttribute="bottom" constant="1" id="MJa-Hz-4q4"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="top" secondItem="qvs-G7-GO6" secondAttribute="bottom" constant="19.5" id="Sqh-lr-iQL"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="width" secondItem="a5E-bl-sMb" secondAttribute="width" id="V0n-Hv-07f"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="centerX" secondItem="a5E-bl-sMb" secondAttribute="centerX" id="X9O-Ch-eSy"/>
+                                        <constraint firstItem="Ylq-S6-wAZ" firstAttribute="width" secondItem="a5E-bl-sMb" secondAttribute="width" id="gzn-qd-o42"/>
+                                        <constraint firstItem="qvs-G7-GO6" firstAttribute="top" secondItem="XDw-UY-udl" secondAttribute="bottom" constant="1" id="vna-t5-hVW"/>
+                                        <constraint firstItem="XDw-UY-udl" firstAttribute="centerY" secondItem="a5E-bl-sMb" secondAttribute="centerY" id="wn7-28-Po7"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="CyY-x9-kp1"/>
+                                            <exclude reference="Sqh-lr-iQL"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="placeholder" rowHeight="63" id="cmB-sC-Idy">
@@ -3950,6 +3971,8 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <image name="fd_remindericon" width="36" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="S95-oh-nxf"/>
+        <segue reference="D2w-TA-5ZL"/>
         <segue reference="GOm-9p-EYG"/>
         <segue reference="D2w-TA-5ZL"/>
         <segue reference="1ic-5n-SwM"/>

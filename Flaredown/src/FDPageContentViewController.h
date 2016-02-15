@@ -22,6 +22,7 @@
 #define StoryboardIdentifierNotesView @"FDNotesViewController"
 #define StoryboardIdentifierTagsView @"FDTagsCollectionViewController"
 #define StoryboardIdentifierTreatmentsCollectionView @"TreatmentCollection"
+#define StoryboardIdentifierMeterTableView @"FDMeterTableViewController"
 
 typedef enum : NSUInteger {
     EditSegueTreatments,

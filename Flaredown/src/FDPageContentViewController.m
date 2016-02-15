@@ -28,6 +28,8 @@
 #import "FDTagsCollectionViewController.h"
 #import "FDTreatmentCollectionViewController.h"
 
+#import "FDMeterTableViewController.h"
+
 //Ratio of popup : window
 #define POPUP_SIZE_WIDTH .9
 #define POPUP_SIZE_HEIGHT .7
@@ -45,25 +47,46 @@
     
     int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
     
-    if(_pageIndex == 0 && [[FDModelManager sharedManager] conditions].count == 0) {
-        //Add conditions
-        [self setTitle:FDLocalizedString(@"oops_no_conditions_being_tracked") secondaryTitle:FDLocalizedString(@"onboarding/edit_conditions_caps") editAction:@selector(editList)];
-        
-        _editSegueType = EditSegueConditions;
-        [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierSelectListView];
-        
-        FDSelectListViewController *listVC = (FDSelectListViewController *)_currentViewController;
-        //send empty array so you only get the add button
-        [listVC initWithQuestions:[@[] mutableCopy]];
-        listVC.mainViewDelegate = _mainViewDelegate;
-        listVC.contentViewDelegate = self;
-        listVC.listType = ListTypeConditions;
-    } else if(offsetIndex >= numSections) {
-        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
+    self.titleLabel.text = @"";
+    [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
+    
+    if(_pageIndex == 0) {
+        if([[FDModelManager sharedManager] conditions].count == 0) {
+            //Add conditions
+            [self setTitle:FDLocalizedString(@"oops_no_conditions_being_tracked") secondaryTitle:FDLocalizedString(@"onboarding/edit_conditions_caps") editAction:@selector(editList)];
+            self.titleLabel.text = FDLocalizedString(@"oops_no_conditions_being_tracked");
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            
+            _editSegueType = EditSegueConditions;
+            
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierSelectListView];
+            
+            FDSelectListViewController *listVC = (FDSelectListViewController *)_currentViewController;
+            //send empty array so you only get the add button
+            [listVC initWithConditions];
+            listVC.mainViewDelegate = _mainViewDelegate;
+            listVC.contentViewDelegate = self;
+            listVC.listType = ListTypeConditions;
+        } else {
+            self.titleLabel.text = FDLocalizedString(@"how_active_were_your_conditions");
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_conditions_caps") color:[FDStyle blueColor]];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            _editSegueType = EditSegueConditions;
+            
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierMeterTableView];
+            
+            FDMeterTableViewController *meterVC = (FDMeterTableViewController *)_currentViewController;
+            
+            [meterVC initWithQuestions:[[[FDModelManager sharedManager] entry] questionsForCatalog:@"conditions"]];
+        }
+    } else if(_pageIndex == 1) {
+        if([[FDModelManager sharedManager] symptoms].count == 0) {
             //Add symptoms
             [self setTitle:FDLocalizedString(@"oops_no_symptoms_being_tracked") secondaryTitle:FDLocalizedString(@"onboarding/edit_symptoms_caps") editAction:@selector(editList)];
             
             _editSegueType = EditSegueSymptoms;
+            
             [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierSelectListView];
             
             FDSelectListViewController *listVC = (FDSelectListViewController *)_currentViewController;
@@ -72,29 +95,44 @@
             listVC.mainViewDelegate = _mainViewDelegate;
             listVC.contentViewDelegate = self;
             listVC.listType = ListTypeSymptoms;
+        } else {
+            self.titleLabel.text = FDLocalizedString(@"how_active_were_your_symptoms");
+            [self underlineButton:self.secondaryTitleButton withText:FDLocalizedString(@"onboarding/edit_symptoms_caps") color:[FDStyle blueColor]];
+            [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
+            _editSegueType = EditSegueSymptoms;
+            
+            FDMeterTableViewController *meterVC = (FDMeterTableViewController *)_currentViewController;
+            
+            [meterVC initWithQuestions:[[[FDModelManager sharedManager] entry] questionsForCatalog:@"symptoms"]];
+        }
+    } else if(_pageIndex == 2) {
+        //Treatments
+        NSString *title;
+        if([[[FDModelManager sharedManager] entry] treatments].count == 0)
+            title = FDLocalizedString(@"oops_no_treatments_being_tracked");
+        else
+            title = FDLocalizedString(@"which_treatments_taken_today");
+        [self setTitle:title secondaryTitle:FDLocalizedString(@"edit_treatments_caps") editAction:@selector(editList)];
+        
+        _editSegueType = EditSegueTreatments;
+        [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTreatmentsCollectionView];
+        
+        FDTreatmentCollectionViewController *treatmentVC = (FDTreatmentCollectionViewController *)_currentViewController;
+        [treatmentVC.view setFrame:CGRectMake(treatmentVC.view.frame.origin.x, treatmentVC.view.frame.origin.y, treatmentVC.view.frame.size.width, treatmentVC.collectionView.contentSize.height)];
+        
+        
+    } else if(_pageIndex == 3) {
+        //Tags
+        [self setTitle:FDLocalizedString(@"tag_your_day") secondaryTitle:@"" editAction:nil];
+        
+        [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTagsView];
+        
+        FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)_currentViewController;
+        tagsVC.mainViewDelegate = _mainViewDelegate;
+    } else if(offsetIndex >= numSections) {
+        if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
-            //Treatments
-            NSString *title;
-            if([[[FDModelManager sharedManager] entry] treatments].count == 0)
-                title = FDLocalizedString(@"oops_no_treatments_being_tracked");
-            else
-                title = FDLocalizedString(@"which_treatments_taken_today");
-            [self setTitle:title secondaryTitle:FDLocalizedString(@"edit_treatments_caps")  editAction:@selector(editList)];
-            
-            _editSegueType = EditSegueTreatments;
-            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTreatmentsCollectionView];
-            
-            FDTreatmentCollectionViewController *treatmentVC = (FDTreatmentCollectionViewController *)_currentViewController;
-            [treatmentVC.view setFrame:CGRectMake(treatmentVC.view.frame.origin.x, treatmentVC.view.frame.origin.y, treatmentVC.view.frame.size.width, treatmentVC.collectionView.contentSize.height)];
-            
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
-            //Tags
-            [self setTitle:FDLocalizedString(@"tag_your_day") secondaryTitle:@"" editAction:nil];
-            
-            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTagsView];
-            
-            FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)_currentViewController;
-            tagsVC.mainViewDelegate = _mainViewDelegate;
         }
     } else {
         FDQuestion *question = [[FDModelManager sharedManager] questionsForSection:offsetIndex][0];
