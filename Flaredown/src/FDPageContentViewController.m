@@ -101,9 +101,13 @@
             [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
             _editSegueType = EditSegueSymptoms;
             
+            [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierMeterTableView];
+            
             FDMeterTableViewController *meterVC = (FDMeterTableViewController *)_currentViewController;
             
             [meterVC initWithQuestions:[[[FDModelManager sharedManager] entry] questionsForCatalog:@"symptoms"]];
+            
+            [meterVC.view setFrame:CGRectMake(meterVC.view.frame.origin.x, meterVC.view.frame.origin.y, meterVC.view.frame.size.width, meterVC.tableView.contentSize.height)];
         }
     } else if(_pageIndex == 2) {
         //Treatments
