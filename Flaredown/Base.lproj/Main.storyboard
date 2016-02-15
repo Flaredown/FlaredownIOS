@@ -2138,6 +2138,11 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="28"/>
                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="xtv-TT-B4b"/>
+                                                            </mask>
+                                                        </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="65" y="20" width="271" height="83"/>
                                                         </variation>
@@ -2167,12 +2172,14 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nGq-yk-sDm">
-                                                <rect key="frame" x="0.0" y="278" width="560" height="0.0"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGq-yk-sDm">
+                                                <rect key="frame" x="277" y="53" width="5" height="5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="93t-An-lRj"/>
                                                     <constraint firstAttribute="height" id="IFM-N8-XYb"/>
+                                                    <constraint firstAttribute="width" constant="5" id="KHf-Eu-3XJ"/>
+                                                    <constraint firstAttribute="height" constant="5" id="YhB-Gu-xg1"/>
                                                     <constraint firstAttribute="height" constant="50" id="jXP-kq-bwi"/>
                                                 </constraints>
                                                 <variation key="default">
@@ -2185,10 +2192,14 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="nGq-yk-sDm" firstAttribute="centerX" secondItem="1Ho-jX-KQ0" secondAttribute="centerX" id="19N-QK-Sq0"/>
+                                            <constraint firstItem="nGq-yk-sDm" firstAttribute="centerX" secondItem="1Ho-jX-KQ0" secondAttribute="centerX" id="73O-2U-gtl"/>
+                                            <constraint firstItem="nGq-yk-sDm" firstAttribute="leading" secondItem="1Ho-jX-KQ0" secondAttribute="leading" id="9CD-jK-p3T"/>
                                             <constraint firstItem="nGq-yk-sDm" firstAttribute="top" secondItem="8dD-pe-ul3" secondAttribute="bottom" id="F8Q-qv-Md1"/>
                                             <constraint firstAttribute="bottom" secondItem="nGq-yk-sDm" secondAttribute="bottom" id="Hmz-tB-oNx"/>
                                             <constraint firstAttribute="bottom" secondItem="8dD-pe-ul3" secondAttribute="bottom" id="JWX-2R-xze"/>
                                             <constraint firstItem="8dD-pe-ul3" firstAttribute="top" secondItem="1Ho-jX-KQ0" secondAttribute="top" id="OJ1-33-X7n"/>
+                                            <constraint firstItem="nGq-yk-sDm" firstAttribute="width" secondItem="1Ho-jX-KQ0" secondAttribute="width" id="SEE-h0-9TA"/>
                                             <constraint firstAttribute="trailing" secondItem="8dD-pe-ul3" secondAttribute="trailing" id="hcK-1C-KPh"/>
                                             <constraint firstItem="8dD-pe-ul3" firstAttribute="width" secondItem="1Ho-jX-KQ0" secondAttribute="width" id="jFF-9v-7aQ"/>
                                             <constraint firstAttribute="bottom" secondItem="8dD-pe-ul3" secondAttribute="bottom" constant="5" id="n9Q-cN-UJE"/>
@@ -2197,6 +2208,10 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="JWX-2R-xze"/>
+                                                <exclude reference="n9Q-cN-UJE"/>
+                                                <exclude reference="73O-2U-gtl"/>
+                                                <exclude reference="9CD-jK-p3T"/>
+                                                <exclude reference="SEE-h0-9TA"/>
                                             </mask>
                                         </variation>
                                     </scrollView>
@@ -2231,7 +2246,8 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                     <connections>
                         <outlet property="contentView" destination="8dD-pe-ul3" id="DTP-fp-LfC"/>
                         <outlet property="embedView" destination="nGq-yk-sDm" id="QBw-Xb-B2w"/>
-                        <outlet property="embedViewHeightConstraint" destination="IFM-N8-XYb" id="cle-uM-reP"/>
+                        <outlet property="embedViewHeightConstraint" destination="YhB-Gu-xg1" id="cVw-Sy-G1l"/>
+                        <outlet property="embedViewWidthConstraint" destination="KHf-Eu-3XJ" id="CRp-1P-xWC"/>
                         <outlet property="scrollView" destination="1Ho-jX-KQ0" id="Iry-6X-zbD"/>
                         <outlet property="secondaryTitleButton" destination="9yA-zo-cNj" id="cnU-XR-p2C"/>
                         <outlet property="titleLabel" destination="hot-Re-0zM" id="OpK-Qi-RKe"/>
@@ -3827,11 +3843,11 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="VUD-GF-jhv"/>
                                                     <exclude reference="6VS-GL-sAc"/>
                                                     <exclude reference="EaA-NG-sgr"/>
-                                                    <exclude reference="inS-td-e8h"/>
+                                                    <exclude reference="VUD-GF-jhv"/>
                                                     <exclude reference="WEz-49-Knd"/>
+                                                    <exclude reference="inS-td-e8h"/>
                                                 </mask>
                                             </variation>
                                         </imageView>

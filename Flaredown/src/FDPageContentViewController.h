@@ -48,6 +48,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIView *embedView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *embedViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *embedViewWidthConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 //Subtite or edit button

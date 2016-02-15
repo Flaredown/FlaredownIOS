@@ -79,6 +79,8 @@
             FDMeterTableViewController *meterVC = (FDMeterTableViewController *)_currentViewController;
             
             [meterVC initWithQuestions:[[[FDModelManager sharedManager] entry] questionsForCatalog:@"conditions"]];
+            
+            [meterVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, meterVC.tableView.contentSize.height)];
         }
     } else if(_pageIndex == 1) {
         if([[FDModelManager sharedManager] symptoms].count == 0) {
@@ -107,7 +109,7 @@
             
             [meterVC initWithQuestions:[[[FDModelManager sharedManager] entry] questionsForCatalog:@"symptoms"]];
             
-            [meterVC.view setFrame:CGRectMake(meterVC.view.frame.origin.x, meterVC.view.frame.origin.y, meterVC.view.frame.size.width, meterVC.tableView.contentSize.height)];
+            [meterVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, meterVC.tableView.contentSize.height)];
         }
     } else if(_pageIndex == 2) {
         //Treatments
@@ -122,7 +124,8 @@
         [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTreatmentsCollectionView];
         
         FDTreatmentCollectionViewController *treatmentVC = (FDTreatmentCollectionViewController *)_currentViewController;
-        [treatmentVC.view setFrame:CGRectMake(treatmentVC.view.frame.origin.x, treatmentVC.view.frame.origin.y, treatmentVC.view.frame.size.width, treatmentVC.collectionView.contentSize.height)];
+
+        [treatmentVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, treatmentVC.collectionView.contentSize.height)];
         
         
     } else if(_pageIndex == 3) {
@@ -133,6 +136,9 @@
         
         FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)_currentViewController;
         tagsVC.mainViewDelegate = _mainViewDelegate;
+        
+        [tagsVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, tagsVC.collectionView.contentSize.height)];
+        
     } else if(offsetIndex >= numSections) {
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
@@ -214,6 +220,8 @@
         }
     }
     
+    [self sizeToFitContent];
+    
     if([[self.secondaryTitleButton titleForState:UIControlStateNormal] isEqualToString:@""]) {
         [self.titleLabel setFrame:CGRectMake(self.titleLabel.frame.origin.x, (self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + self.secondaryTitleButton.frame.origin.y) / 2,
                                              self.titleLabel.frame.size.width, self.titleLabel.frame.size.height)];
@@ -236,41 +244,16 @@
         [embeddedViewController setValue:self forKey:@"contentViewDelegate"];
     }
     
-//    UIView *view = embeddedViewController.view;
-//    view.backgroundColor = [UIColor clearColor];
-//    float height = _scrollView.frame.size.height - _contentView.frame.size.height;
-//    
-//    [_embedView addSubview:view];
-//    _embedView.frame = CGRectMake(_embedView.frame.origin.x, _embedView.frame.origin.y, _embedView.frame.size.width, height);
-//    view.frame = CGRectMake(0, 0, _embedView.frame.size.width, height);
-//    
-//    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
-//    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
-//    
-//    _embedViewHeightConstraint.constant = height;
-//    [_embedView setNeedsLayout];
-//    [_embedView layoutIfNeeded];
-//    [_contentView setNeedsLayout];
-//    [_contentView layoutIfNeeded];
-//    
-//    if([embeddedViewController isKindOfClass:[UICollectionViewController class]]) {
-//        UICollectionView *collectionView = ((UICollectionViewController *)embeddedViewController).collectionView;
-//        collectionView.content
-//    } else if([embeddedViewController isKindOfClass:[UITableViewController class]]) {
-//        UITableViewController *tableView = ((UITableViewController *)embeddedViewController).tableView;
-//    }
-//    
-//    _scrollView.contentSize = _contentView.frame.size;
-    
     UIView *view = embeddedViewController.view;
     view.backgroundColor = [UIColor clearColor];
     
+    view.translatesAutoresizingMaskIntoConstraints = NO;
     [_embedView addSubview:view];
-    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
-    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":view}]];
     
-    [FDStyle addRoundedCornersToView:_contentView];
-    [FDStyle addShadowToView:_contentView];
+//    [FDStyle addRoundedCornersToTopOfView:_contentView];
+//    [FDStyle addShadowToView:_contentView];
+//    [FDStyle addRoundedCornersToBottomOfView:_embedView];
+//    [FDStyle addShadowToView:_embedView];
 
     if(_currentViewController) {
         [_currentViewController.view removeFromSuperview];
@@ -284,26 +267,21 @@
     }
     
     _currentViewController = embeddedViewController;
-    
-    [self sizeToFitContent];
 }
 
 - (void)sizeToFitContent
 {
     UIView *view = _currentViewController.view;
     
-    float height = _scrollView.frame.size.height - _contentView.frame.size.height;
-    
-    _embedView.frame = CGRectMake(_embedView.frame.origin.x, _embedView.frame.origin.y, _embedView.frame.size.width, height);
-    view.frame = CGRectMake(0, 0, _embedView.frame.size.width, height);
+    float height = view.frame.size.height;
+    float width = view.frame.size.width;
     
     _embedViewHeightConstraint.constant = height;
+    _embedViewWidthConstraint.constant = width;
+    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(view)]];
     [_embedView setNeedsLayout];
     [_embedView layoutIfNeeded];
-    [_contentView setNeedsLayout];
-    [_contentView layoutIfNeeded];
-    
-    _scrollView.contentSize = _contentView.frame.size;
 }
 
 - (void)underlineButton:(UIButton *)button withText:(NSString *)text color:(UIColor *)color
