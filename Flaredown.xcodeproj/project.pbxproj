@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		101393C919D216D700BBB266 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393C819D216D700BBB266 /* main.m */; };
 		101393CC19D216D700BBB266 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393CB19D216D700BBB266 /* AppDelegate.m */; };
-		101393D219D216D700BBB266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 101393D019D216D700BBB266 /* Main.storyboard */; };
 		101393D419D216D700BBB266 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 101393D319D216D700BBB266 /* Images.xcassets */; };
 		101393E319D216D700BBB266 /* FlaredownTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393E219D216D700BBB266 /* FlaredownTests.m */; };
 		101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101393F119D22AF700BBB266 /* FDPageContentViewController.m */; };
@@ -55,6 +54,7 @@
 		ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */; };
 		ED88614B1A11F368002469B3 /* FDFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88614A1A11F368002469B3 /* FDFinishedViewController.m */; };
 		ED90725B1A68A7800012EFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED90725D1A68A7800012EFD6 /* Localizable.strings */; };
+		EDA003601C724E480091A97B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA0035E1C724E480091A97B /* Main.storyboard */; };
 		EDB519971B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB519961B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m */; };
 		EDB63F4C1AE1F30C006CA1B9 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB63F4B1AE1F30C006CA1B9 /* en.json */; };
 		EDB7ED281BB0952600BEF994 /* CardBackground.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDB7ED271BB0952600BEF994 /* CardBackground.xib */; };
@@ -101,7 +101,6 @@
 		101393C819D216D700BBB266 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		101393CA19D216D700BBB266 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		101393CB19D216D700BBB266 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		101393D119D216D700BBB266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		101393D319D216D700BBB266 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		101393DC19D216D700BBB266 /* FlaredownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlaredownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		101393E119D216D700BBB266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,8 +178,8 @@
 		ED8861491A11F368002469B3 /* FDFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFinishedViewController.h; sourceTree = "<group>"; };
 		ED88614A1A11F368002469B3 /* FDFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFinishedViewController.m; sourceTree = "<group>"; };
 		ED90725C1A68A7800012EFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		ED9072601A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		ED9072621A68AC1E0012EFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDA0035F1C724E480091A97B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDB519951B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSelectQuestionTableViewController.h; sourceTree = "<group>"; };
 		EDB519961B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSelectQuestionTableViewController.m; sourceTree = "<group>"; };
 		EDB63F4B1AE1F30C006CA1B9 /* en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en.json; sourceTree = "<group>"; };
@@ -278,11 +277,11 @@
 				EDDF596A1B79424500464456 /* HTAutoCompleteTextField */,
 				101393CA19D216D700BBB266 /* AppDelegate.h */,
 				101393CB19D216D700BBB266 /* AppDelegate.m */,
-				101393D019D216D700BBB266 /* Main.storyboard */,
 				ED65B8621AA4D1C800974E6E /* views */,
 				85378A101A5214C50053D6CC /* fnt */,
 				EDB63F4A1AE1F2CA006CA1B9 /* Localization */,
 				101393D319D216D700BBB266 /* Images.xcassets */,
+				EDA0035E1C724E480091A97B /* Main.storyboard */,
 				ED90725D1A68A7800012EFD6 /* Localizable.strings */,
 				101393C619D216D700BBB266 /* Supporting Files */,
 			);
@@ -669,8 +668,8 @@
 				EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */,
 				ED4F91A21B4AEB220013D3AB /* ReminderTimePickerView.xib in Resources */,
 				EDB7ED281BB0952600BEF994 /* CardBackground.xib in Resources */,
-				101393D219D216D700BBB266 /* Main.storyboard in Resources */,
 				101393D419D216D700BBB266 /* Images.xcassets in Resources */,
+				EDA003601C724E480091A97B /* Main.storyboard in Resources */,
 				ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,15 +856,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		101393D019D216D700BBB266 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				101393D119D216D700BBB266 /* Base */,
-				ED9072601A68AC1E0012EFD6 /* es */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		ED90725D1A68A7800012EFD6 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -873,6 +863,14 @@
 				ED9072621A68AC1E0012EFD6 /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		EDA0035E1C724E480091A97B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDA0035F1C724E480091A97B /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
