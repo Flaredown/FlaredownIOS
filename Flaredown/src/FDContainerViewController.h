@@ -13,7 +13,7 @@
 #define StoryboardIdentifierSelectCollectionView @"FDSelectCollectionViewController"
 #define StoryboardIdentifierSelectQuestionTableView @"FDSelectQuestionTableViewController"
 #define StoryboardIdentifierNumberView @"FDNumberViewController"
-#define StoryboardIdentifierMeterView @"FDMeterViewController"
+#define StoryboardIdentifierMeterView @"FDMeterTableViewController"
 #define StoryboardIdentifierNotesView @"FDNotesViewController"
 #define StoryboardIdentifierTagsView @"FDTagsCollectionViewController"
 #define StoryboardIdentifierTreatmentsCollectionView @"TreatmentCollection"

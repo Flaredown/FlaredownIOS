@@ -35,6 +35,8 @@
 		ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03ED651B827EAC00AAD1E5 /* AccountView.xib */; };
 		ED20FBD51BB0867D001679FA /* FDSummaryCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */; };
 		ED23ECC21BD96DCC00C84EF2 /* FDSummaryCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */; };
+		ED2798F81C443215009B61B4 /* FDMeterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2798F71C443215009B61B4 /* FDMeterTableViewController.m */; };
+		ED2798FB1C443232009B61B4 /* FDMeterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2798FA1C443232009B61B4 /* FDMeterTableViewCell.m */; };
 		ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2853C71A6C2043002D95E6 /* FDSymptom.m */; };
 		ED31E4841A888262008306F3 /* EditTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED31E4831A888262008306F3 /* EditTreatmentView.xib */; };
 		ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */; };
@@ -143,6 +145,10 @@
 		ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCollectionViewLayout.m; sourceTree = "<group>"; };
 		ED23ECC01BD96DCC00C84EF2 /* FDSummaryCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCardView.h; sourceTree = "<group>"; };
 		ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCardView.m; sourceTree = "<group>"; };
+		ED2798F61C443215009B61B4 /* FDMeterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeterTableViewController.h; sourceTree = "<group>"; };
+		ED2798F71C443215009B61B4 /* FDMeterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeterTableViewController.m; sourceTree = "<group>"; };
+		ED2798F91C443232009B61B4 /* FDMeterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeterTableViewCell.h; sourceTree = "<group>"; };
+		ED2798FA1C443232009B61B4 /* FDMeterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeterTableViewCell.m; sourceTree = "<group>"; };
 		ED2853C61A6C2043002D95E6 /* FDSymptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSymptom.h; sourceTree = "<group>"; };
 		ED2853C71A6C2043002D95E6 /* FDSymptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSymptom.m; sourceTree = "<group>"; };
 		ED31E4831A888262008306F3 /* EditTreatmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTreatmentView.xib; sourceTree = "<group>"; };
@@ -369,6 +375,8 @@
 				ED58E51E1AC09FEE009B74EE /* FDPopup.m */,
 				ED23ECC01BD96DCC00C84EF2 /* FDSummaryCardView.h */,
 				ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */,
+				ED2798F91C443232009B61B4 /* FDMeterTableViewCell.h */,
+				ED2798FA1C443232009B61B4 /* FDMeterTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -471,6 +479,8 @@
 				ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */,
 				EDE45C811B41DE9500C3A31F /* FDTreatmentReminderTableViewController.h */,
 				EDE45C821B41DE9500C3A31F /* FDTreatmentReminderTableViewController.m */,
+				ED2798F61C443215009B61B4 /* FDMeterTableViewController.h */,
+				ED2798F71C443215009B61B4 /* FDMeterTableViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -777,6 +787,7 @@
 				10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */,
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
+				ED2798FB1C443232009B61B4 /* FDMeterTableViewCell.m in Sources */,
 				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
 				ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */,
@@ -785,6 +796,7 @@
 				ED58E51F1AC09FEE009B74EE /* FDPopup.m in Sources */,
 				EDEA826F1A115FCC00A80416 /* FDInput.m in Sources */,
 				EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */,
+				ED2798F81C443215009B61B4 /* FDMeterTableViewController.m in Sources */,
 				EDDC72541A08886E0059815A /* FDEntry.m in Sources */,
 				42F309311AB463850046E900 /* FDHashtagTextView.m in Sources */,
 				101393F219D22AF700BBB266 /* FDPageContentViewController.m in Sources */,

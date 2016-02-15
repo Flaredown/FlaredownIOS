@@ -13,6 +13,8 @@
 #import "FDTrackableResult.h"
 #import "FDAnalyticsManager.h"
 
+#import "FDEmbeddedSelectListViewController.h"
+
 #import "FDLocalizationManager.h"
 
 @interface FDSearchTableViewController ()
@@ -232,8 +234,19 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"search"];
     
+    //TODO: Localization
+    
     //1 - TextField
     UITextField *textField = (UITextField *)[cell viewWithTag:1];
+    if(_searchType == SearchConditions)
+        [textField setPlaceholder:@"Search for conditions..."];
+    else if(_searchType == SearchTags)
+        [textField setPlaceholder:@"Search for tags..."];
+    else if(_searchType == SearchTreatments)
+        [textField setPlaceholder:@"Search for treatments..."];
+    else if(_searchType == SearchSymptoms)
+        [textField setPlaceholder:@"Search for symptoms..."];
+    
     textField.text = _searchText;
     textField.delegate = self;
     if(_editing)
@@ -475,6 +488,13 @@
     else {
         [_mainViewDelegate refreshPages];
         [[FDPopupManager sharedManager] removeTopPopup];
+        if([[[FDPopupManager sharedManager] popups] count] > 0) {
+            UIViewController *topPopupViewController = [[[FDPopupManager sharedManager] topPopup] viewController];
+            if([topPopupViewController isKindOfClass:[FDEmbeddedSelectListViewController class]]) {
+                
+               [((FDEmbeddedSelectListViewController *)topPopupViewController).listController refresh];
+            }
+        }
     }
 }
 

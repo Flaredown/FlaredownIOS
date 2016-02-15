@@ -80,6 +80,18 @@
     }
 }
 
+- (void)refresh
+{
+    if(_listType == ListTypeSymptoms) {
+        [self initWithSymptoms];
+    } else if(_listType == ListTypeConditions) {
+        [self initWithConditions];
+    } else if(_listType == ListTypeTreatments) {
+        [self initWithTreatments];
+    }
+    [self.tableView reloadData];
+}
+
 - (void)initWithTreatments
 {
     FDEntry *entry = [[FDModelManager sharedManager] entry];

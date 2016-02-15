@@ -92,7 +92,7 @@ static NSString * const listItemIdentifier = @"listItem";
     NSInteger row = [indexPath row];
     FDInput *input = self.inputs[row];
     [self.response setValue:[input value]];
-    self.selectedIndex = row;
+    self.selectedIndex = (int)row;
     [self.tableView reloadData];
     [_mainViewDelegate nextQuestion];
 }

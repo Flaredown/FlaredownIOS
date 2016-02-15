@@ -148,16 +148,16 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     
     if(section >= CONDITION_BASE && section < CONDITION_END) {
         //conditions
-        [_mainViewDelegate openPage:0+section-CONDITION_BASE];
+        [_mainViewDelegate openPage:0];
     } else if(section >= SYMPTOM_BASE && section < SYMPTOM_END) {
         //symptoms
-        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]-SYMPTOM_COUNT+1+section-SYMPTOM_BASE];
+        [_mainViewDelegate openPage:1];
     } else if(section >= TREATMENT_BASE && section < TREATMENT_END) {
         //treatments
-        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+1];
+        [_mainViewDelegate openPage:2];
     } else if(section >= TAG_BASE && section < TAG_END) {
         //tags
-        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+2];
+        [_mainViewDelegate openPage:3];
     }
 }
 
@@ -173,13 +173,13 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         [_mainViewDelegate openPage:0];
     } else if(section >= SYMPTOM_BASE && section < SYMPTOM_END) {
         //symptoms
-        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]-SYMPTOM_COUNT+1];
+        [_mainViewDelegate openPage:1];
     } else if(section >= TREATMENT_BASE && section < TREATMENT_END) {
         //treatments
-        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+1];
+        [_mainViewDelegate openPage:2];
     } else if(section >= TAG_BASE && section < TAG_END) {
         //tags
-        [_mainViewDelegate openPage:[[FDModelManager sharedManager] numberOfQuestionSections]+2];
+        [_mainViewDelegate openPage:3];
     } else if(section >= NOTE_BASE) {
         //notes
         [self performSegueWithIdentifier:@"notes" sender:nil];
