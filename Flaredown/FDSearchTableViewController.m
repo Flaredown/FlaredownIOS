@@ -13,6 +13,8 @@
 #import "FDTrackableResult.h"
 #import "FDAnalyticsManager.h"
 
+#import "FDEmbeddedSelectListViewController.h"
+
 #import "FDLocalizationManager.h"
 
 @interface FDSearchTableViewController ()
@@ -484,6 +486,13 @@
     else {
         [_mainViewDelegate refreshPages];
         [[FDPopupManager sharedManager] removeTopPopup];
+        if([[[FDPopupManager sharedManager] popups] count] > 0) {
+            UIViewController *topPopupViewController = [[[FDPopupManager sharedManager] topPopup] viewController];
+            if([topPopupViewController isKindOfClass:[FDEmbeddedSelectListViewController class]]) {
+                
+               [((FDEmbeddedSelectListViewController *)topPopupViewController).listController refresh];
+            }
+        }
     }
 }
 

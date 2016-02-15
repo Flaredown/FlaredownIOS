@@ -51,6 +51,8 @@ typedef enum : NSUInteger {
 - (void)initWithSymptoms;
 - (void)initWithConditions;
 
+- (void)refresh;
+
 - (void)addTreatmentPopupWithTreatment:(FDTreatment *)treatment;
 
 @end

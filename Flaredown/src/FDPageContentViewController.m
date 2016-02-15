@@ -40,6 +40,8 @@
 
     int offsetIndex = [[FDModelManager sharedManager] conditions].count == 0 ? _pageIndex - 1 : _pageIndex;
     
+    self.titleLabel.text = @"";
+    [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
     
     if(_pageIndex == 0) {
         if([[FDModelManager sharedManager] conditions].count == 0) {
@@ -79,13 +81,15 @@
         [self.secondaryTitleButton addTarget:self action:@selector(editList) forControlEvents:UIControlEventTouchUpInside];
         
         _editSegueType = EditSegueTreatments;
+    } else if(_pageIndex == 3) {
+        self.titleLabel.text = FDLocalizedString(@"tag_your_day");
     } else if(offsetIndex >= numSections) {
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
         } else if(offsetIndex == numSections || (offsetIndex == numSections + 1 && [[FDModelManager sharedManager] symptoms].count == 0 && [[FDModelManager sharedManager] conditions].count == 0)) {
         } else if(offsetIndex == numSections + 1 || offsetIndex == numSections + 2) {
             //Notes
             [self.secondaryTitleButton setTitle:@"" forState:UIControlStateNormal];
-            self.titleLabel.text = FDLocalizedString(@"tag_your_day");
+//            self.titleLabel.text = FDLocalizedString(@"tag_your_day");
 //            self.titleLabel.text = FDLocalizedString(@"leave_a_note");
         }
     } else {
