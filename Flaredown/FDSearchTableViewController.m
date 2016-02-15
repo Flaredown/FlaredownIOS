@@ -244,6 +244,8 @@
         [textField setPlaceholder:@"Search for tags..."];
     else if(_searchType == SearchTreatments)
         [textField setPlaceholder:@"Search for treatments..."];
+    else if(_searchType == SearchSymptoms)
+        [textField setPlaceholder:@"Search for symptoms..."];
     
     textField.text = _searchText;
     textField.delegate = self;
