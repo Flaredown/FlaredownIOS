@@ -124,8 +124,7 @@
         [self showEmbeddedViewControllerWithStoryboardIdentifier:StoryboardIdentifierTreatmentsCollectionView];
         
         FDTreatmentCollectionViewController *treatmentVC = (FDTreatmentCollectionViewController *)_currentViewController;
-
-        [treatmentVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, treatmentVC.collectionView.contentSize.height)];
+        [treatmentVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, treatmentVC.collectionViewLayout.collectionViewContentSize.height)];
         
         
     } else if(_pageIndex == 3) {
@@ -137,7 +136,7 @@
         FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)_currentViewController;
         tagsVC.mainViewDelegate = _mainViewDelegate;
         
-        [tagsVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, tagsVC.collectionView.contentSize.height)];
+        [tagsVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, tagsVC.collectionViewLayout.collectionViewContentSize.height)];
         
     } else if(offsetIndex >= numSections) {
         if(offsetIndex == numSections && [[FDModelManager sharedManager] symptoms].count == 0) {
@@ -275,6 +274,8 @@
     
     float height = view.frame.size.height;
     float width = view.frame.size.width;
+    
+    NSLog(@"%f x %f aaa", width, height);
     
     _embedViewHeightConstraint.constant = height;
     _embedViewWidthConstraint.constant = width;

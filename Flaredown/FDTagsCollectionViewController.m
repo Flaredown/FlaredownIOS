@@ -32,6 +32,8 @@ static NSString * const DividerIdentifier = @"divider";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
+    
     _tags = [[[FDModelManager sharedManager] entry] tags];
     _popularTags = [[NSMutableArray alloc] init];
     
@@ -51,9 +53,22 @@ static NSString * const DividerIdentifier = @"divider";
                 if(!found)
                     [_popularTags addObject:result];
             }
-            [self.collectionView reloadData];
+            [self refresh];
         }
     }];
+}
+
+- (void)refresh
+{    
+    [self.collectionView reloadData];
+    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+    UIView *embedView = self.view.superview;
+    embedView.frame = CGRectMake(embedView.frame.origin.x, embedView.frame.origin.y, embedView.frame.size.width, self.view.frame.size.height);
+    NSLog(@"%f x %f", self.collectionView.collectionViewLayout
+          .collectionViewContentSize.width, self.collectionView.collectionViewLayout
+          .collectionViewContentSize.height);
+    NSLog(@"%f x %f", embedView.frame.size.width, embedView.frame.size.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -73,7 +88,8 @@ static NSString * const DividerIdentifier = @"divider";
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     FDTrackableResult *tag = _tags[[indexPath row]];
     [_tags removeObject:tag];
-    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+    [self refresh];
+//    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
 }
 
 - (IBAction)popularTagButton:(id)sender
@@ -86,10 +102,12 @@ static NSString * const DividerIdentifier = @"divider";
     [_tags addObject:[tag name]];
     [_popularTags removeObject:tag];
     
-    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
-    [indexSet addIndex:1];
-    [indexSet addIndex:3];
-    [self.collectionView reloadSections:indexSet];
+    [self refresh];
+    
+//    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
+//    [indexSet addIndex:1];
+//    [indexSet addIndex:3];
+//    [self.collectionView reloadSections:indexSet];
 }
 
 - (UICollectionViewCell *)parentCellForView:(id)theView
@@ -122,7 +140,7 @@ static NSString * const DividerIdentifier = @"divider";
         return 1;
     } else if(section == 3) {
         NSInteger count = _popularTags.count*2-1;
-        return count>0 ? count : 0;
+        return count > 0 ? count : 0;
     }
     return 0;
 }

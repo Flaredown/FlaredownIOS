@@ -2995,7 +2995,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
         <scene sceneID="tpO-xj-d30">
             <objects>
                 <collectionViewController storyboardIdentifier="FDTagsCollectionViewController" id="bO9-g1-uWJ" customClass="FDTagsCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ddw-Zu-mZX">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="Ddw-Zu-mZX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
