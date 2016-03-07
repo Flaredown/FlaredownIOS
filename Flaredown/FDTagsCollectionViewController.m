@@ -12,6 +12,7 @@
 
 #import "FDTrackableResult.h"
 #import "FDSearchTableViewController.h"
+#import "FDTagsCollectionViewLayout.h"
 
 #import "FDNetworkManager.h"
 #import "FDStyle.h"
@@ -32,7 +33,8 @@ static NSString * const DividerIdentifier = @"divider";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
+    self.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.collectionView.frame.size.height);
+//    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
     _tags = [[[FDModelManager sharedManager] entry] tags];
     _popularTags = [[NSMutableArray alloc] init];
@@ -59,16 +61,20 @@ static NSString * const DividerIdentifier = @"divider";
 }
 
 - (void)refresh
-{    
+{
+//    [self.collectionViewLayout invalidateLayout];
     [self.collectionView reloadData];
-    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
-    UIView *embedView = self.view.superview;
-    embedView.frame = CGRectMake(embedView.frame.origin.x, embedView.frame.origin.y, embedView.frame.size.width, self.view.frame.size.height);
-    NSLog(@"%f x %f", self.collectionView.collectionViewLayout
-          .collectionViewContentSize.width, self.collectionView.collectionViewLayout
-          .collectionViewContentSize.height);
-    NSLog(@"%f x %f", embedView.frame.size.width, embedView.frame.size.height);
+    NSLog(@"%f", self.collectionView.frame.origin.y);
+    NSLog(@"%f", self.view.frame.origin.y);
+    
+//    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+//    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+//    UIView *embedView = self.view.superview;
+//    embedView.frame = CGRectMake(embedView.frame.origin.x, embedView.frame.origin.y, embedView.frame.size.width, self.view.frame.size.height);
+//    NSLog(@"%f x %f", self.collectionView.collectionViewLayout
+//          .collectionViewContentSize.width, self.collectionView.collectionViewLayout
+//          .collectionViewContentSize.height);
+//    NSLog(@"%f x %f", embedView.frame.size.width, embedView.frame.size.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -189,22 +195,19 @@ static NSString * const DividerIdentifier = @"divider";
     NSInteger row = [indexPath row];
     NSInteger section = [indexPath section];
     
+    FDTagsCollectionViewLayout *layout = (FDTagsCollectionViewLayout *)self.collectionViewLayout;
     if(section == 1) {
         NSString *tag = _tags[row];
-        CGSize tagSize = CGSizeMake(collectionView.frame.size.width-ROUNDED_CORNER_OFFSET, 38);
-        UIFont *font = [UIFont fontWithName:@"ProximaNova-Regular" size:16];
-        CGRect rect = [tag boundingRectWithSize:tagSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
-        return CGSizeMake(rect.size.width+DOSE_BUTTON_PADDING, tagSize.height);
+        return [layout sizeForTag:tag];
     } else if(section == 3) {
         if(row % 2 == 0) {
             FDTrackableResult *tag = _popularTags[row/2];
-            CGRect buttonRect = [[tag name] boundingRectWithSize:CGSizeMake(collectionView.frame.size.width, TAG_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TAG_FONT} context:nil];
-            return buttonRect.size;
+            return [layout sizeForPopularTag:tag];
         } else {
             return CGSizeMake(10, TAG_HEIGHT);
         }
     }
-    return CGSizeMake(175, 50);
+    return CGSizeMake(self.collectionView.bounds.size.width, 50);
 }
 
 #pragma mark navigation

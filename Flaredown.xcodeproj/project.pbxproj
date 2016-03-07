@@ -61,6 +61,7 @@
 		EDBA0E241ABC95B5001F165F /* FDStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA0E231ABC95B5001F165F /* FDStyle.m */; };
 		EDC7CD161B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */; };
 		EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */; };
+		EDCCA7061C876A54006A4206 /* FDTagsCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCCA7051C876A54006A4206 /* FDTagsCollectionViewLayout.m */; };
 		EDD172C21AC47F4300820C4C /* FDCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD172C11AC47F4300820C4C /* FDCondition.m */; };
 		EDD1D5601B87A0E40054D0BC /* EditAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */; };
 		EDD802A41A804CB900464D24 /* AddTreatmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD802A31A804CB900464D24 /* AddTreatmentView.xib */; };
@@ -190,6 +191,8 @@
 		EDC7CD151B02C9DE00C2CE43 /* FDSummaryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCollectionViewController.m; sourceTree = "<group>"; };
 		EDCB7F531AE34569001EDD7F /* FDLocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLocalizationManager.h; sourceTree = "<group>"; };
 		EDCB7F541AE34569001EDD7F /* FDLocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLocalizationManager.m; sourceTree = "<group>"; };
+		EDCCA7041C876A54006A4206 /* FDTagsCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTagsCollectionViewLayout.h; sourceTree = "<group>"; };
+		EDCCA7051C876A54006A4206 /* FDTagsCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTagsCollectionViewLayout.m; sourceTree = "<group>"; };
 		EDD172C01AC47F4300820C4C /* FDCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCondition.h; sourceTree = "<group>"; };
 		EDD172C11AC47F4300820C4C /* FDCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCondition.m; sourceTree = "<group>"; };
 		EDD1D55F1B87A0E40054D0BC /* EditAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAccountView.xib; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 				ED7A171B1AC9F60C009B8D05 /* FDMeterViewController.m */,
 				ED432AFB1B02A46A00FFAA51 /* FDTagsCollectionViewController.h */,
 				ED432AFC1B02A46A00FFAA51 /* FDTagsCollectionViewController.m */,
+				EDCCA7041C876A54006A4206 /* FDTagsCollectionViewLayout.h */,
+				EDCCA7051C876A54006A4206 /* FDTagsCollectionViewLayout.m */,
 				ED4BDEAF1B168013008DAEA4 /* FDTreatmentCollectionViewController.h */,
 				ED4BDEB01B168013008DAEA4 /* FDTreatmentCollectionViewController.m */,
 				EDE45C811B41DE9500C3A31F /* FDTreatmentReminderTableViewController.h */,
@@ -789,6 +794,7 @@
 				ED2798FB1C443232009B61B4 /* FDMeterTableViewCell.m in Sources */,
 				42A90CD51AB499E800D08266 /* FDHashtagFinder.m in Sources */,
 				ED2853C81A6C2043002D95E6 /* FDSymptom.m in Sources */,
+				EDCCA7061C876A54006A4206 /* FDTagsCollectionViewLayout.m in Sources */,
 				ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */,
 				EDE8B3051B6AEDB500B2DEDD /* FDSettingsCollectionViewController.m in Sources */,
 				EDE5B26A1B2EC18100F12905 /* FDSettingsViewController.m in Sources */,

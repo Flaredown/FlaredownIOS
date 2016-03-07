@@ -273,7 +273,8 @@
     UIView *view = _currentViewController.view;
     
     float height = view.frame.size.height;
-    float width = view.frame.size.width;
+//    float width = view.frame.size.width;
+    float width = self.view.frame.size.width;
     
     NSLog(@"%f x %f aaa", width, height);
     

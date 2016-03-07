@@ -179,11 +179,15 @@ static NSString *treatmentReminderDaysLocation = @"treatmentReminderDays";
         [[NSUserDefaults standardUserDefaults] setObject:inputsData forKey:inputsSessionLocation];
     }
     
-    NSData *treatmentReminderTimesData = [NSKeyedArchiver archivedDataWithRootObject:_treatmentReminderTimes];
-    [[NSUserDefaults standardUserDefaults] setObject:treatmentReminderTimesData forKey:treatmentReminderTimesLocation];
+    if(_treatmentReminderTimes != nil) {
+        NSData *treatmentReminderTimesData = [NSKeyedArchiver archivedDataWithRootObject:_treatmentReminderTimes];
+        [[NSUserDefaults standardUserDefaults] setObject:treatmentReminderTimesData forKey:treatmentReminderTimesLocation];
+    }
     
-    NSData *treatmentReminderDaysData = [NSKeyedArchiver archivedDataWithRootObject:_treatmentReminderDays];
-    [[NSUserDefaults standardUserDefaults] setObject:treatmentReminderDaysData forKey:treatmentReminderDaysLocation];
+    if(_treatmentReminderDays != nil) {
+        NSData *treatmentReminderDaysData = [NSKeyedArchiver archivedDataWithRootObject:_treatmentReminderDays];
+        [[NSUserDefaults standardUserDefaults] setObject:treatmentReminderDaysData forKey:treatmentReminderDaysLocation];
+    }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
