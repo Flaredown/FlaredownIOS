@@ -135,6 +135,7 @@
         
         FDTagsCollectionViewController *tagsVC = (FDTagsCollectionViewController *)_currentViewController;
         tagsVC.mainViewDelegate = _mainViewDelegate;
+        tagsVC.contentViewDelegate = self;
         
         [tagsVC.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, tagsVC.collectionViewLayout.collectionViewContentSize.height)];
         
@@ -273,10 +274,9 @@
     UIView *view = _currentViewController.view;
     
     float height = view.frame.size.height;
-//    float width = view.frame.size.width;
     float width = self.view.frame.size.width;
     
-    NSLog(@"%f x %f aaa", width, height);
+    _scrollView.frame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y, width, self.view.frame.size.height);
     
     _embedViewHeightConstraint.constant = height;
     _embedViewWidthConstraint.constant = width;
@@ -284,6 +284,9 @@
     [_embedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(view)]];
     [_embedView setNeedsLayout];
     [_embedView layoutIfNeeded];
+    
+    NSLog(@"%f x %f aaa", width, height);
+    NSLog(@"%f x %f bbb", _embedView.frame.size.width, _embedView.frame.size.height);
 }
 
 - (void)underlineButton:(UIButton *)button withText:(NSString *)text color:(UIColor *)color

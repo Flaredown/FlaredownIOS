@@ -2222,7 +2222,15 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                                     <constraint firstAttribute="bottom" secondItem="1Ho-jX-KQ0" secondAttribute="bottom" id="64F-Il-cel"/>
                                     <constraint firstItem="1Ho-jX-KQ0" firstAttribute="top" secondItem="R9x-iR-sdq" secondAttribute="top" id="ebo-c7-nfq"/>
                                     <constraint firstItem="1Ho-jX-KQ0" firstAttribute="leading" secondItem="R9x-iR-sdq" secondAttribute="leading" id="jve-kG-YS9"/>
+                                    <constraint firstItem="1Ho-jX-KQ0" firstAttribute="centerX" secondItem="R9x-iR-sdq" secondAttribute="centerX" id="vhZ-MI-YNU"/>
+                                    <constraint firstItem="1Ho-jX-KQ0" firstAttribute="centerY" secondItem="R9x-iR-sdq" secondAttribute="centerY" id="zkR-sl-lY3"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3qf-My-Ccu"/>
+                                        <exclude reference="64F-Il-cel"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2230,6 +2238,7 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                             <constraint firstItem="R9x-iR-sdq" firstAttribute="centerY" secondItem="vpa-zo-2U7" secondAttribute="centerY" id="6TU-Z3-T1o"/>
                             <constraint firstItem="R9x-iR-sdq" firstAttribute="centerY" secondItem="vpa-zo-2U7" secondAttribute="centerY" id="8uF-MH-QJc"/>
                             <constraint firstItem="R9x-iR-sdq" firstAttribute="height" secondItem="vpa-zo-2U7" secondAttribute="height" id="Bfp-Po-FMr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R9x-iR-sdq" secondAttribute="trailing" id="Jmm-Ug-oKs"/>
                             <constraint firstItem="R9x-iR-sdq" firstAttribute="leading" secondItem="vpa-zo-2U7" secondAttribute="leadingMargin" id="VxR-c6-2LQ"/>
                             <constraint firstItem="R9x-iR-sdq" firstAttribute="top" secondItem="tTC-vh-SNV" secondAttribute="bottom" constant="2" id="WBd-sk-NQx"/>
                             <constraint firstItem="R9x-iR-sdq" firstAttribute="centerX" secondItem="vpa-zo-2U7" secondAttribute="centerX" id="XA9-CE-3Nq"/>

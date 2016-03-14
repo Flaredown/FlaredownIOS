@@ -127,8 +127,8 @@
              @"treatments":mutableTreatments,
              @"scores":_scores ?: [[NSArray alloc] init],
              @"tags":_tags,
-             @"created_at":[FDStyle dateStringForDate:_createdAt detailed:YES],
-             @"updated_at":[FDStyle dateStringForDate:_updatedAt detailed:YES]
+             @"created_at":_createdAt ? [FDStyle dateStringForDate:_createdAt detailed:YES] : nil,
+             @"updated_at":_updatedAt ? [FDStyle dateStringForDate:_updatedAt detailed:YES] : nil
              };
 }
 

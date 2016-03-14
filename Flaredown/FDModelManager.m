@@ -167,7 +167,8 @@ static NSString *treatmentReminderDaysLocation = @"treatmentReminderDays";
     }
     
     if(_entries != nil) {
-        [[NSUserDefaults standardUserDefaults] setObject:[self encodeEntriesDictionary] forKey:entrySessionLocation];
+        NSData *entryData = [self encodeEntriesDictionary];
+        [[NSUserDefaults standardUserDefaults] setObject:entryData forKey:entrySessionLocation];
     }
     
     if(_inputs != nil) {
@@ -228,9 +229,10 @@ static NSString *treatmentReminderDaysLocation = @"treatmentReminderDays";
 
 - (NSData *)encodeEntriesDictionary
 {
-    NSMutableDictionary *entryDictionaries = [[NSMutableDictionary alloc] init];;
+    NSMutableDictionary *entryDictionaries = [[NSMutableDictionary alloc] init];
     for(NSString *key in _entries) {
-        [entryDictionaries setObject:[[_entries objectForKey:key] dictionaryCopy] forKey:key];
+        FDEntry *entry = [_entries objectForKey:key];
+        [entryDictionaries setObject:[entry dictionaryCopy] forKey:key];
     }
     return [NSKeyedArchiver archivedDataWithRootObject:entryDictionaries];
 }

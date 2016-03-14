@@ -62,19 +62,11 @@ static NSString * const DividerIdentifier = @"divider";
 
 - (void)refresh
 {
-//    [self.collectionViewLayout invalidateLayout];
     [self.collectionView reloadData];
-    NSLog(@"%f", self.collectionView.frame.origin.y);
-    NSLog(@"%f", self.view.frame.origin.y);
     
-//    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
-//    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
-//    UIView *embedView = self.view.superview;
-//    embedView.frame = CGRectMake(embedView.frame.origin.x, embedView.frame.origin.y, embedView.frame.size.width, self.view.frame.size.height);
-//    NSLog(@"%f x %f", self.collectionView.collectionViewLayout
-//          .collectionViewContentSize.width, self.collectionView.collectionViewLayout
-//          .collectionViewContentSize.height);
-//    NSLog(@"%f x %f", embedView.frame.size.width, embedView.frame.size.height);
+    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+    
+    [_contentViewDelegate sizeToFitContent];
 }
 
 - (void)viewDidAppear:(BOOL)animated

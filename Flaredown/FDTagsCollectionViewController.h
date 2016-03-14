@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "FDViewController.h"
+#import "FDPageContentViewController.h"
 
 @interface FDTagsCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) id <FDViewControllerDelegate> mainViewDelegate;
+@property (nonatomic, weak) id <FDPageContentViewControllerDelegate> contentViewDelegate;
 
 @property NSMutableArray *tags;
 @property NSMutableArray *popularTags;
