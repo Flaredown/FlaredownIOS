@@ -15,7 +15,7 @@
 
 #import "HTAutocompleteManager.h"
 
-#define CONTENT_INSET 20
+#define CONTENT_INSET 10
 
 @interface FDTreatmentCollectionViewController ()
 
@@ -33,8 +33,20 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.frame = CGRectMake(10, 0, self.view.frame.size.width-20, self.view.frame.size.height);
+    self.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.collectionView.frame.size.height);
+    
     self.collectionView.contentInset = UIEdgeInsetsMake(0, CONTENT_INSET, 0, CONTENT_INSET);
     [self.collectionView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionOld context:nil];
+}
+
+- (void)refresh
+{
+    [self.collectionView reloadData];
+    
+    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+    
+    [_contentViewDelegate sizeToFitContent];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary  *)change context:(void *)context
@@ -129,7 +141,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
     FDTreatment *treatment = [[[FDModelManager sharedManager] entry] treatments][section];
     
     [self usePreviousDosesForTreatment:treatment];
-    [self.collectionView reloadData];
+    [self refresh];
 }
 
 - (void)usePreviousDosesForTreatment:(FDTreatment *)treatment
@@ -156,7 +168,7 @@ static NSString * const PreviousDoseDecorationID = @"previousDoseDecoration";
 {
     _selectedTreatment = nil;
     _selectedDose = nil;
-    [self.collectionView reloadData];
+    [self.collectionView refresh];
     [[FDPopupManager sharedManager] removeTopPopup];
 }
 

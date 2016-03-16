@@ -18,6 +18,8 @@
 #import "FDStyle.h"
 #import "FDAnalyticsManager.h"
 
+#define CONTENT_INSET 10
+
 @interface FDTagsCollectionViewController ()
 
 @end
@@ -33,8 +35,9 @@ static NSString * const DividerIdentifier = @"divider";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.frame = CGRectMake(10, 0, self.view.frame.size.width - 20, self.view.frame.size.height);
     self.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.collectionView.frame.size.height);
-//    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, CONTENT_INSET, 20, CONTENT_INSET);
     
     _tags = [[[FDModelManager sharedManager] entry] tags];
     _popularTags = [[NSMutableArray alloc] init];
@@ -65,6 +68,7 @@ static NSString * const DividerIdentifier = @"divider";
     [self.collectionView reloadData];
     
     self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, self.collectionViewLayout.collectionViewContentSize.height);
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.collectionView.frame.size.height);
     
     [_contentViewDelegate sizeToFitContent];
 }
