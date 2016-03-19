@@ -45,6 +45,7 @@
 		ED4BDEB81B192863008DAEA4 /* EditDoseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4BDEB71B192863008DAEA4 /* EditDoseView.xib */; };
 		ED4F91A21B4AEB220013D3AB /* ReminderTimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */; };
 		ED4F91A51B4AFFA90013D3AB /* FDNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4F91A41B4AFFA90013D3AB /* FDNotificationManager.m */; };
+		ED525A421C9B44EF001E295C /* FDMeterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED525A411C9B44EF001E295C /* FDMeterCollectionViewCell.m */; };
 		ED58E5131AC098BD009B74EE /* RemoveTrackableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */; };
 		ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */; };
 		ED58E51C1AC09C3B009B74EE /* FDPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58E51B1AC09C3B009B74EE /* FDPopupManager.m */; };
@@ -163,6 +164,8 @@
 		ED4F91A11B4AEB220013D3AB /* ReminderTimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderTimePickerView.xib; sourceTree = "<group>"; };
 		ED4F91A31B4AFFA90013D3AB /* FDNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNotificationManager.h; sourceTree = "<group>"; };
 		ED4F91A41B4AFFA90013D3AB /* FDNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNotificationManager.m; sourceTree = "<group>"; };
+		ED525A401C9B44EF001E295C /* FDMeterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeterCollectionViewCell.h; sourceTree = "<group>"; };
+		ED525A411C9B44EF001E295C /* FDMeterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeterCollectionViewCell.m; sourceTree = "<group>"; };
 		ED58E5121AC098BD009B74EE /* RemoveTrackableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoveTrackableView.xib; sourceTree = "<group>"; };
 		ED58E5141AC09B88009B74EE /* FDRemoveTrackableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRemoveTrackableView.h; sourceTree = "<group>"; };
 		ED58E5151AC09B88009B74EE /* FDRemoveTrackableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRemoveTrackableView.m; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */,
 				ED2798F91C443232009B61B4 /* FDMeterTableViewCell.h */,
 				ED2798FA1C443232009B61B4 /* FDMeterTableViewCell.m */,
+				ED525A401C9B44EF001E295C /* FDMeterCollectionViewCell.h */,
+				ED525A411C9B44EF001E295C /* FDMeterCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				ED58E5161AC09B88009B74EE /* FDRemoveTrackableView.m in Sources */,
 				EDEA82721A1175D200A80416 /* FDLoginViewController.m in Sources */,
 				101393F819D2432000BBB266 /* FDSelectListViewController.m in Sources */,
+				ED525A421C9B44EF001E295C /* FDMeterCollectionViewCell.m in Sources */,
 				ED432AFD1B02A46A00FFAA51 /* FDTagsCollectionViewController.m in Sources */,
 				EDB519971B3F5AC0007B9B68 /* FDSelectQuestionTableViewController.m in Sources */,
 				ED4BDEB41B168C54008DAEA4 /* FDDose.m in Sources */,

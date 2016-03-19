@@ -28,6 +28,7 @@
 @property FDEntry *entry;
 @property BOOL failedToSubmit;
 @property BOOL preloaded;
+@property NSTimer *submitTimer;
 
 - (void)refresh;
 - (BOOL)cardBackgroundForSection:(NSInteger)section;

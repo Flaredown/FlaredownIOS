@@ -17,6 +17,7 @@
 #import "FDNotesViewController.h"
 
 #import "FDSummaryCollectionViewLayout.h"
+#import "FDMeterCollectionViewCell.h"
 
 #define CONDITION_SECTION 0
 #define SYMPTOM_SECTION 1
@@ -59,6 +60,8 @@
 
 #define SUBMIT_INFO_HEIGHT 70
 
+#define SUBMIT_TIMER_DELAY 2.0
+
 @interface FDSummaryCollectionViewController ()
 
 @end
@@ -77,6 +80,7 @@ static NSString * const AddNoteIdentifier = @"addNote";
 static NSString * const DoseIdentifier = @"dose";
 static NSString * const NotesIdentifier = @"notes";
 static NSString * const EmptyIdentifier = @"empty";
+static NSString * const MeterIdentifier = @"meter";
 
 static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
 
@@ -139,6 +143,15 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     [self.collectionView reloadData];
 }
 
+- (void)startSubmitTimer
+{
+    if(_submitTimer) {
+        [_submitTimer invalidate];
+        _submitTimer = nil;
+    }
+    _submitTimer = [NSTimer scheduledTimerWithTimeInterval:SUBMIT_TIMER_DELAY target:self selector:@selector(submitEntry) userInfo:nil repeats:NO];
+}
+
 - (IBAction)questionButton:(id)sender
 {
     UICollectionViewCell *cell = (UICollectionViewCell *)[self parentCellForView:sender];
@@ -159,6 +172,52 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
         //tags
         [_mainViewDelegate openPage:3];
     }
+}
+
+- (IBAction)firstButton:(id)sender
+{
+    [self setResponseValue:0 sender:sender];
+}
+
+- (IBAction)secondButton:(id)sender
+{
+    [self setResponseValue:1 sender:sender];
+}
+
+- (IBAction)thirdButton:(id)sender
+{
+    [self setResponseValue:2 sender:sender];
+}
+
+- (IBAction)fourthButton:(id)sender
+{
+    [self setResponseValue:3 sender:sender];
+}
+
+- (IBAction)fifthButton:(id)sender
+{
+    [self setResponseValue:4 sender:sender];
+}
+
+- (void)setResponseValue:(NSInteger)value sender:(id)sender
+{
+    UICollectionViewCell *cell = [self parentCellForView:sender];
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    NSInteger section = [indexPath section];
+    
+    //condition
+    FDQuestion *question;
+    if(section >= CONDITION_BASE && section < CONDITION_END)
+        question = [_entry questionsForCatalog:@"conditions"][section-CONDITION_BASE];
+    //symptoms
+    if(section >= SYMPTOM_BASE && section < SYMPTOM_END)
+        question = [_entry questionsForCatalog:@"symptoms"][section-SYMPTOM_BASE];
+    FDResponse *response = [_entry responseForQuestion:question];
+    
+    [response setValue:(int)value];
+    [self.collectionView reloadData];
+    
+    [self startSubmitTimer];
 }
 
 - (IBAction)noItemsButton:(id)sender
@@ -281,7 +340,8 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
     if(![_entry responseForQuestion:question] || [[_entry responseForQuestion:question] value] < 0) {
         return 2;
     }
-    return 1 + [[_entry responseForQuestion:question] value];
+    return 2;
+//    return 1 + [[_entry responseForQuestion:question] value];
 }
 
 - (NSInteger)numberOfItemsForTreatment:(FDTreatment *)treatment
@@ -323,15 +383,20 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 //1 Label
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[question name]];
-            } else if(response && [response value] > 0) {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
-                [FDStyle addTinyRoundedCornersToView:cell];
-                
-                //1 Button
-                UIButton *button = (UIButton *)[cell viewWithTag:1];
             } else {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:MeterIdentifier forIndexPath:indexPath];
+                FDMeterCollectionViewCell *meterCell = (FDMeterCollectionViewCell *)cell;
+                [meterCell initWithQuestion:question response:response];
             }
+            //            } else if(response && [response value] > 0) {
+            //                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
+            //                [FDStyle addTinyRoundedCornersToView:cell];
+            //
+            ////                1 Button
+            //                UIButton *button = (UIButton *)[cell viewWithTag:1];
+            //            } else {
+            //                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
+            //            }
         }
     } else if(section == CONDITION_END) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
@@ -362,15 +427,20 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
                 //1 Label
                 UILabel *label = (UILabel *)[cell viewWithTag:1];
                 [label setText:[question name]];
-            } else if(response && [response value] > 0) {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
-                [FDStyle addTinyRoundedCornersToView:cell];
-                
-                //1 Button
-                UIButton *button = (UIButton *)[cell viewWithTag:1];
             } else {
-                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:MeterIdentifier forIndexPath:indexPath];
+                FDMeterCollectionViewCell *meterCell = (FDMeterCollectionViewCell *)cell;
+                [meterCell initWithQuestion:question response:response];
             }
+//            } else if(response && [response value] > 0) {
+//                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemValueIdentifier forIndexPath:indexPath];
+//                [FDStyle addTinyRoundedCornersToView:cell];
+//                
+////                1 Button
+//                UIButton *button = (UIButton *)[cell viewWithTag:1];
+//            } else {
+//                cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemNoValueIdentifier forIndexPath:indexPath];
+//            }
         }
     } else if(section == SYMPTOM_END) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:EmptyIdentifier forIndexPath:indexPath];
@@ -503,10 +573,12 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             
             if(row == 0)
                 return CGSizeMake(maxWidth, 30);
-            else if(response && [response value] > 0)
-                return CGSizeMake(54, 15);
             else
-                return CGSizeMake(maxWidth, 35);
+                return CGSizeMake(maxWidth, 40);
+            //            else if(response && [response value] > 0)
+            //                return CGSizeMake(54, 15);
+            //            else
+            //                return CGSizeMake(maxWidth, 35);
         }
     } else if(section == CONDITION_END) {
         return CGSizeMake(maxWidth, placeholderHeight);
@@ -521,11 +593,13 @@ static NSString * const SubmitInfoHeaderIdentifier = @"submitInfo";
             
             if(row == 0)
                 return CGSizeMake(maxWidth, 30);
-            else if(response && [response value] > 0)
-                return CGSizeMake(54, 15);
             else
-                return CGSizeMake(maxWidth, 35);
-            }
+                return CGSizeMake(maxWidth, 40);
+//            else if(response && [response value] > 0)
+//                return CGSizeMake(54, 15);
+//            else
+//                return CGSizeMake(maxWidth, 35);
+        }
     } else if(section == SYMPTOM_END) {
         return CGSizeMake(maxWidth, placeholderHeight);
     } else if(section == TREATMENT_TITLE) {
