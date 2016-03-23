@@ -117,6 +117,9 @@
             }
         }
     }
+    
+    NSDate *createdAt = _createdAt ?: [NSDate date];
+    NSDate *updatedAt = _updatedAt ?: [NSDate date];
     return @{
              @"id":_entryId,
              @"date":_date,
@@ -127,8 +130,8 @@
              @"treatments":mutableTreatments,
              @"scores":_scores ?: [[NSArray alloc] init],
              @"tags":_tags,
-             @"created_at":_createdAt ? [FDStyle dateStringForDate:_createdAt detailed:YES] : nil,
-             @"updated_at":_updatedAt ? [FDStyle dateStringForDate:_updatedAt detailed:YES] : nil
+             @"created_at":[FDStyle dateStringForDate:createdAt detailed:YES],
+             @"updated_at":[FDStyle dateStringForDate:updatedAt detailed:YES]
              };
 }
 
