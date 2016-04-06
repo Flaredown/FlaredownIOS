@@ -133,15 +133,16 @@
     
     [self loadEntry];
     
-    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
-        if(success) {
-            NSLog(@"Success!");
-            
-            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
-        } else {
-            NSLog(@"Failure!");
-        }
-    }];
+    //TODO: Localization
+//    [[FDNetworkManager sharedManager] getLocale:[[FDLocalizationManager sharedManager] currentLocale] email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id response) {
+//        if(success) {
+//            NSLog(@"Success!");
+//            
+//            [[FDLocalizationManager sharedManager] setLocalizationDictionaryForCurrentLocale:response];
+//        } else {
+//            NSLog(@"Failure!");
+//        }
+//    }];
 }
 
 - (void)loadEntry
@@ -149,7 +150,8 @@
     FDUser __block *user = [[FDModelManager sharedManager] userObject];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[FDNetworkManager sharedManager] getUserWithEmail:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+    
+    [[FDNetworkManager sharedManager] getUserForId:[user userId] completion:^(bool success, id responseObject) {
         if(success) {
             NSLog(@"Success!");
             
@@ -168,7 +170,7 @@
     NSDate *now = [NSDate date];
     NSString *dateString = [FDStyle dateStringForDate:now detailed:NO];
     
-    [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+    [[FDNetworkManager sharedManager] getEntryForDate:dateString completion:^(bool success, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if(success) {
             NSLog(@"Success!");
@@ -480,7 +482,7 @@
     NSString *dateString = [FDStyle dateStringForDate:date detailed:NO];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[FDNetworkManager sharedManager] createEntryWithEmail:[user email] authenticationToken:[user authenticationToken] date:dateString completion:^(bool success, id responseObject) {
+    [[FDNetworkManager sharedManager] getEntryForDate:dateString completion:^(bool success, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if(success) {
             FDEntry *entry = [[modelManager entries] objectForKey:[FDStyle dateStringForDate:date detailed:NO]];

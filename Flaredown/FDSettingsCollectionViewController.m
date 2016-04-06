@@ -291,7 +291,7 @@ static NSString * const PrivacyPolicySegueIdentifier = @"privacyPolicy";
     } else {
         [user setSex:SexNone];
     }
-    [[FDNetworkManager sharedManager] updateUserWithEmail:[user email] authenticationToken:[user authenticationToken] settings:[[[user dictionaryCopy] objectForKey:@"user"] objectForKey:@"settings"] completion:^(bool success, id responseObject) {
+    [[FDNetworkManager sharedManager] updateUser:[user dictionaryCopy] forId:[user userId] completion:^(bool success, id responseObject) {
 //        if(success) {
 //            
 //        }

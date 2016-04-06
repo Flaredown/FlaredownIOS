@@ -54,7 +54,7 @@
 
 #if DEBUG
     self.emailTextField.text = @"test@flaredown.com";
-    self.passwordTextField.text = @"testing123";
+    self.passwordTextField.text = @"password123";
 #endif
 }
 

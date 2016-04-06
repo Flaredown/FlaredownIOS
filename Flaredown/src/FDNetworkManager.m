@@ -9,8 +9,9 @@
 #import "FDNetworkManager.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
-static NSString *host = @"https://api-staging.flaredown.com";
-static NSString *api = @"/v1";
+#import "FDHTTPClient.h"
+
+#import "FDUser.h"
 
 @implementation FDNetworkManager
 
@@ -27,9 +28,12 @@ static NSString *api = @"/v1";
 
 - (id)init
 {
-    if(self = [super init]) {
-        self.baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", host, api]];
+    self = [super init];
+    if(self) {
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        //TODO: load token from prefs
     }
+    
     return self;
 }
 
@@ -38,93 +42,109 @@ static NSString *api = @"/v1";
  */
 - (void)loginUserWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(bool success, id response))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/users/sign_in", self.baseUrl];
-    NSDictionary *parameters = @{@"v1_user[email]":email, @"v1_user[password]":password};
-    
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
+    [self postAPIRequestWithUrl:@"sessions" parameters:@{@"user[email]":email, @"user[password]":password} completionBlock:^(bool success, id responseObject) {
+        if(success) {
+            @try {
+                FDUser *user = [[FDUser alloc] initWithDictionary:responseObject];
+                [FDHTTPClient setupAuthorizationHeadersWithEmail:[user email] token:[user authenticationToken]];
+                completionBlock(true, responseObject);
+            }
+            @catch(NSException *exception) {
+                completionBlock(false, nil);
+            }
+            
+        } else
+            completionBlock(false, nil);
     }];
 }
 
-- (void)getUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
+- (void)getUserForId:(NSInteger)userId completion:(void (^)(bool success, id response))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/me", self.baseUrl];
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
-    
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-
+    [self getAPIRequestWithUrl:[NSString stringWithFormat:@"users/%li", userId] parameters:@{} completionBlock:completionBlock];
 }
 
-- (void)updateUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken settings:(NSDictionary *)userSettings completion:(void (^)(bool success, id response))completionBlock
+- (void)updateUser:(NSDictionary *)user forId:(NSInteger)userId completion:(void (^)(bool, id))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/me", self.baseUrl];
-//    NSDictionary *parameters = @{@"v1_user[email]":email, @"v1_user[password]":password};
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken, @"settings":userSettings};
-    
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
+    [self postAPIRequestWithUrl:[NSString stringWithFormat:@"users/%li", userId] parameters:@{@"user":user} completionBlock:completionBlock];
 }
 
-- (void)getEntryWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken date:(NSString *)date completion:(void (^)(bool success, id response))completionBlock
+- (void)getProfileForId:(NSInteger)profileId completion:(void (^)(bool success, id response))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/entries/%@", self.baseUrl, date];
-    
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
-    
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
+    [self getAPIRequestWithUrl:[NSString stringWithFormat:@"profiles/%li", profileId] parameters:@{} completionBlock:completionBlock];
 }
 
-- (void)createEntryWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken date:(NSString *)date completion:(void (^)(bool success, id response))completionBlock
+- (void)updateProfile:(NSDictionary *)profile forId:(NSInteger)profileId completion:(void (^)(bool success, id response))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/entries", self.baseUrl];
-    
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken, @"date":date};
-    
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
+    [self postAPIRequestWithUrl:[NSString stringWithFormat:@"profiles/%li", profileId] parameters:@{@"profile":profile} completionBlock:completionBlock];
 }
 
-//- (void)getEntryFromDate:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
+- (void)getEntryForId:(NSString *)entryId completion:(void (^)(bool success, id response))completionBlock
+{
+    [self getAPIRequestWithUrl:[NSString stringWithFormat:@"checkins/%@", entryId] parameters:@{} completionBlock:completionBlock];
+}
+
+- (void)getEntryForDate:(NSString *)date completion:(void (^)(bool success, id response))completionBlock
+{
+    [self getAPIRequestWithUrl:@"checkins" parameters:@{@"date":date} completionBlock:completionBlock];
+}
+
+- (void)updateEntry:(NSDictionary *)entry forId:(NSString *)entryId completion:(void (^)(bool success, id response))completionBlock
+{
+    [self putAPIRequestWithUrl:[NSString stringWithFormat:@"checkins/%@", entryId] parameters:@{@"checkin":entry} completionBlock:completionBlock];
+}
+
+- (void)createSymptom:(NSDictionary *)symptom completion:(void (^)(bool, id))completionBlock
+{
+    [self postAPIRequestWithUrl:@"symptoms" parameters:@{@"symptom":symptom} completionBlock:completionBlock];
+}
+
+- (void)createTreatment:(NSDictionary *)treatment completion:(void (^)(bool, id))completionBlock
+{
+    [self postAPIRequestWithUrl:@"treatments" parameters:@{@"treatment":treatment} completionBlock:completionBlock];
+}
+
+- (void)createCondition:(NSDictionary *)condition completion:(void (^)(bool, id))completionBlock
+{
+    [self postAPIRequestWithUrl:@"conditions" parameters:@{@"condition":condition} completionBlock:completionBlock];
+}
+
+- (void)createTag:(NSString *)tag completion:(void (^)(bool, id))completionBlock
+{
+    [self postAPIRequestWithUrl:@"tag" parameters:@{@"tag":tag} completionBlock:completionBlock];
+}
+
+- (void)searchSymptoms:(NSString *)searchText completion:(void (^)(bool, id))completionBlock
+{
+    [self getAPIRequestWithUrl:@"symptoms" parameters:@{@"scope":searchText} completionBlock:completionBlock];
+}
+
+- (void)searchTreatments:(NSString *)searchText completion:(void (^)(bool, id))completionBlock
+{
+    [self getAPIRequestWithUrl:@"treatments" parameters:@{@"scope":searchText} completionBlock:completionBlock];
+}
+
+- (void)searchConditions:(NSString *)searchText completion:(void (^)(bool, id))completionBlock
+{
+    [self getAPIRequestWithUrl:@"conditions" parameters:@{@"scope":searchText} completionBlock:completionBlock];
+}
+
+- (void)searchTags:(NSString *)searchText completion:(void (^)(bool, id))completionBlock
+{
+    [self getAPIRequestWithUrl:@"tags" parameters:@{@"scope":searchText} completionBlock:completionBlock];
+}
+
+
+- (void)getPopularTags:(void (^)(bool success, id response))completionBlock
+{
+    [self getAPIRequestWithUrl:@"tags/most_popular" parameters:@{} completionBlock:completionBlock];
+}
+
+//TODO: Figure out localization
+//- (void)getLocale:(NSString *)locale email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
 //{
 //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 //    
-//    NSString *url = [NSString stringWithFormat:@"%@/entries/%@", self.baseUrl, date];
+//    NSString *url = [NSString stringWithFormat:@"%@/locales/%@", self.baseUrl, locale];
 //    
 //    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
 //    
@@ -137,145 +157,19 @@ static NSString *api = @"/v1";
 //    }];
 //}
 
-- (void)putEntry:(NSDictionary *)entry date:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
+- (void)getAPIRequestWithUrl:(NSString *)url parameters:(NSDictionary *)parameters completionBlock:(void (^)(bool success, id responseObject))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/entries/%@", self.baseUrl, date];
-    
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:entry options:0 error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSDictionary *parameters = @{@"entry":jsonString, @"user_email":email, @"user_token":authenticationToken};
-    
-    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-
+    [FDHTTPClient getRequestWithUrl:[NSString stringWithFormat:@"%@/%@", APIHost, url] parameters:parameters completionBlock:completionBlock];
 }
 
-- (void)createSymptomWithName:(NSString *)symptomName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
+- (void)postAPIRequestWithUrl:(NSString *)url parameters:(NSDictionary *)parameters completionBlock:(void (^)(bool success, id responseObject))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/symptoms", self.baseUrl];
-    
-    NSDictionary *parameters = @{@"name":symptomName, @"user_email":email, @"user_token":authenticationToken};
-    
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-
+    [FDHTTPClient postRequestWithUrl:[NSString stringWithFormat:@"%@/%@", APIHost, url] parameters:parameters completionBlock:completionBlock];
 }
 
-- (void)createTreatmentWithName:(NSString *)treatmentName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
+- (void)putAPIRequestWithUrl:(NSString *)url parameters:(NSDictionary *)parameters completionBlock:(void (^)(bool success, id responseObject))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/treatments", self.baseUrl];
-    
-    NSDictionary *parameters = @{@"name":treatmentName, @"user_email":email, @"user_token":authenticationToken};
-    
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-    
-}
-
-- (void)createConditionWithName:(NSString *)conditionName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/conditions", self.baseUrl];
-    
-    NSDictionary *parameters = @{@"name":conditionName, @"user_email":email, @"user_token":authenticationToken};
-    
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-    
-}
-
-- (void)searchTrackables:(NSString *)searchText type:(NSString *)type email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url;
-    if([type isEqualToString:@"symptoms"]) {
-        url = [NSString stringWithFormat:@"%@/symptoms/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    } else if([type isEqualToString:@"treatments"]) {
-        url = [NSString stringWithFormat:@"%@/treatments/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    } else if([type isEqualToString:@"conditions"]) {
-        url = [NSString stringWithFormat:@"%@/conditions/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    } else if([type isEqualToString:@"tags"]) {
-        url = [NSString stringWithFormat:@"%@/tags/search/%@", self.baseUrl, [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    } else {
-        NSLog(@"Invalid search type in searchTrackables method of FDNetworkManager");
-        completionBlock(false, nil);
-    }
-    
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
-    
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-    
-}
-
-- (void)getPopularTagsWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url;
-    url = [NSString stringWithFormat:@"%@/tags/popular", self.baseUrl];
-    
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
-    
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
-
-}
-
-- (void)getLocale:(NSString *)locale email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"%@/locales/%@", self.baseUrl, locale];
-    
-    NSDictionary *parameters = @{@"user_email":email, @"user_token":authenticationToken};
-    
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        completionBlock(true, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        completionBlock(false, nil);
-    }];
+    [FDHTTPClient putRequestWithUrl:[NSString stringWithFormat:@"%@/%@", APIHost, url] parameters:parameters completionBlock:completionBlock];
 }
 
 + (BOOL)networkReachable

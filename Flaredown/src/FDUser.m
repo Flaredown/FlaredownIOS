@@ -21,12 +21,13 @@
 {
     self = [super init];
     if(self) {
-        NSDictionary *userDictionary = [dictionary objectForKey:@"user"];
-        if(!userDictionary)
-            userDictionary = [dictionary objectForKey:@"current_user"];
+        NSDictionary *userDictionary = dictionary;
+//        NSDictionary *userDictionary = [dictionary objectForKey:@"user"];
+//        if(!userDictionary)
+//            userDictionary = [dictionary objectForKey:@"current_user"];
         _userId = [[userDictionary objectForKey:@"id"] integerValue];
         _email = [userDictionary objectForKey:@"email"];
-        _authenticationToken = [userDictionary objectForKey:@"authentication_token"];
+        _authenticationToken = [userDictionary objectForKey:@"token"];
         
         NSDictionary *settingsDictionary = [userDictionary objectForKey:@"settings"];
         _birthDateDay = [[settingsDictionary objectForKey:@"dobDay"] integerValue];

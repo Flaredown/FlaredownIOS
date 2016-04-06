@@ -401,8 +401,8 @@
             //Check the new symptom against the API for validation
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createTreatmentWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            FDTreatment *treatment = [[FDTreatment alloc] initWithTitle:title entry:entry];
+            [[FDNetworkManager sharedManager] createTreatment:[treatment dictionaryCopy] completion:^ (bool success, id responseObject) {
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 

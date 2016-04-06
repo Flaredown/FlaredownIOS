@@ -32,6 +32,8 @@
 		85378A191A5215250053D6CC /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85378A151A5215250053D6CC /* ProximaNova-Semibold.otf */; };
 		EB3F74ADFE6273E35FEF3393 /* libPods-FlaredownTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */; };
 		ED03ED661B827EAC00AAD1E5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED03ED651B827EAC00AAD1E5 /* AccountView.xib */; };
+		ED15C42E1CB5796F005395FC /* FDHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED15C42D1CB5796F005395FC /* FDHTTPSessionManager.m */; };
+		ED15C4341CB59DBA005395FC /* FDHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ED15C4331CB59DBA005395FC /* FDHTTPClient.m */; };
 		ED20FBD51BB0867D001679FA /* FDSummaryCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */; };
 		ED23ECC21BD96DCC00C84EF2 /* FDSummaryCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23ECC11BD96DCC00C84EF2 /* FDSummaryCardView.m */; };
 		ED2798F81C443215009B61B4 /* FDMeterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2798F71C443215009B61B4 /* FDMeterTableViewController.m */; };
@@ -142,6 +144,10 @@
 		9383875D12CC5B17F0A2D83F /* Pods-FlaredownTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlaredownTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlaredownTests/Pods-FlaredownTests.release.xcconfig"; sourceTree = "<group>"; };
 		C08229823FD3929741F58D99 /* libPods-FlaredownTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlaredownTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED03ED651B827EAC00AAD1E5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		ED15C42C1CB5796F005395FC /* FDHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHTTPSessionManager.h; sourceTree = "<group>"; };
+		ED15C42D1CB5796F005395FC /* FDHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHTTPSessionManager.m; sourceTree = "<group>"; };
+		ED15C4321CB59DBA005395FC /* FDHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDHTTPClient.h; sourceTree = "<group>"; };
+		ED15C4331CB59DBA005395FC /* FDHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDHTTPClient.m; sourceTree = "<group>"; };
 		ED20FBD31BB0867D001679FA /* FDSummaryCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCollectionViewLayout.h; sourceTree = "<group>"; };
 		ED20FBD41BB0867D001679FA /* FDSummaryCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSummaryCollectionViewLayout.m; sourceTree = "<group>"; };
 		ED23ECC01BD96DCC00C84EF2 /* FDSummaryCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSummaryCardView.h; sourceTree = "<group>"; };
@@ -355,6 +361,10 @@
 				42A90CD41AB499E800D08266 /* FDHashtagFinder.m */,
 				EDBA0E221ABC95B5001F165F /* FDStyle.h */,
 				EDBA0E231ABC95B5001F165F /* FDStyle.m */,
+				ED15C42C1CB5796F005395FC /* FDHTTPSessionManager.h */,
+				ED15C42D1CB5796F005395FC /* FDHTTPSessionManager.m */,
+				ED15C4321CB59DBA005395FC /* FDHTTPClient.h */,
+				ED15C4331CB59DBA005395FC /* FDHTTPClient.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -794,6 +804,7 @@
 				EDEA826C1A115A2A00A80416 /* FDResponse.m in Sources */,
 				EDEA82BE1A11952300A80416 /* FDLaunchViewController.m in Sources */,
 				10EED0B619E4A70A000464DD /* FDNetworkManager.m in Sources */,
+				ED15C42E1CB5796F005395FC /* FDHTTPSessionManager.m in Sources */,
 				1013943619DA13B100BBB266 /* FDSelectCollectionViewController.m in Sources */,
 				EDDC724E1A083ABF0059815A /* FDUser.m in Sources */,
 				ED2798FB1C443232009B61B4 /* FDMeterTableViewCell.m in Sources */,
@@ -839,6 +850,7 @@
 				101393C919D216D700BBB266 /* main.m in Sources */,
 				EDDF596D1B7944B000464456 /* HTAutocompleteManager.m in Sources */,
 				EDCB7F551AE34569001EDD7F /* FDLocalizationManager.m in Sources */,
+				ED15C4341CB59DBA005395FC /* FDHTTPClient.m in Sources */,
 				ED7A171C1AC9F60C009B8D05 /* FDMeterViewController.m in Sources */,
 				EDEA82691A11572400A80416 /* FDQuestion.m in Sources */,
 				EDEBC6AA1A424907007742C5 /* FDTreatment.m in Sources */,

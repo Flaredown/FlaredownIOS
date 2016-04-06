@@ -53,16 +53,17 @@ static NSString * const KeenWriteKey = @"c6222280f213adef6860fff3e431e3d933ed331
 
 - (void)updateUser:(FDUser *)user
 {
-    [Intercom updateUserWithAttributes:@{
-                                         @"email":[user email],
-                                         @"user_hash":@([user userId]),
-                                         @"user_country":[user location],
-                                         @"sex":[user sexString],
-                                         @"born_at":@([[user birthdayDate] timeIntervalSince1970]),
-                                         @"onboarded":@([user onboarded]),
-                                         @"created_at":@([[user createdAt] timeIntervalSince1970]),
-                                         @"app_id":IntercomAppId
-                                         }];
+    //TODO: fix intercom
+//    [Intercom updateUserWithAttributes:@{
+//                                         @"email":[user email],
+//                                         @"user_hash":@([user userId]),
+//                                         @"user_country":[user location],
+//                                         @"sex":[user sexString],
+//                                         @"born_at":@([[user birthdayDate] timeIntervalSince1970]),
+//                                         @"onboarded":@([user onboarded]),
+//                                         @"created_at":@([[user createdAt] timeIntervalSince1970]),
+//                                         @"app_id":IntercomAppId
+//                                         }];
     
 }
 

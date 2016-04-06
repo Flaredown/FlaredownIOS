@@ -10,29 +10,34 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
+static NSString * const APIHost = @"http://192.168.0.3:4300/api";
+//static NSString * const APIHost = @"https://app.flaredown.com/api";
+
 @interface FDNetworkManager : NSObject
 
-@property (strong, nonatomic) NSURL *baseUrl;
-
 + (id)sharedManager;
+
 - (void)loginUserWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(bool success, id response))completionBlock;
-- (void)getUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
-//- (void)updateUserWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(bool success, id response))completionBlock;
-- (void)updateUserWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken settings:(NSDictionary *)userSettings completion:(void (^)(bool success, id response))completionBlock;
-//- (void)getEntryFromDate:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
-- (void)getEntryWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken date:(NSString *)date completion:(void (^)(bool success, id response))completionBlock;
-- (void)createEntryWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken date:(NSString *)date completion:(void (^)(bool success, id response))completionBlock;
-- (void)putEntry:(NSDictionary *)entry date:(NSString *)date email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
 
-- (void)createSymptomWithName:(NSString *)symptomName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
-- (void)createTreatmentWithName:(NSString *)treatmentName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
-- (void)createConditionWithName:(NSString *)conditionName email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
+- (void)getUserForId:(NSInteger)userId completion:(void (^)(bool success, id response))completionBlock;
+- (void)updateUser:(NSDictionary *)user forId:(NSInteger)userId completion:(void (^)(bool, id))completionBlock;
+- (void)getProfileForId:(NSInteger)profileId completion:(void (^)(bool success, id response))completionBlock;
+- (void)updateProfile:(NSDictionary *)profile forId:(NSInteger)profileId completion:(void (^)(bool success, id response))completionBlock;
 
-- (void)searchTrackables:(NSString *)searchText type:(NSString *)type email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
+- (void)getEntryForId:(NSString *)entryId completion:(void (^)(bool success, id response))completionBlock;
+- (void)getEntryForDate:(NSString *)date completion:(void (^)(bool success, id response))completionBlock;
+- (void)updateEntry:(NSDictionary *)entry forId:(NSString *)entryId completion:(void (^)(bool success, id response))completionBlock;
 
-- (void)getPopularTagsWithEmail:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool success, id response))completionBlock;
+- (void)createSymptom:(NSDictionary *)symptom completion:(void (^)(bool, id))completionBlock;
+- (void)createTreatment:(NSDictionary *)treatment completion:(void (^)(bool, id))completionBlock;
+- (void)createCondition:(NSDictionary *)condition completion:(void (^)(bool, id))completionBlock;
+- (void)createTag:(NSString *)tag completion:(void (^)(bool, id))completionBlock;
 
-- (void)getLocale:(NSString *)locale email:(NSString *)email authenticationToken:(NSString *)authenticationToken completion:(void (^)(bool, id))completionBlock;
+- (void)searchSymptoms:(NSString *)searchText completion:(void (^)(bool, id))completionBlock;
+- (void)searchTreatments:(NSString *)searchText completion:(void (^)(bool, id))completionBlock;
+- (void)searchConditions:(NSString *)searchText completion:(void (^)(bool, id))completionBlock;
+- (void)searchTags:(NSString *)searchText completion:(void (^)(bool, id))completionBlock;
+- (void)getPopularTags:(void (^)(bool success, id response))completionBlock;
 
 + (BOOL)networkReachable;
 

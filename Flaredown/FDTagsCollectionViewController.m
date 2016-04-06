@@ -42,9 +42,7 @@ static NSString * const DividerIdentifier = @"divider";
     _tags = [[[FDModelManager sharedManager] entry] tags];
     _popularTags = [[NSMutableArray alloc] init];
     
-    FDModelManager *modelManager = [FDModelManager sharedManager];
-    FDUser *user = [modelManager userObject];
-    [[FDNetworkManager sharedManager] getPopularTagsWithEmail:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
+    [[FDNetworkManager sharedManager] getPopularTags:^(bool success, id responseObject) {
         if(success) {
             for (NSDictionary *dictionary in responseObject) {
                 FDTrackableResult *result = [[FDTrackableResult alloc] initWithDictionary:dictionary];

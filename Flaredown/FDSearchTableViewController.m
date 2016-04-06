@@ -100,8 +100,7 @@
         }
         [self.tableView reloadData];
     } else {
-        [[FDNetworkManager sharedManager] searchTrackables:_searchText type:searchType email:[user email] authenticationToken:[user authenticationToken] completion:^(bool success, id responseObject) {
-            
+        void (^completionBlock)(bool success, id responseObject) = ^void(bool success, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             if(success) {
@@ -130,9 +129,16 @@
                 [alertView show];
             }
             [self.tableView reloadData];
-    //        UITextField *searchField = (UITextField *)[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:1];
-    //        [searchField becomeFirstResponder];
-        }];
+        };
+        
+        if([searchType isEqualToString:@"symptoms"])
+           [[FDNetworkManager sharedManager] searchSymptoms:_searchText completion:completionBlock];
+        else if([searchType isEqualToString:@"treatments"])
+            [[FDNetworkManager sharedManager] searchTreatments:_searchText completion:completionBlock];
+        else if([searchType isEqualToString:@"conditions"])
+            [[FDNetworkManager sharedManager] searchConditions:_searchText completion:completionBlock];
+        else if([searchType isEqualToString:@"tags"])
+            [[FDNetworkManager sharedManager] searchTags:_searchText completion:completionBlock];
     }
 }
 
@@ -311,12 +317,12 @@
                     return;
                 }
             }
-                
+            
             //Check the new symptom against the API for validation
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createSymptomWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            FDSymptom *symptom = [[FDSymptom alloc] initWithTitle:title entry:entry];
+            [[FDNetworkManager sharedManager] createSymptom:[symptom dictionaryCopy] completion:^(bool success, id responseObject) {
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 
@@ -360,8 +366,8 @@
             //Check the new symptom against the API for validation
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createTreatmentWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            FDTreatment *treatment = [[FDTreatment alloc] initWithTitle:title entry:entry];
+            [[FDNetworkManager sharedManager] createTreatment:[treatment dictionaryCopy] completion:^ (bool success, id responseObject) {
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 
@@ -418,8 +424,8 @@
             //Check the new condition against the API for validation
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createConditionWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            FDCondition *condition = [[FDCondition alloc] initWithTitle:title entry:entry];
+            [[FDNetworkManager sharedManager] createCondition:[condition dictionaryCopy] completion:^ (bool success, id responseObject) {
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 
@@ -454,8 +460,7 @@
             //Check the new symptom against the API for validation
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
-            FDUser *user = [[FDModelManager sharedManager] userObject];
-            [[FDNetworkManager sharedManager] createConditionWithName:title email:[user email] authenticationToken:[user authenticationToken] completion:^ (bool success, id responseObject) {
+            [[FDNetworkManager sharedManager] createTag:title completion:^ (bool success, id responseObject) {
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 
